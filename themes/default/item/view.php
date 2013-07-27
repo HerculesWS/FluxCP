@@ -6,6 +6,7 @@
 	<?php if ($icon): ?><img src="<?php echo $icon ?>" /><?php endif ?>
 	#<?php echo htmlspecialchars($item->item_id) ?>: <?php echo htmlspecialchars($item->name) ?>
 </h3>
+<div class="adjust">
 <table class="vertical-table">
 	<tr>
 		<th>Item ID</th>
@@ -88,20 +89,12 @@
 		<th>Min Equip Level</th>
 		<td><?php echo number_format((int)$item->equip_level_min) ?></td>
 	</tr>
-	<?php if($server->isRenewal): ?>
 	<tr>
 		<th>MATK</th>
 		<td><?php echo number_format((int)$item->matk) ?></td>
 		<th>Max Equip Level</th>
-		<td>
-			<?php if ($item->equip_level_max == 0): ?>
-				<span class="not-applicable">None</span>
-			<?php else: ?>
-				<?php echo number_format((int)$item->equip_level_max) ?>
-			<?php endif ?>
-		</td>
+		<td><?php echo number_format((int)$item->equip_level_max) ?></td>
 	</tr>
-	<?php endif ?>
 	<tr>
 		<th>Equip Locations</th>
 		<td colspan="<?php echo $image ? 4 : 3 ?>">
@@ -179,8 +172,10 @@
 	</tr>
 	<?php endif ?>
 </table>
+</div>
 <?php if ($itemDrops): ?>
 <h3><?php echo htmlspecialchars($item->name) ?> Dropped By</h3>
+<div class="adjust">
 <table class="vertical-table">
 	<tr>
 		<th>Monster ID</th>
@@ -215,6 +210,7 @@
 	</tr>
 	<?php endforeach ?>
 </table>
+</div>
 <?php endif ?>
 <?php else: ?>
 <p>No such item was found. <a href="javascript:history.go(-1)">Go back</a>.</p>
