@@ -68,32 +68,6 @@
 		<input type="text" name="weight" id="weight" value="<?php echo htmlspecialchars($params->get('weight')) ?>" />
 	</p>
 	<p>
-		<label for="range">Range:</label>
-		<select name="range_op">
-			<option value="eq"<?php if (($range_op=$params->get('range_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
-			<option value="gt"<?php if ($range_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
-			<option value="lt"<?php if ($range_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
-		</select>
-		<input type="text" name="range" id="range" value="<?php echo htmlspecialchars($params->get('range')) ?>" />
-		...
-		<label for="slots">Slots:</label>
-		<select name="slots_op">
-			<option value="eq"<?php if (($slots_op=$params->get('slots_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
-			<option value="gt"<?php if ($slots_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
-			<option value="lt"<?php if ($slots_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
-		</select>
-		<input type="text" name="slots" id="slots" value="<?php echo htmlspecialchars($params->get('slots')) ?>" />
-		...
-		<label for="defense">Defense:</label>
-		<select name="defense_op">
-			<option value="eq"<?php if (($defense_op=$params->get('defense_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
-			<option value="gt"<?php if ($defense_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
-			<option value="lt"<?php if ($defense_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
-		</select>
-		<input type="text" name="defense" id="defense" value="<?php echo htmlspecialchars($params->get('defense')) ?>" />
-	</p>
-	<p>
-		<?php if(!$server->isRenewal): ?>
 		<label for="attack">Attack:</label>
 		<select name="attack_op">
 			<option value="eq"<?php if (($attack_op=$params->get('attack_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
@@ -102,7 +76,39 @@
 		</select>
 		<input type="text" name="attack" id="attack" value="<?php echo htmlspecialchars($params->get('attack')) ?>" />
 		...
-		<?php endif ?>
+		<label for="matk">MATK:</label>
+		<select name="matk_op">
+			<option value="eq"<?php if (($matk_op=$params->get('matk_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
+			<option value="gt"<?php if ($matk_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
+			<option value="lt"<?php if ($matk_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
+		</select>
+		<input type="text" name="matk" id="matk" value="<?php echo htmlspecialchars($params->get('matk')) ?>" />
+		...
+		<label for="defense">Defense:</label>
+		<select name="defense_op">
+			<option value="eq"<?php if (($defense_op=$params->get('defense_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
+			<option value="gt"<?php if ($defense_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
+			<option value="lt"<?php if ($defense_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
+		</select>
+		<input type="text" name="defense" id="defense" value="<?php echo htmlspecialchars($params->get('defense')) ?>" />
+		...
+		<label for="range">Range:</label>
+		<select name="range_op">
+			<option value="eq"<?php if (($range_op=$params->get('range_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
+			<option value="gt"<?php if ($range_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
+			<option value="lt"<?php if ($range_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
+		</select>
+		<input type="text" name="range" id="range" value="<?php echo htmlspecialchars($params->get('range')) ?>" />
+	</p>
+	<p>
+		<label for="slots">Slots:</label>
+		<select name="slots_op">
+			<option value="eq"<?php if (($slots_op=$params->get('slots_op')) == 'eq') echo ' selected="selected"' ?>>is equal to</option>
+			<option value="gt"<?php if ($slots_op == 'gt') echo ' selected="selected"' ?>>is greater than</option>
+			<option value="lt"<?php if ($slots_op == 'lt') echo ' selected="selected"' ?>>is less than</option>
+		</select>
+		<input type="text" name="slots" id="slots" value="<?php echo htmlspecialchars($params->get('slots')) ?>" />
+		...
 		<label for="refineable">Refineable:</label>
 		<select name="refineable" id="refineable">
 			<option value=""<?php if (!($refineable=$params->get('refineable'))) echo ' selected="selected"' ?>>All</option>
@@ -123,13 +129,14 @@
 			<option value="yes"<?php if ($custom == 'yes') echo ' selected="selected"' ?>>Yes</option>
 			<option value="no"<?php if ($custom == 'no') echo ' selected="selected"' ?>>No</option>
 		</select>
-		...
+		
 		<input type="submit" value="Search" />
 		<input type="button" value="Reset" onclick="reload()" />
 	</p>
 </form>
 <?php if ($items): ?>
 <?php echo $paginator->infoText() ?>
+<div class="adjust">
 <table class="horizontal-table">
 	<tr>
 		<th><?php echo $paginator->sortableColumn('item_id', 'Item ID') ?></th>
@@ -140,9 +147,7 @@
 		<th><?php echo $paginator->sortableColumn('price_sell', 'NPC Sell') ?></th>
 		<th><?php echo $paginator->sortableColumn('weight', 'Weight') ?></th>
 		<th><?php echo $paginator->sortableColumn('attack', 'Attack') ?></th>
-		<?php if($server->isRenewal): ?>
-		<th><?php echo $paginator->sortableColumn('matk', 'MATK') ?></th>
-		<?php endif ?>
+		<th><?php echo $paginator->sortableColumn('matk', 'Matk') ?></th>
 		<th><?php echo $paginator->sortableColumn('defense', 'Defense') ?></th>
 		<th><?php echo $paginator->sortableColumn('range', 'Range') ?></th>
 		<th><?php echo $paginator->sortableColumn('slots', 'Slots') ?></th>
@@ -182,12 +187,8 @@
 		<td><?php echo number_format((int)$item->price_buy) ?></td>
 		<td><?php echo number_format((int)$item->price_sell) ?></td>
 		<td><?php echo round($item->weight, 1) ?></td>
-		<?php if($server->isRenewal && ($item=$this->itemFieldExplode($item, 'attack', ':', array('atk','matk')))): ?>
-			<td><?php echo number_format((int)$item->atk) ?></td>
-			<td><?php echo number_format((int)$item->matk) ?></td>
-		<?php else: ?>
-			<td><?php echo number_format((int)$item->attack) ?></td>
-		<?php endif ?>
+		<td><?php echo number_format((int)$item->attack) ?></td>
+		<td><?php echo number_format((int)$item->matk) ?></td>
 		<td><?php echo number_format((int)$item->defense) ?></td>
 		<td><?php echo number_format((int)$item->range) ?></td>
 		<td><?php echo number_format((int)$item->slots) ?></td>
@@ -215,6 +216,7 @@
 	</tr>
 	<?php endforeach ?>
 </table>
+</div>
 <?php echo $paginator->getHTML() ?>
 <?php else: ?>
 <p>No items found. <a href="javascript:history.go(-1)">Go back</a>.</p>
