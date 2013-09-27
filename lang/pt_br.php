@@ -608,7 +608,7 @@ return array(
 	// - unauthorized/index
 	'UnauthorizedTitle'       => 'Não Autorizado',
 	'UnauthorizedHeading'     => 'Não Autorizado',
-	'UnauthorizedInfo'        => 'Você não está autrizado a ver essa página. <a href="%s">Redirecionando…</a>',
+	'UnauthorizedInfo'        => 'Você não está autorizado a ver essa página. <a href="%s">Redirecionando…</a>',
 	
 	// Module: woe
 	// - woe/index
