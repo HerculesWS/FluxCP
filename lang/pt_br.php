@@ -97,7 +97,7 @@ return array(
 	// - account/changesex
 	'GenderChangeTitle'       => 'Alterar Gênero',
 	'GenderChangeBadChars'    => 'Você não pode trocar de gênero se algum dos seus personagens é um %s',
-	'GenderChanged'           => 'Seu gênero foi alterado com sucesso e $d créditos foram debitados sua conta.',
+	'GenderChanged'           => 'Seu gênero foi alterado com sucesso e %d créditos foram debitados sua conta.',
 	'GenderChangedForFree'    => 'Gênero alterado com sucesso.',
 	'GenderChangeHeading'     => 'Altere Seu Gênero',
 	'GenderChangeCost'        => 'Mudança de Gênero vai custar %s créditos para você.',
