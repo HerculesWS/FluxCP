@@ -196,29 +196,29 @@ return array(
 		//	'Home'          => array('module' => 'main'),
 			//'Forums'        => array('exturl' => 'http://www.fluxro.com/community'),
 		//),
-		'Account'     => array(
-			'Register'      => array('module' => 'account', 'action' => 'create'),
-			'Login'         => array('module' => 'account', 'action' => 'login'),
-			'My Account'    => array('module' => 'account', 'action' => 'view'),
-			'History'       => array('module' => 'history'),
-			'Logout'        => array('module' => 'account', 'action' => 'logout'),
+		'AccountLabel'     => array(
+			'AccountCreateHeading'      => array('module' => 'account', 'action' => 'create'),
+			'LoginTitle'         => array('module' => 'account', 'action' => 'login'),
+			'MyAccountLabel'    => array('module' => 'account', 'action' => 'view'),
+			'HistoryLabel'       => array('module' => 'history'),
+			'LogoutTitle'        => array('module' => 'account', 'action' => 'logout'),
 		),
-		'Donations'   => array(
-			'Donate'        => array('module' => 'donate'),
-			'Purchase'      => array('module' => 'purchase'),
+		'DonationsLabel'   => array(
+			'DonateLabel'        => array('module' => 'donate'),
+			'PurchaseLabel'      => array('module' => 'purchase'),
 		),
-		'Information' => array(
-			'Server Info'   => array('module' => 'server', 'action' => 'info'),
-			'Server Status' => array('module' => 'server', 'action' => 'status'),
-			'WoE Hours'     => array('module' => 'woe'),
-			'Castles'       => array('module' => 'castle'),
-			"Who's Online"  => array('module' => 'character', 'action' => 'online'),
-			'Map Statistics'=> array('module' => 'character', 'action' => 'mapstats'),
-			'Ranking Info'  => array('module' => 'ranking', 'action' => 'character'),
+		'InformationLabel' => array(
+			'ServerInfoLabel'   => array('module' => 'server', 'action' => 'info'),
+			'ServerStatusLabel' => array('module' => 'server', 'action' => 'status'),
+			'WoeHoursLabel'     => array('module' => 'woe'),
+			'CastlesLabel'       => array('module' => 'castle'),
+			"WhosOnlineLabel"  => array('module' => 'character', 'action' => 'online'),
+			'MapStatisticsLabel'=> array('module' => 'character', 'action' => 'mapstats'),
+			'RankingInfoLabel'  => array('module' => 'ranking', 'action' => 'character'),
 		),
-		'Database'    => array(
-			'Item Database' => array('module' => 'item'),
-			'Mob Database'  => array('module' => 'monster'),
+		'DatabaseLabel'    => array(
+			'ItemDatabaseLabel' => array('module' => 'item'),
+			'MobDatabaseLabel'  => array('module' => 'monster'),
 		),
 		'Misc. Stuff' => array(
 			'Hercules Logs' => array('module' => 'logdata'),

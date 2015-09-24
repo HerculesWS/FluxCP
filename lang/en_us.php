@@ -55,6 +55,39 @@ return array(
 	'ItemCard2Label'          => 'Card 2',
 	'ItemCard3Label'          => 'Card 3',
 
+	//SIDEBAR
+    //FluxCP Menu Items
+    //Categories
+    'MainMenuLabel'           => 'Main Menu',
+    'AccountLabel'            => 'Account',
+    'DonationsLabel'          => 'Donations',
+    'InformationLabel'        => 'Information',
+    'DatabaseLabel'           => 'Database',
+    'SocialLabel'             => 'Social',
+    //SubMenus
+    'HomeLabel'               => 'Home',
+    'NewsLabel'               => 'News',
+    'DownloadsLabel'          => 'Downloads',
+    'RulesLabel'              => 'Rules',
+    'ContactUsLabel'          => 'Contact us',
+    'MyAccountLabel'          => 'My Account',
+    'HistoryLabel'            => 'History',
+    'ServiceDeskLabel'        => 'Service Desk',
+    'PurchaseLabel'           => 'Purchase',
+    'DonateLabel'             => 'Donate',
+    'ServerInfoLabel'         => 'Server Info',
+    'ServerStatusLabel'       => 'Server Status',
+    'WoeHoursLabel'           => 'WoE Hours',
+    'CastlesLabel'            => 'Castles',
+    'WhosOnlineLabel'         => "Who's Online",
+    'MapStaticsLabel'         => 'Map Statistics',
+    'RankingInfoLabel'        => 'Ranking',
+    'VendingInfoLabel'        => 'Vending',
+    'ItemDatabaseLabel'       => 'Item DB',
+    'MobDatabaseLabel'        => 'Mob DB',
+    'JoinUsInFacebookLabel'   => 'Find us on Facebook!',
+    'RateUsOnRMSLabel'        => 'Rate us on RMS!',
+
 	// Security
 	'SecuritySessionInvalid'  => 'Sorry, the session has expired, try again.',
 	'SecurityNeedSession'     => 'Sorry, no form session found (hack attempt ?)',
