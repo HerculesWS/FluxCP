@@ -102,6 +102,36 @@ return array(
     'MobDatabaseLabel'        => 'Mob DB',
     'JoinUsInFacebookLabel'   => '¡Encuéntranos en Facebook!',
     'RateUsOnRMSLabel'        => '¡Califícanos en RMS!',
+    //ADMIN SIDEBAR AND OPTIONS
+    'SendMailLabel'			=>	'Enviar Email',
+    'ReInstallLabel'			=>	'Re-instalar',
+    'TransferHistory'		=>	'Historial de transferencias',
+    'CartLabel'				=>	'Carro de compra',
+    'ListGuildsLabel'		=>	'Lista de Guilds',
+    'ExportGuildEmblemLabel'		=>	'Exportar emblemas',
+    'ViewStatusLabel'		=>	'Ver estado',
+    'ViewXmlStatusLabel'	=>	'Ver estado como XML',
+    'ChatMessagesLabel'		=>	'Mensajes de chat',
+    'LoginsLabel'			=>	'Logins',
+    'PaypalTransactionsTitle' => 'Transacciones por PayPal',
+    'AccountBansLabel'		=>	'Cuentas Bloqueadas',
+    'IpBansLabel'			=>	'IPs Bloqueadas',
+    'GoToCartLabel'			=>	'Ir al Carro',
+    'CheckoutLabel'			=>	'Canjear',
+    'EmptyCartLabel'		=>	'Vaciar Carro',
+    'PendingRedemptionLabel'	=> 'Canje Pendiente',
+    'DonationHistoryLabel'	=>	'Historial de Donaciones',
+    'TrustedPayPalMailsLabel' => 'Correos de confianza',
+    'CharacterRankingLabel' =>	'Ranking de Personajes',
+    'GuildRankingLabel'		=>	'Ranking de Guilds',
+    'ZenyRankingLabel'		=>	'Ranking de Zeny',
+    'DeathRankingLabel'		=>	'Ranking de Muertes',
+    'AlchemistRankingLabel'	=>	'Ranking de Alchemist',
+    'BlacksmithRankingLabel'	=>	'Ranking de Blacksmiths',
+    'ListItemsLabel'		=>	'Lista de objetos',
+    'AddItemLabel'			=> 	'Agregar Objeto',
+    'HerculesLogsLabel'		=>	'Hercules Logs',
+
 
 	// Security
 	'SecuritySessionInvalid'  => 'Lo sentimos, pero tu tiempo de sesión ha expirado. Inténtalo de nuevo.',
@@ -288,6 +318,7 @@ return array(
 	'ResetPwDone2'            => 'Se ha cambiado tu contraseña, pero no hemos podido enviar el correo electrónico que contiene tu nueva contraseña. Por favor, repite el proceso de recuperar tu contraseña para resolver este problema.',
 	// - account/transfer
 	'TransferTitle'           => 'Transferir Créditos de Donación',
+	'TransferTitleShort'      => 'Transferir Créditos',
 	'TransferGreaterThanOne'  => 'Solo puedes transferir créditos en cantidades mayores que 1.',
 	'TransferEnterCharName'   => 'Debes introducir el nombre del personaje que recibirá los créditos.',
 	'TransferNoCharExists'    => "El personaje '%s' no existe. Asegúrate de haberlo escrito correctamente.",
@@ -434,6 +465,7 @@ return array(
 	// Module: history
 	// - history/cplogin
 	'HistoryCpLoginTitle'     => 'Accesos al Panel de Control',
+	'HistoryCpLoginTitleShort'	=>	'CP Logins',
 	'HistoryCpLoginHeading'   => 'Accesos al Panel de Control',
 	'HistoryLoginDateLabel'   => 'Fecha/Hora de Acceso',
 	'HistoryIpAddrLabel'      => 'Dirección IP',
@@ -501,8 +533,8 @@ return array(
 	'IpbanEditReasonLabel'    => 'Razón de la Edición',
 	'IpbanEditButton'         => 'Modifcar Expulsión de IP',
 	// - ipban/index
-	'IpbanListTitle'          => 'Lista de Expulsiones de IP',
-	'IpbanListHeading'        => 'Lista de Expulsiones de IP',
+	'IpbanListTitle'          => 'Lista IPs bloqueadas',
+	'IpbanListHeading'        => 'Lista IPs bloqueadas',
 	'IpbanBannedIpLabel'      => 'IP Expulsada',
 	'IpbanBanDateLabel'       => 'Fecha de Expulsión',
 	'IpbanBanReasonLabel'     => 'Razón de Expulsión',

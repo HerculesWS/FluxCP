@@ -87,6 +87,38 @@ return array(
     'MobDatabaseLabel'        => 'Mob DB',
     'JoinUsInFacebookLabel'   => 'Find us on Facebook!',
     'RateUsOnRMSLabel'        => 'Rate us on RMS!',
+    //ADMIN SIDEBAR AND OPTIONS
+    'SendMailLabel'			=>	'Send Email',
+    'ReInstallLabel'			=>	'Re-install',
+    'CpLoginsLabel'			=>	'CP Logins',
+    'TransferHistory'		=>	'Transfer History',
+    'CartLabel'				=>	'Go to shopping cart',
+    'ListGuildsLabel'		=>	'List Guilds',
+    'ExportGuildEmblemLabel'		=>	'Export guild emblems',
+    'ViewStatusLabel'		=>	'View Status',
+    'ViewXmlStatusLabel'	=>	'View status as XML',
+    'ChatMessagesLabel'		=>	'Chat messages',
+    'LoginsLabel'			=>	'Logins',
+    'PaypalTransactionsTitle' => 'PayPal Transactions',
+    'AccountBansLabel'		=>	'Account Bans',
+    'IpBansLabel'			=>	'IP Bans',
+    'ShopLabel'				=>	'Shop',
+    'GoToCartLabel'			=>	'Go to Cart',
+    'CheckoutLabel'			=>	'Checkout',
+    'EmptyCartLabel'		=>	'Empty Cart',
+    'PendingRedemptionLabel'	=> 'Pending Redemption',
+    'DonationHistoryLabel'	=>	'Donation History',
+    'TrustedPayPalMailsLabel' => 'Trusted E-Mails',
+    'CharacterRankingLabel' =>	'Character Ranking',
+    'GuildRankingLabel'		=>	'Guild Ranking',
+    'ZenyRankingLabel'		=>	'Zeny Ranking',
+    'DeathRankingLabel'		=>	'Death Ranking',
+    'AlchemistRankingLabel'	=>	'Alchemist Ranking',
+    'BlacksmithRankingLabel'	=>	'Blacksmith Ranking',
+    'ListItemsLabel'		=>	'List Items',
+    'AddItemLabel'			=> 	'Add Item',
+    'HerculesLogsLabel'		=>	'Hercules Logs',
+
 
 	// Security
 	'SecuritySessionInvalid'  => 'Sorry, the session has expired, try again.',
@@ -273,6 +305,7 @@ return array(
 	'ResetPwDone2'            => 'Your password has been reset, but we failed to deliver the e-mail containing your new password.  Please reset again to resolve this issue.',
 	// - account/transfer
 	'TransferTitle'           => 'Transfer Donation Credits',
+	'TransferTitleShort'           => 'Transfer Credits',
 	'TransferGreaterThanOne'  => 'You can only transfer credits in amounts greater than 1.',
 	'TransferEnterCharName'   => 'You must input the character name of who will receive the credits.',
 	'TransferNoCharExists'    => "Character '%s' does not exist. Please make sure you typed it correctly.",
@@ -394,7 +427,7 @@ return array(
 	// - donate/history
 	// - donate/index
 	// - donate/trusted
-	
+
 	// Module: errors
 	// - errors/missing_action
 	'MissingActionTitle'      => 'Missing Action',
@@ -419,6 +452,7 @@ return array(
 	// Module: history
 	// - history/cplogin
 	'HistoryCpLoginTitle'     => 'Control Panel Logins',
+	'HistoryCpLoginTitleShort'	=>	'CP Logins',
 	'HistoryCpLoginHeading'   => 'Control Panel Logins',
 	'HistoryLoginDateLabel'   => 'Login Date/Time',
 	'HistoryIpAddrLabel'      => 'IP Address',

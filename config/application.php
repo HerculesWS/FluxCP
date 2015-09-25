@@ -221,14 +221,14 @@ return array(
 			'MobDatabaseLabel'  => array('module' => 'monster'),
 		),
 		'Misc. Stuff' => array(
-			'Hercules Logs' => array('module' => 'logdata'),
-			'CP Logs'       => array('module' => 'cplog'),
-			'IP Ban List'   => array('module' => 'ipban'),
-			'Accounts'      => array('module' => 'account'),
-			'Characters'    => array('module' => 'character'),
-			'Guilds'        => array('module' => 'guild'),
-			'Send Mail'     => array('module' => 'mail'),
-			'Re-Install'    => array('module' => 'install', 'action' => 'reinstall'),
+			'HerculesLogsLabel' => array('module' => 'logdata'),
+			'CPLogsLabel'       => array('module' => 'cplog'),
+			'IpbanListTitle'   => array('module' => 'ipban'),
+			'AccountIndexHeading'      => array('module' => 'account'),
+			'ServerInfoCharLabel'    => array('module' => 'character'),
+			'ServerInfoGuildLabel'        => array('module' => 'guild'),
+			'SendMailLabel'     => array('module' => 'mail'),
+			'ReInstallLabel'    => array('module' => 'install', 'action' => 'reinstall'),
 			//'Auction'       => array('module' => 'auction'),
 			//'Economy'       => array('module' => 'economy'),
 		)
@@ -238,82 +238,82 @@ return array(
 	// particular module. The format it simple.
 	'SubMenuItems' => array(
 		'history' => array(
-			'gamelogin'  => 'Game Logins',
-			'cplogin'    => 'CP Logins',
-			'emailchange'=> 'E-Mail Changes',
-			'passchange' => 'Password Changes',
-			'passreset'  => 'Password Resets'
+			'gamelogin'  => 'HistoryGameLoginTitle',
+			'cplogin'    => 'HistoryCpLoginTitleShort',
+			'emailchange'=> 'HistoryEmailTitle',
+			'passchange' => 'HistoryPassChangeTitle',
+			'passreset'  => 'HistoryPassResetTitle'
 		),
 		'account' => array(
-			'index'      => 'List Accounts',
-			'view'       => 'View Account',
-			'changepass' => 'Change Password',
-			'changemail' => 'Change E-mail',
-			'changesex'  => 'Change Gender',
-			'transfer'   => 'Transfer Credits',
-			'xferlog'    => 'Credit Transfer History',
-			'cart'       => 'Go to Shopping Cart',
-			'login'      => 'Login',
-			'create'     => 'Register',
-			'resetpass'  => 'Reset Password',
-			'resend'     => 'Resend E-mail Confirmation'
+			'index'      => 'AccountIndexTitle',
+			'view'       => 'AccountViewTitle',
+			'changepass' => 'PasswordChangeTitle',
+			'changemail' => 'EmailChangeTitle',
+			'changesex'  => 'GenderChangeTitle',
+			'transfer'   => 'TransferTitle',
+			'xferlog'    => 'TransferHistory',
+			'cart'       => 'CartLabel',
+			'login'      => 'LoginTitle',
+			'create'     => 'AccountCreateHeading',
+			'resetpass'  => 'ResetPassTitle',
+			'resend'     => 'ResendTitle'
 		),
 		'guild' => array(
-			'index'  => 'List Guilds',
-			'export' => 'Export Guild Emblems'
+			'index'  => 'ListGuildsLabel',
+			'export' => 'ExportGuildEmblemLabel'
 		),
 		'server' => array(
-			'status'     => 'View Status',
-			'status-xml' => 'View Status as XML'
+			'status'     => 'ViewStatusLabel',
+			'status-xml' => 'ViewXmlStatusLabel'
 		),
 		'logdata' => array(
 			//'char'    => 'Characters',
 			//'inter'   => 'Interactions',
-			'command' => 'Commands',
+			'command' => 'CommandLogHeading',
 			//'branch'  => 'Branches',
-			'chat'    => 'Chat Messages',
-			'login'   => 'Logins',
+			'chat'    => 'ChatMessagesLabel',
+			'login'   => 'LoginsLabel',
 			//'mvp'     => 'MVP',
 			//'npc'     => 'NPC',
-			'pick'    => 'Item Picks',
-			'zeny'    => 'Zeny'
+			'pick'    => 'PickLogHeading',
+			'zeny'    => 'ServerInfoZenyLabel'
 		),
 		'cplog' => array(
-			'paypal'     => 'PayPal Transactions',
-			'login'      => 'Logins',
-			'resetpass'  => 'Password Resets',
-			'changepass' => 'Password Changes',
-			'changemail' => 'E-mail Changes',
-			'ban'        => 'Account Bans',
-			'ipban'      => 'IP Bans'
+			'paypal'     => 'PaypalTransactionsTitle',
+			'login'      => 'LoginsLabel',
+			'resetpass'  => 'HistoryPassResetTitle',
+			'changepass' => 'HistoryPassChangeTitle',
+			'changemail' => 'HistoryEmailTitle',
+			'ban'        => 'AccountBansLabel',
+			'ipban'      => 'IpBansLabel'
 		),
 		'purchase' => array(
-			'index'    => 'Shop',
-			'cart'     => 'Go to Cart',
-			'checkout' => 'Checkout',
-			'clear'    => 'Empty Cart',
-			'pending'  => 'Pending Redemption'
+			'index'    => 'ShopLabel',
+			'cart'     => 'GoToCartLabel',
+			'checkout' => 'CheckoutLabel',
+			'clear'    => 'EmptyCartLabel',
+			'pending'  => 'PendingRedemptionLabel'
 		),
 		'donate' => array(
-			'index'   => 'Make a Donation',
-			'history' => 'Donation History',
-			'trusted' => 'Trusted PayPal E-mails'
+			'index'   => 'DonateLabel',
+			'history' => 'DonationHistoryLabel',
+			'trusted' => 'TrustedPayPalMailsLabel'
 		),
 		'ipban' => array(
-			'index' => 'IP Ban List',
-			'add'   => 'Add IP Ban'
+			'index' => 'IpbanListTitle',
+			'add'   => 'IpbanAddTitle'
 		),
 		'ranking' => array(
-			'character'  => 'Character Ranking',
-			'guild'      => 'Guild Ranking',
-			'zeny'       => 'Zeny Ranking',
-			'death'      => 'Death Ranking',
-			'alchemist'  => 'Alchemist Ranking',
-			'blacksmith' => 'Blacksmith Ranking'
+			'character'  => 'CharacterRankingLabel',
+			'guild'      => 'GuildRankingLabel',
+			'zeny'       => 'ZenyRankingLabel',
+			'death'      => 'DeathRankingLabel',
+			'alchemist'  => 'AlchemistRankingLabel',
+			'blacksmith' => 'BlacksmithRankingLabel'
 		),
 		'item' => array(
-			'index' => 'List Items',
-			'add'   => 'Add Item'
+			'index' => 'ListItemsLabel',
+			'add'   => 'AddItemLabel'
 		)
 	),
 	

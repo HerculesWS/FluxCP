@@ -55,7 +55,7 @@ return array(
 	'ItemCard2Label'          => 'Carta 2',
 	'ItemCard3Label'          => 'Carta 3',
 
-		//SIDEBAR
+	//SIDEBAR
     //FluxCP Menu Items
     //Categories
     'MainMenuLabel'           => 'Main Menu',
@@ -87,6 +87,35 @@ return array(
     'MobDatabaseLabel'        => 'Mob DB',
     'JoinUsInFacebookLabel'   => 'Find us on Facebook!',
     'RateUsOnRMSLabel'        => 'Rate us on RMS!',
+    //ADMIN SIDEBAR AND OPTIONS
+    'SendMailLabel'			=>	'Enviar Email',
+    'ReInstallLabel'			=>	'Re-instalar',
+    'TransferHistory'		=>	'Transfer History',
+    'CartLabel'				=>	'Go to shopping cart',
+    'ListGuildsLabel'		=>	'List Guilds',
+    'ExportGuildEmblemLabel'		=>	'Export guild emblems',
+    'ViewStatusLabel'		=>	'View Status',
+    'ViewXmlStatusLabel'	=>	'View status as XML',
+    'ChatMessagesLabel'		=>	'Chat messages',
+    'LoginsLabel'			=>	'Logins',
+    'PaypalTransactionsTitle' => 'PayPal Transactions',
+    'AccountBansLabel'		=>	'Account Bans',
+    'IpBansLabel'			=>	'IP Bans',
+    'GoToCartLabel'			=>	'Go to Cart',
+    'CheckoutLabel'			=>	'Checkout',
+    'EmptyCartLabel'		=>	'Empty Cart',
+    'PendingRedemptionLabel'	=> 'Pending Redemption',
+    'DonationHistoryLabel'	=>	'Donation History',
+    'TrustedPayPalMailsLabel' => 'Trusted E-Mails',
+    'CharacterRankingLabel' =>	'Character Ranking',
+    'GuildRankingLabel'		=>	'Guild Ranking',
+    'ZenyRankingLabel'		=>	'Zeny Ranking',
+    'DeathRankingLabel'		=>	'Death Ranking',
+    'AlchemistRankingLabel'	=>	'Alchemist Ranking',
+    'BlacksmithRankingLabel'	=>	'Blacksmith Ranking',
+    'ListItemsLabel'		=>	'List Items',
+    'AddItemLabel'			=> 	'Add Item',
+    'HerculesLogsLabel'		=>	'Hercules Logs',
 	
 	// Module: account
 	// - account/changemail
@@ -268,6 +297,7 @@ return array(
 	'ResetPwDone2'            => 'A sua senha foi redefinida, mas houve uma falha ao lhe enviar um e-mail contendo sua nova senha. Por favor, tente redefiní-la novamente para resolver esse problema.',
 	// - account/transfer
 	'TransferTitle'           => 'Transferir Créditos de Doação',
+	'TransferTitleShort'           => 'Transfer Credits',
 	'TransferGreaterThanOne'  => 'Você só pode transferir 1 ou mais créditos.',
 	'TransferEnterCharName'   => 'Você deve digitar o nome do personagem que vai receber os créditos.',
 	'TransferNoCharExists'    => "O personagem '%s' não existe. Tenha certeza que você digitou o nome correto.",
@@ -414,6 +444,7 @@ return array(
 	// Module: history
 	// - history/cplogin
 	'HistoryCpLoginTitle'     => 'Logins no Painel de Controle',
+	'HistoryCpLoginTitleShort'	=>	'CP Logins',
 	'HistoryCpLoginHeading'   => 'Logins no Painel de Controle',
 	'HistoryLoginDateLabel'   => 'Data/Hora do Login',
 	'HistoryIpAddrLabel'      => 'Endereço de IP',
