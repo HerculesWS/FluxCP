@@ -104,15 +104,35 @@ class Flux_PaymentNotifyRequest {
 	}
 
 	/**
-	 * Process transaction.
+	 * Check source IP.
 	 *
 	 * @access public
 	 */
+	protected function fetch_ip() 
+	{
+		$alt_ip = $_SERVER['REMOTE_ADDR'];
+		if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) 
+		{ 
+			$alt_ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+		} 
+		else if (isset($_SERVER['HTTP_CLIENT_IP'])) 
+		{ 
+			$alt_ip = $_SERVER['HTTP_CLIENT_IP']; 
+		}
+		
+		return $alt_ip;
+	}
+	/**
+	 * Process transaction.
+	 *
+	 * @access public
+	 */	 
 	public function process()
 	{
-		$this->logPayPal('Received notification from %s (%s)', $_SERVER['REMOTE_ADDR'], gethostbyaddr($_SERVER['REMOTE_ADDR']));
+		$recieved_from = gethostbyaddr($this->fetch_ip());		
+		$this->logPayPal('Received notification from %s (%s)', $this->fetch_ip(), $recieved_from);
 
-		if ($this->verify()) {
+		if ($recieved_from == "notify.paypal.com" && $this->verify()) {
 			$this->logPayPal('Proceeding to validate the authenticity of the transaction...');
 
 			$accountEmails = Flux::config('PayPalReceiverEmails');
