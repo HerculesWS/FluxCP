@@ -20,7 +20,7 @@
 		<script src="<?php echo $this->themePath('js/ie9.js') ?>" type="text/javascript"></script>
 		<script type="text/javascript" src="<?php echo $this->themePath('js/flux.unitpngfix.js') ?>"></script>
 		<![endif]-->
-		<script type="text/javascript" src="<?php echo $this->themePath('js/jquery-1.8.3.min.js') ?>"></script>
+		<script type="text/javascript" src="<?php echo $this->themePath('js/jquery-1.12.3.min.js') ?>"></script>
 		<script type="text/javascript" src="<?php echo $this->themePath('js/flux.datefields.js') ?>"></script>
 		<script type="text/javascript" src="<?php echo $this->themePath('js/flux.unitip.js') ?>"></script>
 		<script type="text/javascript">
