@@ -3,9 +3,8 @@ if (!defined('FLUX_ROOT')) exit;
 
 if (Flux::config('UseCaptcha') && Flux::config('EnableReCaptcha')) {
 	require_once 'recaptcha/recaptchalib.php';
-
 	$recaptcha = '<script src="https://www.google.com/recaptcha/api.js"></script>
-	<div class="g-recaptcha" data-sitekey="6Lf3bxYUAAAAAF5znSHWxxuVzdRMlU3MdaCgNnPJ" data-theme="'.Flux::config('ReCaptchaTheme').'"></div>';//Site Key / Public
+	<div class="g-recaptcha" data-sitekey="'.Flux::config('ReCaptchaPublicKey').'" data-theme="'.Flux::config('ReCaptchaTheme').'"></div>';
 }
 
 $title = Flux::message('AccountCreateTitle');
