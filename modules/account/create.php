@@ -3,7 +3,9 @@ if (!defined('FLUX_ROOT')) exit;
 
 if (Flux::config('UseCaptcha') && Flux::config('EnableReCaptcha')) {
 	require_once 'recaptcha/recaptchalib.php';
-	$recaptcha = recaptcha_get_html(Flux::config('ReCaptchaPublicKey'));
+
+	$recaptcha = '<script src="https://www.google.com/recaptcha/api.js"></script>
+	<div class="g-recaptcha" data-sitekey="6Lf3bxYUAAAAAF5znSHWxxuVzdRMlU3MdaCgNnPJ" data-theme="'.Flux::config('ReCaptchaTheme').'"></div>';//Site Key / Public
 }
 
 $title = Flux::message('AccountCreateTitle');
@@ -12,7 +14,7 @@ $serverNames = $this->getServerNames();
 
 if (count($_POST)) {
 	require_once 'Flux/RegisterError.php';
-	
+
 	try {
 		$server    = $params->get('server');
 		$username  = $params->get('username');
@@ -22,28 +24,28 @@ if (count($_POST)) {
 		$gender    = $params->get('gender');
 		$birthdate = $params->get('birthdate_date');
 		$code      = $params->get('security_code');
-		
+
 		if (!($server = Flux::getServerGroupByName($server))) {
 			throw new Flux_RegisterError('Invalid server', Flux_RegisterError::INVALID_SERVER);
 		}
-		
+
 		// Woohoo! Register ;)
 		$result = $server->loginServer->register($username, $password, $confirm, $email, $gender, $birthdate, $code);
 
 		if ($result) {
 			if (Flux::config('RequireEmailConfirm')) {
 				require_once 'Flux/Mailer.php';
-				
+
 				$user = $username;
 				$code = md5(rand());
 				$name = $session->loginAthenaGroup->serverName;
 				$link = $this->url('account', 'confirm', array('_host' => true, 'code' => $code, 'user' => $username, 'login' => $name));
 				$mail = new Flux_Mailer();
 				$sent = $mail->send($email, 'Account Confirmation', 'confirm', array('AccountUsername' => $username, 'ConfirmationLink' => htmlspecialchars($link)));
-				
+
 				$createTable = Flux::config('FluxTables.AccountCreateTable');
 				$bind = array($code);
-				
+
 				// Insert confirmation code.
 				$sql  = "UPDATE {$server->loginDatabase}.{$createTable} SET ";
 				$sql .= "confirm_code = ?, confirmed = 0 ";
@@ -51,22 +53,22 @@ if (count($_POST)) {
 					$sql .= ", confirm_expire = ? ";
 					$bind[] = date('Y-m-d H:i:s', time() + (60 * 60 * $expire));
 				}
-				
+
 				$sql .= " WHERE account_id = ?";
 				$bind[] = $result;
-				
+
 				$sth  = $server->connection->getStatement($sql);
 				$sth->execute($bind);
-				
+
 				$session->loginServer->permanentlyBan(null, sprintf(Flux::message('AccountConfirmBan'), $code), $result);
-				
+
 				if ($sent) {
 					$message  = Flux::message('AccountCreateEmailSent');
 				}
 				else {
 					$message  = Flux::message('AccountCreateFailed');
 				}
-				
+
 				$session->setMessageData($message);
 				$this->redirect();
 			}
