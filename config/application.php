@@ -82,7 +82,7 @@ return array(
 	'EnableReCaptcha'      => false,                    // Enables the use of reCAPTCHA instead of Flux's native GD2 library (http://www.google.com/recaptcha)
 	'ReCaptchaPublicKey'   => '...',                    // This is your reCAPTCHA public key [REQUIRED FOR RECAPTCHA] (sign up at http://www.google.com/recaptcha)
 	'ReCaptchaPrivateKey'  => '...',                    // This is your reCAPTCHA private key [REQUIRED FOR RECAPTCHA] (sign up at http://www.google.com/recaptcha)
-	'ReCaptchaTheme'       => 'white',                  // ReCaptcha theme to use (see: http://code.google.com/apis/recaptcha/docs/customization.html#Standard_Themes)
+	'ReCaptchaTheme'       => 'light',                  // ReCaptcha theme to use ( light / dark )
 	'DisplaySinglePages'   => true,                     // Whether or not to display paging for single page results.
 	'ForwardYears'         => 15,                       // (Visual) The number of years to display ahead of the current year in date inputs.
 	'BackwardYears'        => 30,                       // (Visual) The number of years to display behind the current year in date inputs.
@@ -123,10 +123,10 @@ return array(
 		'Cancelled_Reversal',                           // -- 'Cancelled_Reversal'
 		'Reversed',                                     // -- 'Reversed'
 	),
-	
+
 	'HoldUntrustedAccount' => 0,                        // This is the time in hours to hold a donation crediting process for, if the account
 	                                                    // isn't a trusted account. Specify 0 or false to disable this feature.
-	
+
 	'AutoUnholdAccount'    => false,                    // Enable this to auto-unhold an account and credit it if the transaction is still
 	                                                    // valid.  This only applies if you are using the HoldUnstrustedAccount feature.
 	                                                    // If you want to run a cron job instead, you can make a request to the '/donate/update'
@@ -134,61 +134,61 @@ return array(
 	                                                    // With clean URLs: http://<server>/<baseURI>/donate/update?password=<InstallerPassword>
 	                                                    // Without clean URLs: http://<server>/<baseURI>?module=donate&action=update&password=<InstallerPassword>
 	                                                    // NOTE: This option is HIGHLY inefficient, it's recommended to run a cron job instead.
-	
+
 	'AutoPruneAccounts'    => false,                    // Enable this to automatically prune expired accounts. Enabling this is a performance
 	                                                    // performance killer. See 'AutoUnholdAccount' for running this task as a cron job,
 		                                                // the module is 'account' and the action is 'prune'.
 	                                                    // With clean URLs: http://<server>/<baseURI>/account/prune?password=<InstallerPassword>
 	                                                    // Without clean URLs: http://<server>/<baseURI>?module=account&action=prune&password=<InstallerPassword>
-	
+
 	'ShopImageExtensions'  => array(                    // These are the image extensions allowed for uploading in the item shop.
 		'png', 'jpg', 'gif', 'bmp', 'jpeg'
 	),
 	'NoResetPassGroupLevel'  => AccountLevel::LOWGM,    // Minimum group level of account to prevent password reset using control panel.
-	
+
 	'CharRankingLimit'       => 20,                     //
 	'GuildRankingLimit'      => 20,                     //
 	'ZenyRankingLimit'       => 20,                     //
 	'DeathRankingLimit'      => 20,                     //
 	'AlchemistRankingLimit'  => 20,                     //
 	'BlacksmithRankingLimit' => 20,                     //
-	
+
 	'RankingHideGroupLevel'  => AccountLevel::LOWGM,    //
 	'InfoHideZenyGroupLevel' => AccountLevel::LOWGM,    // Minimum group level of account to hide zeny from in server information page.
-	
+
 	'CharRankingThreshold'      => 0,                   // Number of days the character must have logged in within to be listed in character ranking. (0 = disabled)
 	'ZenyRankingThreshold'      => 0,                   // Number of days the character must have logged in within to be listed in zeny ranking. (0 = disabled)
 	'DeathRankingThreshold'     => 0,                   // Number of days the character must have logged in within to be listed in death ranking. (0 = disabled)
 	'AlchemistRankingThreshold' => 0,                   // Number of days the character must have logged in within to be listed in death ranking. (0 = disabled)
-	
+
 	'HideTempBannedCharRank'  => false,                 // Hide temporarily banned characters from ranking.
 	'HidePermBannedCharRank'  => true,                  // Hide permanently banned characters from ranking.
-	
+
 	'HideTempBannedZenyRank'  => false,                 // Hide temporarily banned characters from ranking.
 	'HidePermBannedZenyRank'  => true,                  // Hide permanently banned characters from ranking.
-	
+
 	'HideTempBannedDeathRank' => false,                 // Hide temporarily banned characters from ranking.
 	'HidePermBannedDeathRank' => true,                  // Hide permanently banned characters from ranking.
-	
+
 	'HideTempBannedAlcheRank' => false,                 // Hide temporarily banned characters from ranking.
 	'HidePermBannedAlcheRank' => true,                  // Hide permanently banned characters from ranking.
-	
+
 	'HideTempBannedSmithRank' => false,                 // Hide temporarily banned characters from ranking.
 	'HidePermBannedSmithRank' => true,                  // Hide permanently banned characters from ranking.
-	
+
 	'HideTempBannedStats'     => false,                 // Hide temporarily banned accounts from statistics.
 	'HidePermBannedStats'     => true,                  // Hide permanently banned accounts from statistics.
-	
+
 	'SortJobsByAmount'        => false,                 // Sort job class information on statistics page by descending quantity (false = Sort by Job ID).
-	
+
 	'CpLoginLogShowPassword'  => false,                 // Show password in CP login log (also see access.php's SeeCpLoginLogPass).
-	
+
 	'CpResetLogShowPassword'  => false,                 // Show password in CP "password resets" log (also see access.php's SeeCpResetPass).
-	
+
 	'CpChangeLogShowPassword' => false,                 // Show password in CP "password changes" log (also see access.php's SeeCpChangePass).
-	
+
 	'AdminMenuNewStyle'       => true,                  // Use new-style admin menu;  Applies to 'default' theme.
-	
+
 	// These are the main menu items that should be displayed by themes.
 	// They route to modules and actions.  Whether they are displayed or
 	// not at any given time depends on the user's account group level and/or
@@ -235,7 +235,7 @@ return array(
 			//'Economy'       => array('module' => 'economy'),
 		)
 	),
-	
+
 	// Sub-menu items that are displayed for any action belonging to a
 	// particular module. The format it simple.
 	'SubMenuItems' => array(
@@ -318,26 +318,26 @@ return array(
 			'add'   => 'Add Item'
 		)
 	),
-	
+
 	'AllowMD5PasswordSearch'       => false,
 	'ReallyAllowMD5PasswordSearch' => false, // Are you POSITIVELY sure?
-	
+
 	// Specifies which modules and actions should be ignored by Tidy
 	// (enabled/disabled by the OutputCleanHTML option).
 	'TidyIgnore' => array(
 		array('module' => 'captcha'),
 		array('module' => 'guild', 'action' => 'emblem')
 	),
-	
+
 	// Job classes, loaded from another file to avoid cluttering this one.
 	// There isn't normally a need to modify this file, unless it's been
 	// modified in an update. (In English: DON'T TOUCH THIS.)
 	'JobClasses' => include('jobs.php'),
-	
+
 	// Alchemist job classes, mostly used for alchemist rankings.
 	// Should be left alone unless new alchemist-related job classes are introduced.
 	'AlchemistJobClasses' => include('jobs_alchemist.php'),
-	
+
 	// Blacksmith job classes, mostly used for blacksmith rankings.
 	// Should be left alone unless new blacksmith-related job classes are introduced.
 	'BlacksmithJobClasses' => include('jobs_blacksmith.php'),
@@ -345,7 +345,7 @@ return array(
 	// Gender-linked Job class IDs and their corresponding names.
 	// Should be left alone unless new gender-specific job classes are introduced.
 	'GenderLinkedJobClasses' => include('jobs_gender_linked.php'),
-	
+
 	// Homunculus class IDs and their corresponding names.
 	// Best not to mess with this either.
 	'HomunClasses' => include('homunculus.php'),
@@ -353,52 +353,52 @@ return array(
 	// Item Types with their corresponding names.
 	// Shouldn't touch this either.
 	'ItemTypes' => include('itemtypes.php'),
-	
+
 	// Specil Item Types with their corresponding names (For Weapons & Ammo by default).
 	// Shouldn't touch this either.
 	'ItemTypes2' => include('itemtypes2.php'),
-	
+
 	// Common Equip Location Combinations with their corresponding names.
 	// Shouldn't touch this unless you've added custom combinations.
 	'EquipLocationCombinations' => include('equip_location_combinations.php'),
-	
+
 	// Error Code -> Error Type mapping.
 	// Shouldn't need touching, however modifying loginerrors.php should be relatively safe.
 	'LoginErrors' => include('loginerrors.php'),
-	
+
 	// Hercules equip jobs mapping.
 	'EquipJobs' => include('equip_jobs.php'),
-	
+
 	// Hercules equip locations mapping.
 	'EquipLocations' => include('equip_locations.php'),
-	
+
 	// Hercules equip upper mapping.
 	'EquipUpper' => include('equip_upper.php'),
-	
+
 	// Hercules monster sizes mapping.
 	'MonsterSizes' => include('sizes.php'),
-	
+
 	// Hercules monster races mapping.
 	'MonsterRaces' => include('races.php'),
-	
+
 	// Hercules elements mapping.
 	'Elements' => include('elements.php'),
-	
+
 	// Hercules attributes mapping.
 	'Attributes' => include('attributes.php'),
-	
+
 	// Hercules monster modes mapping.
 	'MonsterModes' => include('monstermode.php'),
-	
+
 	// Item shop categories.
 	'ShopCategories' => include('shopcategories.php'),
-	
+
 	// Item pick and zeny log types.
 	'PickTypes' => include('picktypes.php'),
-	
+
 	// Castle names.
 	'CastleNames' => include('castlenames.php'),
-	
+
 	// DON'T TOUCH. THIS IS FOR DEVELOPERS.
 	'FluxTables' => array(
 		'CreditsTable'        => 'cp_credits',
