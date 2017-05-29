@@ -1,5 +1,6 @@
 ﻿<?php
 // Original pt-br translation courtesy of Megasantos
+// Eu, JulioCF peço desculpas por não ter acrecentado os devidos créditos.
 return array(	
 	// Generic/Misc.
 	'YesLabel'                => 'Sim',
