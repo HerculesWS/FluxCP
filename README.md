@@ -3,6 +3,8 @@ FluxCP
 
 Flux Control Panel (FluxCP) for Hercules server.
 
+![Logo](http://herc.ws/board/uploads/monthly_2017_06/1_hercules_forum2.png.e577fe087b8bc4611fd86cd7a1744ffe.png)
+
 Requirements
 ---------
 * PHP 5.2
