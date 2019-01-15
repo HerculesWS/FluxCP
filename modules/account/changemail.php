@@ -19,7 +19,7 @@ if (count($_POST)) {
 	elseif (Flux::config('EmailStrictCheck') && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
 		$errorMessage = Flux::message('EmailInvalid');
 	}
-	elseif (!preg_match('/^(.+?)@(.+?)$/', $email)) {
+	elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		$errorMessage = Flux::message('EmailInvalid');
 	}
 	elseif ( !Flux_Security::csrfValidate('EmailEdit', $_POST, $error) ) {
