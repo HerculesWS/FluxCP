@@ -138,7 +138,7 @@ class Flux_LoginServer extends Flux_BaseServer {
 		elseif (Flux::config('EmailStrictCheck') && filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
 			throw new Flux_RegisterError('Invalid e-mail address', Flux_RegisterError::INVALID_EMAIL_ADDRESS);
 		}
-		elseif (!preg_match('/^(.+?)@(.+?)$/', $email)) {
+		elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			throw new Flux_RegisterError('Invalid e-mail address', Flux_RegisterError::INVALID_EMAIL_ADDRESS);
 		}
 		elseif (!in_array(strtoupper($gender), array('M', 'F'))) {
