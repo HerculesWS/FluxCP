@@ -55,7 +55,7 @@ try {
 			$bind[]      = $itemName;
 		}
 
-		if ($itemType && $itemType !== '-1') {
+		if ($itemType !== false && $itemType !== '-1') {
 			if (count($itemTypeSplit = explode('-', $itemType)) == 2) {
 				$itemType = $itemTypeSplit[0];
 				$itemType2 = $itemTypeSplit[1];
@@ -72,10 +72,10 @@ try {
 				if (count($itemTypeSplit) == 2 && is_numeric($itemType2) && (floatval($itemType2) == intval($itemType2))) {
 					$itemTypes2 = Flux::config('ItemTypes2')->toArray();
 					if (array_key_exists($itemType, $itemTypes2) && array_key_exists($itemType2, $itemTypes2[$itemType]) && $itemTypes2[$itemType][$itemType2]) {
-						$sqlpartial .= "AND view_sprite = ? ";
+						$sqlpartial .= "AND subtype = ? ";
 						$bind[]      = $itemType2;
 					} else {
-						$sqlpartial .= 'AND view_sprite IS NULL ';
+						$sqlpartial .= 'AND subtype IS NULL ';
 					}
 				}
 			} else {
