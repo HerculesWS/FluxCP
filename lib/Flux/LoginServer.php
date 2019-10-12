@@ -66,12 +66,12 @@ class Flux_LoginServer extends Flux_BaseServer {
 	 */
 	public function isAuth($username, $password)
 	{
-		if ($this->config->get('UseMD5')) {
-			$password = Flux::hashPassword($password);
-		}
-
 		if (trim($username) == '' || trim($password) == '') {
 			return false;
+		}
+
+		if ($this->config->get('UseMD5')) {
+			$password = Flux::hashPassword($password);
 		}
 
 		$sql  = "SELECT userid FROM {$this->loginDatabase}.login WHERE sex != 'S' AND group_id >= 0 ";
