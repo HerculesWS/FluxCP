@@ -10,10 +10,12 @@ $sth->execute();
 $paginator = $this->getPaginator($sth->fetch()->total);
 $paginator->setSortableColumns(array(
 	'time' => 'desc', 'char_id', 'type', 'nameid', 'amount',
-	'refine', 'card0', 'card1', 'card2', 'card3', 'map'
+	'refine', 'grade', 'card0', 'card1', 'card2', 'card3', 'map'
 ));
 
-$col = "time, char_id, type, nameid, amount, refine, card0, card1, card2, card3, map";
+$col = "time, char_id, type, nameid, amount, refine, grade, card0, card1, card2, card3, ";
+$col .= "opt_idx0, opt_val0, opt_idx1, opt_val1, opt_idx2, opt_val2, opt_idx3, opt_val3, opt_idx4, opt_val4, ";
+$col .= "unique_id, map";
 $sql = $paginator->getSQL("SELECT $col FROM {$server->logsDatabase}.picklog");
 $sth = $server->connection->getStatementForLogs($sql);
 $sth->execute();
@@ -50,6 +52,16 @@ if ($picks) {
 		}
 		
 		$pick->pick_type = $pickTypes->get($pick->type);
+
+		$options = array();
+		for ($i = 0; $i < 5; $i++) {
+			$idx = $pick->{"opt_idx$i"};
+			$val = $pick->{"opt_val$i"};
+			if ($idx) {
+				$options[] = "$idx:$val";
+			}
+		}
+		$pick->options = $options ? implode(', ', $options) : null;
 	}
 	
 	if ($charIDs) {

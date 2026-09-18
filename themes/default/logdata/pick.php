@@ -10,10 +10,12 @@
 		<th><?php echo $paginator->sortableColumn('nameid', Flux::message('PickLogItemLabel')) ?></th>
 		<th><?php echo $paginator->sortableColumn('amount', Flux::message('PickLogAmountLabel')) ?></th>
 		<th><?php echo $paginator->sortableColumn('refine', Flux::message('PickLogRefineLabel')) ?></th>
+		<th><?php echo $paginator->sortableColumn('grade', Flux::message('PickLogGradeLabel')) ?></th>
 		<th><?php echo $paginator->sortableColumn('card0', Flux::message('PickLogCard0Label')) ?></th>
 		<th><?php echo $paginator->sortableColumn('card1', Flux::message('PickLogCard1Label')) ?></th>
 		<th><?php echo $paginator->sortableColumn('card2', Flux::message('PickLogCard2Label')) ?></th>
 		<th><?php echo $paginator->sortableColumn('card3', Flux::message('PickLogCard3Label')) ?></th>
+		<th><?php echo htmlspecialchars(Flux::message('PickLogOptionsLabel')) ?></th>
 		<th><?php echo $paginator->sortableColumn('map', Flux::message('PickLogMapLabel')) ?></th>
 	</tr>
 	<?php foreach ($picks as $pick): ?>
@@ -80,6 +82,7 @@
 		</td>
 		<td><?php echo $pick->amount >= 0 ? '+'.number_format($pick->amount) : number_format($pick->amount) ?></td>
 		<td><?php echo $pick->refine ?></td>
+		<td><?php echo $pick->grade ?></td>
 		<!-- Card0 -->
 		<td>
 			<?php if ($pick->card0_name): ?>
@@ -148,6 +151,13 @@
 				<?php else: ?>
 					<?php echo htmlspecialchars($pick->card3) ?>
 				<?php endif ?>
+			<?php else: ?>
+				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
+			<?php endif ?>
+		</td>
+		<td>
+			<?php if ($pick->options): ?>
+				<?php echo htmlspecialchars($pick->options) ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
 			<?php endif ?>
