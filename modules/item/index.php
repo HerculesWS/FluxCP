@@ -100,7 +100,7 @@ try {
 			}
 		}
 
-		if ($equipLocs !== false && $equipLocs !== '-1') {
+		if ($equipLocs !== false && $equipLocs !== null && $equipLocs !== '-1') {
 			if(is_numeric($equipLocs) && (floatval($equipLocs) == intval($equipLocs))) {
 				$equipLocationCombinations = Flux::config('EquipLocationCombinations')->toArray();
 				if (array_key_exists($equipLocs, $equipLocationCombinations) && $equipLocationCombinations[$equipLocs]) {
