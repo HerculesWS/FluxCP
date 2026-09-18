@@ -38,6 +38,12 @@ $col .= "homun.skill_point AS homun_skill_point, homun.alive AS homun_alive, ";
 $col .= "pet.class AS pet_class, pet.name AS pet_name, pet.level AS pet_level, pet.intimate AS pet_intimacy, ";
 $col .= "pet.hungry AS pet_hungry, pet_mob.kName AS pet_mob_name, pet_mob2.kName AS pet_mob_name2, ";
 
+$col .= "elem.class AS elemental_class, elemental_mob.kName AS elemental_mob_name, elemental_mob2.kName AS elemental_mob_name2, ";
+$col .= "elem.hp AS elemental_hp, elem.max_hp AS elemental_max_hp, elem.sp AS elemental_sp, elem.max_sp AS elemental_max_sp, ";
+$col .= "elem.atk1 AS elemental_atk1, elem.atk2 AS elemental_atk2, elem.matk AS elemental_matk, ";
+$col .= "elem.aspd AS elemental_aspd, elem.def AS elemental_def, elem.mdef AS elemental_mdef, ";
+$col .= "elem.flee AS elemental_flee, elem.hit AS elemental_hit, elem.life_time AS elemental_life_time, ";
+
 $col .= "IFNULL(reg.value, 0) AS death_count";
 
 $sql  = "SELECT $col FROM {$server->charMapDatabase}.`char` AS ch ";
@@ -56,6 +62,9 @@ $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`homunculus` AS homun ON ch.
 $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`pet` ON ch.pet_id = pet.pet_id ";
 $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mob_db` AS pet_mob ON pet_mob.ID = pet.class ";
 $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mob_db2` AS pet_mob2 ON pet_mob2.ID = pet.class ";
+$sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`elemental` AS elem ON ch.elemental_id = elem.ele_id ";
+$sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mob_db` AS elemental_mob ON elemental_mob.ID = elem.class ";
+$sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mob_db2` AS elemental_mob2 ON elemental_mob2.ID = elem.class ";
 $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`char_reg_num_db` AS reg ON reg.char_id = ch.char_id AND reg.key = 'PC_DIE_COUNTER' ";
 $sql .= "WHERE ch.char_id = ?";
 
@@ -66,6 +75,10 @@ $char = $sth->fetch();
 
 if ($char->pet_mob_name2) {
 	$char->pet_mob_name = $char->pet_mob_name2;
+}
+
+if ($char->elemental_mob_name2) {
+	$char->elemental_mob_name = $char->elemental_mob_name2;
 }
 
 if ($char && $char->char_account_id == $session->account->account_id) {
