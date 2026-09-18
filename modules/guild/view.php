@@ -13,7 +13,7 @@ $tempTable = new Flux_TemporaryTable($server->connection, $tableName, $fromTable
 
 $guildID = $params->get('id');
 
-$col  = "guild.guild_id, guild.name, guild.char_id, guild.master, guild.guild_lv, guild.connect_member, guild.max_member, ";
+$col  = "guild.guild_id, guild.name, guild.char_id, guild.master, guild.guild_lv, guild.connect_member, guild.max_member, guild.max_storage, ";
 $col .= "guild.average_lv, guild.exp, guild.next_exp, guild.skill_point, REPLACE(guild.mes1, '|00', '') AS mes1, REPLACE(guild.mes2, '|00', '') AS mes2, ";
 $col .= "guild.emblem_len, guild.emblem_id, guild.emblem_data, `char`.name AS guild_master";
 

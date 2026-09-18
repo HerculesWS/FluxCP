@@ -15,6 +15,6 @@ return array(
 	4096  => 'Change Target Melee',
 	8192  => 'Change Target Chase',
 	16384 => 'Target Weak',
-	32768 => 'Random Target' // Not implemented
+	32768 => 'No Knockback'
 )
 ?>

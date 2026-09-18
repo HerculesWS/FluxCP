@@ -35,6 +35,10 @@
 		<td colspan="2"><?php echo number_format($guild->average_lv) ?></td>
 	</tr>
 	<tr>
+		<th>Storage Capacity</th>
+		<td colspan="5"><?php echo number_format($guild->max_storage) ?></td>
+	</tr>
+	<tr>
 		<th>Guild EXP</th>
 		<td><?php echo number_format($guild->exp) ?></td>
 		<th>EXP until Level Up</th>
