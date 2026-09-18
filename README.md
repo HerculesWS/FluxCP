@@ -7,7 +7,7 @@ Requirements
 ---------
 * PHP 8.3
 * PDO and PDO-MYSQL extensions (including MySQLi support)
-* MySQL 5 or MariaDB 11
+* MariaDB 11 or MySQL 5.7+
 * Optional: GD2 (for guild emblems and registration CAPTCHA)
 * Optional: Tidy (for cleaner HTML output)
 * Optional: mod_rewrite (Apache) or an equivalent try_files rule (nginx) for the UseCleanUrls feature
