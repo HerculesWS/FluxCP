@@ -13,23 +13,23 @@
 		<?php if ($auth->allowedToSearchCpLoginLogPw): ?>
 		...
 		<label for="password">Password:</label>
-		<input type="text" name="password" id="password" value="<?php echo htmlspecialchars($params->get('password')) ?>" />
+		<input type="text" name="password" id="password" value="<?php echo htmlspecialchars((string)$params->get('password')) ?>" />
 		<?php endif ?>
 	</p>
 	<p>
 		<label for="account_id">Account ID:</label>
-		<input type="text" name="account_id" id="account_id" value="<?php echo htmlspecialchars($params->get('account_id')) ?>" />
+		<input type="text" name="account_id" id="account_id" value="<?php echo htmlspecialchars((string)$params->get('account_id')) ?>" />
 		...
 		<label for="username">Username:</label>
-		<input type="text" name="username" id="username" value="<?php echo htmlspecialchars($params->get('username')) ?>" />
+		<input type="text" name="username" id="username" value="<?php echo htmlspecialchars((string)$params->get('username')) ?>" />
 		...
 		<label for="ip">IP Address:</label>
-		<input type="text" name="ip" id="ip" value="<?php echo htmlspecialchars($params->get('ip')) ?>" />
+		<input type="text" name="ip" id="ip" value="<?php echo htmlspecialchars((string)$params->get('ip')) ?>" />
 		...
 		<label for="error_code">Error Code:</label>
 		<select name="error_code" id="error_code">
-			<option value="all"<?php if (is_null($params->get('error_code')) || strtolower($params->get('error_code') == 'all')) echo ' selected="selected"' ?>>All</option>
-			<option value="none"<?php if (strtolower($params->get('error_code')) == 'none') echo ' selected="selected"' ?>>None</option>
+			<option value="all"<?php if (is_null($params->get('error_code')) || strtolower((string)$params->get('error_code')) == 'all') echo ' selected="selected"' ?>>All</option>
+			<option value="none"<?php if (strtolower((string)$params->get('error_code')) == 'none') echo ' selected="selected"' ?>>None</option>
 		<?php foreach ($loginErrors->toArray() as $errorCode => $errorType): ?>
 			<option value="<?php echo $errorCode ?>"<?php if (ctype_digit($params->get('error_code')) && $params->get('error_code') == $errorCode) echo ' selected="selected"' ?>><?php echo htmlspecialchars($errorType) ?></option>
 		<?php endforeach ?>

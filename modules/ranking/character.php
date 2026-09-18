@@ -3,7 +3,7 @@ if (!defined('FLUX_ROOT')) exit;
 
 $title    = 'Character Ranking';
 $classes  = Flux::config('JobClasses')->toArray();
-$jobClass = $params->get('jobclass');
+$jobClass = (string)$params->get('jobclass');
 $bind     = array();
 
 if (trim($jobClass) === '') {

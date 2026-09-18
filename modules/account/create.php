@@ -19,7 +19,7 @@ if (count($_POST)) {
 		$username  = $params->get('username');
 		$password  = $params->get('password');
 		$confirm   = $params->get('confirm_password');
-		$email     = trim($params->get('email_address'));
+		$email     = trim((string)$params->get('email_address'));
 		$gender    = $params->get('gender');
 		$birthdate = $params->get('birthdate_date');
 		$code      = $params->get('security_code');

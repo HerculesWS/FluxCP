@@ -23,7 +23,7 @@ if (count($_POST)) {
 		$this->deny();
 	}
 	
-	$reason = trim($params->get('reason'));
+	$reason = trim((string)$params->get('reason'));
 	
 	if (!$list) {
 		$errorMessage = Flux::message('IpbanEnterIpPattern');

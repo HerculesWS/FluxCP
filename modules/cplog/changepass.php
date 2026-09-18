@@ -11,9 +11,9 @@ $bind        = array();
 // Password change searching.
 $changeAfter   = $params->get('change_after_date');
 $changeBefore  = $params->get('change_before_date');
-$accountID     = trim($params->get('account_id'));
-$username      = trim($params->get('username'));
-$changeIP      = trim($params->get('change_ip'));
+$accountID     = trim((string)$params->get('account_id'));
+$username      = trim((string)$params->get('username'));
+$changeIP      = trim((string)$params->get('change_ip'));
 
 if ($changeAfter) {
 	$sqlpartial .= 'AND change_date >= ? ';

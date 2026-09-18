@@ -35,18 +35,18 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 	</tr>
 	<tr>
 		<th><label for="cost">Credits</label></th>
-		<td><input type="text" class="short" name="cost" id="cost" value="<?php echo htmlspecialchars($params->get('cost')) ?>" /></td>
+		<td><input type="text" class="short" name="cost" id="cost" value="<?php echo htmlspecialchars((string)$params->get('cost')) ?>" /></td>
 	</tr>
 	<?php if ($stackable): ?>
 	<tr>
 		<th><label for="qty">Quantity</label></th>
-		<td><input type="text" class="short" name="qty" id="qty" value="<?php echo htmlspecialchars($params->get('qty')) ?>" /></td>
+		<td><input type="text" class="short" name="qty" id="qty" value="<?php echo htmlspecialchars((string)$params->get('qty')) ?>" /></td>
 	</tr>
 	<?php endif ?>
 	<tr>
 		<th><label for="info">Info</label></th>
 		<td>
-			<textarea name="info" id="info"><?php echo htmlspecialchars($params->get('info')) ?></textarea>
+			<textarea name="info" id="info"><?php echo htmlspecialchars((string)$params->get('info')) ?></textarea>
 			<p style="font-style: italic">Info is in Markdown syntax.</p>
 			<p style="font-style: italic">See: <a href="<?php echo $markdownURL ?>"><?php echo $markdownURL ?></a></p>
 		</td>

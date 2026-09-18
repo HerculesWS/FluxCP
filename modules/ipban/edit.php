@@ -23,10 +23,10 @@ if (count($_POST)) {
 		$this->deny();
 	}
 	
-	$list       = trim($params->get('newlist'));
-	$reason     = trim($params->get('reason'));
-	$rtime      = trim($params->get('rtime_date'));
-	$editReason = trim($params->get('edit_reason'));
+	$list       = trim((string)$params->get('newlist'));
+	$reason     = trim((string)$params->get('reason'));
+	$rtime      = trim((string)$params->get('rtime_date'));
+	$editReason = trim((string)$params->get('edit_reason'));
 	
 	if (!$list) {
 		$errorMessage = Flux::message('IpbanEnterIpPattern');

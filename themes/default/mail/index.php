@@ -21,16 +21,16 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 		</tr>
 		<tr>
 			<th><label for="to"><?php echo htmlspecialchars(Flux::message('MailerToLabel')) ?></label></th>
-			<td><input type="text" name="to" id="to" value="<?php echo htmlspecialchars($params->get('to')) ?>" /></td>
+			<td><input type="text" name="to" id="to" value="<?php echo htmlspecialchars((string)$params->get('to')) ?>" /></td>
 		</tr>
 		<tr>
 			<th><label for="subject"><?php echo htmlspecialchars(Flux::message('MailerSubjectLabel')) ?></label></th>
-			<td><input type="text" name="subject" id="subject" value="<?php echo htmlspecialchars($params->get('subject')) ?>" /></td>
+			<td><input type="text" name="subject" id="subject" value="<?php echo htmlspecialchars((string)$params->get('subject')) ?>" /></td>
 		</tr>
 		<tr>
 			<th><label for="body"><?php echo htmlspecialchars(Flux::message('MailerBodyLabel')) ?></label></th>
 			<td>
-				<textarea name="body" id="body"><?php echo htmlspecialchars($params->get('body')) ?></textarea>
+				<textarea name="body" id="body"><?php echo htmlspecialchars((string)$params->get('body')) ?></textarea>
 				<p style="font-style: italic"><?php echo htmlspecialchars(Flux::message('MailerBodyInfo')) ?></p>
 				<p style="font-style: italic"><a href="<?php echo $markdownURL ?>"><?php echo $markdownURL ?></a></p>
 			</td>

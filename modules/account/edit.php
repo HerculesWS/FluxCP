@@ -37,12 +37,12 @@ if ($account) {
 	if (count($_POST)) {
 		$groups     = AccountLevel::getArray();
 	
-		$email      = trim($params->get('email'));
-		$gender     = trim($params->get('gender'));
+		$email      = trim((string)$params->get('email'));
+		$gender     = trim((string)$params->get('gender'));
 		$loginCount = (int)$params->get('logincount');
 		$birthdate  = $params->get('birthdate_date');
 		$lastLogin  = $params->get('lastlogin_date');
-		$lastIP     = trim($params->get('last_ip'));
+		$lastIP     = trim((string)$params->get('last_ip'));
 		$group_id   = (int)$params->get('group_id');
 		$balance    = (int)$params->get('balance');
 		

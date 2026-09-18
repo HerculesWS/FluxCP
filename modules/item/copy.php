@@ -31,7 +31,7 @@ if ($item) {
 
 if ($item && count($_POST) && $params->get('copyitem')) {
 	$isCustom = preg_match('/item_db2$/', $item->origin_table) ? true : false; 
-	$copyID   = trim($params->get('new_item_id'));
+	$copyID   = trim((string)$params->get('new_item_id'));
 	
 	if (!$copyID) {
 		$errorMessage = 'You must specify a duplicate item ID.';
