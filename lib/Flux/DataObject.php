@@ -62,7 +62,9 @@ class Flux_DataObject {
 		
 		if ($this->_encTo) {
 			foreach ($this->_data as $prop => $value) {
-				$this->_data[$prop] = iconv($this->_encFrom, $this->_encTo, $value);
+				if ($value !== null) {
+					$this->_data[$prop] = iconv($this->_encFrom, $this->_encTo, $value);
+				}
 			}
 		}
 	}

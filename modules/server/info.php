@@ -89,7 +89,7 @@ if (Flux::config('HidePermBannedStats')) {
 
 $sth = $server->connection->getStatement($sql);
 $sth->execute($hideGroupLevel ? $bind : array());
-$info['zeny'] += $sth->fetch()->total;
+$info['zeny'] += (int)$sth->fetch()->total;
 
 // Job classes.
 $sql = "SELECT `char`.class, COUNT(`char`.class) AS total FROM {$server->charMapDatabase}.`char` ";
