@@ -558,6 +558,14 @@ return array(
 	'MvpLogExpLabel'          => 'MVP Exp',
 	'MvpLogMapLabel'          => 'Map',
 
+	'BranchLogTitle'          => 'List Branch Log',
+	'BranchLogHeading'        => 'Branch Log',
+	'BranchLogNotFound'       => 'No branch logs found.',
+	'BranchLogDateLabel'      => 'Date/Time',
+	'BranchLogAccountLabel'   => 'Account',
+	'BranchLogCharacterLabel' => 'Character',
+	'BranchLogMapLabel'       => 'Map',
+
 	// Module: mail
 	// - mail/index
 	'MailerTitle'             => 'Enviar Correo Electrónico',

@@ -272,7 +272,7 @@ return array(
 			//'char'    => 'Characters',
 			//'inter'   => 'Interactions',
 			'command' => 'Commands',
-			//'branch'  => 'Branches',
+			'branch'  => 'Branches',
 			'chat'    => 'Chat Messages',
 			'login'   => 'Logins',
 			'mvp'     => 'MVP',
