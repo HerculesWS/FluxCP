@@ -202,6 +202,21 @@
 		</td>
 	</tr>
 	<tr>
+		<th>Elemental</th>
+		<td colspan="5">
+			<?php if ($char->elemental_class): ?>
+				<?php echo htmlspecialchars($char->elemental_mob_name) ?>
+				&mdash;
+				HP <?php echo number_format((int)$char->elemental_hp) ?>/<?php echo number_format((int)$char->elemental_max_hp) ?>,
+				SP <?php echo number_format((int)$char->elemental_sp) ?>/<?php echo number_format((int)$char->elemental_max_sp) ?>,
+				ATK <?php echo number_format((int)$char->elemental_atk1) ?>~<?php echo number_format((int)$char->elemental_atk2) ?>,
+				MATK <?php echo number_format((int)$char->elemental_matk) ?>
+			<?php else: ?>
+				<span class="not-applicable">None</span>
+			<?php endif ?>
+		</td>
+	</tr>
+	<tr>
 		<th>Character Stats</th>
 		<td colspan="6">
 			<table class="character-stats">
