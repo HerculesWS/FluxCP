@@ -37,7 +37,7 @@ if ($item) {
 		$category    = $params->get('category');
 		$cost        = (int)$params->get('cost');
 		$quantity    = (int)$params->get('qty');
-		$info        = trim($params->get('info'));
+		$info        = trim((string)$params->get('info'));
 		$image       = $files->get('image');
 		$useExisting = (int)$params->get('use_existing');
 

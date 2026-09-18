@@ -179,7 +179,7 @@ try {
 		'missingViewModuleAction'   => Flux::config('DebugMode') ? array('errors', 'missing_view')   : array('main', 'page_not_found')
 	));
 }
-catch (Exception $e) {
+catch (Throwable $e) {
 	$exceptionDir = FLUX_DATA_DIR.'/logs/errors/exceptions';
 	if (is_writable($exceptionDir)) {
 		require_once 'Flux/LogFile.php';

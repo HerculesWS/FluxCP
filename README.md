@@ -5,12 +5,12 @@ Flux Control Panel (FluxCP) for Hercules server.
 
 Requirements
 ---------
-* PHP 5.2
-* PDO and PDO-MYSQL extensions for PHP5 (including PHP_MYSQL support)
-* MySQL 5
+* PHP 8.3
+* PDO and PDO-MYSQL extensions (including MySQLi support)
+* MariaDB 11 or MySQL 5.7+
 * Optional: GD2 (for guild emblems and registration CAPTCHA)
 * Optional: Tidy (for cleaner HTML output)
-* Optional: mod_rewrite support for UseCleanUrls feature
+* Optional: mod_rewrite (Apache) or an equivalent try_files rule (nginx) for the UseCleanUrls feature
 
 Authors
 ---------

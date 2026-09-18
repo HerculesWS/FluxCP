@@ -8,7 +8,7 @@ $title = Flux::message('TransferTitle');
 if (count($_POST)) {
 	if ($session->account->balance) {
 		$credits  = (int)$params->get('credits'); 
-		$charName = trim($params->get('char_name'));
+		$charName = trim((string)$params->get('char_name'));
 		
 		if (!$credits || $credits < 1) {
 			$errorMessage = Flux::message('TransferGreaterThanOne');

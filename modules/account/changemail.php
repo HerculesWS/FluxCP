@@ -8,7 +8,7 @@ $title = Flux::message('EmailChangeTitle');
 $emailChangeTable = Flux::config('FluxTables.ChangeEmailTable');
 
 if (count($_POST)) {
-	$email = trim($params->get('email'));
+	$email = trim((string)$params->get('email'));
 
 	if (!$email) {
 		$errorMessage = Flux::message('EnterEmailAddress');

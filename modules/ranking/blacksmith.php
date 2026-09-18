@@ -3,7 +3,7 @@ if (!defined('FLUX_ROOT')) exit;
 
 $title          = 'Blacksmith Ranking';
 $blacksmithJobs = Flux::config('BlacksmithJobClasses')->toArray();
-$jobClass       = $params->get('jobclass');
+$jobClass       = (string)$params->get('jobclass');
 $bind           = array();
 
 if (trim($jobClass) === '') {

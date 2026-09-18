@@ -8,9 +8,9 @@ $preview = '';
 
 if (count($_POST)) {
 	$prev    = (bool)$params->get('_preview');
-	$to      = trim($params->get('to'));
-	$subject = trim($params->get('subject'));
-	$body    = trim($params->get('body'));
+	$to      = trim((string)$params->get('to'));
+	$subject = trim((string)$params->get('subject'));
+	$body    = trim((string)$params->get('body'));
 	
 	if (!$to) {
 		$errorMessage = Flux::message('MailerEnterToAddress');

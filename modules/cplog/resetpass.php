@@ -13,10 +13,10 @@ $requestAfter  = $params->get('request_after_date');
 $requestBefore = $params->get('request_before_date');
 $resetAfter    = $params->get('reset_after_date');
 $resetBefore   = $params->get('reset_before_date');
-$accountID     = trim($params->get('account_id'));
-$username      = trim($params->get('username'));
-$requestIP     = trim($params->get('request_ip'));
-$resetIP       = trim($params->get('reset_ip'));
+$accountID     = trim((string)$params->get('account_id'));
+$username      = trim((string)$params->get('username'));
+$requestIP     = trim((string)$params->get('request_ip'));
+$resetIP       = trim((string)$params->get('reset_ip'));
 
 if ($requestAfter) {
 	$sqlpartial .= 'AND request_date >= ? ';

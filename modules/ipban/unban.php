@@ -14,7 +14,7 @@ elseif ( !Flux_Security::csrfValidate('IPUnban', $_POST, $error) ) {
 	$session->setMessageData($error);
 }
 else {
-	$reason = trim($params->get('reason'));
+	$reason = trim((string)$params->get('reason'));
 	
 	if (!$reason) {
 		$session->setMessageData(Flux::message('IpbanEnterUnbanReason'));

@@ -29,7 +29,7 @@ try {
 		$race           = $params->get('race');
 		$element        = $params->get('element');
 		$cardID         = $params->get('card_id');
-		$mvp            = strtolower($params->get('mvp'));
+		$mvp            = strtolower((string)$params->get('mvp'));
 		$custom         = $params->get('custom');
 		
 		if ($monsterName) {
@@ -40,7 +40,7 @@ try {
 			$bind[]      = $monsterName;
 		}
 
-		if ($size !== false && $size !== '-1') {
+		if ($size !== false && $size !== null && $size !== '-1') {
 			if(is_numeric($size) && (floatval($size) == intval($size))) {
 				$sizes = Flux::config('MonsterSizes')->toArray();
 				if (array_key_exists($size, $sizes) && $sizes[$size]) {
@@ -67,7 +67,7 @@ try {
 			}
 		}
 
-		if ($race !== false && $race !== '-1') {
+		if ($race !== false && $race !== null && $race !== '-1') {
 			if(is_numeric($race) && (floatval($race) == intval($race))) {
 				$races = Flux::config('MonsterRaces')->toArray();
 				if (array_key_exists($race, $races) && $races[$race]) {
