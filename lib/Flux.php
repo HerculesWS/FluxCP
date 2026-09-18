@@ -260,7 +260,7 @@ class Flux {
 		$cachefile = FLUX_DATA_DIR."/tmp/$basename";
 		
 		if ($cache && file_exists($cachefile) && filemtime($cachefile) > filemtime($filename)) {
-			return unserialize(file_get_contents($cachefile, null, null, 28));
+			return unserialize(file_get_contents($cachefile, false, null, 28));
 		}
 		else {
 			ob_start();
