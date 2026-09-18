@@ -275,7 +275,7 @@ return array(
 			//'branch'  => 'Branches',
 			'chat'    => 'Chat Messages',
 			'login'   => 'Logins',
-			//'mvp'     => 'MVP',
+			'mvp'     => 'MVP',
 			//'npc'     => 'NPC',
 			'pick'    => 'Item Picks',
 			'zeny'    => 'Zeny'

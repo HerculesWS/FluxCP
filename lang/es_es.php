@@ -545,7 +545,17 @@ return array(
 	'ZenyLogTypeLabel'        => 'Tipo',
 	'ZenyLogAmountLabel'      => 'Cantidad',
 	'ZenyLogMapLabel'         => 'Mapa',
-	
+
+	'MvpLogTitle'             => 'List MVP Kills',
+	'MvpLogHeading'           => 'MVP Kills',
+	'MvpLogNotFound'          => 'No MVP kills found.',
+	'MvpLogDateLabel'         => 'Date/Time',
+	'MvpLogCharacterLabel'    => 'Character',
+	'MvpLogMonsterLabel'      => 'Monster',
+	'MvpLogPrizeLabel'        => 'Prize',
+	'MvpLogExpLabel'          => 'MVP Exp',
+	'MvpLogMapLabel'          => 'Map',
+
 	// Module: mail
 	// - mail/index
 	'MailerTitle'             => 'Enviar Correo Electrónico',
