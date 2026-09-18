@@ -390,6 +390,10 @@ return array(
 	// Hercules monster modes mapping.
 	'MonsterModes' => include('monstermode.php'),
 
+	// Hercules item trade/use restriction bit mappings.
+	'ItemTradeRestrictions' => include('itemtraderestrictions.php'),
+	'ItemNouseRestrictions' => include('itemnouserestrictions.php'),
+
 	// Item shop categories.
 	'ShopCategories' => include('shopcategories.php'),
 
