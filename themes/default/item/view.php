@@ -144,6 +144,32 @@
 			<?php endif ?>
 		</td>
 	</tr>
+	<tr>
+		<th>Trade Restrictions</th>
+		<td colspan="<?php echo $image ? 4 : 3 ?>">
+			<?php if ($tradeFlags=$this->itemTradeRestrictions($item->trade_flag)): ?>
+				<?php echo htmlspecialchars(implode(' / ', $tradeFlags)) ?>
+			<?php else: ?>
+				<span class="not-applicable">None</span>
+			<?php endif ?>
+		</td>
+	</tr>
+	<tr>
+		<th>Use Restrictions</th>
+		<td colspan="<?php echo $image ? 4 : 3 ?>">
+			<?php if ($nouseFlags=$this->itemNouseRestrictions($item->nouse_flag)): ?>
+				<?php echo htmlspecialchars(implode(' / ', $nouseFlags)) ?>
+			<?php else: ?>
+				<span class="not-applicable">None</span>
+			<?php endif ?>
+		</td>
+	</tr>
+	<tr>
+		<th>Bind on Equip</th>
+		<td colspan="<?php echo $image ? 4 : 3 ?>">
+			<?php echo $item->bindonequip ? 'Yes' : 'No' ?>
+		</td>
+	</tr>
 	<?php if (($isCustom && $auth->allowedToSeeItemDb2Scripts) || (!$isCustom && $auth->allowedToSeeItemDbScripts)): ?>
 	<tr>
 		<th>Item Use Script</th>

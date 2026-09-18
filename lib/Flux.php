@@ -901,16 +901,50 @@ class Flux {
 	{
 		$arr  = array();
 		$bits = self::config('MonsterModes')->toArray();
-		
+
 		foreach ($bits as $bit => $name) {
 			if ($bitmask & $bit) {
 				$arr[] = $bit;
 			}
 		}
-		
+
 		return $arr;
 	}
-	
+
+	/**
+	 *
+	 */
+	public static function itemTradeRestrictionsToArray($bitmask)
+	{
+		$arr  = array();
+		$bits = self::config('ItemTradeRestrictions')->toArray();
+
+		foreach ($bits as $bit => $name) {
+			if ($bitmask & $bit) {
+				$arr[] = $bit;
+			}
+		}
+
+		return $arr;
+	}
+
+	/**
+	 *
+	 */
+	public static function itemNouseRestrictionsToArray($bitmask)
+	{
+		$arr  = array();
+		$bits = self::config('ItemNouseRestrictions')->toArray();
+
+		foreach ($bits as $bit => $name) {
+			if ($bitmask & $bit) {
+				$arr[] = $bit;
+			}
+		}
+
+		return $arr;
+	}
+
 	/**
 	 *
 	 */

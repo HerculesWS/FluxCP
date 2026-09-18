@@ -1422,7 +1422,37 @@ class Flux_Template {
 		}
 		return $array;
  	}
-	
+
+	/**
+	 *
+	 */
+	public function itemTradeRestrictions($flag)
+	{
+		$flags = Flux::itemTradeRestrictionsToArray($flag);
+		$array = array();
+		foreach (Flux::config('ItemTradeRestrictions')->toArray() as $bit => $name) {
+			if (in_array($bit, $flags)) {
+				$array[] = $name;
+			}
+		}
+		return $array;
+	}
+
+	/**
+	 *
+	 */
+	public function itemNouseRestrictions($flag)
+	{
+		$flags = Flux::itemNouseRestrictionsToArray($flag);
+		$array = array();
+		foreach (Flux::config('ItemNouseRestrictions')->toArray() as $bit => $name) {
+			if (in_array($bit, $flags)) {
+				$array[] = $name;
+			}
+		}
+		return $array;
+	}
+
 	/**
 	 * Return the template name ("default")
 	 * @access public
