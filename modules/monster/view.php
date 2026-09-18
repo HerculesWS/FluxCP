@@ -21,7 +21,7 @@ $fromTables = array("{$server->charMapDatabase}.item_db", "{$server->charMapData
 $itemDB    = "{$server->charMapDatabase}.items";
 $tempItems = new Flux_TemporaryTable($server->connection, $itemDB, $fromTables);
 
-$col  = 'origin_table, ID as monster_id, Sprite AS sprite, kName AS kro_name, iName AS iro_name, LV AS level, HP AS hp, ';
+$col  = 'origin_table, ID as monster_id, Sprite AS sprite, kName AS kro_name, iName AS iro_name, LV AS level, HP AS hp, SP AS sp, ';
 $col .= 'EXP AS base_exp, JEXP as job_exp, Range1 AS range1, Range2 AS range2, Range3 AS range3, ';
 $col .= 'DEF AS defense, MDEF AS magic_defense, DEF AS defense, MDEF AS magic_defense, ';
 if($server->isRenewal) {
