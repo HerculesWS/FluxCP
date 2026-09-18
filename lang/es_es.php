@@ -530,10 +530,12 @@ return array(
 	'PickLogItemLabel'        => 'Nombre de Objeto',
 	'PickLogAmountLabel'      => 'Cantidad',
 	'PickLogRefineLabel'      => 'Refinado',
+	'PickLogGradeLabel'       => 'Grade',
 	'PickLogCard0Label'       => 'Carta 0',
 	'PickLogCard1Label'       => 'Carta 1',
 	'PickLogCard2Label'       => 'Carta 2',
 	'PickLogCard3Label'       => 'Carta 3',
+	'PickLogOptionsLabel'     => 'Random Options',
 	'PickLogMapLabel'         => 'Mapa',
 	// - logdata/zeny
 	'ZenyLogTitle'            => 'Lista de Transacciones de Zeny',

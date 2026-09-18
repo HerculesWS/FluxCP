@@ -515,10 +515,12 @@ return array(
 	'PickLogItemLabel'        => 'Item Name',
 	'PickLogAmountLabel'      => 'Amount',
 	'PickLogRefineLabel'      => 'Refine',
+	'PickLogGradeLabel'       => 'Grade',
 	'PickLogCard0Label'       => 'Card 0',
 	'PickLogCard1Label'       => 'Card 1',
 	'PickLogCard2Label'       => 'Card 2',
 	'PickLogCard3Label'       => 'Card 3',
+	'PickLogOptionsLabel'     => 'Random Options',
 	'PickLogMapLabel'         => 'Map',
 	// - logdata/zeny
 	'ZenyLogTitle'            => 'List Zeny Log',
