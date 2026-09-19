@@ -676,6 +676,81 @@ class Flux_Athena {
 	}
 	
 	/**
+	 * Change a character's sex, mirroring the @changecharsex atcommand:
+	 * unequips everything, swaps gender-specific job classes (Bard/Dancer
+	 * and friends), and resets the sex-locked appearance slots.
+	 *
+	 * @param int $charID
+	 * @param string $sex 'M' or 'F'
+	 * @return mixed
+	 */
+	public function changeSex($charID, $sex)
+	{
+		// Return values:
+		// -1 = Character is online, cannot change.
+		// -2 = Unknown character.
+		// -3 = Invalid sex.
+		// false = Failed to change.
+		// true  = Successfully changed.
+
+		if (!in_array($sex, array('M', 'F'))) {
+			return -3;
+		}
+
+		$char = $this->getCharacter($charID);
+
+		if (!$char) {
+			return -2;
+		}
+		if ($char->online) {
+			return -1;
+		}
+
+		$genderLinkedClasses = array(
+			19   => array('M' => 19,   'F' => 20),   // Bard / Dancer
+			20   => array('M' => 19,   'F' => 20),
+			4020 => array('M' => 4020, 'F' => 4021), // Clown / Gypsy
+			4021 => array('M' => 4020, 'F' => 4021),
+			4042 => array('M' => 4042, 'F' => 4043), // Baby Bard / Baby Dancer
+			4043 => array('M' => 4042, 'F' => 4043),
+			4068 => array('M' => 4068, 'F' => 4069), // Minstrel / Wanderer
+			4069 => array('M' => 4068, 'F' => 4069),
+			4075 => array('M' => 4075, 'F' => 4076), // Minstrel T / Wanderer T
+			4076 => array('M' => 4075, 'F' => 4076),
+			4104 => array('M' => 4104, 'F' => 4105), // Baby Minstrel / Baby Wanderer
+			4105 => array('M' => 4104, 'F' => 4105),
+			4211 => array('M' => 4211, 'F' => 4212), // Kagerou / Oboro
+			4212 => array('M' => 4211, 'F' => 4212),
+			4223 => array('M' => 4223, 'F' => 4224), // Baby Kagerou / Baby Oboro
+			4224 => array('M' => 4223, 'F' => 4224),
+		);
+
+		$class = array_key_exists($char->class, $genderLinkedClasses)
+			? $genderLinkedClasses[$char->class][$sex]
+			: $char->class;
+
+		$sql  = "UPDATE {$this->charMapDatabase}.inventory SET ";
+		$sql .= "equip = 0 WHERE char_id = ?";
+		$sth  = $this->connection->getStatement($sql);
+
+		if (!$sth->execute(array($charID))) {
+			return false;
+		}
+
+		$sql  = "UPDATE {$this->charMapDatabase}.`char` SET ";
+		$sql .= "class = ?, weapon = 0, shield = 0, head_top = 0, head_mid = 0, head_bottom = 0, robe = 0, sex = ? ";
+		$sql .= "WHERE char_id = ?";
+		$sth  = $this->connection->getStatement($sql);
+
+		if (!$sth->execute(array($class, $sex, $charID))) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	/**
 	 * Re-set the position of a character.
 	 *
 	 * @param int $charID

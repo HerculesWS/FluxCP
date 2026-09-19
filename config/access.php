@@ -60,6 +60,7 @@ return array(
 			'changeslot' => AccountLevel::NORMAL,
 			'resetlook'  => AccountLevel::NORMAL,
 			'resetpos'   => AccountLevel::NORMAL,
+			'changesex'  => AccountLevel::NORMAL,
 			'mapstats'   => AccountLevel::ANYONE,
 			'divorce'    => AccountLevel::NORMAL
 		),
@@ -195,6 +196,7 @@ return array(
 		'ViewRawTxnLogData'  => AccountLevel::ADMIN,  // Minimum group level required to view Raw Transaction Log in txnview page.
 		'ResetLook'          => AccountLevel::LOWGM,  // Minimum group level required to reset another character's look.
 		'ResetPosition'      => AccountLevel::LOWGM,  // Minimum group level required to reset another character's position.
+		'ChangeSex'          => AccountLevel::LOWGM,  // Minimum group level required to change another character's sex.
 		'ViewWoeDisallowed'  => AccountLevel::LOWGM,  // Minimum group level required to bypass WoE-disabled page security check.
 		'SeeCpLoginLogPass'  => AccountLevel::NOONE,  // Minimum group level required to see password in CP login log (also requires CpLoginLogShowPassword in application.php)
 		'SearchCpLoginLogPw' => AccountLevel::NOONE,  // Minimum group level required to search through passwords in the CP login log.
