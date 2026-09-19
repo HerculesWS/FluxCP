@@ -43,6 +43,18 @@
 		</td>
 	</tr>
 	<tr>
+		<th>Sex</th>
+		<td colspan="6">
+			<?php if ($char->gender == 'M'): ?>
+				Male
+			<?php elseif ($char->gender == 'F'): ?>
+				Female
+			<?php else: ?>
+				<span class="not-applicable">Unknown</span>
+			<?php endif ?>
+		</td>
+	</tr>
+	<tr>
 		<th>Base Level</th>
 		<td colspan="2"><?php echo number_format((int)$char->char_base_level) ?></td>
 		<th>B. Experience</th>
