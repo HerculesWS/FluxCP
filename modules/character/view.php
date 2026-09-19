@@ -20,7 +20,8 @@ $col .= "ch.int AS char_int, ch.dex AS char_dex, ch.luk AS char_luk, ch.max_hp A
 $col .= "ch.max_sp AS char_max_sp, ch.sp AS char_sp, ch.status_point AS char_status_point, ";
 $col .= "ch.skill_point AS char_skill_point, ch.online AS char_online, ch.party_id AS char_party_id, ";
 
-$col .= "login.userid, login.account_id AS char_account_id, login.sex AS gender, ";
+$col .= "login.userid, login.account_id AS char_account_id, ";
+$col .= "IF(ch.sex = 'U', login.sex, ch.sex) AS gender, ";
 $col .= "partner.name AS partner_name, partner.char_id AS partner_id, ";
 $col .= "mother.name AS mother_name, mother.char_id AS mother_id, ";
 $col .= "father.name AS father_name, father.char_id AS father_id, ";
