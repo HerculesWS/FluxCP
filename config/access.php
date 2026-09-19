@@ -95,6 +95,9 @@ return array(
 			'index'    => AccountLevel::ANYONE,
 			'view'     => AccountLevel::ANYONE
 		),
+		'barter'    => array(
+			'index'    => AccountLevel::ANYONE
+		),
 		'server'    => array(
 			'status'     => AccountLevel::ANYONE,
 			'status-xml' => AccountLevel::ANYONE,
