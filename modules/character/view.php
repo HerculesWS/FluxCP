@@ -19,6 +19,7 @@ $col .= "ch.str AS char_str, ch.agi AS char_agi, ch.vit AS char_vit, ";
 $col .= "ch.int AS char_int, ch.dex AS char_dex, ch.luk AS char_luk, ch.max_hp AS char_max_hp, ch.hp AS char_hp, ";
 $col .= "ch.max_sp AS char_max_sp, ch.sp AS char_sp, ch.status_point AS char_status_point, ";
 $col .= "ch.skill_point AS char_skill_point, ch.online AS char_online, ch.party_id AS char_party_id, ";
+$col .= "ch.inventory_size AS char_inventory_size, ";
 
 $col .= "login.userid, login.account_id AS char_account_id, login.sex AS gender, ";
 $col .= "partner.name AS partner_name, partner.char_id AS partner_id, ";
@@ -44,6 +45,9 @@ $col .= "elem.atk1 AS elemental_atk1, elem.atk2 AS elemental_atk2, elem.matk AS 
 $col .= "elem.aspd AS elemental_aspd, elem.def AS elemental_def, elem.mdef AS elemental_mdef, ";
 $col .= "elem.flee AS elemental_flee, elem.hit AS elemental_hit, elem.life_time AS elemental_life_time, ";
 
+$col .= "merc.class AS merc_class, merc_mob.kName AS merc_mob_name, merc_mob2.kName AS merc_mob_name2, ";
+$col .= "merc.hp AS merc_hp, merc.sp AS merc_sp, merc.kill_counter AS merc_kill_counter, merc.life_time AS merc_life_time, ";
+
 $col .= "IFNULL(reg.value, 0) AS death_count";
 
 $sql  = "SELECT $col FROM {$server->charMapDatabase}.`char` AS ch ";
@@ -65,6 +69,10 @@ $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mob_db2` AS pet_mob2 ON pet
 $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`elemental` AS elem ON ch.elemental_id = elem.ele_id ";
 $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mob_db` AS elemental_mob ON elemental_mob.ID = elem.class ";
 $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mob_db2` AS elemental_mob2 ON elemental_mob2.ID = elem.class ";
+$sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mercenary_owner` AS mowner ON mowner.char_id = ch.char_id ";
+$sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mercenary` AS merc ON merc.mer_id = mowner.merc_id ";
+$sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mob_db` AS merc_mob ON merc_mob.ID = merc.class ";
+$sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`mob_db2` AS merc_mob2 ON merc_mob2.ID = merc.class ";
 $sql .= "LEFT OUTER JOIN {$server->charMapDatabase}.`char_reg_num_db` AS reg ON reg.char_id = ch.char_id AND reg.key = 'PC_DIE_COUNTER' ";
 $sql .= "WHERE ch.char_id = ?";
 
@@ -79,6 +87,10 @@ if ($char->pet_mob_name2) {
 
 if ($char->elemental_mob_name2) {
 	$char->elemental_mob_name = $char->elemental_mob_name2;
+}
+
+if ($char->merc_mob_name2) {
+	$char->merc_mob_name = $char->merc_mob_name2;
 }
 
 if ($char && $char->char_account_id == $session->account->account_id) {
