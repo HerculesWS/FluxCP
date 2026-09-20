@@ -269,23 +269,14 @@ class Flux_SessionData {
 		}
 
 		if ($securityCode !== false && Flux::config('UseLoginCaptcha')) {
-			if (strtolower($securityCode) != strtolower($this->securityCode)) {
-				throw new Flux_LoginError('Invalid security code', Flux_LoginError::INVALID_SECURITY_CODE);
-			}
-			elseif (Flux::config('EnableReCaptcha')) {
-				require_once 'recaptcha/recaptchalib.php';
-				$response = $_POST["g-recaptcha-response"];
-				$reCaptcha = new ReCaptcha(Flux::config('ReCaptchaPrivateKey'));
-				if($response) {
-					$response = $reCaptcha->verifyResponse(
-						$_SERVER["REMOTE_ADDR"],
-						$_POST["g-recaptcha-response"]
-					);
-				}
-
-				if (!$response || !$response->success) {
+			if (Flux::config('EnableReCaptcha')) {
+				require_once 'Flux/ReCaptcha.php';
+				if (!Flux_ReCaptcha::verify()) {
 					throw new Flux_LoginError('Invalid security code', Flux_LoginError::INVALID_SECURITY_CODE);
 				}
+			}
+			elseif (strtolower($securityCode) != strtolower($this->securityCode)) {
+				throw new Flux_LoginError('Invalid security code', Flux_LoginError::INVALID_SECURITY_CODE);
 			}
 		}
 

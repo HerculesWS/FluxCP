@@ -96,14 +96,6 @@
 			}
 		</script>
 		
-		<?php if (Flux::config('EnableReCaptcha') && Flux::config('ReCaptchaTheme')): ?>
-		<script type="text/javascript">
-			 var RecaptchaOptions = {
-			    theme : '<?php echo Flux::config('ReCaptchaTheme') ?>'
-			 };
-		</script>
-		<?php endif ?>
-		
 	</head>
 	<body class="page">
 	<div id="page" class="hfeed site">
