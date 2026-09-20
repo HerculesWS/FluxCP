@@ -219,8 +219,9 @@ return array(
 			'Ranking Info'  => array('module' => 'ranking', 'action' => 'character'),
 		),
 		'Database'    => array(
-			'Item Database' => array('module' => 'item'),
-			'Mob Database'  => array('module' => 'monster'),
+			'Item Database'   => array('module' => 'item'),
+			'Mob Database'    => array('module' => 'monster'),
+			'Barter Shops'    => array('module' => 'barter'),
 		),
 		'Misc. Stuff' => array(
 			'Hercules Logs' => array('module' => 'logdata'),
