@@ -1,0 +1,39 @@
+name: PHP Lint
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Floating minors: setup-php resolves each to its latest patch (the
+        # "z" in x.y.z) at run time, so this tracks new patch releases with
+        # no manual bumping needed.
+        php-version: ["8.2", "8.3", "8.4", "8.5"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: none
+
+      - name: Lint PHP files
+        run: |
+          set -e
+          status=0
+          while IFS= read -r -d '' file; do
+            output=$(php -l "$file" 2>&1)
+            if [ $? -ne 0 ]; then
+              echo "$output"
+              status=1
+            fi
+          done < <(find . -name '*.php' -print0)
+          exit $status
