@@ -271,25 +271,19 @@ parameters:
 			path: lib/Flux/LoginError.php
 
 		-
-			message: '#^Class ReCaptcha does not have a constructor and must be instantiated without any parameters\.$#'
-			identifier: new.noConstructor
-			count: 1
-			path: lib/Flux/LoginServer.php
-
-		-
 			message: '#^Path in require_once\(\) "Flux/BaseServer\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: lib/Flux/LoginServer.php
 
 		-
-			message: '#^Path in require_once\(\) "Flux/RegisterError\.php" is not a file or it does not exist\.$#'
+			message: '#^Path in require_once\(\) "Flux/ReCaptcha\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: lib/Flux/LoginServer.php
 
 		-
-			message: '#^Path in require_once\(\) "recaptcha/recaptchalib\.php" is not a file or it does not exist\.$#'
+			message: '#^Path in require_once\(\) "Flux/RegisterError\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: lib/Flux/LoginServer.php
@@ -365,6 +359,12 @@ parameters:
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: lib/Flux/PermissionError.php
+
+		-
+			message: '#^Path in require_once\(\) "recaptcha/recaptchalib\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/ReCaptcha.php
 
 		-
 			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
@@ -457,12 +457,6 @@ parameters:
 			path: lib/Flux/SessionData.php
 
 		-
-			message: '#^Class ReCaptcha does not have a constructor and must be instantiated without any parameters\.$#'
-			identifier: new.noConstructor
-			count: 1
-			path: lib/Flux/SessionData.php
-
-		-
 			message: '#^Path in require_once\(\) "Flux/DataObject\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
@@ -481,7 +475,7 @@ parameters:
 			path: lib/Flux/SessionData.php
 
 		-
-			message: '#^Path in require_once\(\) "recaptcha/recaptchalib\.php" is not a file or it does not exist\.$#'
+			message: '#^Path in require_once\(\) "Flux/ReCaptcha\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: lib/Flux/SessionData.php
@@ -715,18 +709,6 @@ parameters:
 			path: lib/phpmailer/class.smtp.php
 
 		-
-			message: '#^Constant codes not found\.$#'
-			identifier: constant.notFound
-			count: 1
-			path: lib/recaptcha/recaptchalib.php
-
-		-
-			message: '#^Constant error not found\.$#'
-			identifier: constant.notFound
-			count: 1
-			path: lib/recaptcha/recaptchalib.php
-
-		-
 			message: '#^Variable \$this might not be defined\.$#'
 			identifier: variable.undefined
 			count: 2
@@ -871,13 +853,13 @@ parameters:
 			path: modules/account/create.php
 
 		-
-			message: '#^Path in require_once\(\) "Flux/RegisterError\.php" is not a file or it does not exist\.$#'
+			message: '#^Path in require_once\(\) "Flux/ReCaptcha\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: modules/account/create.php
 
 		-
-			message: '#^Path in require_once\(\) "recaptcha/recaptchalib\.php" is not a file or it does not exist\.$#'
+			message: '#^Path in require_once\(\) "Flux/RegisterError\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: modules/account/create.php
@@ -955,7 +937,7 @@ parameters:
 			path: modules/account/index.php
 
 		-
-			message: '#^Path in require_once\(\) "recaptcha/recaptchalib\.php" is not a file or it does not exist\.$#'
+			message: '#^Path in require_once\(\) "Flux/ReCaptcha\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: modules/account/login.php
@@ -3123,7 +3105,7 @@ parameters:
 		-
 			message: '#^Variable \$recaptcha might not be defined\.$#'
 			identifier: variable.undefined
-			count: 1
+			count: 2
 			path: themes/default/account/create.php
 
 		-
@@ -3225,7 +3207,7 @@ parameters:
 		-
 			message: '#^Variable \$recaptcha might not be defined\.$#'
 			identifier: variable.undefined
-			count: 1
+			count: 2
 			path: themes/default/account/login.php
 
 		-
