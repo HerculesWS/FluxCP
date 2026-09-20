@@ -10,12 +10,12 @@
 		<td bgcolor="#e1eaf3"></td>
 		<td bgcolor="#e1eaf3" valign="middle">
 			<span style="display: inline-block; margin: 2px 2px 2px 0">
-				You are currently logged in as <strong><a href="<?php echo $this->url('account', 'view') ?>" title="View account"><?php echo htmlspecialchars($session->account->userid) ?></a></strong>
-				on <?php echo htmlspecialchars($session->serverName) ?>.
-				
+				<?php echo htmlspecialchars(Flux::message('LoggedInAsLabel')) ?> <strong><a href="<?php echo $this->url('account', 'view') ?>" title="<?php echo htmlspecialchars(Flux::message('ViewAccountTitle')) ?>"><?php echo htmlspecialchars($session->account->userid) ?></a></strong>
+				<?php echo htmlspecialchars(sprintf(Flux::message('LoggedInOnServerLabel'), $session->serverName)) ?>
+
 			<?php if (count($athenaServerNames=$session->getAthenaServerNames()) > 1): ?>
-				Your preferred server is:
-			
+				<?php echo htmlspecialchars(Flux::message('PreferredServerLabel')) ?>
+
 			<select name="preferred_server" onchange="updatePreferredServer(this)"<?php if (count($athenaServerNames=$session->getAthenaServerNames()) === 1) echo ' disabled="disabled"'  ?>>
 				<?php foreach ($athenaServerNames as $serverName): ?>
 				<option value="<?php echo htmlspecialchars($serverName) ?>"<?php if ($server->serverName == $serverName) echo ' selected="selected"' ?>><?php echo htmlspecialchars($serverName) ?></option>
@@ -30,11 +30,11 @@
 		<td bgcolor="#e1eaf3"></td>
 	</tr>
 	<?php if (!empty($adminMenuItems) && Flux::config('AdminMenuNewStyle')): ?>
-	<?php $mItems = array(); foreach ($adminMenuItems as $menuItem) $mItems[] = sprintf('<a href="%s">%s</a>', $menuItem['url'], $menuItem['name']) ?>
+	<?php $mItems = array(); foreach ($adminMenuItems as $menuItem) $mItems[] = sprintf('<a href="%s">%s</a>', $menuItem['url'], htmlspecialchars(Flux::menuLabel($menuItem['name']))) ?>
 	<tr>
 		<td bgcolor="#e1eaf3"></td>
 		<td bgcolor="#e1eaf3" valign="middle" class="loginbox-admin-menu">
-			<strong>Admin</strong>: <?php echo implode(' • ', $mItems) ?>
+			<strong><?php echo htmlspecialchars(Flux::message('AdminLabel')) ?></strong>: <?php echo implode(' • ', $mItems) ?>
 		</td>
 		<td bgcolor="#e1eaf3"></td>
 	</tr>
