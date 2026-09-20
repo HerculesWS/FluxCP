@@ -33,7 +33,9 @@ try {
 		$custom         = $params->get('custom');
 		
 		if ($monsterName) {
-			$sqlpartial .= "AND ((kName LIKE ? OR kName = ?) OR (iName LIKE ? OR iName = ?)) ";
+			$sqlpartial .= "AND ((kName LIKE ? OR kName = ?) OR (iName LIKE ? OR iName = ?) OR (Sprite LIKE ? OR Sprite = ?)) ";
+			$bind[]      = "%$monsterName%";
+			$bind[]      = $monsterName;
 			$bind[]      = "%$monsterName%";
 			$bind[]      = $monsterName;
 			$bind[]      = "%$monsterName%";
