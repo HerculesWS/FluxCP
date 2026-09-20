@@ -276,7 +276,7 @@ return array(
 			'chat'    => 'Chat Messages',
 			'login'   => 'Logins',
 			'mvp'     => 'MVP',
-			//'npc'     => 'NPC',
+			'npc'     => 'NPC',
 			'pick'    => 'Item Picks',
 			'zeny'    => 'Zeny'
 		),
