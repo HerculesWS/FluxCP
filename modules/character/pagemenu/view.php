@@ -12,6 +12,9 @@ if (($isMine || $auth->allowedToResetLook) && $auth->actionAllowed('character', 
 if (($isMine || $auth->allowedToResetPosition) && $auth->actionAllowed('character', 'resetpos')) {
 	$pageMenu['Reset Position'] = $this->url('character', 'resetpos', array('id' => $char->char_id, 'Session' => Flux_Security::csrfGet('Session')));
 }
+if (($isMine || $auth->allowedToChangeSex) && $auth->actionAllowed('character', 'changesex')) {
+	$pageMenu['Change Sex'] = $this->url('character', 'changesex', array('id' => $char->char_id, 'Session' => Flux_Security::csrfGet('Session')));
+}
 if ($char->partner_id && ($isMine || $auth->allowedToDivorceCharacter) && $auth->actionAllowed('character', 'divorce')) {
 	$pageMenu['Divorce'] = $this->url('character', 'divorce', array('id' => $char->char_id));
 }

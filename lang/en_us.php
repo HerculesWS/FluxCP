@@ -334,6 +334,10 @@ return array(
 	'CantResetFromCurrentMap' => "You cannot reset %s's position from the current map.",
 	'ResetPositionSuccessful' => "%s's position has been reset!",
 	'ResetPositionFailed'     => "Failed to reset %s's position.",
+	// - character/changesex
+	'CantChangeSexWhenOnline' => 'Cannot change sex while %s is online.',
+	'ChangeSexSuccessful'     => "%s's sex has been changed!",
+	'ChangeSexFailed'         => "Failed to change %s's sex.",
 	// - character/view
 	// - character/divorce
 	'DivorceTitle'            => 'Divorce',

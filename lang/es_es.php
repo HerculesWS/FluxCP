@@ -349,6 +349,10 @@ return array(
 	'CantResetFromCurrentMap' => "No puedes restaurar la posición de %s en su mapa actual.",
 	'ResetPositionSuccessful' => "¡Se ha restaurado la posición de %s!",
 	'ResetPositionFailed'     => "No se pudo restaurar la posición de %s.",
+	// - character/changesex
+	'CantChangeSexWhenOnline' => 'Cannot change sex while %s is online.',
+	'ChangeSexSuccessful'     => "%s's sex has been changed!",
+	'ChangeSexFailed'         => "Failed to change %s's sex.",
 	// - character/view
 	// - character/divorce
 	'DivorceTitle'            => 'Divorciar',

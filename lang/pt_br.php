@@ -330,6 +330,10 @@ return array(
 	'CantResetFromCurrentMap' => "Você não pode redefinir a posição de %s estando no mapa atual.",
 	'ResetPositionSuccessful' => "A posição de %s foi redefinida!",
 	'ResetPositionFailed'     => "Falha ao redefinir a posição de %s.",
+	// - character/changesex
+	'CantChangeSexWhenOnline' => 'Cannot change sex while %s is online.',
+	'ChangeSexSuccessful'     => "%s's sex has been changed!",
+	'ChangeSexFailed'         => "Failed to change %s's sex.",
 	// - character/view
 	// - character/divorce
 	'DivorceTitle'            => 'Divórcio',
