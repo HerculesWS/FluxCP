@@ -52,7 +52,16 @@ class Flux {
 	 * @var Flux_Config
 	 */
 	public static $messagesConfig;
-	
+
+	/**
+	 * Maps plain-text MenuItems/SubMenuItems/pagemenu names to language
+	 * keys, used by Flux::menuLabel().
+	 *
+	 * @access public
+	 * @var Flux_Config
+	 */
+	public static $menuLabelsConfig;
+
 	/**
 	 * Collection of Flux_Athena objects.
 	 *
@@ -123,7 +132,11 @@ class Flux {
 		
 		// Using newer language system.
 		self::$messagesConfig = self::parseLanguageConfigFile();
-		
+
+		// Menu/sub-menu/pagemenu name -> language key lookup, used by
+		// Flux::menuLabel() so admin-editable menu config can stay plain text.
+		self::$menuLabelsConfig = self::parseConfigFile(FLUX_CONFIG_DIR.'/menulabels.php');
+
 		// Initialize server objects.
 		self::initializeServerObjects();
 		
@@ -223,7 +236,25 @@ class Flux {
 			return self::$messagesConfig->get($key);
 		}
 	}
-	
+
+	/**
+	 * Translate a menu/category/sub-menu name from MenuItems, SubMenuItems,
+	 * or a page menu. These names are admin-editable config values (plain
+	 * text, not translation keys), so unlike Flux::message() this never
+	 * returns blank: known text is translated via MenuLabels, and anything
+	 * else (a custom or addon menu entry with no translation yet) is
+	 * displayed exactly as the admin typed it.
+	 *
+	 * @param string $text
+	 * @return string
+	 * @access public
+	 */
+	public static function menuLabel($text)
+	{
+		$key = self::$menuLabelsConfig->get($text);
+		return $key ? self::message($key) : $text;
+	}
+
 	/**
 	 * Convenience method for raising Flux_Error exceptions.
 	 *

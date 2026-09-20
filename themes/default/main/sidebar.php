@@ -10,7 +10,7 @@ $menuItems = $this->getMenuItems();
 		<td><img src="<?php echo $this->themePath('img/sidebar_admin_complete_top.gif') ?>" /></td>
 	</tr>
 	<tr>
-		<th class="menuitem"><strong>Admin Menu</strong></td>
+		<th class="menuitem"><strong><?php echo htmlspecialchars(Flux::message('AdminLabel')) ?></strong></td>
 	</tr>
 	<?php foreach ($adminMenuItems as $menuItem): ?>
 	<tr>
@@ -18,7 +18,7 @@ $menuItems = $this->getMenuItems();
 			<a href="<?php echo $this->url($menuItem['module'], $menuItem['action']) ?>"<?php
 				if ($menuItem['module'] == 'account' && $menuItem['action'] == 'logout')
 					echo ' onclick="return confirm(\'Are you sure you want to logout?\')"' ?>>
-				<span><?php echo htmlspecialchars($menuItem['name']) ?></span>
+				<span><?php echo htmlspecialchars(Flux::menuLabel($menuItem['name'])) ?></span>
 			</a>
 		</td>
 	</tr>
@@ -37,7 +37,7 @@ $menuItems = $this->getMenuItems();
 	<?php foreach ($menuItems as $menuCategory => $menus): ?>
 	<?php if (!empty($menus)): ?>
 	<tr>
-		<th class="menuitem"><strong><?php echo htmlspecialchars($menuCategory) ?></strong></th>
+		<th class="menuitem"><strong><?php echo htmlspecialchars(Flux::menuLabel($menuCategory)) ?></strong></th>
 	</tr>
 	<?php foreach ($menus as $menuItem):  ?>
 	<tr>
@@ -45,7 +45,7 @@ $menuItems = $this->getMenuItems();
 			<a href="<?php echo $menuItem['url'] ?>"<?php
 				if ($menuItem['module'] == 'account' && $menuItem['action'] == 'logout')
 					echo ' onclick="return confirm(\'Are you sure you want to logout?\')"' ?>>
-				<span><?php echo htmlspecialchars($menuItem['name']) ?></span>
+				<span><?php echo htmlspecialchars(Flux::menuLabel($menuItem['name'])) ?></span>
 			</a>
 		</td>
 	</tr>
