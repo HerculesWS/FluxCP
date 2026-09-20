@@ -1,0 +1,13 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 1
+    paths:
+        - addons
+        - config
+        - lib
+        - modules
+        - themes
+        - error.php
+        - index.php

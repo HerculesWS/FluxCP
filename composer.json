@@ -1,0 +1,11 @@
+{
+    "name": "fluxcp/fluxcp",
+    "description": "FluxCP dev tooling (static analysis). Not used at runtime.",
+    "type": "project",
+    "require-dev": {
+        "phpstan/phpstan": "^2.0"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
