@@ -7,7 +7,7 @@
 <h3><?php printf(htmlspecialchars(Flux::message('TransferSubHeading')), $server->serverName) ?></h3>
 <p><?php printf(Flux::message('TransferInfo'), '<span class="remaining-balance">'.number_format($session->account->balance).'</span>') ?></p>
 <p><?php echo htmlspecialchars(Flux::message('TransferInfo2')) ?></p>
-<form action="<?php echo $this->url ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars($this->url) ?>" method="post" class="generic-form">
 	<?php echo $this->moduleActionFormInputs('account', 'transfer') ?>
 	<?php echo Flux_Security::csrfGenerate('TransferCredit', true) ?>
 

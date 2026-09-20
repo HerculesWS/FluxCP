@@ -54,7 +54,7 @@
 		<td><?php echo number_format($chars[$i]->job_level) ?></td>
 		<?php if ($chars[$i]->guild_name): ?>
 		<?php if ($chars[$i]->guild_emblem_len): ?>
-		<td width="24"><img src="<?php echo $this->emblem($chars[$i]->guild_id) ?>" /></td>
+		<td width="24"><img src="<?php echo $this->emblem($chars[$i]->guild_id) ?>" alt="" /></td>
 		<?php endif ?>
 		<td<?php if (!$chars[$i]->guild_emblem_len) echo ' colspan="2"' ?>>
 			<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>

@@ -66,7 +66,7 @@
 		<td>
 			<?php echo number_format((int)$account->balance) ?>
 			<?php if ($auth->allowedToDonate && $isMine): ?>
-				<a href="<?php echo $this->url('donate') ?>"><?php echo htmlspecialchars(Flux::message('AccountViewDonateLink')) ?></a>
+				<a href="<?php echo htmlspecialchars($this->url('donate')) ?>"><?php echo htmlspecialchars(Flux::message('AccountViewDonateLink')) ?></a>
 			<?php endif ?>
 		</td>
 	</tr>
@@ -103,7 +103,7 @@
 	<tr>
 		<th><?php echo htmlspecialchars(Flux::message('AccountViewTempBanLabel')) ?></th>
 		<td colspan="3">
-			<form action="<?php echo $this->urlWithQs ?>" method="post">
+			<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post">
 				<input type="hidden" name="tempban" value="1" />
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanReasonLabel')) ?><br /><textarea name="reason" class="block reason"></textarea></label>
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanUntilLabel')) ?></label>
@@ -118,7 +118,7 @@
 	<tr>
 		<th><?php echo htmlspecialchars(Flux::message('AccountViewPermBanLabel')) ?></th>
 		<td colspan="3">
-			<form action="<?php echo $this->urlWithQs ?>" method="post">
+			<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post">
 				<input type="hidden" name="permban" value="1" />
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanReasonLabel')) ?><br /><textarea name="reason" class="block reason"></textarea></label>
 				<input type="submit" value="<?php echo htmlspecialchars(Flux::message('AccountPermBanButton')) ?>"
@@ -131,7 +131,7 @@
 	<tr>
 		<th><?php echo htmlspecialchars(Flux::message('AccountViewUnbanLabel')) ?></th>
 		<td colspan="3">
-			<form action="<?php echo $this->urlWithQs ?>" method="post">
+			<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post">
 				<input type="hidden" name="unban" value="1" />
 			<?php if ($tempBanned && $auth->allowedToTempUnbanAccount): ?>
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanReasonLabel')) ?><br /><textarea name="reason" class="block reason"></textarea></label>
@@ -209,7 +209,7 @@
 			<td><?php echo number_format((int)$char->zeny) ?></td>
 			<?php if ($char->guild_name): ?>
 				<?php if ($char->guild_emblem_len): ?>
-				<td><img src="<?php echo $this->emblem($char->guild_id) ?>" /></td>
+				<td><img src="<?php echo $this->emblem($char->guild_id) ?>" alt="" /></td>
 				<?php endif ?>
 				<td<?php if (!$char->guild_emblem_len) echo ' colspan="2"' ?>>
 					<?php if ($auth->actionAllowed('guild', 'view')): ?>
@@ -230,7 +230,7 @@
 			</td>
 			<?php if (($isMine || $auth->allowedToModifyCharPrefs) && $auth->actionAllowed('character', 'prefs')): ?>
 			<td>
-				<a href="<?php echo $this->url('character', 'prefs', array('id' => $char->char_id)) ?>"
+				<a href="<?php echo htmlspecialchars($this->url('character', 'prefs', array('id' => $char->char_id))) ?>"
 					class="block-link">
 					<?php echo htmlspecialchars(Flux::message('CharModifyPrefsLink')) ?>
 				</a>
@@ -272,7 +272,7 @@
 				<?php endif ?>
 			</td>
 			<?php if ($icon): ?>
-			<td><img src="<?php echo htmlspecialchars($icon) ?>" /></td>
+			<td><img src="<?php echo htmlspecialchars($icon) ?>" alt="" /></td>
 			<?php endif ?>
 			<td<?php if (!$icon) echo ' colspan="2"' ?><?php if ($item->cardsOver) echo ' class="overslotted' . $item->cardsOver . '"'; else echo ' class="normalslotted"' ?>>
 				<?php if ($item->refine > 0): ?>

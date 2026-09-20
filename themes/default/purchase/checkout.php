@@ -8,7 +8,7 @@
 <p>After reviewing the below item information, you can proceed with your checkout by clicking the “Purchase Items” button.</p>
 <p class="important">Note: These items are for redemption on the <span class="server-name"><?php echo htmlspecialchars($server->serverName) ?></span> server ONLY.</p>
 <p>
-	<form action="<?php echo $this->url ?>" method="post">
+	<form action="<?php echo htmlspecialchars($this->url) ?>" method="post">
 		<?php echo $this->moduleActionFormInputs($params->get('module'), 'checkout') ?>
 		<input type="hidden" name="process" value="1" />
 		<?php echo Flux_Security::csrfGenerate('PurchaseCheckOut', true) ?>

@@ -34,7 +34,7 @@
 			</select>
 			</span>
 			<?php endif ?>
-			<form action="<?php echo $this->urlWithQs ?>" method="post" name="preferred_theme_form" style="display: none">
+			<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" name="preferred_theme_form" style="display: none">
 				<input type="hidden" name="preferred_theme" value="" />
 			</form>
 			</div>

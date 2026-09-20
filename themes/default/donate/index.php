@@ -5,7 +5,7 @@
 		<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
 	<?php endif ?>
 	
-	<p>By donating, you're supporting the costs of <em>running</em> this server and <em>maintaining</em> it.  In return, you will be rewarded <span class="keyword">donation credits</span> that you may use to purchase items from our <a href="<?php echo $this->url('purchase') ?>">item shop</a>.</p>
+	<p>By donating, you're supporting the costs of <em>running</em> this server and <em>maintaining</em> it.  In return, you will be rewarded <span class="keyword">donation credits</span> that you may use to purchase items from our <a href="<?php echo htmlspecialchars($this->url('purchase')) ?>">item shop</a>.</p>
 	<h3>Are you ready to donate?</h3>
 	<p>All donations towards us are received by PayPal, but don't worry!  Even if you don't have an account with PayPal, you can still use your credit card to donate!</p>
 		
@@ -44,7 +44,7 @@
 	</div>
 		
 	<?php if (!$donationAmount): ?>
-	<form action="<?php echo $this->url ?>" method="post">
+	<form action="<?php echo htmlspecialchars($this->url) ?>" method="post">
 		<?php echo $this->moduleActionFormInputs($params->get('module')) ?>
 		<input type="hidden" name="setamount" value="1" />
 		<p class="enter-donation-amount">
@@ -82,7 +82,7 @@
 		</span>
 	</p>
 	<p class="reset-amount-text">
-		<a href="<?php echo $this->url('donate', 'index', array('resetamount' => true)) ?>">(Reset Amount)</a>
+		<a href="<?php echo htmlspecialchars($this->url('donate', 'index', array('resetamount' => true))) ?>">(Reset Amount)</a>
 	</p>
 	<p><?php echo $this->donateButton($donationAmount) ?></p>
 	<?php endif ?>

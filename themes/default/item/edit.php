@@ -6,7 +6,7 @@
 <?php if (!empty($errorMessage)): ?>
 <p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo $this->urlWithQs ?>" method="post" name="edit_item_form">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" name="edit_item_form">
 	<input type="hidden" name="edititem" value="1" />
 	<?php echo Flux_Security::csrfGenerate('ItemEdit', true) ?>
 

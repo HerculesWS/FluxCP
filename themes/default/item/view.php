@@ -3,7 +3,7 @@
 <?php if ($item): ?>
 <?php $icon = $this->iconImage($item->item_id); ?>
 <h3>
-	<?php if ($icon): ?><img src="<?php echo $icon ?>" /><?php endif ?>
+	<?php if ($icon): ?><img src="<?php echo $icon ?>" alt="<?php echo htmlspecialchars($item->name) ?>" /><?php endif ?>
 	#<?php echo htmlspecialchars($item->item_id) ?>: <?php echo htmlspecialchars($item->name) ?>
 </h3>
 <table class="vertical-table">
@@ -12,7 +12,7 @@
 		<td><?php echo htmlspecialchars($item->item_id) ?></td>
 		<?php if ($image=$this->itemImage($item->item_id)): ?>
 		<td rowspan="9" style="width: 150px; text-align: center; vertical-alignment: middle">
-			<img src="<?php echo $image ?>" />
+			<img src="<?php echo $image ?>" alt="" />
 		</td>
 		<?php endif ?>
 		<th>For Sale</th>

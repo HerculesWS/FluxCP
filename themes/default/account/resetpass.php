@@ -5,7 +5,7 @@
 <?php endif ?>
 <p><?php echo htmlspecialchars(Flux::message('ResetPassInfo')) ?></p>
 <p><?php echo htmlspecialchars(Flux::message('ResetPassInfo2')) ?></p>
-<form action="<?php echo $this->urlWithQs ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
 	<table class="generic-form-table">
 		<?php if (count($serverNames) > 1): ?>
 		<tr>

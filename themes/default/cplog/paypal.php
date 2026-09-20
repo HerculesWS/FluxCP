@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>PayPal Transactions</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo $this->url ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="txn_id">Transaction ID:</label>
@@ -76,7 +76,7 @@
 		<td align="right">
 			<strong>
 				<?php if ($auth->actionAllowed('logdata', 'txnview')): ?>
-					<a href="<?php echo $this->url($params->get('module'), 'txnview', array('id' => $txn->id)) ?>">
+					<a href="<?php echo htmlspecialchars($this->url($params->get('module'), 'txnview', array('id' => $txn->id))) ?>">
 						<?php echo $txn->txn_id ?>
 					</a>
 				<?php else: ?>
@@ -87,7 +87,7 @@
 		<td>
 			<?php if ($txn->parent_id): ?>
 				<?php if ($auth->actionAllowed('logdata', 'txnview')): ?>
-					<a href="<?php echo $this->url($params->get('module'), 'txnview', array('id' => $txn->parent_id)) ?>"><?php echo $txn->parent_txn_id ?></a>
+					<a href="<?php echo htmlspecialchars($this->url($params->get('module'), 'txnview', array('id' => $txn->parent_id))) ?>"><?php echo $txn->parent_txn_id ?></a>
 				<?php else: ?>
 					<?php echo $txn->parent_txn_id ?>
 				<?php endif ?>

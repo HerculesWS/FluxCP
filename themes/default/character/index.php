@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Characters</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo $this->url ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module')) ?>
 	<p>
 		<label for="char_id">Character ID:</label>
@@ -125,7 +125,7 @@
 		<td><?php echo number_format((int)$char->zeny) ?></td>
 		<?php if ($char->guild_name): ?>
 			<?php if ($char->guild_emblem_len): ?>
-			<td width="24"><img src="<?php echo $this->emblem($char->guild_id) ?>" /></td>
+			<td width="24"><img src="<?php echo $this->emblem($char->guild_id) ?>" alt="" /></td>
 			<?php endif ?>
 			<td<?php if (!$char->guild_emblem_len) echo ' colspan="2"' ?>>
 				<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>

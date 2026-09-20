@@ -6,7 +6,7 @@
 	<tr>
 		<?php if ($image=$this->jobImage($char->gender, $char->char_class)): ?>
 			<td rowspan="11" style="width: 150px; text-align: center; vertical-alignment: middle">
-				<img src="<?php echo $image ?>" />
+				<img src="<?php echo $image ?>" alt="" />
 			</td>
 		<?php endif ?>
 		<th>Character ID</th>
@@ -28,7 +28,7 @@
 		<th>Account</th>
 		<td>
 			<?php if ($isMine): ?>
-				<a href="<?php echo $this->url('account', 'view') ?>"><?php echo htmlspecialchars($char->userid) ?></a>
+				<a href="<?php echo htmlspecialchars($this->url('account', 'view')) ?>"><?php echo htmlspecialchars($char->userid) ?></a>
 			<?php else: ?>
 				<?php echo $this->linkToAccount($char->char_account_id, $char->userid) ?>
 			<?php endif ?>
@@ -138,7 +138,7 @@
 		<th>Guild Name</th>
 			<?php if ($char->guild_name): ?>
 				<?php if ($char->guild_emblem_len): ?>
-				<td><img src="<?php echo $this->emblem($char->guild_id) ?>" /></td>
+				<td><img src="<?php echo $this->emblem($char->guild_id) ?>" alt="" /></td>
 				<?php endif ?>
 				<td<?php if (!$char->guild_emblem_len) echo ' colspan="2"' ?>>
 					<?php if ($auth->actionAllowed('guild', 'view')): ?>
@@ -290,7 +290,7 @@
 				<td><?php echo number_format((int)$partyMember->base_level) ?></td>
 				<td><?php echo number_format((int)$partyMember->job_level) ?></td>
 				<?php if ($partyMember->guild_name): ?>
-					<td><img src="<?php echo $this->emblem($partyMember->guild_id) ?>" /></td>
+					<td><img src="<?php echo $this->emblem($partyMember->guild_id) ?>" alt="" /></td>
 					<td>
 						<?php if (($auth->actionAllowed('guild', 'view') && $partyMember->guild_id == $char->guild_id) || $auth->allowedToViewGuild): ?>
 							<?php echo $this->linkToGuild($partyMember->guild_id, $partyMember->guild_name) ?>
@@ -347,7 +347,7 @@
 			<td><?php echo number_format((int)$friend->job_level) ?></td>
 			<?php if ($friend->guild_name): ?>
 				<?php if ($friend->guild_emblem_len): ?>
-				<td><img src="<?php echo $this->emblem($friend->guild_id) ?>" /></td>
+				<td><img src="<?php echo $this->emblem($friend->guild_id) ?>" alt="" /></td>
 				<?php endif ?>
 				<td<?php if (!$friend->guild_emblem_len) echo ' colspan="2"' ?>>
 					<?php if (($auth->actionAllowed('guild', 'view') && $friend->guild_id == $char->guild_id) || $auth->allowedToViewGuild): ?>
@@ -393,7 +393,7 @@
 		<tr<?php if ($item->equip) echo ' class="equipped"' ?>>
 			<td align="right"><?php echo $this->linkToItem($item->nameid, $item->nameid) ?></td>
 			<?php if ($icon): ?>
-				<td><img src="<?php echo htmlspecialchars($icon) ?>" /></td>
+				<td><img src="<?php echo htmlspecialchars($icon) ?>" alt="" /></td>
 			<?php endif ?>
 			<td<?php if (!$icon) echo ' colspan="2"' ?><?php if ($item->cardsOver) echo ' class="overslotted' . $item->cardsOver . '"'; else echo ' class="normalslotted"' ?>>
 				<?php if ($item->refine > 0): ?>
@@ -515,7 +515,7 @@
 		<tr>
 			<td align="right"><?php echo $this->linkToItem($cart_item->nameid, $cart_item->nameid) ?></td>
 			<?php if ($icon): ?>
-			<td><img src="<?php echo htmlspecialchars($icon) ?>" /></td>
+			<td><img src="<?php echo htmlspecialchars($icon) ?>" alt="" /></td>
 			<?php endif ?>
 			<td<?php if (!$icon) echo ' colspan="2"' ?><?php if ($item->cardsOver) echo ' class="overslotted' . $item->cardsOver . '"'; else echo ' class="normalslotted"' ?>>
 				<?php if ($cart_item->refine > 0): ?>

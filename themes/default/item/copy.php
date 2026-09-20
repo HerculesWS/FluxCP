@@ -6,7 +6,7 @@
 <?php else: ?>
 <p>Here you can copy an item into <em>item_db2</em> with a new item ID.</p>
 <?php endif ?>
-<form action="<?php echo $this->urlWithQs ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
 	<input type="hidden" name="copyitem" value="1" />
 	<?php echo Flux_Security::csrfGenerate('ItemCopy', true) ?>
 
@@ -17,7 +17,7 @@
 				<p>
 					<strong><?php echo htmlspecialchars($item->name_japanese) ?></strong>
 					<?php if ($auth->actionAllowed('item', 'view')): ?>
-						(<a href="<?php echo $this->url('item', 'view', array('id' => $itemID)) ?>"><?php echo htmlspecialchars($itemID) ?></a>)
+						(<a href="<?php echo htmlspecialchars($this->url('item', 'view', array('id' => $itemID))) ?>"><?php echo htmlspecialchars($itemID) ?></a>)
 					<?php else: ?>
 						(<?php echo htmlspecialchars($itemID) ?>)
 					<?php endif ?>

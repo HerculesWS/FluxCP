@@ -2,7 +2,7 @@
 <h2><?php echo htmlspecialchars(Flux::message('IpbanListHeading')) ?></h2>
 <?php if ($banlist): ?>
 <?php echo $paginator->infoText() ?>
-<form action="<?php echo $this->url('ipban', 'unban') ?>" method="post">
+<form action="<?php echo htmlspecialchars($this->url('ipban', 'unban')) ?>" method="post">
 	<input type="hidden" name="unban" value="1" />
 	<?php echo Flux_Security::csrfGenerate('IPUnban', true) ?>
 	<table class="horizontal-table">
@@ -51,10 +51,10 @@
 				<?php endif ?>
 			</td>
 			<?php if ($auth->allowedToModifyIpBan && $auth->actionAllowed('ipban', 'edit')): ?>
-			<td class="td-action action"><a href="<?php echo $this->url('ipban', 'edit', array('list' => $list->list)) ?>"><?php echo htmlspecialchars(Flux::message('IpbanModifyLink')) ?></a></td>
+			<td class="td-action action"><a href="<?php echo htmlspecialchars($this->url('ipban', 'edit', array('list' => $list->list))) ?>"><?php echo htmlspecialchars(Flux::message('IpbanModifyLink')) ?></a></td>
 			<?php endif ?>
 			<?php if ($auth->allowedToRemoveIpBan && $auth->actionAllowed('ipban', 'remove')): ?>
-			<td class="td-action action"><a href="<?php echo $this->url('ipban', 'remove', array('list' => $list->list)) ?>"><?php echo htmlspecialchars(Flux::message('IpbanRemoveLink')) ?></a></td>
+			<td class="td-action action"><a href="<?php echo htmlspecialchars($this->url('ipban', 'remove', array('list' => $list->list))) ?>"><?php echo htmlspecialchars(Flux::message('IpbanRemoveLink')) ?></a></td>
 			<?php endif ?>
 		</tr>
 		<?php endforeach ?>

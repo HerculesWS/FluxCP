@@ -35,5 +35,5 @@
 </table>
 <?php else: ?>
 <p>You currently have no items pending redemption.
-	If you would like to make a purchase, please go to the <a href="<?php echo $this->url('purchase') ?>">shop</a>.</p>
+	If you would like to make a purchase, please go to the <a href="<?php echo htmlspecialchars($this->url('purchase')) ?>">shop</a>.</p>
 <?php endif ?>

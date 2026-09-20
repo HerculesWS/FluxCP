@@ -8,7 +8,7 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 <?php if (!empty($errorMessage)): ?>
 <p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo $this->urlWithQs ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" enctype="multipart/form-data">
 <?php echo Flux_Security::csrfGenerate('ItemShopAdd', true) ?>
 <?php if (!$stackable): ?>
 <input type="hidden" name="qty" value="1" />

@@ -23,7 +23,7 @@
 <?php if (isset($errorMessage)): ?>
 <p class="red" style="font-weight: bold"><?php echo htmlspecialchars($errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo $this->url ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars($this->url) ?>" method="post" class="generic-form">
 	<?php if (count($serverNames) === 1): ?>
 	<input type="hidden" name="server" value="<?php echo htmlspecialchars($session->loginAthenaGroup->serverName) ?>">
 	<?php endif ?>
@@ -83,7 +83,7 @@
 			<?php echo $recaptcha ?>
 			<?php elseif (Flux::config('EnableReCaptcha')): ?>
 		<tr>
-			<th><label for="register_security_code"><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
+			<th><label><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
 			<td><?php echo $recaptcha ?></td>
 		</tr>
 			<?php else: ?>
@@ -91,7 +91,7 @@
 			<th><label for="register_security_code"><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
 			<td>
 				<div class="security-code">
-					<img src="<?php echo $this->url('captcha') ?>" />
+					<img src="<?php echo htmlspecialchars($this->url('captcha')) ?>" alt="Security code" />
 				</div>
 
 				<input type="text" name="security_code" id="register_security_code" />

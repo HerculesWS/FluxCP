@@ -4,9 +4,9 @@
 						</tr>
 
 						<tr>
-							<td><img src="<?php echo $this->themePath('img/content_bl.gif') ?>" style="display: block" /></td>
+							<td><img src="<?php echo $this->themePath('img/content_bl.gif') ?>" style="display: block" alt="" /></td>
 							<td bgcolor="#f5f5f5"></td>
-							<td><img src="<?php echo $this->themePath('img/content_br.gif') ?>" style="display: block" /></td>
+							<td><img src="<?php echo $this->themePath('img/content_br.gif') ?>" style="display: block" alt="" /></td>
 						</tr>
 					</table>
 				</td>
@@ -52,7 +52,7 @@
 					</select>
 					</span>
 					
-					<form action="<?php echo $this->urlWithQs ?>" method="post" name="preferred_theme_form" style="display: none">
+					<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" name="preferred_theme_form" style="display: none">
 					<input type="hidden" name="preferred_theme" value="" />
 					</form>
 				</td>

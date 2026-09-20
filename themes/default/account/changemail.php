@@ -11,7 +11,7 @@
 <p><?php echo htmlspecialchars(Flux::message('EmailChangeInfo2')) ?></p>
 <?php endif ?>
 
-<form action="<?php echo $this->urlWithQs ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
 	<?php echo Flux_Security::csrfGenerate('EmailEdit', true) ?>
 	<table class="generic-form-table">
 		<tr>

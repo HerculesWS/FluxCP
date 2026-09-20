@@ -6,7 +6,7 @@
 	<p><?php echo htmlspecialchars(Flux::message('PasswordChangeInfo')) ?></p>
 <?php endif ?>
 <br />
-<form action="<?php echo $this->urlWithQs ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
 	<?php echo Flux_Security::csrfGenerate('PasswordEdit', true) ?>
 
 	<table class="generic-form-table">

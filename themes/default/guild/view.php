@@ -10,7 +10,7 @@
 		<td><?php echo htmlspecialchars($guild->name) ?></td>
 		<th>Emblem ID</th>
 		<td><?php echo number_format($guild->emblem_id) ?></td>
-		<td><img src="<?php echo $this->emblem($guild->guild_id) ?>" /></td>
+		<td><img src="<?php echo $this->emblem($guild->guild_id) ?>" alt="" /></td>
 	</tr>
 	<tr>
 		<th>Leader ID</th>
@@ -230,7 +230,7 @@
 			<tr>
 				<td align="right"><?php echo $this->linkToItem($item->nameid, $item->nameid) ?></td>
 				<?php if ($icon): ?>
-				<td><img src="<?php echo htmlspecialchars($icon) ?>" /></td>
+				<td><img src="<?php echo htmlspecialchars($icon) ?>" alt="" /></td>
 				<?php endif ?>
 				<td<?php if (!$icon) echo ' colspan="2"' ?><?php if ($item->cardsOver) echo ' class="overslotted' . $item->cardsOver . '"'; else echo ' class="normalslotted"' ?>>
 					<?php if ($item->refine > 0): ?>
