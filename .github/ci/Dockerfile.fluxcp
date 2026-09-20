@@ -1,0 +1,78 @@
+# syntax=docker/dockerfile:1
+FROM php:8.3-fpm
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        nginx \
+        libpng-dev libjpeg-dev libfreetype6-dev libzip-dev libicu-dev libonig-dev \
+        libcurl4-openssl-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j"$(nproc)" \
+        pdo pdo_mysql mysqli gd curl iconv mbstring intl zip gettext \
+    && rm -rf /var/lib/apt/lists/*
+
+# FluxCP-era code assumes error-suppressed PDO calls / dynamic properties and
+# is not written against PHP 8's stricter defaults; keep it from hard-fataling
+# on deprecation notices while still surfacing real errors.
+RUN { \
+        echo 'display_errors = On'; \
+        echo 'error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT'; \
+        echo 'session.save_path = "/tmp"'; \
+    } > /usr/local/etc/php/conf.d/fluxcp.ini
+
+RUN printf '%s\n' \
+    'server {' \
+    '    listen 80;' \
+    '    server_name _;' \
+    '    root /var/www/html;' \
+    '    index index.php;' \
+    '' \
+    '    location ~ ^/(config|modules|lib)(/|$) {' \
+    '        deny all;' \
+    '        return 403;' \
+    '    }' \
+    '    location ~ ^/addons/[^/]+/(config|modules|lib)(/|$) {' \
+    '        deny all;' \
+    '        return 403;' \
+    '    }' \
+    '' \
+    '    location / {' \
+    '        try_files $uri $uri/ /index.php?$query_string;' \
+    '    }' \
+    '' \
+    '    location ~ \.php$ {' \
+    '        fastcgi_pass 127.0.0.1:9000;' \
+    '        fastcgi_index index.php;' \
+    '        include fastcgi_params;' \
+    '        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;' \
+    '    }' \
+    '' \
+    '    location ~ /\. {' \
+    '        deny all;' \
+    '    }' \
+    '' \
+    '    client_max_body_size 20M;' \
+    '}' \
+    > /etc/nginx/sites-available/default
+
+WORKDIR /var/www/html
+
+COPY --chown=www-data:www-data . .
+
+RUN mkdir -p data/tmp data/logs data/emblem data/captcha \
+ && chown -R www-data:www-data data \
+ && chmod -R u+rwX data
+
+# php-fpm's default pool already runs as www-data; nginx's Debian package
+# defaults to www-data too, so both sides of the fastcgi handoff agree on
+# file ownership without extra configuration.
+RUN printf '%s\n' \
+    '#!/usr/bin/env bash' \
+    'set -euo pipefail' \
+    'php-fpm -D' \
+    'exec nginx -g "daemon off;"' \
+    > /usr/local/bin/fluxcp-entrypoint.sh \
+ && chmod +x /usr/local/bin/fluxcp-entrypoint.sh
+
+EXPOSE 80
+
+ENTRYPOINT ["/usr/local/bin/fluxcp-entrypoint.sh"]

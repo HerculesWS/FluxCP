@@ -1,0 +1,159 @@
+name: W3C Markup Validation
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    services:
+      mariadb:
+        image: mariadb:11
+        env:
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: ragnarok
+          MARIADB_USER: ragnarok
+          MARIADB_PASSWORD: ragnarok
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=3s
+          --health-retries=20
+
+    steps:
+      - name: Checkout FluxCP
+        uses: actions/checkout@v4
+
+      - name: Checkout Hercules SQL schema
+        uses: actions/checkout@v4
+        with:
+          repository: HerculesWS/Hercules
+          sparse-checkout: sql-files
+          sparse-checkout-cone-mode: false
+          path: hercules-schema
+
+      - name: Load schema into MariaDB
+        run: |
+          set -euo pipefail
+          # Prefer the modern "mariadb" client name, fall back to "mysql" —
+          # recent mariadb-client packages dropped the mysql alias.
+          client=mariadb
+          command -v mariadb >/dev/null 2>&1 || client=mysql
+          for f in main.sql logs.sql \
+                   item_db.sql item_db_re.sql item_db2.sql \
+                   mob_db.sql mob_db_re.sql mob_db2.sql \
+                   mob_skill_db.sql mob_skill_db_re.sql mob_skill_db2.sql; do
+            echo "Loading $f"
+            "$client" -h 127.0.0.1 -P 3306 -uragnarok -pragnarok ragnarok \
+              < "hercules-schema/sql-files/$f"
+          done
+
+      - name: Enable debug output for CI
+        run: |
+          set -euo pipefail
+          # Surface full error/exception detail in the rendered pages instead
+          # of FluxCP's generic error screen, so a failing render is
+          # diagnosable from the workflow's own artifacts/logs.
+          sed -i "s/'DebugMode'.*=>.*false,/'DebugMode'            => true,/" config/application.php
+          sed -i 's/\$showExceptions\s*=\s*false;/$showExceptions  = true;/' config/error.php
+          grep -n "'DebugMode'" config/application.php
+          grep -n '$showExceptions' config/error.php
+
+      - name: Build FluxCP image
+        run: docker build -f .github/ci/Dockerfile.fluxcp -t fluxcp-ci .
+
+      - name: Run FluxCP container
+        run: |
+          # host-gateway lets the container reach the mariadb service, which
+          # is published on the runner host's 127.0.0.1, not the container's.
+          docker run -d --name fluxcp \
+            --add-host=db.ci:host-gateway \
+            -p 8081:80 \
+            -v "$PWD/.github/ci/servers.php:/var/www/html/config/servers.php:ro" \
+            fluxcp-ci
+
+      - name: Wait for FluxCP to respond
+        run: |
+          set -e
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8081/ -o /dev/null; then
+              echo "FluxCP is up"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "FluxCP never came up"
+          docker logs fluxcp || true
+          exit 1
+
+      - name: Run installer (first boot requires this before any page renders)
+        run: |
+          set -euo pipefail
+          jar=/tmp/cookies.txt
+
+          # Step 1: submit the installer password (config/application.php's
+          # default 'InstallerPassword'). Not sensitive -- it's a stock
+          # default value for a throwaway CI database, never a real deploy.
+          install_page=$(curl -fsSL -c "$jar" -b "$jar" -X POST \
+            --data-urlencode "installer_password=secretpassword" \
+            "http://127.0.0.1:8081/?module=install")
+
+          # Step 2: the update form's field names are suffixed with
+          # base64(ServerName) (see modules/install/index.php), so scrape it
+          # instead of hardcoding -- keeps this working if servers.php's
+          # ServerName ever changes.
+          suffix=$(echo "$install_page" | grep -oE 'name="update\[[^]]+\]"' | head -1 | sed -E 's/name="update\[([^]]+)\]"/\1/')
+          if [ -z "$suffix" ]; then
+            echo "Could not find the install form's field suffix; install page follows:"
+            echo "$install_page"
+            exit 1
+          fi
+
+          # Step 3: submit the DB credentials to actually create/update
+          # FluxCP's own cp_* tables (the Hercules schema alone doesn't
+          # include them).
+          curl -fsSL -c "$jar" -b "$jar" -X POST \
+            --data-urlencode "installer_password=secretpassword" \
+            --data-urlencode "username[$suffix]=ragnarok" \
+            --data-urlencode "password[$suffix]=ragnarok" \
+            --data-urlencode "update[$suffix]=Install/Update Now" \
+            "http://127.0.0.1:8081/?module=install" -o /tmp/install-result.html
+
+          # Match the actual usage, not the always-present CSS rule
+          # (.needtoupdate { ... }) that appears on every page regardless.
+          if grep -q 'class="needtoupdate"' /tmp/install-result.html; then
+            echo "FluxCP schema install did not complete; response follows:"
+            cat /tmp/install-result.html
+            exit 1
+          fi
+          echo "FluxCP install complete"
+
+      - name: Render pages to validate
+        run: |
+          set -euo pipefail
+          mkdir -p rendered-html
+          # FluxCP ships with UseCleanUrls disabled by default, so routing is
+          # via ?module=&action= query params (see lib/Flux/Dispatcher.php).
+          pages="main:index account:login account:create"
+          for p in $pages; do
+            module="${p%%:*}"
+            action="${p##*:}"
+            curl -fsS "http://127.0.0.1:8081/?module=$module&action=$action" \
+              -o "rendered-html/$module-$action.html"
+          done
+
+      - name: Show FluxCP logs on failure
+        if: failure()
+        run: docker logs fluxcp || true
+
+      - name: Run Nu Html Checker (vnu)
+        run: |
+          docker run --rm -v "$PWD/rendered-html:/data:ro" \
+            ghcr.io/validator/validator:latest vnu --skip-non-html /data
