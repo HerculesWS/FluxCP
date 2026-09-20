@@ -35,23 +35,28 @@
 		</tr>
 		<?php endif ?>
 		<?php if (Flux::config('UseLoginCaptcha')): ?>
+			<?php if (Flux::config('EnableReCaptcha') && !Flux_ReCaptcha::isVisible()): ?>
+			<?php // v3 is invisible; no labeled row, just emit the hidden token field. ?>
+			<?php echo $recaptcha ?>
+			<?php elseif (Flux::config('EnableReCaptcha')): ?>
 		<tr>
-			<?php if (Flux::config('EnableReCaptcha')): ?>
-			<th><label for="register_security_code"><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
+			<th><label for="login_security_code"><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
 			<td><?php echo $recaptcha ?></td>
+		</tr>
 			<?php else: ?>
-			<th><label for="register_security_code"><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
+		<tr>
+			<th><label for="login_security_code"><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
 			<td>
 				<div class="security-code">
 					<img src="<?php echo $this->url('captcha') ?>" />
 				</div>
-				<input type="text" name="security_code" id="register_security_code" />
+				<input type="text" name="security_code" id="login_security_code" />
 				<div style="font-size: smaller;" class="action">
 					<strong><a href="javascript:refreshSecurityCode('.security-code img')"><?php echo htmlspecialchars(Flux::message('RefreshSecurityCode')) ?></a></strong>
 				</div>
 			</td>
-			<?php endif ?>
 		</tr>
+			<?php endif ?>
 		<?php endif ?>
 		<tr>
 			<td></td>
