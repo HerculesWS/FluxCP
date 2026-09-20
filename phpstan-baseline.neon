@@ -1,0 +1,5707 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Variable \$fluxVersion might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: addons/helloworld/themes/default/helloworld/index.php
+
+		-
+			message: '#^Variable \$fluxVersion might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: addons/helloworld/themes/emphaino/helloworld/index.php
+
+		-
+			message: '#^Variable \$adminEmail might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: error.php
+
+		-
+			message: '#^Variable \$e might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: error.php
+
+		-
+			message: '#^Variable \$showExceptions might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: error.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Authorization\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/DataObject\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Dispatcher\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Installer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/LogFile\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/PermissionError\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Security\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/SessionData\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "markdown/markdown\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Variable \$errorFile might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Variable \$uid might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Config\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Addon.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Config\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Athena.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Authorization.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/BaseServer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/CharServer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Config.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Connection/Statement\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Connection.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/DataObject\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Connection.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Connection/Statement.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/LogFile\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Connection/Statement.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Config\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/DataObject.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/DataObject.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Config\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Dispatcher.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Template\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Dispatcher.php
+
+		-
+			message: '#^Variable \$actionName might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: lib/Flux/Dispatcher.php
+
+		-
+			message: '#^Variable \$moduleName might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: lib/Flux/Dispatcher.php
+
+		-
+			message: '#^Path in require_once\(\) "functions/imagecreatefrombmpstring\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/EmblemExporter.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Installer/MainServer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Installer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Installer/Schema\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Installer/CharMapServer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Installer/CharMapServer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Installer/MainServer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Installer/Schema\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Installer/MainServer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Installer/SchemaPermissionError\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Installer/Schema.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Installer/SchemaPermissionError.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/ItemExistsError.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemExistsError\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/ItemShop.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/ItemShop.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/ItemShop/Cart.php
+
+		-
+			message: '#^Constructor of class Flux_LogFile has an unused parameter \$mode\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: lib/Flux/LogFile.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/LoginError.php
+
+		-
+			message: '#^Class ReCaptcha does not have a constructor and must be instantiated without any parameters\.$#'
+			identifier: new.noConstructor
+			count: 1
+			path: lib/Flux/LoginServer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/BaseServer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/LoginServer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/RegisterError\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/LoginServer.php
+
+		-
+			message: '#^Path in require_once\(\) "recaptcha/recaptchalib\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/LoginServer.php
+
+		-
+			message: '#^Non\-static access to static property Flux_Mailer\:\:\$errLog\.$#'
+			identifier: staticProperty.nonStaticAccess
+			count: 1
+			path: lib/Flux/Mailer.php
+
+		-
+			message: '#^Non\-static access to static property Flux_Mailer\:\:\$log\.$#'
+			identifier: staticProperty.nonStaticAccess
+			count: 1
+			path: lib/Flux/Mailer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/LogFile\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Mailer.php
+
+		-
+			message: '#^Path in require_once\(\) "markdown/markdown\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Mailer.php
+
+		-
+			message: '#^Path in require_once\(\) "phpmailer/class\.phpmailer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Mailer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/BaseServer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/MapServer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Config\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PaymentNotifyRequest.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PaymentNotifyRequest.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/LogFile\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PaymentNotifyRequest.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Mailer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PaymentNotifyRequest.php
+
+		-
+			message: '#^Variable \$servGroup might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: lib/Flux/PaymentNotifyRequest.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PermissionError.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/RegisterError.php
+
+		-
+			message: '#^Access to an undefined property Flux_SessionData\:\:\$athenaServerName\.$#'
+			identifier: property.notFound
+			count: 3
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Access to an undefined property Flux_SessionData\:\:\$cart\.$#'
+			identifier: property.notFound
+			count: 3
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Access to an undefined property Flux_SessionData\:\:\$message\.$#'
+			identifier: property.notFound
+			count: 1
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Access to an undefined property Flux_SessionData\:\:\$securityCode\.$#'
+			identifier: property.notFound
+			count: 2
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Access to an undefined property Flux_SessionData\:\:\$serverName\.$#'
+			identifier: property.notFound
+			count: 3
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Access to an undefined property Flux_SessionData\:\:\$theme\.$#'
+			identifier: property.notFound
+			count: 2
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Access to an undefined property Flux_SessionData\:\:\$username\.$#'
+			identifier: property.notFound
+			count: 3
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Call to an undefined method Flux_SessionData\:\:setAthenaServerNameData\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Call to an undefined method Flux_SessionData\:\:setCartData\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Call to an undefined method Flux_SessionData\:\:setMessageData\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Call to an undefined method Flux_SessionData\:\:setSecurityCodeData\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Call to an undefined method Flux_SessionData\:\:setServerNameData\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Call to an undefined method Flux_SessionData\:\:setThemeData\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Call to an undefined method Flux_SessionData\:\:setUsernameData\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Class ReCaptcha does not have a constructor and must be instantiated without any parameters\.$#'
+			identifier: new.noConstructor
+			count: 1
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/DataObject\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemShop/Cart\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/LoginError\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Path in require_once\(\) "recaptcha/recaptchalib\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/SessionData.php
+
+		-
+			message: '#^Constant FLUX_ROOT not found\.$#'
+			identifier: constant.notFound
+			count: 3
+			path: lib/Flux/Template.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Paginator\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/Template.php
+
+		-
+			message: '#^Variable \$class might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: lib/Flux/Template.php
+
+		-
+			message: '#^Variable \$tidyIgnore might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: lib/Flux/Template.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/TemporaryTable.php
+
+		-
+			message: '#^Constant FLUX_ROOT not found\.$#'
+			identifier: constant.notFound
+			count: 5
+			path: lib/functions/getReposVersion.php
+
+		-
+			message: '#^Function getReposVersion\(\) should return int but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: lib/functions/getReposVersion.php
+
+		-
+			message: '#^Function git_hash\(\) should return int but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: lib/functions/getReposVersion.php
+
+		-
+			message: '#^Variable \$lines in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: lib/functions/getReposVersion.php
+
+		-
+			message: '#^Variable \$bits might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: lib/functions/imagecreatefrombmpstring.php
+
+		-
+			message: '#^Variable \$height might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: lib/functions/imagecreatefrombmpstring.php
+
+		-
+			message: '#^Variable \$offset might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: lib/functions/imagecreatefrombmpstring.php
+
+		-
+			message: '#^Variable \$signature might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: lib/functions/imagecreatefrombmpstring.php
+
+		-
+			message: '#^Variable \$width might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: lib/functions/imagecreatefrombmpstring.php
+
+		-
+			message: '#^Access to an undefined property MarkdownExtra_Parser\:\:\$mode\.$#'
+			identifier: property.notFound
+			count: 1
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Function add_filter not found\.$#'
+			identifier: function.notFound
+			count: 14
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Function create_function not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Function get_the_ID not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Function is_feed not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Function is_page not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Function is_single not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Function remove_filter not found\.$#'
+			identifier: function.notFound
+			count: 7
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Path in include_once\(\) "smartypants\.php" is not a file or it does not exist\.$#'
+			identifier: includeOnce.fileNotFound
+			count: 1
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Variable \$attr might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Variable \$base_tag_name_re might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: lib/markdown/markdown.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''doc'' \(''doc'', ''doc''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: lib/phpmailer/class.phpmailer.php
+
+		-
+			message: '#^Function each not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: lib/phpmailer/class.phpmailer.php
+
+		-
+			message: '#^Function set_magic_quotes_runtime not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: lib/phpmailer/class.phpmailer.php
+
+		-
+			message: '#^Inner named functions are not supported by PHPStan\. Consider refactoring to an anonymous function, class method, or a top\-level\-defined function\. See issue \#165 \(https\://github\.com/phpstan/phpstan/issues/165\) for more details\.$#'
+			identifier: function.inner
+			count: 1
+			path: lib/phpmailer/class.phpmailer.php
+
+		-
+			message: '#^Regex pattern is invalid\: The /e modifier is no longer supported, use preg_replace_callback instead in pattern\: /\(\[\\\(\\\)"\]\)/e$#'
+			identifier: regexp.pattern
+			count: 1
+			path: lib/phpmailer/class.phpmailer.php
+
+		-
+			message: '#^Regex pattern is invalid\: The /e modifier is no longer supported, use preg_replace_callback instead in pattern\: /\(\[\\000\-\\011\\013\\014\\016\-\\037\\075\\077\\137\\177\-\\377\]\)/e$#'
+			identifier: regexp.pattern
+			count: 1
+			path: lib/phpmailer/class.phpmailer.php
+
+		-
+			message: '#^Regex pattern is invalid\: The /e modifier is no longer supported, use preg_replace_callback instead in pattern\: /\(\[\^A\-Za\-z0\-9\!\*\+\\/ \-\]\)/e$#'
+			identifier: regexp.pattern
+			count: 1
+			path: lib/phpmailer/class.phpmailer.php
+
+		-
+			message: '#^Variable \$from_header might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: lib/phpmailer/class.phpmailer.php
+
+		-
+			message: '#^Variable \$to_header might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: lib/phpmailer/class.phpmailer.php
+
+		-
+			message: '#^Deprecated in PHP 8\.0\: Required parameter \$password follows optional parameter \$tval\.$#'
+			identifier: parameter.requiredAfterOptional
+			count: 1
+			path: lib/phpmailer/class.pop3.php
+
+		-
+			message: '#^Deprecated in PHP 8\.0\: Required parameter \$username follows optional parameter \$tval\.$#'
+			identifier: parameter.requiredAfterOptional
+			count: 1
+			path: lib/phpmailer/class.pop3.php
+
+		-
+			message: '#^Method POP3\:\:Connect\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: lib/phpmailer/class.pop3.php
+
+		-
+			message: '#^Function each not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: lib/phpmailer/class.smtp.php
+
+		-
+			message: '#^Constant codes not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: lib/recaptcha/recaptchalib.php
+
+		-
+			message: '#^Constant error not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: lib/recaptcha/recaptchalib.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/cart.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Mailer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/changemail.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/changemail.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/account/changemail.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 13
+			path: modules/account/changemail.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/account/changemail.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/changepass.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/account/changepass.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/account/changepass.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/changepass.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/changesex.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/changesex.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/changesex.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 13
+			path: modules/account/changesex.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/account/changesex.php
+
+		-
+			message: '#^Variable \$account might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/confirm.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/confirm.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/confirm.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/account/confirm.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/confirmemail.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/account/confirmemail.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/account/confirmemail.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/account/confirmemail.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Mailer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/create.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/RegisterError\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/create.php
+
+		-
+			message: '#^Path in require_once\(\) "recaptcha/recaptchalib\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/create.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/account/create.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/account/create.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/account/create.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/account/edit.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 9
+			path: modules/account/edit.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/account/edit.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/account/edit.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/account/edit.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/account/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 17
+			path: modules/account/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: modules/account/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/account/index.php
+
+		-
+			message: '#^Path in require_once\(\) "recaptcha/recaptchalib\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/login.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/account/login.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/account/login.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/login.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/logout.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/logout.php
+
+		-
+			message: '#^Variable \$account might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/pagemenu/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/pagemenu/view.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/pagemenu/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/pagemenu/view.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/prune.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/prune.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Mailer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/resend.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/resend.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/resend.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/resend.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Mailer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/resetpass.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/resetpass.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/resetpass.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/resetpass.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Mailer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/resetpw.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/resetpw.php
+
+		-
+			message: '#^Variable \$reset might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/resetpw.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/resetpw.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/account/resetpw.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/transfer.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/transfer.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/transfer.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/account/transfer.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 11
+			path: modules/account/view.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/account/view.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 24
+			path: modules/account/view.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 15
+			path: modules/account/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 11
+			path: modules/account/view.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: modules/account/xferlog.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/account/xferlog.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/account/xferlog.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Captcha\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/captcha/index.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/captcha/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/castle/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/changesex.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/changesex.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/character/changesex.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/character/changesex.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/character/changesex.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/character/changeslot.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/character/changeslot.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 9
+			path: modules/character/changeslot.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/character/changeslot.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/character/changeslot.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/divorce.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/character/divorce.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 9
+			path: modules/character/divorce.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/character/divorce.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 14
+			path: modules/character/divorce.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/character/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 18
+			path: modules/character/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 18
+			path: modules/character/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/character/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/character/mapstats.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/character/mapstats.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/character/online.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/character/online.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: modules/character/online.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/online.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: modules/character/pagemenu/view.php
+
+		-
+			message: '#^Variable \$char might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/character/pagemenu/view.php
+
+		-
+			message: '#^Variable \$isMine might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/character/pagemenu/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/character/pagemenu/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/character/prefs.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/character/prefs.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/character/prefs.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/character/prefs.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/character/prefs.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/resetlook.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/resetlook.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/character/resetlook.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/character/resetlook.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/character/resetlook.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/resetpos.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/resetpos.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/character/resetpos.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/character/resetpos.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/character/resetpos.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/character/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/character/view.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/view.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 47
+			path: modules/character/view.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/character/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/character/view.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/cplog/ban.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/cplog/ban.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/ban.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: modules/cplog/changemail.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/cplog/changemail.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/changemail.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/changepass.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/cplog/changepass.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/cplog/changepass.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/changepass.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/changepass.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/cplog/ipban.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/cplog/ipban.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/ipban.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/login.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/cplog/login.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/cplog/login.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/login.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/login.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 13
+			path: modules/cplog/paypal.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/cplog/paypal.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/paypal.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/cplog/paypal.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: modules/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/txnview.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/cplog/txnview.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/cplog/txnview.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/donate/complete.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/donate/complete.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: modules/donate/history.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/donate/history.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/donate/history.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/donate/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/donate/index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/PaymentNotifyRequest\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/donate/notify.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/donate/trusted.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/donate/trusted.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/donate/trusted.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/donate/update.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/donate/update.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/errors/missing_action.php
+
+		-
+			message: '#^Variable \$addon might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/errors/missing_view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/errors/missing_view.php
+
+		-
+			message: '#^Path in require_once\(\) "functions/imagecreatefrombmpstring\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/guild/emblem.php
+
+		-
+			message: '#^Variable \$filename might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/guild/emblem.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/guild/emblem.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/EmblemExporter\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/guild/export.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/guild/export.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/guild/export.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/guild/export.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/guild/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: modules/guild/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/guild/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/guild/index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/guild/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/guild/view.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/guild/view.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 26
+			path: modules/guild/view.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/guild/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/guild/view.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/history/cplogin.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/history/cplogin.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/history/cplogin.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/history/emailchange.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/history/emailchange.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/history/emailchange.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/history/gamelogin.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/history/gamelogin.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/history/gamelogin.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/history/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/history/passchange.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/history/passchange.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/history/passchange.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/history/passreset.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/history/passreset.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/history/passreset.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Installer/SchemaPermissionError\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/install/index.php
+
+		-
+			message: '#^Variable \$installer might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/install/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/install/index.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/install/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/install/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/install/reinstall.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/install/reinstall.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/ipban/add.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/ipban/add.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/ipban/add.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/ipban/add.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ipban/edit.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/ipban/edit.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/ipban/edit.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/ipban/edit.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/ipban/edit.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/ipban/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/ipban/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ipban/remove.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/ipban/remove.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/ipban/remove.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/ipban/remove.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/ipban/remove.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/ipban/unban.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ipban/unban.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/ipban/unban.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/ipban/unban.php
+
+		-
+			message: '#^Call to sprintf contains 0 placeholders, 3 values given\.$#'
+			identifier: argument.sprintf
+			count: 1
+			path: modules/item/add.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Config\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/item/add.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/item/add.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/add.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 26
+			path: modules/item/add.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/item/add.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/add.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/item/add.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/item/copy.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/copy.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/item/copy.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 9
+			path: modules/item/copy.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/copy.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/item/copy.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Config\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/item/edit.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/item/edit.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/edit.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 34
+			path: modules/item/edit.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 9
+			path: modules/item/edit.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/edit.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/item/edit.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/item/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/index.php
+
+		-
+			message: '#^Variable \$itemType2 might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 23
+			path: modules/item/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/item/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/item/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/item/pagemenu/view.php
+
+		-
+			message: '#^Variable \$item might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/item/pagemenu/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/item/pagemenu/view.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/item/view.php
+
+		-
+			message: '#^Variable \$adjust might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/view.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/item/view.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 23
+			path: modules/item/view.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemShop\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/itemshop/add.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/itemshop/add.php
+
+		-
+			message: '#^Variable \$files might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/itemshop/add.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/itemshop/add.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/itemshop/add.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/itemshop/add.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/itemshop/add.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemShop\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/itemshop/delete.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/itemshop/delete.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/itemshop/delete.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/itemshop/delete.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/itemshop/delete.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/itemshop/delete.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemShop\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/itemshop/edit.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/itemshop/edit.php
+
+		-
+			message: '#^Variable \$files might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/itemshop/edit.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/itemshop/edit.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/itemshop/edit.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/itemshop/edit.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/itemshop/edit.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemShop\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/itemshop/imagedel.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/itemshop/imagedel.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/itemshop/imagedel.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/itemshop/imagedel.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/itemshop/imagedel.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/logdata/branch.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/logdata/branch.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/logdata/chat.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/logdata/chat.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/logdata/command.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/logdata/command.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/logdata/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/logdata/login.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/logdata/login.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/logdata/login.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/logdata/mvp.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: modules/logdata/mvp.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/logdata/mvp.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/logdata/npc.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/logdata/npc.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/logdata/pick.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 18
+			path: modules/logdata/pick.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/logdata/pick.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/logdata/zeny.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: modules/logdata/zeny.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/logdata/zeny.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Mailer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/mail/index.php
+
+		-
+			message: '#^Path in require_once\(\) "markdown/markdown\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/mail/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/mail/index.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/mail/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/mail/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/main/preprocess.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 16
+			path: modules/main/preprocess.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/main/preprocess.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 9
+			path: modules/main/preprocess.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/monster/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/monster/index.php
+
+		-
+			message: '#^Variable \$elementLevel might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/monster/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/monster/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: modules/monster/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/monster/index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/monster/view.php
+
+		-
+			message: '#^Variable \$adjust might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/monster/view.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/monster/view.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 30
+			path: modules/monster/view.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemShop\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/purchase/add.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/purchase/add.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/purchase/add.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/purchase/add.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/purchase/add.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemShop\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/purchase/cart.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/purchase/cart.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/purchase/cart.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/purchase/cart.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/purchase/checkout.php
+
+		-
+			message: '#^Variable \$res might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/purchase/checkout.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 9
+			path: modules/purchase/checkout.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 11
+			path: modules/purchase/checkout.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/purchase/checkout.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemShop\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/purchase/clear.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/purchase/clear.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/purchase/clear.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: modules/purchase/clear.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/ItemShop\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/purchase/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/purchase/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/purchase/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/purchase/index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/purchase/pending.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: modules/purchase/pending.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/purchase/pending.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/purchase/pending.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/purchase/remove.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: modules/purchase/remove.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/purchase/remove.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/purchase/remove.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/alchemist.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/ranking/alchemist.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/alchemist.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/blacksmith.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/ranking/blacksmith.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/blacksmith.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/character.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: modules/ranking/character.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/character.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/death.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/ranking/death.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/death.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: modules/ranking/guild.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/zeny.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/zeny.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: modules/ranking/zeny.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/ranking/zeny.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 19
+			path: modules/server/info.php
+
+		-
+			message: '#^Variable \$serverStatus might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/server/status-xml.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/unauthorized/index.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/TemporaryTable\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/vending/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/vending/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: modules/vending/index.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/woe/custom.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/woe/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/changemail.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/changepass.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/changesex.php
+
+		-
+			message: '#^Variable \$badJobs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/changesex.php
+
+		-
+			message: '#^Variable \$cost might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/changesex.php
+
+		-
+			message: '#^Variable \$hasNecessaryFunds might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/changesex.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/changesex.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/changesex.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/account/create.php
+
+		-
+			message: '#^Variable \$recaptcha might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/create.php
+
+		-
+			message: '#^Variable \$serverNames might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/account/create.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/create.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/account/create.php
+
+		-
+			message: '#^Variable \$account might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/edit.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/edit.php
+
+		-
+			message: '#^Variable \$isMine might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/edit.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/account/edit.php
+
+		-
+			message: '#^Variable \$accounts might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/index.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 15
+			path: themes/default/account/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 18
+			path: themes/default/account/index.php
+
+		-
+			message: '#^Variable \$searchPassword might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/index.php
+
+		-
+			message: '#^Variable \$showPassword might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 15
+			path: themes/default/account/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/login.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/login.php
+
+		-
+			message: '#^Variable \$recaptcha might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/login.php
+
+		-
+			message: '#^Variable \$serverNames might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/account/login.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/login.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/account/login.php
+
+		-
+			message: '#^Variable \$metaRefresh might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/logout.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/resend.php
+
+		-
+			message: '#^Variable \$serverNames might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/account/resend.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/resend.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/resetpass.php
+
+		-
+			message: '#^Variable \$serverNames might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/account/resetpass.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/resetpass.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/transfer.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/transfer.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/transfer.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/transfer.php
+
+		-
+			message: '#^Variable \$account might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 26
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$banInfo might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$characters might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$isMine might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$itemAttributes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$items might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$permBanned might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$showPermBan might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$showTempBan might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$showUnban might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$tempBanned might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 29
+			path: themes/default/account/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/account/xferlog.php
+
+		-
+			message: '#^Variable \$incomingXfers might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/xferlog.php
+
+		-
+			message: '#^Variable \$outgoingXfers might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/xferlog.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/account/xferlog.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/castle/index.php
+
+		-
+			message: '#^Variable \$castleNames might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/castle/index.php
+
+		-
+			message: '#^Variable \$castles might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/castle/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/castle/index.php
+
+		-
+			message: '#^Variable \$char might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/character/changeslot.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/character/changeslot.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/changeslot.php
+
+		-
+			message: '#^Variable \$char might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/character/divorce.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/divorce.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 14
+			path: themes/default/character/index.php
+
+		-
+			message: '#^Variable \$characters might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/index.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 15
+			path: themes/default/character/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 19
+			path: themes/default/character/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 11
+			path: themes/default/character/index.php
+
+		-
+			message: '#^Variable \$maps might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/mapstats.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/character/online.php
+
+		-
+			message: '#^Variable \$chars might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/online.php
+
+		-
+			message: '#^Variable \$hiddenCount might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/online.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/character/online.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/character/online.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/character/online.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/character/online.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/prefs.php
+
+		-
+			message: '#^Variable \$char might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/prefs.php
+
+		-
+			message: '#^Variable \$hideFromWhosOnline might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/prefs.php
+
+		-
+			message: '#^Variable \$hideFromZenyRanking might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/prefs.php
+
+		-
+			message: '#^Variable \$hideMapFromWhosOnline might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/prefs.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/prefs.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/prefs.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 17
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$cart_items might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$char might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$friends might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$isMine might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$item might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$itemAttributes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$items might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$partyMembers might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 42
+			path: themes/default/character/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/cplog/ban.php
+
+		-
+			message: '#^Variable \$bans might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/ban.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/cplog/ban.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/cplog/ban.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/cplog/ban.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/cplog/changemail.php
+
+		-
+			message: '#^Variable \$changes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/changemail.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: themes/default/cplog/changemail.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: themes/default/cplog/changemail.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 13
+			path: themes/default/cplog/changemail.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/cplog/changepass.php
+
+		-
+			message: '#^Variable \$changes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/changepass.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/cplog/changepass.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 9
+			path: themes/default/cplog/changepass.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/cplog/changepass.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/cplog/ipban.php
+
+		-
+			message: '#^Variable \$ipbans might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/ipban.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/cplog/ipban.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/cplog/ipban.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/cplog/ipban.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/cplog/login.php
+
+		-
+			message: '#^Variable \$loginErrors might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/login.php
+
+		-
+			message: '#^Variable \$logins might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/login.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/cplog/login.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 13
+			path: themes/default/cplog/login.php
+
+		-
+			message: '#^Variable \$seePassword might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/login.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/cplog/login.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/cplog/paypal.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: themes/default/cplog/paypal.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 17
+			path: themes/default/cplog/paypal.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: themes/default/cplog/paypal.php
+
+		-
+			message: '#^Variable \$transactions might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/paypal.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: themes/default/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: themes/default/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$resets might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 11
+			path: themes/default/cplog/resetpass.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/cplog/txnview.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/cplog/txnview.php
+
+		-
+			message: '#^Variable \$txn might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/txnview.php
+
+		-
+			message: '#^Variable \$txnFileLog might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/cplog/txnview.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/complete.php
+
+		-
+			message: '#^Variable \$completedTotal might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/history.php
+
+		-
+			message: '#^Variable \$completedTxn might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/history.php
+
+		-
+			message: '#^Variable \$failedTotal might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/history.php
+
+		-
+			message: '#^Variable \$failedTxn might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/history.php
+
+		-
+			message: '#^Variable \$heldTotal might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/history.php
+
+		-
+			message: '#^Variable \$heldTxn might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/history.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/donate/history.php
+
+		-
+			message: '#^Variable \$donationAmount might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/donate/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/donate/index.php
+
+		-
+			message: '#^Variable \$emails might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/trusted.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/donate/trusted.php
+
+		-
+			message: '#^Variable \$realActionPath might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/errors/missing_action.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/errors/missing_action.php
+
+		-
+			message: '#^Variable \$realViewPath might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/errors/missing_view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/errors/missing_view.php
+
+		-
+			message: '#^Constant __START__ not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: themes/default/footer.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/footer.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/footer.php
+
+		-
+			message: '#^Variable \$serverNames might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/export.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/export.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/guild/index.php
+
+		-
+			message: '#^Variable \$guilds might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/index.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: themes/default/guild/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 13
+			path: themes/default/guild/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/guild/index.php
+
+		-
+			message: '#^Variable \$alliances might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$amOwner might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$expulsions might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$guild might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$isMine might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$itemAttributes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$items might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$members might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$oppositions might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 18
+			path: themes/default/guild/view.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/header.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/header.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 21
+			path: themes/default/header.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/history/cplogin.php
+
+		-
+			message: '#^Variable \$logins might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/history/cplogin.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/history/cplogin.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/history/cplogin.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/history/emailchange.php
+
+		-
+			message: '#^Variable \$changes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/history/emailchange.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/history/emailchange.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/history/emailchange.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/history/gamelogin.php
+
+		-
+			message: '#^Variable \$logins might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/history/gamelogin.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/history/gamelogin.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/history/gamelogin.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/history/passchange.php
+
+		-
+			message: '#^Variable \$changes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/history/passchange.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/history/passchange.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/history/passchange.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/history/passreset.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/history/passreset.php
+
+		-
+			message: '#^Variable \$resets might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/history/passreset.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/history/passreset.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/install/reinstall.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/ipban/add.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/ipban/add.php
+
+		-
+			message: '#^Variable \$ipban might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ipban/edit.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/ipban/edit.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/ipban/edit.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 15
+			path: themes/default/ipban/index.php
+
+		-
+			message: '#^Variable \$banlist might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ipban/index.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/ipban/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/ipban/index.php
+
+		-
+			message: '#^Variable \$ipban might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ipban/remove.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ipban/remove.php
+
+		-
+			message: '#^Variable \$atk might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$defense might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$equipFemale might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$equipJobs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$equipLevelMax might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$equipLevelMin might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$equipLocs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$equipMale might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$equipScript might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$equipUpper might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$identifier might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$itemID might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$itemName might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$matk might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$npcBuy might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$npcSell might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$range might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$refineable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$script might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$slots might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$unequipScript might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$viewID might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$weaponLevel might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$weight might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/add.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/copy.php
+
+		-
+			message: '#^Variable \$item might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/copy.php
+
+		-
+			message: '#^Variable \$itemID might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/item/copy.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/item/copy.php
+
+		-
+			message: '#^Variable \$atk might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$defense might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$equipFemale might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$equipJobs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$equipLevelMax might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$equipLevelMin might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$equipLocs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$equipMale might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$equipScript might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$equipUpper might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$identifier might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$item might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$itemID might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$itemName might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$matk might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$npcBuy might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$npcSell might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$range might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$refineable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$script might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$slots might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$unequipScript might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$viewID might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$weaponLevel might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$weight might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/edit.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/index.php
+
+		-
+			message: '#^Variable \$items might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/index.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 15
+			path: themes/default/item/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 27
+			path: themes/default/item/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/item/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/item/view.php
+
+		-
+			message: '#^Variable \$isCustom might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/item/view.php
+
+		-
+			message: '#^Variable \$item might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/view.php
+
+		-
+			message: '#^Variable \$itemDrops might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/item/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: themes/default/item/view.php
+
+		-
+			message: '#^Variable \$categories might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/add.php
+
+		-
+			message: '#^Variable \$category might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/itemshop/add.php
+
+		-
+			message: '#^Variable \$item might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/add.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/itemshop/add.php
+
+		-
+			message: '#^Variable \$stackable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/add.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/itemshop/add.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/edit.php
+
+		-
+			message: '#^Variable \$categories might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/edit.php
+
+		-
+			message: '#^Variable \$category might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/itemshop/edit.php
+
+		-
+			message: '#^Variable \$cost might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/edit.php
+
+		-
+			message: '#^Variable \$info might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/edit.php
+
+		-
+			message: '#^Variable \$item might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/edit.php
+
+		-
+			message: '#^Variable \$quantity might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/edit.php
+
+		-
+			message: '#^Variable \$stackable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/itemshop/edit.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/itemshop/edit.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/logdata/branch.php
+
+		-
+			message: '#^Variable \$branches might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/logdata/branch.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/logdata/branch.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/logdata/branch.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/logdata/chat.php
+
+		-
+			message: '#^Variable \$messages might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/logdata/chat.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: themes/default/logdata/chat.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/logdata/chat.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/logdata/command.php
+
+		-
+			message: '#^Variable \$commands might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/logdata/command.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/logdata/command.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/logdata/command.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/logdata/login.php
+
+		-
+			message: '#^Variable \$logins might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/logdata/login.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/logdata/login.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/logdata/login.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/logdata/login.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/logdata/mvp.php
+
+		-
+			message: '#^Variable \$mvpKills might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/logdata/mvp.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/logdata/mvp.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/logdata/mvp.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/logdata/npc.php
+
+		-
+			message: '#^Variable \$npcLogs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/logdata/npc.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/logdata/npc.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/logdata/npc.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 16
+			path: themes/default/logdata/pick.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 14
+			path: themes/default/logdata/pick.php
+
+		-
+			message: '#^Variable \$picks might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/logdata/pick.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 15
+			path: themes/default/logdata/pick.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: themes/default/logdata/zeny.php
+
+		-
+			message: '#^Variable \$logs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/logdata/zeny.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/logdata/zeny.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/logdata/zeny.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/mail/index.php
+
+		-
+			message: '#^Variable \$preview might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/mail/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/mail/index.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/main/balance.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/main/loginbox.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: themes/default/main/loginbox.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/main/loginbox.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 7
+			path: themes/default/main/sidebar.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/main/submenu.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/main/submenu.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/monster/index.php
+
+		-
+			message: '#^Variable \$monsters might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/monster/index.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 13
+			path: themes/default/monster/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 13
+			path: themes/default/monster/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/monster/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/monster/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/monster/view.php
+
+		-
+			message: '#^Variable \$itemDrops might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/monster/view.php
+
+		-
+			message: '#^Variable \$mobSkills might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/monster/view.php
+
+		-
+			message: '#^Variable \$monster might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/monster/view.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/monster/view.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/cart.php
+
+		-
+			message: '#^Variable \$items might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/purchase/cart.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/cart.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 8
+			path: themes/default/purchase/cart.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/checkout.php
+
+		-
+			message: '#^Variable \$items might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/purchase/checkout.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/checkout.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/purchase/checkout.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/checkout.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/purchase/checkout.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$categories might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$category might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$categoryCount might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$categoryName might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$items might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$paginator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 10
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$total might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/pending.php
+
+		-
+			message: '#^Variable \$items might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/pending.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/purchase/pending.php
+
+		-
+			message: '#^Variable \$total might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/purchase/pending.php
+
+		-
+			message: '#^Variable \$alchemistJobs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/alchemist.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/ranking/alchemist.php
+
+		-
+			message: '#^Variable \$chars might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/alchemist.php
+
+		-
+			message: '#^Variable \$jobClass might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/alchemist.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/alchemist.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/ranking/alchemist.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/ranking/blacksmith.php
+
+		-
+			message: '#^Variable \$blacksmithJobs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/blacksmith.php
+
+		-
+			message: '#^Variable \$chars might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/blacksmith.php
+
+		-
+			message: '#^Variable \$jobClass might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/blacksmith.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/blacksmith.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/ranking/blacksmith.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/ranking/character.php
+
+		-
+			message: '#^Variable \$chars might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/character.php
+
+		-
+			message: '#^Variable \$classes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/character.php
+
+		-
+			message: '#^Variable \$jobClass might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/character.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/character.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/ranking/character.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/ranking/death.php
+
+		-
+			message: '#^Variable \$chars might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/death.php
+
+		-
+			message: '#^Variable \$classes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/death.php
+
+		-
+			message: '#^Variable \$jobClass might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/death.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/death.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/ranking/death.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/ranking/guild.php
+
+		-
+			message: '#^Variable \$guilds might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/guild.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/guild.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/ranking/guild.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/default/ranking/zeny.php
+
+		-
+			message: '#^Variable \$chars might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/zeny.php
+
+		-
+			message: '#^Variable \$classes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/zeny.php
+
+		-
+			message: '#^Variable \$jobClass might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/zeny.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/ranking/zeny.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/ranking/zeny.php
+
+		-
+			message: '#^Variable \$info might not be defined\.$#'
+			identifier: variable.undefined
+			count: 6
+			path: themes/default/server/info.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/server/info.php
+
+		-
+			message: '#^Variable \$serverStatus might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/server/status.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/server/status.php
+
+		-
+			message: '#^Variable \$metaRefresh might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/unauthorized/index.php
+
+		-
+			message: '#^Variable \$auth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/vending/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/default/vending/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/default/vending/index.php
+
+		-
+			message: '#^Variable \$vendors might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/vending/index.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/woe/custom.php
+
+		-
+			message: '#^Variable \$woeTimes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/woe/custom.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/woe/index.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/woe/index.php
+
+		-
+			message: '#^Variable \$woeTimes might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/woe/index.php
+
+		-
+			message: '#^Constant __START__ not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: themes/emphaino/footer.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/emphaino/footer.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/emphaino/footer.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/emphaino/header.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/emphaino/header.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 15
+			path: themes/emphaino/header.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/emphaino/main/balance.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/emphaino/main/loginbox.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/emphaino/main/loginbox.php
+
+		-
+			message: '#^Variable \$server might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/emphaino/main/navigation.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: themes/emphaino/main/navigation.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/emphaino/main/navigation.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/installer/header.php
+
+		-
+			message: '#^Variable \$installer might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/installer/install/index.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: themes/installer/install/index.php
+
+		-
+			message: '#^Variable \$session might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/installer/install/index.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: themes/installer/install/index.php
