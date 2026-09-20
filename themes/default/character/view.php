@@ -215,7 +215,7 @@
 	</tr>
 	<tr>
 		<th>Elemental</th>
-		<td colspan="5">
+		<td colspan="6">
 			<?php if ($char->elemental_class): ?>
 				<?php echo htmlspecialchars($char->elemental_mob_name) ?>
 				&mdash;
@@ -227,6 +227,12 @@
 				<span class="not-applicable">None</span>
 			<?php endif ?>
 		</td>
+	</tr>
+	<tr>
+		<th>Mercenary</th>
+		<td colspan="4"><?php if ($char->merc_class): ?><?php echo htmlspecialchars($char->merc_mob_name) ?> (HP <?php echo number_format((int)$char->merc_hp) ?>, SP <?php echo number_format((int)$char->merc_sp) ?>, Kills <?php echo number_format((int)$char->merc_kill_counter) ?>)<?php else: ?><span class="not-applicable">None</span><?php endif ?></td>
+		<th>Inventory Size</th>
+		<td><?php echo number_format((int)$char->char_inventory_size) ?></td>
 	</tr>
 	<tr>
 		<th>Character Stats</th>
