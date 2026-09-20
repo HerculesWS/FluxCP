@@ -50,12 +50,14 @@ try {
 		$custom       = $params->get('custom');
 		
 		if ($itemName) {
-			$sqlpartial .= "AND (name_japanese LIKE ? OR name_japanese = ?) ";
+			$sqlpartial .= "AND (name_english LIKE ? OR name_english = ? OR name_japanese LIKE ? OR name_japanese = ?) ";
+			$bind[]      = "%$itemName%";
+			$bind[]      = $itemName;
 			$bind[]      = "%$itemName%";
 			$bind[]      = $itemName;
 		}
 
-		if ($itemType && $itemType !== '-1') {
+		if ($itemType !== false && $itemType !== null && $itemType !== '-1') {
 			if (count($itemTypeSplit = explode('-', $itemType)) == 2) {
 				$itemType = $itemTypeSplit[0];
 				$itemType2 = $itemTypeSplit[1];
@@ -72,10 +74,10 @@ try {
 				if (count($itemTypeSplit) == 2 && is_numeric($itemType2) && (floatval($itemType2) == intval($itemType2))) {
 					$itemTypes2 = Flux::config('ItemTypes2')->toArray();
 					if (array_key_exists($itemType, $itemTypes2) && array_key_exists($itemType2, $itemTypes2[$itemType]) && $itemTypes2[$itemType][$itemType2]) {
-						$sqlpartial .= "AND view_sprite = ? ";
+						$sqlpartial .= "AND subtype = ? ";
 						$bind[]      = $itemType2;
 					} else {
-						$sqlpartial .= 'AND view_sprite IS NULL ';
+						$sqlpartial .= 'AND subtype IS NULL ';
 					}
 				}
 			} else {
@@ -262,7 +264,7 @@ try {
 	);
 	$paginator->setSortableColumns($sortable);
 	
-	$col  = "origin_table, items.id AS item_id, name_japanese AS name, type, ";
+	$col  = "origin_table, items.id AS item_id, COALESCE(name_english, name_japanese) AS name, type, ";
 	$col .= "IFNULL(equip_locations, 0) AS equip_locations, price_buy, weight/10 AS weight, ";
 	$col .= "defence AS defense, `range`, slots, refineable, cost, $shopTable.id AS shop_item_id, ";
 	$col .= "IFNULL(price_sell, FLOOR(price_buy/2)) AS price_sell, view_sprite as view, atk, matk";
