@@ -256,8 +256,7 @@ if (count($_POST) && $params->get('additem')) {
 			
 			$item = $sth->fetch();
 			if ($item && $item->id) {
-				$errorMessage = 'An item already exists with that ID.';
-				$errorMessage = sprintf($errorMessage, $item->name_japanese, $item->origin_table, $item->id);
+				$errorMessage = sprintf('An item already exists with that ID (%s, %s, #%d).', $item->name_japanese, $item->origin_table, $item->id);
 			}
 			else {
 				$cols = array('id', 'name_english', 'name_japanese', 'type', 'weight');
