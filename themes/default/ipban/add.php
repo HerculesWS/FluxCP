@@ -3,7 +3,7 @@
 <?php if (!empty($errorMessage)): ?>
 	<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo $this->urlWithQs ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
 	<input type="hidden" name="addipban" value="1" />
 	<?php echo Flux_Security::csrfGenerate('IPBanAdd', true) ?>
 	<table class="generic-form-table">

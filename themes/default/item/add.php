@@ -5,7 +5,7 @@
 <?php if (!empty($errorMessage)): ?>
 <p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo $this->urlWithQs ?>" method="post">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post">
 	<input type="hidden" name="additem" value="1" />
 	<?php echo Flux_Security::csrfGenerate('ItemAdd', true) ?>
 	<table class="vertical-table">

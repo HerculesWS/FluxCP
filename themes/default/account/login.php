@@ -5,11 +5,11 @@
 <?php else: ?>
 
 <?php if ($auth->actionAllowed('account', 'create')): ?>
-<p><?php printf(Flux::message('LoginPageMakeAccount'), $this->url('account', 'create')); ?></p>
+<p><?php printf(Flux::message('LoginPageMakeAccount'), htmlspecialchars($this->url('account', 'create'))); ?></p>
 <?php endif ?>
 
 <?php endif ?>
-<form action="<?php echo $this->url('account', 'login', array('return_url' => $params->get('return_url'))) ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars($this->url('account', 'login', array('return_url' => $params->get('return_url')))) ?>" method="post" class="generic-form">
 	<?php if (count($serverNames) === 1): ?>
 	<input type="hidden" name="server" value="<?php echo htmlspecialchars($session->loginAthenaGroup->serverName) ?>">
 	<?php endif ?>
@@ -40,7 +40,7 @@
 			<?php echo $recaptcha ?>
 			<?php elseif (Flux::config('EnableReCaptcha')): ?>
 		<tr>
-			<th><label for="login_security_code"><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
+			<th><label><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
 			<td><?php echo $recaptcha ?></td>
 		</tr>
 			<?php else: ?>
@@ -48,7 +48,7 @@
 			<th><label for="login_security_code"><?php echo htmlspecialchars(Flux::message('AccountSecurityLabel')) ?></label></th>
 			<td>
 				<div class="security-code">
-					<img src="<?php echo $this->url('captcha') ?>" />
+					<img src="<?php echo htmlspecialchars($this->url('captcha')) ?>" alt="Security code" />
 				</div>
 				<input type="text" name="security_code" id="login_security_code" />
 				<div style="font-size: smaller;" class="action">

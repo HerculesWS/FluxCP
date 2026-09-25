@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Guilds</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo $this->url ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module')) ?>
 	<p>
 		<label for="id">Guild ID:</label>
@@ -77,7 +77,7 @@
 			<?php endif ?>
 		</td>
 		<?php if ($guild->emblem_len): ?>
-		<td width="24"><img src="<?php echo $this->emblem($guild->guild_id) ?>" /></td>
+		<td width="24"><img src="<?php echo $this->emblem($guild->guild_id) ?>" alt="" /></td>
 		<td><?php echo htmlspecialchars($guild->guildName) ?></td>
 		<?php else: ?>
 		<td colspan="2"><?php echo htmlspecialchars($guild->guildName) ?></td>

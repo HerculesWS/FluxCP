@@ -7,7 +7,7 @@ $menuItems = $this->getMenuItems();
 <!-- NAVIGATION START -->
 <?php if (!empty($menuItems) || !empty($adminMenuItems)): ?>
 	<nav role="navigation" class="site-navigation main-navigation">
-		<div class="home-page-link"><a href="<?php echo $this->url('main') ?>" class="icon-home" title="<?php echo htmlspecialchars(Flux::message('HomeLabel')) ?>"><span><?php echo htmlspecialchars(Flux::message('HomeLabel')) ?></span></a></div>
+		<div class="home-page-link"><a href="<?php echo htmlspecialchars($this->url('main')) ?>" class="icon-home" title="<?php echo htmlspecialchars(Flux::message('HomeLabel')) ?>"><span><?php echo htmlspecialchars(Flux::message('HomeLabel')) ?></span></a></div>
 		<?php if ($session->isLoggedIn()): ?>
 		<div class="server-select">
 			<?php if (count($athenaServerNames=$session->getAthenaServerNames()) > 1): ?>
@@ -19,7 +19,7 @@ $menuItems = $this->getMenuItems();
 			</select>
 			</span>
 			<?php endif ?>
-			<form action="<?php echo $this->urlWithQs ?>" method="post" name="preferred_server_form" style="display: none">
+			<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" name="preferred_server_form" style="display: none">
 				<input type="hidden" name="preferred_server" value="" />
 			</form>
 		</div>
@@ -33,7 +33,7 @@ $menuItems = $this->getMenuItems();
 							<ul class="sub-menu">
 							<?php foreach ($menus as $menuItem): ?>
 								<li class="menu-item">
-										<a href="<?php echo $menuItem['url'] ?>"<?php
+										<a href="<?php echo htmlspecialchars($menuItem['url']) ?>"<?php
 								if ($menuItem['module'] == 'account' && $menuItem['action'] == 'logout')
 										echo ' onclick="return confirm(\'Are you sure you want to logout?\')"' ?>>
 									<?php echo htmlspecialchars(Flux::menuLabel($menuItem['name'])) ?></a>
@@ -49,7 +49,7 @@ $menuItems = $this->getMenuItems();
 				<ul class="sub-menu">
 							<?php foreach ($adminMenuItems as $menuItem): ?>
 								<li class="menu-item">
-										<a href="<?php echo $menuItem['url'] ?>"<?php
+										<a href="<?php echo htmlspecialchars($menuItem['url']) ?>"<?php
 									if ($menuItem['module'] == 'account' && $menuItem['action'] == 'logout')
 											echo ' onclick="return confirm(\'Are you sure you want to logout?\')"' ?>>
 									<?php echo htmlspecialchars(Flux::menuLabel($menuItem['name'])) ?></a>

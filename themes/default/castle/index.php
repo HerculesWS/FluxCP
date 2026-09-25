@@ -14,7 +14,7 @@
 			<td><?php echo htmlspecialchars($castleNames[$castle->castle_id]) ?></td>
 			<?php if ($castle->guild_name): ?>
 				<?php if ($castle->emblem_len): ?>
-					<td width="24"><img src="<?php echo $this->emblem($castle->guild_id) ?>" /></td>
+					<td width="24"><img src="<?php echo $this->emblem($castle->guild_id) ?>" alt="" /></td>
 					<td>
 						<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>
 							<?php echo $this->linkToGuild($castle->guild_id, $castle->guild_name) ?>

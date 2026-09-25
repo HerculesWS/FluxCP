@@ -13,7 +13,7 @@
 		<td><?php echo $monster->monster_id ?></td>
 		<?php if ($image=$this->monsterImage($monster->monster_id)): ?>
 		<td rowspan="12" style="width:150px; text-align: center; vertical-alignment: middle">
-			<img src="<?php echo $image ?>" />
+			<img src="<?php echo $image ?>" alt="" />
 		</td>
 		<?php endif ?>
 		<th>Sprite</th>
@@ -158,7 +158,7 @@
 			<?php endif ?>
 		</td>
 		<?php if ($image=$this->iconImage($itemDrop['id'])): ?>
-			<td><img src="<?php echo $image ?>" /></td>
+			<td><img src="<?php echo $image ?>" alt="" /></td>
 			<td>
 				<?php if ($itemDrop['type'] == 'mvp'): ?>
 				<?php ++$mvpDrops; ?>

@@ -20,7 +20,7 @@
 			<td align="right"><?php echo number_format($i + 1) ?></td>
 			<?php if (isset($guilds[$i])): ?>
 			<?php if ($guilds[$i]->emblem_len): ?>
-			<td width="24"><img src="<?php echo $this->emblem($guilds[$i]->guild_id) ?>" /></td>
+			<td width="24"><img src="<?php echo $this->emblem($guilds[$i]->guild_id) ?>" alt="" /></td>
 			<?php endif ?>
 			<td<?php if (!$guilds[$i]->emblem_len) echo ' colspan="2"' ?>><strong>
 				<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>

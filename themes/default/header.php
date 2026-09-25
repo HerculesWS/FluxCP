@@ -1,6 +1,5 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -114,7 +113,7 @@
 				<td bgcolor="#8ebceb" width="20"></td>
 				<td bgcolor="#8ebceb" colspan="3">
 					<a href="<?php echo $this->basePath ?>">
-						<img src="<?php echo $this->themePath($session->account->group_level >= Flux::config('AdminMenuGroupLevel') ? 'img/logo_admin.gif' : 'img/logo.gif') ?>" id="logo" />
+						<img src="<?php echo $this->themePath($session->account->group_level >= Flux::config('AdminMenuGroupLevel') ? 'img/logo_admin.gif' : 'img/logo.gif') ?>" id="logo" alt="<?php echo htmlspecialchars(Flux::config('ServerName')) ?>" />
 					</a>
 				</td>
 				<td bgcolor="#8ebceb" width="20"></td>
@@ -138,9 +137,9 @@
 					<!-- Content -->
 					<table cellspacing="0" cellpadding="0" width="100%" id="content">
 						<tr>
-							<td width="18"><img src="<?php echo $this->themePath('img/content_tl.gif') ?>" style="display: block"  /></td>
+							<td width="18"><img src="<?php echo $this->themePath('img/content_tl.gif') ?>" style="display: block" alt="" /></td>
 							<td bgcolor="#f5f5f5"></td>
-							<td width="18"><img src="<?php echo $this->themePath('img/content_tr.gif') ?>" style="display: block" /></td>
+							<td width="18"><img src="<?php echo $this->themePath('img/content_tr.gif') ?>" style="display: block" alt="" /></td>
 						</tr>
 						
 						<tr>

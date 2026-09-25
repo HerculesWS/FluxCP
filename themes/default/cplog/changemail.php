@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>E-mail Changes</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo $this->url ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="use_request_after">Request Date Between:</label>

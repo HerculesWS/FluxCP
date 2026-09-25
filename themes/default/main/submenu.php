@@ -4,7 +4,7 @@
 	<div id="submenu">Menu:
 	<?php foreach ($subMenuItems as $menuItem): ?>
 		<?php $menus[] = sprintf('<a href="%s" class="sub-menu-item%s">%s</a>',
-			$this->url($menuItem['module'], $menuItem['action']),
+			htmlspecialchars($this->url($menuItem['module'], $menuItem['action'])),
 			$params->get('module') == $menuItem['module'] && $params->get('action') == $menuItem['action'] ? ' current-sub-menu' : '',
 			htmlspecialchars(Flux::menuLabel($menuItem['name']))) ?>
 	<?php endforeach ?>

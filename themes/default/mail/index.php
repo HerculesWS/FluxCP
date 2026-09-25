@@ -8,7 +8,7 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 <?php else: ?>
 <p><?php echo htmlspecialchars(Flux::message('MailerInfo')) ?></p>
 <?php endif ?>
-<form action="<?php echo $this->urlWithQs ?>" method="post" name="mailerform" class="generic-form">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" name="mailerform" class="generic-form">
 	<input type="hidden" name="_preview" value="0" />
 	<?php echo Flux_Security::csrfGenerate('Mailer', true) ?>
 	<table class="generic-form-table">

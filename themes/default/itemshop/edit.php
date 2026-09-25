@@ -8,7 +8,7 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 <?php if (!empty($errorMessage)): ?>
 <p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo $this->urlWithQs ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" enctype="multipart/form-data">
 <?php echo Flux_Security::csrfGenerate('ItemShopEdit', true) ?>
 <?php if (!$stackable): ?>
 <input type="hidden" name="qty" value="1" />
@@ -64,10 +64,10 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 			<p>
 				Current image:
 				<?php if ($auth->actionAllowed('itemshop', 'imagedel')): ?>
-					<a href="<?php echo $this->url('itemshop', 'imagedel', array('id' => $item->shop_item_id, 'Session' => Flux_Security::csrfGet('Session') )) ?>">(Delete)</a>
+					<a href="<?php echo htmlspecialchars($this->url('itemshop', 'imagedel', array('id' => $item->shop_item_id, 'Session' => Flux_Security::csrfGet('Session') ))) ?>">(Delete)</a>
 				<?php endif ?>
 			</p>
-			<p><img src="<?php echo $image ?>" /></p>
+			<p><img src="<?php echo $image ?>" alt="<?php echo htmlspecialchars($item->shop_item_name) ?>" /></p>
 			<?php endif ?>
 		</td>
 	</tr>
