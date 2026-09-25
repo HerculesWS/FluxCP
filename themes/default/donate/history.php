@@ -16,7 +16,7 @@
 	<tr>
 		<td><?php echo htmlspecialchars($txn->txn_id) ?></td>
 		<td><?php echo $this->formatDateTime($txn->payment_date) ?></td>
-		<td><?php echo htmlspecialchars($txn->payer_email) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->payer_email) ?></td>
 		<td><?php echo htmlspecialchars($txn->mc_gross) ?></td>
 		<td><?php echo htmlspecialchars($txn->mc_currency) ?></td>
 		<td><?php echo number_format($txn->credits) ?></td>
@@ -43,7 +43,7 @@
 	<tr>
 		<td><?php echo htmlspecialchars($txn->txn_id) ?></td>
 		<td><?php echo $this->formatDateTime($txn->payment_date) ?></td>
-		<td><?php echo htmlspecialchars($txn->payer_email) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->payer_email) ?></td>
 		<td><?php echo htmlspecialchars($txn->mc_gross) ?></td>
 		<td><?php echo htmlspecialchars($txn->mc_currency) ?></td>
 		<td><?php echo number_format($txn->credits) ?></td>
@@ -76,7 +76,7 @@
 	<tr>
 		<td><?php echo htmlspecialchars($txn->txn_id) ?></td>
 		<td><?php echo $this->formatDateTime($txn->payment_date) ?></td>
-		<td><?php echo htmlspecialchars($txn->payer_email) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->payer_email) ?></td>
 		<td><?php echo htmlspecialchars($txn->mc_gross) ?></td>
 		<td><?php echo htmlspecialchars($txn->mc_currency) ?></td>
 		<td><?php echo number_format($txn->credits) ?></td>

@@ -24,6 +24,16 @@ class Flux_PaymentNotifyRequest {
 	private $txnIsValid = false;
 
 	/**
+	 * Set to true if this transaction's txn_id was already found recorded
+	 * as Completed, meaning it's a re-delivery of an IPN we already
+	 * processed. Suppresses duplicate logging/crediting.
+	 *
+	 * @access private
+	 * @var bool
+	 */
+	private $alreadyProcessed = false;
+
+	/**
 	 * PayPal server name to use for verification.
 	 *
 	 * @access public
@@ -132,11 +142,16 @@ class Flux_PaymentNotifyRequest {
 	 */
 	public function process()
 	{
-		$allowed_hosts = ['ipn.sandbox.paypal.com', 'notify.paypal.com'];
 		$received_from = gethostbyaddr($this->fetch_ip());
 		$this->logPayPal('Received notification from %s (%s)', $this->fetch_ip(), $received_from);
 
-		if (in_array($received_from, $allowed_hosts) && $this->verify()) {
+		// Authenticity is established solely by the notify-validate handshake
+		// in verify() (PayPal's documented IPN verification method). A
+		// reverse-DNS hostname check was previously required here too, but
+		// PayPal does not document or guarantee reverse-DNS/PTR records for
+		// its IPN-sending IPs, so that check could reject genuine, verified
+		// notifications.
+		if ($this->verify()) {
 			$this->logPayPal('Proceeding to validate the authenticity of the transaction...');
 
 			$accountEmails = Flux::config('PayPalReceiverEmails');
@@ -147,6 +162,7 @@ class Flux_PaymentNotifyRequest {
 			$payerEmail    = $this->ipnVariables->get('payer_email');
 			$currencyCode  = strtoupper(substr($this->ipnVariables->get('mc_currency'), 0, 3));
 			$trusted       = true;
+			$servGroup     = null;
 
 			// Identify transaction number.
 			$this->logPayPal('Transaction identified as %s.', $transactionID);
@@ -213,10 +229,18 @@ class Flux_PaymentNotifyRequest {
 								$this->logPayPal('Identified as first-time donation to the server from this account.');
 							}
 
+							$sql = "SELECT COUNT(id) AS txn_count FROM {$servGroup->loginDatabase}.{$this->txnLogTable} WHERE txn_id = ? AND payment_status = 'Completed'";
+							$sth = $servGroup->connection->getStatement($sql);
+							$sth->execute(array($transactionID));
+							$this->alreadyProcessed = $sth->fetch()->txn_count > 0;
+
 							$amount  = (float)$this->ipnVariables->get('mc_gross');
 							$minimum = (float)Flux::config('MinDonationAmount');
 
-							if ($amount >= $minimum) {
+							if ($this->alreadyProcessed) {
+								$this->logPayPal('Transaction #%s was already processed, skipping duplicate crediting.', $transactionID);
+							}
+							elseif ($amount >= $minimum) {
 								$trustTable = Flux::config('FluxTables.DonationTrustTable');
 								$holdHours  = +(int)Flux::config('HoldUntrustedAccount');
 
@@ -295,25 +319,30 @@ class Flux_PaymentNotifyRequest {
 					}
 				}
 
-				if (!$servGroup) {
-					foreach (Flux::$loginAthenaGroupRegistry as $servGroup) {
-						$this->logToPayPalTable($servGroup, $accountID, $serverName, $trusted);
-					}
+				if ($this->alreadyProcessed) {
+					$this->logPayPal('Skipping duplicate transaction record for %s.', $transactionID);
 				}
 				else {
-					if (empty($credits)) {
-						$credits = 0;
+					if (!$servGroup) {
+						foreach (Flux::$loginAthenaGroupRegistry as $servGroup) {
+							$this->logToPayPalTable($servGroup, $accountID, $serverName, $trusted);
+						}
 					}
-					$this->logToPayPalTable($servGroup, $accountID, $serverName, $trusted, $credits);
-				}
+					else {
+						if (empty($credits)) {
+							$credits = 0;
+						}
+						$this->logToPayPalTable($servGroup, $accountID, $serverName, $trusted, $credits);
+					}
 
-				$this->logPayPal('Saving transaction details for %s...', $transactionID);
+					$this->logPayPal('Saving transaction details for %s...', $transactionID);
 
-				if ($logFile=$this->saveDetailsToFile()) {
-					$this->logPayPal('Saved transaction details for %s to: %s', $transactionID, $logFile);
-				}
-				else {
-					$this->logPayPal('Failed to save transaction details for %s to file.', $transactionID);
+					if ($logFile=$this->saveDetailsToFile()) {
+						$this->logPayPal('Saved transaction details for %s to: %s', $transactionID, $logFile);
+					}
+					else {
+						$this->logPayPal('Failed to save transaction details for %s to file.', $transactionID);
+					}
 				}
 
 				$this->logPayPal('Done processing %s.', $transactionID);
@@ -321,8 +350,8 @@ class Flux_PaymentNotifyRequest {
 		}
 		else {
 			$this->logPayPal('Transaction invalid, aborting.');
-			
-			if(!in_array($received_from, $allowed_hosts) && Flux::config('PaypalHackNotify')){
+
+			if(Flux::config('PaypalHackNotify')){
 				require_once 'Flux/Mailer.php';
 				
 				$customArray  = @unserialize(base64_decode((string)$this->ipnVariables->get('custom')));
@@ -393,42 +422,36 @@ class Flux_PaymentNotifyRequest {
 	 */
 	private function verify()
 	{
-		$qString  = 'cmd=_notify-validate&'.$this->ipnVarsToQueryString();
-		$request  = "POST /cgi-bin/webscr HTTP/1.1\r\n";
-		$request .= "Content-Type: application/x-www-form-urlencoded\r\n";
-		$request .= 'Content-Length: '.strlen($qString)."\r\n";
-		$request .= 'Host: '.$this->ppServer."\r\n";
-		$request .= "Connection: close\r\n\r\n";
-		$request .= $qString;
+		$qString = 'cmd=_notify-validate&'.$this->ipnVarsToQueryString();
+		$url     = 'https://'.$this->ppServer.'/cgi-bin/webscr';
 
 		$this->logPayPal('Query string: %s', $qString);
-		$this->logPayPal('Establishing connection to PayPal server at %s:80...', $this->ppServer);
+		$this->logPayPal('Establishing connection to PayPal server at %s...', $url);
 
-		$fp = @fsockopen('ssl://'.$this->ppServer, 443, $errno, $errstr, 20);
-		if (!$fp) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $qString);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+
+		$response = curl_exec($ch);
+		$errno    = curl_errno($ch);
+		$errstr   = curl_error($ch);
+		curl_close($ch);
+
+		if ($response === false || $errno) {
 			$this->logPayPal("Failed to connect to PayPal server: [%d] %s", $errno, $errstr);
 			return false;
 		}
 		else {
-			$this->logPayPal('Connected. Sending request back to PayPal...');
+			$this->logPayPal('Connected. Sent %d bytes of transaction data. Reading back response from PayPal...', strlen($qString));
 
-			// Send POST request just as PayPal sent it.
-
-			$this->logPayPal('Sent %d bytes of transaction data. Request size: %d bytes.', strlen($qString), fputs($fp, $request));
-			$this->logPayPal('Reading back response from PayPal...');
-
-			// Read until body starts
-			while (!feof($fp) && ($line = trim(fgets($fp))) != '');
-			
-			$line = '';
-
-			// Read until EOF, contains VERIFIED or INVALID.
-			while (!feof($fp)) {
-				$line .= strtoupper(trim(fgets($fp)));
-			}
-
-			// Close connection.
-			fclose($fp);
+			$line = strtoupper(trim($response));
 
 			// Check verification status of the notify request.
 			if (strpos($line, 'VERIFIED') !== false) {
@@ -453,16 +476,20 @@ class Flux_PaymentNotifyRequest {
 	private function saveDetailsToFile()
 	{
 		if ($this->txnIsValid) {
-			$logDir1 = realpath(FLUX_DATA_DIR.'/logs/transactions');
+			$logDir1 = FLUX_DATA_DIR.'/logs/transactions';
+			if (!is_dir($logDir1)) {
+				mkdir($logDir1, 0700, true);
+			}
+			$logDir1 = realpath($logDir1);
 			$logDir2 = $logDir1.'/'.$this->ipnVariables->get('txn_type');
 			$logDir3 = $logDir2.'/'.$this->ipnVariables->get('payment_status');
 			$logFile = $logDir3.'/'.$this->ipnVariables->get('txn_id').'.log.php';
 
 			if (!is_dir($logDir2)) {
-				mkdir($logDir2, 0600);
+				mkdir($logDir2, 0700);
 			}
 			if (!is_dir($logDir3)) {
-				mkdir($logDir3, 0600);
+				mkdir($logDir3, 0700);
 			}
 
 			$fp = fopen($logFile, 'w');
