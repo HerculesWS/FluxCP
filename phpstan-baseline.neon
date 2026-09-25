@@ -289,18 +289,6 @@ parameters:
 			path: lib/Flux/LoginServer.php
 
 		-
-			message: '#^Non\-static access to static property Flux_Mailer\:\:\$errLog\.$#'
-			identifier: staticProperty.nonStaticAccess
-			count: 1
-			path: lib/Flux/Mailer.php
-
-		-
-			message: '#^Non\-static access to static property Flux_Mailer\:\:\$log\.$#'
-			identifier: staticProperty.nonStaticAccess
-			count: 1
-			path: lib/Flux/Mailer.php
-
-		-
 			message: '#^Path in require_once\(\) "Flux/LogFile\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
@@ -2123,12 +2111,6 @@ parameters:
 			identifier: variable.undefined
 			count: 4
 			path: modules/ipban/unban.php
-
-		-
-			message: '#^Call to sprintf contains 0 placeholders, 3 values given\.$#'
-			identifier: argument.sprintf
-			count: 1
-			path: modules/item/add.php
 
 		-
 			message: '#^Path in require_once\(\) "Flux/Config\.php" is not a file or it does not exist\.$#'

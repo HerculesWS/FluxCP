@@ -17,9 +17,7 @@ class Flux_Mailer {
 			self::$log = new Flux_LogFile(FLUX_DATA_DIR.'/logs/mail/'.date('Ymd').'.log');
 		}
 		
-		$this->pm     = $pm = new PHPMailer();
-		$this->errLog = self::$errLog;
-		$this->log    = self::$log;
+		$this->pm = $pm = new PHPMailer();
 		
 		if (Flux::config('MailerUseSMTP')) {
 			$pm->IsSMTP();
