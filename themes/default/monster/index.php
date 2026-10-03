@@ -19,7 +19,7 @@
 	</p>
 	<p>
 		<label for="size">Size:</label>
-		<select name="size">
+		<select name="size" id="size">
 			<option value="-1"<?php if (($size=$params->get('size')) === '-1') echo ' selected="selected"' ?>>
 				Any
 			</option>
@@ -31,7 +31,7 @@
 		</select>
 		...
 		<label for="race">Race:</label>
-		<select name="race">
+		<select name="race" id="race">
 			<option value="-1"<?php if (($race=$params->get('race')) === '-1') echo ' selected="selected"' ?>>
 				Any
 			</option>
@@ -43,7 +43,7 @@
 		</select>
 		...
 		<label for="element">Element:</label>
-		<select name="element">
+		<select name="element" id="element">
 			<option value="-1"<?php if (($element=$params->get('element')) === '-1') echo ' selected="selected"' ?>>
 				Any
 			</option>

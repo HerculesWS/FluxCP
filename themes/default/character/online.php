@@ -55,8 +55,10 @@
 		<?php if ($char->guild_name): ?>
 			<?php if ($char->guild_emblem_len): ?>
 			<td class="emblem-cell"><img src="<?php echo $this->emblem($char->guild_id) ?>" alt="" /></td>
+			<?php else: ?>
+			<td class="emblem-cell"></td>
 			<?php endif ?>
-			<td<?php if (!$char->guild_emblem_len) echo ' colspan="2"' ?>>
+			<td>
 				<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>
 					<?php echo $this->linkToGuild($char->guild_id, $char->guild_name) ?>
 				<?php else: ?>
@@ -64,7 +66,8 @@
 				<?php endif ?>
 			</td>
 		<?php else: ?>
-			<td colspan="2"><span class="not-applicable">None</span></td>
+			<td class="emblem-cell"></td>
+			<td><span class="not-applicable">None</span></td>
 		<?php endif ?>
 		
 		<td>

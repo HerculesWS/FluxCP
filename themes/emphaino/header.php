@@ -11,7 +11,7 @@
 		<!--[if lt IE 9]>
 		<script src="<?php echo $this->themePath('js/html5.js') ?>" type="text/javascript"></script>
 		<![endif]-->
-		<link rel='stylesheet' id='webfonts-css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic|Bree+Serif' type='text/css' media='all' />
+		<link rel='stylesheet' id='webfonts-css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic%7CBree+Serif' type='text/css' media='all' />
 		<link rel='stylesheet' id='style-css' href='<?php echo $this->themePath('css/style.css') ?>' type='text/css' media='all' />
 		<link rel='stylesheet' id='fontello-css'  href='<?php echo $this->themePath('lib/fontello/css/fontello.css?ver=1.2.2') ?>' type='text/css' media='all' />
 		<?php if (Flux::config('EnableReCaptcha')): ?>

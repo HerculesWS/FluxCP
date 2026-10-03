@@ -11,7 +11,7 @@
 		<input type="text" name="name" id="name" value="<?php echo htmlspecialchars((string)$params->get('name')) ?>" />
 		...
 		<label for="type">Type:</label>
-		<select name="type">
+		<select name="type" id="type">
 			<option value="-1"<?php if (($type=$params->get('type')) === '-1') echo ' selected="selected"' ?>>
 				Any
 			</option>
@@ -31,7 +31,7 @@
 		</select>
 		...
 		<label for="equip_loc">Equip Locations:</label>
-		<select name="equip_loc">
+		<select name="equip_loc" id="equip_loc">
 			<option value="-1"<?php if (($equip_loc=$params->get('equip_loc')) === '-1') echo ' selected="selected"' ?>>
 				Any
 			</option>
@@ -167,7 +167,8 @@
 			<td class="emblem-cell"><img src="<?php echo htmlspecialchars((string)$icon) ?>?nocache=<?php echo rand() ?>" alt="" /></td>
 			<td><?php echo htmlspecialchars((string)$item->name) ?></td>
 		<?php else: ?>
-			<td colspan="2"><?php echo htmlspecialchars((string)$item->name) ?></td>
+			<td class="emblem-cell"></td>
+			<td><?php echo htmlspecialchars((string)$item->name) ?></td>
 		<?php endif ?>
 		<td>
 			<?php if ($type=$this->itemTypeText($item->type, $item->view)): ?>

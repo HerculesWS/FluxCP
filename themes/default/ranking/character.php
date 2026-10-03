@@ -8,12 +8,12 @@
 	on <?php echo htmlspecialchars((string)$server->serverName) ?>
 </h3>
 <?php if ($chars): ?>
-<form action="" method="get" class="search-form2">
+<form method="get" class="search-form2">
 	<?php echo $this->moduleActionFormInputs('ranking', 'character') ?>
 	<p>
 		<label for="jobclass">Filter by job class:</label>
 		<select name="jobclass" id="jobclass">
-			<option value=""<?php if (is_null($jobClass)) echo 'selected="selected"' ?>>All</option>
+			<option value=""<?php if (is_null($jobClass)) echo ' selected="selected"' ?>>All</option>
 		<?php foreach ($classes as $jobClassIndex => $jobClassName): ?>
 			<option value="<?php echo $jobClassIndex ?>"
 				<?php if (!is_null($jobClass) && $jobClass == $jobClassIndex) echo ' selected="selected"' ?>>
@@ -53,8 +53,10 @@
 		<?php if ($chars[$i]->guild_name): ?>
 		<?php if ($chars[$i]->guild_emblem_len): ?>
 		<td class="emblem-cell"><img src="<?php echo $this->emblem($chars[$i]->guild_id) ?>" alt="" /></td>
+		<?php else: ?>
+		<td class="emblem-cell"></td>
 		<?php endif ?>
-		<td<?php if (!$chars[$i]->guild_emblem_len) echo ' colspan="2"' ?>>
+		<td>
 			<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>
 				<?php echo $this->linkToGuild($chars[$i]->guild_id, $chars[$i]->guild_name) ?>
 			<?php else: ?>
@@ -62,7 +64,8 @@
 			<?php endif ?>
 		</td>
 		<?php else: ?>
-		<td colspan="2"><span class="not-applicable">None</span></td>
+		<td class="emblem-cell"></td>
+		<td><span class="not-applicable">None</span></td>
 		<?php endif ?>
 		<td><?php echo number_format($chars[$i]->base_level) ?></td>
 		<td><?php echo number_format($chars[$i]->job_level) ?></td>

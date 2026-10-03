@@ -104,6 +104,8 @@ jobs:
           install_page=$(curl -fsSL -c "$jar" -b "$jar" -X POST \
             --data-urlencode "installer_password=secretpassword" \
             "http://127.0.0.1:8081/?module=install")
+          mkdir -p rendered-html
+          echo "$install_page" > rendered-html/installer-index.html
 
           # Step 2: the update form's field names are suffixed with
           # base64(ServerName) (see modules/install/index.php), so scrape it
@@ -128,7 +130,7 @@ jobs:
 
           # Match the actual usage, not the always-present CSS rule
           # (.needtoupdate { ... }) that appears on every page regardless.
-          if grep -q 'class="needtoupdate"' /tmp/install-result.html; then
+          if grep -q 'class="pill needtoupdate"' /tmp/install-result.html; then
             echo "FluxCP schema install did not complete; response follows:"
             cat /tmp/install-result.html
             exit 1
@@ -141,12 +143,22 @@ jobs:
           mkdir -p rendered-html
           # FluxCP ships with UseCleanUrls disabled by default, so routing is
           # via ?module=&action= query params (see lib/Flux/Dispatcher.php).
-          pages="main:index account:login account:create"
-          for p in $pages; do
-            module="${p%%:*}"
-            action="${p##*:}"
-            curl -fsS "http://127.0.0.1:8081/?module=$module&action=$action" \
-              -o "rendered-html/$module-$action.html"
+          # Only pages that render without logging in are listed.
+          pages="main:index account:login account:create account:resetpass account:resend
+                 server:status server:info woe:index castle:index
+                 character:online character:mapstats ranking:character
+                 item:index monster:index vending:index"
+          for theme in default emphaino; do
+            jar="/tmp/cookies-$theme.txt"
+            # The theme is picked per visitor through a cookie-backed preference.
+            curl -fsS -c "$jar" -b "$jar" -o /dev/null \
+              -d "preferred_theme=$theme" http://127.0.0.1:8081/
+            for p in $pages; do
+              module="${p%%:*}"
+              action="${p##*:}"
+              curl -fsS -b "$jar" "http://127.0.0.1:8081/?module=$module&action=$action" \
+                -o "rendered-html/$theme-$module-$action.html"
+            done
           done
 
       - name: Show FluxCP logs on failure
