@@ -362,21 +362,24 @@ class Flux_PaymentNotifyRequest {
 				
 				$mail = new Flux_Mailer();
 				
+				$esc  = function ($value) {
+					return htmlspecialchars(is_scalar($value) ? (string)$value : '');
+				};
 				$tmpl = "<p>Paypal hack detected!</p>";
-				$tmpl .= "<p>Account: ".$accountID."</p>";
-				$tmpl .= "<p>serverName: ".$serverName."</p>";
+				$tmpl .= "<p>Account: ".$esc($accountID)."</p>";
+				$tmpl .= "<p>serverName: ".$esc($serverName)."</p>";
 				
 				$tmpl .= "<br><br><br>";
 				$tmpl .= "<p>======= IP Info ========</p>";
-				$tmpl .= nl2br(var_export(['ip' => $this->fetch_ip(), 'host' => $received_from], true));
+				$tmpl .= nl2br(htmlspecialchars(var_export(['ip' => $this->fetch_ip(), 'host' => $received_from], true)));
 				$tmpl .= "<p>======= End IP Info ========</p>";
 				$tmpl .= "<br><br><br>";
 				$tmpl .= "<p>======= Account Info ========</p>";
-				$tmpl .= nl2br(var_export($customData, true));
+				$tmpl .= nl2br(htmlspecialchars(var_export($customData, true)));
 				$tmpl .= "<p>======= End Account Info ========</p>";
 				$tmpl .= "<br><br><br>";
 				$tmpl .= "<p>======= Transaction Info ========</p>";
-				$tmpl .= nl2br(var_export($this->ipnVariables->toArray(), true));
+				$tmpl .= nl2br(htmlspecialchars(var_export($this->ipnVariables->toArray(), true)));
 				$tmpl .= "<p>======= End Transaction Info ========</p>";
 				
 				$accountEmails = Flux::config('PayPalReceiverEmails');
