@@ -319,7 +319,7 @@ return array(
 	'ResetPassEnterEmail'          => 'Introduce tu dirección de correo electrónico.',
 	'ResetPassDisallowed'          => 'No se puede hacer uso de la recuperación de contraseña para esta cuenta.',
 	'ResetPassFailed'              => 'No se pudo enviar el correo electrónico para recuperar tu contraseña.',
-	'ResetPassEmailSent'           => 'Se ha enviado un correo electrónico con detalles para recuperar tu contraseña.',
+	'ResetPassEmailSent'           => 'Si alguna cuenta coincide con los datos introducidos, se ha enviado un correo electrónico con detalles para recuperar su contraseña.',
 	'ResetPassTitle'               => 'Recuperar Contraseña',
 	'ResetPassInfo'                => 'Si has perdido tu contraseña, puedes recuperarla introduciendo la dirección de correo electrónico que utilizaste para registrar tu cuenta.',
 	'ResetPassInfo2'               => 'Entonces, se enviará un correo electrónico a la dirección especificada con un enlace que te permitirá recuperar tu contraseña, por lo que se requiere una dirección de correo electrónico válida.',

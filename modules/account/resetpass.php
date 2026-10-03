@@ -59,10 +59,8 @@ if (count($_POST)) {
 		if ($row) {
 			$groups = AccountLevel::getArray();
 			// Groups missing from config/groups.php can't be told apart from privileged ones, so they are refused too.
-			if (!AccountLevel::groupExists($row->group_id) || AccountLevel::getGroupLevel($row->group_id) >= Flux::config('NoResetPassGroupLevel')) {
-				$errorMessage = Flux::message('ResetPassDisallowed');
-			}
-			else {
+			// No e-mail is sent for them, but the answer given is the same as for any other request.
+			if (AccountLevel::groupExists($row->group_id) && AccountLevel::getGroupLevel($row->group_id) < Flux::config('NoResetPassGroupLevel')) {
 				$code = bin2hex(random_bytes(16));
 
 				// A new request replaces any link that was sent before.
@@ -86,14 +84,11 @@ if (count($_POST)) {
 			}
 		}
 
+		// The same answer is given whether or not an account matched, so this form can't be
+		// used to find out which accounts exist or which ones are protected.
 		if (empty($errorMessage)) {
-			if (empty($sent)) {
-				$errorMessage = Flux::message('ResetPassFailed');
-			}
-			else {
-				$session->setMessageData(Flux::message('ResetPassEmailSent'));
-				$this->redirect();
-			}
+			$session->setMessageData(Flux::message('ResetPassEmailSent'));
+			$this->redirect();
 		}
 	}
 }

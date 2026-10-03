@@ -301,7 +301,7 @@ return array(
 	'ResetPassEnterEmail'          => 'Por favor, digite o seu e-mail.',
 	'ResetPassDisallowed'          => 'Recuperação de senha não pode ser usada para esta conta.',
 	'ResetPassFailed'              => 'Falha ao enviar o email de redefinição de senha.',
-	'ResetPassEmailSent'           => 'Um e-mail foi enviado para você com os detalhes de como proceder para redefinir sua senha.',
+	'ResetPassEmailSent'           => 'Se alguma conta corresponder aos dados informados, um e-mail foi enviado com os detalhes de como proceder para redefinir a senha.',
 	'ResetPassTitle'               => 'Redefinir Senha',
 	'ResetPassInfo'                => 'Se você perder a sua senha, você pode redefiní-la digitando apenas o email que você cadastrou na sua conta.',
 	'ResetPassInfo2'               => 'Uma mensagem será enviada ao email digitado contendo um link para você poder redefinir a sua senha, por isso é necessário que você possua um e-mail válido.',
