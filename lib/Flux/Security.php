@@ -91,12 +91,41 @@ class Flux_Security {
 		unset(self::$session[ 'CSRF_' . $name ]);
 
 		// Invalid token
-		if ( $storage[ $name ] !== $hash ) {
+		if ( !is_string( $storage[ $name ] ) || !hash_equals( $hash, $storage[ $name ] ) ) {
 			$error = Flux::message('SecuritySessionInvalid');
 			return false;
 		}
 
 		// PASS
+		return true;
+	}
+
+	/**
+	 * Check a token without using it up, for links that carry the session
+	 * token (the 'Session' one) and can be clicked more than once per page.
+	 * @param string $name identifier
+	 * @param array $storage check : $_GET / ect.
+	 * @param string $error reference to overwrite if something to say
+	 * @return bool PASS
+	 * @access public
+	 */
+	static public function csrfCheck( $name, $storage, &$error )
+	{
+		if ( empty( self::$session[ 'CSRF_' . $name ] ) ) {
+			$error = Flux::message('SecurityNeedSession');
+			return false;
+		}
+
+		if ( !isset( $storage[ $name ] ) ) {
+			$error = Flux::message('SecurityNeedToken');
+			return false;
+		}
+
+		if ( !is_string( $storage[ $name ] ) || !hash_equals( self::$session[ 'CSRF_' . $name ], $storage[ $name ] ) ) {
+			$error = Flux::message('SecuritySessionInvalid');
+			return false;
+		}
+
 		return true;
 	}
 
@@ -109,10 +138,15 @@ class Flux_Security {
 	 */
 	public static function generateString( $count, $extra='' )
 	{
-		$characters = 'abcdefghijqlmnopqrtsuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' . $extra;
-		$output     = str_shuffle($characters);
+		$characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' . $extra;
+		$last       = strlen($characters) - 1;
+		$output     = '';
 
-		return substr( $output, 0, $count);
+		for ($i = 0; $i < $count; ++$i) {
+			$output .= $characters[random_int(0, $last)];
+		}
+
+		return $output;
 	}
 }
 ?>

@@ -62,8 +62,12 @@ $showUnban   = !$isMine && ($tempBanned && $auth->allowedToTempUnbanAccount) || 
 
 if (count($_POST) && $account) {
 	$reason = (string)$params->get('reason');
-	
-	if ($params->get('tempban') && ($tempBanDate=$params->get('tempban_date'))) {
+
+	if (!Flux_Security::csrfValidate('AccountBan', $_POST, $csrfError)) {
+		$session->setMessageData($csrfError);
+		$this->redirect($this->url('account', 'view', array('id' => $account->account_id)));
+	}
+	elseif ($params->get('tempban') && ($tempBanDate=$params->get('tempban_date'))) {
 		if ($canTempBan) {
 			if ($server->loginServer->temporarilyBan($session->account->account_id, $reason, $account->account_id, $tempBanDate)) {
 				$formattedDate = $this->formatDateTime($tempBanDate);

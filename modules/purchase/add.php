@@ -9,6 +9,11 @@ $id   = $params->get('id');
 $shop = new Flux_ItemShop($server);
 $item = $shop->getItem($id);
 
+if (!Flux_Security::csrfCheck('Session', $_GET, $error)) {
+	$session->setMessageData($error);
+	$this->redirect($this->url('purchase'));
+}
+
 if ($item) {
 	$server->cart->add($item);
 	$session->setMessageData("{$item->shop_item_name} has been added to your cart.");

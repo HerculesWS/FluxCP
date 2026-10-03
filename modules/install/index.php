@@ -32,6 +32,11 @@ if ($session->installerAuth) {
 		}
 		
 		if ($params->get('update_all')) {
+			if (!Flux_Security::csrfCheck('Session', $_GET, $csrfError)) {
+				$session->setMessageData($csrfError);
+				$this->redirect();
+			}
+
 			try {
 				$installer->updateAll();
 				if (!$installer->updateNeeded()) {
@@ -47,7 +52,12 @@ if ($session->installerAuth) {
 		elseif (($username=$params->get('username')) && $username instanceOf Flux_Config &&
 				($password=$params->get('password')) && $password instanceOf Flux_Config &&
 				($update=$params->get('update')) && $update instanceOf Flux_Config) {
-				
+
+			if (!Flux_Security::csrfValidate('InstallerUpdate', $_POST, $csrfError)) {
+				$session->setMessageData($csrfError);
+				$this->redirect();
+			}
+
 			$server64     = key($update->toArray());
 			$username     = $username->get($server64);
 			$password     = $password->get($server64);
@@ -106,7 +116,10 @@ if (count($_POST) && !$session->installerAuth) {
 	$maxAttempts    = (int)Flux::config('LoginMaxAttempts');
 	$window         = (int)Flux::config('LoginLockoutMinutes') * 60;
 
-	if (Flux_RateLimit::isLimited('installer', $ipKey, $maxAttempts, $window)) {
+	if (!Flux_Security::csrfValidate('InstallerLogin', $_POST, $csrfError)) {
+		$errorMessage = $csrfError;
+	}
+	elseif (Flux_RateLimit::isLimited('installer', $ipKey, $maxAttempts, $window)) {
 		$errorMessage = 'Too many attempts, try again later.';
 	}
 	elseif (hash_equals($actualPassword, $inputPassword)) {

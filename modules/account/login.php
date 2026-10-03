@@ -9,7 +9,10 @@ if (Flux::config('UseLoginCaptcha') && Flux::config('EnableReCaptcha')) {
 $title = Flux::message('LoginTitle');
 $loginLogTable = Flux::config('FluxTables.LoginLogTable');
 
-if (count($_POST)) {
+if (count($_POST) && !Flux_Security::csrfValidate('Login', $_POST, $csrfError)) {
+	$errorMessage = $csrfError;
+}
+elseif (count($_POST)) {
 	$server   = $params->get('server');
 	$username = $params->get('username');
 	$password = $params->get('password');
