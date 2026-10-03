@@ -12,8 +12,6 @@ if (Flux::config('AutoRemoveTempBans')) {
 }
 
 $useMD5         = $server->loginServer->config->get('UseMD5');
-$searchMD5      = Flux::config('AllowMD5PasswordSearch') && Flux::config('ReallyAllowMD5PasswordSearch') && $auth->allowedToSearchMD5Passwords;
-$searchPassword = (($useMD5 && $searchMD5) || !$useMD5) && $auth->allowedToSeeAccountPassword;
 $showPassword   = !$useMD5 && $auth->allowedToSeeAccountPassword;
 $canSeeDetails  = $auth->allowedToViewAccount; // Email, IP, balance and so on are restricted the same way as the account view page.
 $bind           = array();
@@ -37,7 +35,6 @@ else {
 	$opMapping        = array('eq' => '=', 'gt' => '>', 'lt' => '<');
 	$opValues         = array_keys($opMapping);
 	$username         = $params->get('username');
-	$password         = $params->get('password');
 	$email            = $params->get('email');
 	$lastIP           = $params->get('last_ip');
 	$gender           = $params->get('gender');
@@ -57,18 +54,6 @@ else {
 		$sqlpartial .= "AND (login.userid LIKE ? OR login.userid = ?) ";
 		$bind[]      = "%$username%";
 		$bind[]      = $username;
-	}
-	
-	if ($searchPassword && $password) {
-		if ($useMD5) {
-			$sqlpartial .= "AND login.user_pass = MD5(?) ";
-			$bind[]      = $password;
-		}
-		else {
-			$sqlpartial .= "AND (login.user_pass LIKE ? OR login.user_pass = ?) ";
-			$bind[]      = "%$password%";
-			$bind[]      = $password;
-		}
 	}
 	
 	if ($canSeeDetails && $email) {

@@ -9,11 +9,6 @@
 		...
 		<label for="username"><?php echo htmlspecialchars(Flux::message('UsernameLabel')) ?>:</label>
 		<input type="text" name="username" id="username" value="<?php echo htmlspecialchars((string)$params->get('username')) ?>" />
-		<?php if ($searchPassword): ?>
-		...
-		<label for="password"><?php echo htmlspecialchars(Flux::message('PasswordLabel')) ?>:</label>
-		<input type="text" name="password" id="password" value="<?php echo htmlspecialchars((string)$params->get('password')) ?>" />
-		<?php endif ?>
 <?php if ($canSeeDetails): ?>
 		...
 		<label for="email"><?php echo htmlspecialchars(Flux::message('EmailAddressLabel')) ?>:</label>
