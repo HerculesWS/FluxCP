@@ -105,6 +105,7 @@ return array(
 		//'admin2@localhost',                             // -- This array may be empty if you only use one e-mail
 		//'admin3@localhost'                              // -- because your Business Email is also checked.
 	),
+	'PayPalCustomSecret'   => '',                       // Secret used to sign the account info sent to PayPal with each donation. Leave empty to have one generated in data/paypal.secret.php.
 	'PaypalHackNotify'     => true,                     // Send email notification if hack attempt detected (Notification will be send for each address in list PayPalBusinessEmail and PayPalReceiverEmails)
 	'PayPalMode'             => 'classic',               // 'classic' (legacy IPN, default -- preserves existing behavior for upgraders) or 'rest' (modern PayPal REST API + Webhooks)
 	'PayPalRestEnvironment'  => 'sandbox',                // 'sandbox' or 'live' -- selects api-m.sandbox.paypal.com vs api-m.paypal.com

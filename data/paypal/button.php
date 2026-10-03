@@ -1,13 +1,15 @@
 <?php
 if (!defined('FLUX_ROOT')) exit;
 
+require_once 'Flux/PaymentNotifyRequest.php';
+
 if (empty($amount)) {
 	return false;
 }
 
 $session            = Flux::$sessionData;
 $customDataArray    = array('server_name' => $session->loginAthenaGroup->serverName, 'account_id' => $session->account->account_id);
-$customDataEscaped  = htmlspecialchars(base64_encode(json_encode($customDataArray)));
+$customDataEscaped  = htmlspecialchars(Flux_PaymentNotifyRequest::encodeCustom($customDataArray));
 $businessEmail      = htmlspecialchars(Flux::config('PayPalBusinessEmail'));
 $donationCurrency   = htmlspecialchars(Flux::config('DonationCurrency'));
 $creditExchangeRate = Flux::config('CreditExchangeRate');

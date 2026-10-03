@@ -458,6 +458,39 @@ class Flux_LoginServer extends Flux_BaseServer {
 	}
 
 	/**
+	 * Take credits from an account, only if it has enough of them.
+	 *
+	 * @return bool False if the account doesn't have enough credits.
+	 */
+	public function spendCredits($accountID, $credits)
+	{
+		$credits = (int)$credits;
+		if ($credits <= 0) {
+			return true;
+		}
+
+		$creditsTable = Flux::config('FluxTables.CreditsTable');
+
+		$sql = "UPDATE {$this->loginDatabase}.$creditsTable SET balance = balance - ? WHERE account_id = ? AND balance >= ?";
+		$sth = $this->connection->getStatement($sql);
+
+		return $sth->execute(array($credits, $accountID, $credits)) && $sth->rowCount() > 0;
+	}
+
+	/**
+	 * Take back up to the given number of credits, stopping at zero.
+	 */
+	public function clawBackCredits($accountID, $credits)
+	{
+		$creditsTable = Flux::config('FluxTables.CreditsTable');
+
+		$sql = "UPDATE {$this->loginDatabase}.$creditsTable SET balance = IF(balance > ?, balance - ?, 0) WHERE account_id = ?";
+		$sth = $this->connection->getStatement($sql);
+
+		return $sth->execute(array((int)$credits, (int)$credits, $accountID));
+	}
+
+	/**
 	 *
 	 */
 	public function getPrefs($accountID, array $prefs = array())

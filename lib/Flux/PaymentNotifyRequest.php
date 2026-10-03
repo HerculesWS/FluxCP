@@ -24,16 +24,6 @@ class Flux_PaymentNotifyRequest {
 	private $txnIsValid = false;
 
 	/**
-	 * Set to true if this transaction's txn_id was already found recorded
-	 * as Completed, meaning it's a re-delivery of an IPN we already
-	 * processed. Suppresses duplicate logging/crediting.
-	 *
-	 * @access private
-	 * @var bool
-	 */
-	private $alreadyProcessed = false;
-
-	/**
 	 * PayPal server name to use for verification.
 	 *
 	 * @access public
@@ -96,6 +86,69 @@ class Flux_PaymentNotifyRequest {
 		$this->ipnVariables    = new Flux_Config($ipnPostVars);
 		$this->txnLogTable     = Flux::config('FluxTables.TransactionTable');
 		$this->creditsTable    = Flux::config('FluxTables.CreditsTable');
+	}
+
+	/**
+	 * Secret used to sign the custom field sent to PayPal. Taken from the
+	 * PayPalCustomSecret config, or generated once and kept in the data dir.
+	 *
+	 * @return string
+	 * @access public
+	 */
+	public static function customSecret()
+	{
+		$secret = Flux::config('PayPalCustomSecret');
+		if ($secret) {
+			return (string)$secret;
+		}
+
+		$file = FLUX_DATA_DIR.'/paypal.secret.php';
+		$data = is_file($file) ? file_get_contents($file) : '';
+		$tag  = "<?php exit('Forbidden'); ?>";
+
+		if (strpos($data, $tag) === 0 && strlen($data) > strlen($tag) + 31) {
+			return trim(substr($data, strlen($tag)));
+		}
+
+		$secret = bin2hex(random_bytes(32));
+		file_put_contents($file, $tag.$secret, LOCK_EX);
+		return $secret;
+	}
+
+	/**
+	 * Build the signed custom field value for a donation button.
+	 *
+	 * @param array $data
+	 * @return string
+	 * @access public
+	 */
+	public static function encodeCustom(array $data)
+	{
+		$payload = base64_encode(json_encode($data));
+		return $payload.'.'.hash_hmac('sha256', $payload, self::customSecret());
+	}
+
+	/**
+	 * Read back a custom field value. Returns an empty array if it was not
+	 * signed by us, so it can't be used to point a payment at another account.
+	 *
+	 * @param string $custom
+	 * @return array
+	 * @access public
+	 */
+	public static function decodeCustom($custom)
+	{
+		$parts = explode('.', (string)$custom);
+		if (count($parts) !== 2) {
+			return array();
+		}
+
+		if (!hash_equals(hash_hmac('sha256', $parts[0], self::customSecret()), $parts[1])) {
+			return array();
+		}
+
+		$data = json_decode(base64_decode($parts[0]), true);
+		return is_array($data) ? $data : array();
 	}
 
 	/**
@@ -171,8 +224,7 @@ class Flux_PaymentNotifyRequest {
 				$this->logPayPal('Receiver e-mail (%s) is not recognized, unauthorized to continue.', $receiverEmail);
 			}
 			else {
-				$customArray  = json_decode(base64_decode((string)$this->ipnVariables->get('custom')), true);
-				$customArray  = $customArray && is_array($customArray) ? $customArray : array();
+				$customArray  = self::decodeCustom($this->ipnVariables->get('custom'));
 				$customData   = new Flux_Config($customArray);
 				$accountID    = $customData->get('account_id');
 				$serverName   = $customData->get('server_name');
@@ -202,6 +254,8 @@ class Flux_PaymentNotifyRequest {
 				$this->logPayPal('Game server name: %s, account ID: %s',
 					($serverName ? $serverName : '(absent)'), ($accountID ? $accountID : '(absent)'));
 
+				$servGroup = null;
+
 				if (!$accountID || !$serverName) {
 					$this->logPayPal('Account ID and/or game server name absent, cannot exchange for credits.');
 				}
@@ -212,7 +266,29 @@ class Flux_PaymentNotifyRequest {
 					$this->logPayPal('Unknown game server "%s", cannot process donation for credits.', $serverName);
 				}
 
-				if ($paymentStatus == 'Completed') {
+				// Only handle each transaction/status pair once, PayPal re-sends
+				// notifications and they can also be replayed.
+				$duplicate = false;
+				$lockName  = null;
+
+				if ($servGroup && $transactionID) {
+					$lockName = 'flux_ipn_'.md5($transactionID.'|'.$paymentStatus);
+					$sth = $servGroup->connection->getStatement('SELECT GET_LOCK(?, 15)');
+					$sth->execute(array($lockName));
+
+					$sql = "SELECT id FROM {$servGroup->loginDatabase}.{$this->txnLogTable} WHERE txn_id = ? AND payment_status = ? LIMIT 1";
+					$sth = $servGroup->connection->getStatement($sql);
+					$sth->execute(array($transactionID, $paymentStatus));
+
+					if ($sth->fetch()) {
+						$duplicate = true;
+					}
+				}
+
+				if ($duplicate) {
+					$this->logPayPal('Transaction %s with status %s was already processed, ignoring.', $transactionID, $paymentStatus);
+				}
+				elseif ($paymentStatus == 'Completed') {
 					$this->logPayPal('Payment for txn_id#%s has been completed.', $transactionID);
 
 					if ($servGroup && $exchangeableCurrency) {
@@ -229,18 +305,10 @@ class Flux_PaymentNotifyRequest {
 								$this->logPayPal('Identified as first-time donation to the server from this account.');
 							}
 
-							$sql = "SELECT COUNT(id) AS txn_count FROM {$servGroup->loginDatabase}.{$this->txnLogTable} WHERE txn_id = ? AND payment_status = 'Completed'";
-							$sth = $servGroup->connection->getStatement($sql);
-							$sth->execute(array($transactionID));
-							$this->alreadyProcessed = $sth->fetch()->txn_count > 0;
-
 							$amount  = (float)$this->ipnVariables->get('mc_gross');
 							$minimum = (float)Flux::config('MinDonationAmount');
 
-							if ($this->alreadyProcessed) {
-								$this->logPayPal('Transaction #%s was already processed, skipping duplicate crediting.', $transactionID);
-							}
-							elseif ($amount >= $minimum) {
+							if ($amount >= $minimum) {
 								$trustTable = Flux::config('FluxTables.DonationTrustTable');
 								$holdHours  = +(int)Flux::config('HoldUntrustedAccount');
 
@@ -291,6 +359,10 @@ class Flux_PaymentNotifyRequest {
 				else {
 					$this->logPayPal('Incomplete payment status: %s (exchanging for credits will not take place)', $paymentStatus);
 
+					if (in_array(strtolower($paymentStatus), array('reversed', 'refunded'))) {
+						$this->reverseCredits();
+					}
+
 					$banStatuses = Flux::config('BanPaymentStatuses');
 
 					if ($banStatuses instanceOf Flux_Config) {
@@ -319,7 +391,7 @@ class Flux_PaymentNotifyRequest {
 					}
 				}
 
-				if ($this->alreadyProcessed) {
+				if ($duplicate) {
 					$this->logPayPal('Skipping duplicate transaction record for %s.', $transactionID);
 				}
 				else {
@@ -345,6 +417,11 @@ class Flux_PaymentNotifyRequest {
 					}
 				}
 
+				if ($lockName) {
+					$sth = $servGroup->connection->getStatement('SELECT RELEASE_LOCK(?)');
+					$sth->execute(array($lockName));
+				}
+
 				$this->logPayPal('Done processing %s.', $transactionID);
 			}
 		}
@@ -354,8 +431,7 @@ class Flux_PaymentNotifyRequest {
 			if(Flux::config('PaypalHackNotify')){
 				require_once 'Flux/Mailer.php';
 				
-				$customArray  = json_decode(base64_decode((string)$this->ipnVariables->get('custom')), true);
-				$customArray  = $customArray && is_array($customArray) ? $customArray : array();
+				$customArray  = self::decodeCustom($this->ipnVariables->get('custom'));
 				$customData   = new Flux_Config($customArray);
 				$accountID    = $customData->get('account_id');
 				$serverName   = $customData->get('server_name');
@@ -394,6 +470,50 @@ class Flux_PaymentNotifyRequest {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Take back the credits that were given for a payment which has since been
+	 * reversed or refunded. The original payment is found through its
+	 * transaction ID, not through the custom field.
+	 *
+	 * Partial refunds are left alone and need to be handled by hand.
+	 *
+	 * @access private
+	 */
+	private function reverseCredits()
+	{
+		$parentID = $this->ipnVariables->get('parent_txn_id');
+		if (!$parentID) {
+			return;
+		}
+
+		$reversed = abs((float)$this->ipnVariables->get('mc_gross'));
+
+		foreach (Flux::$loginAthenaGroupRegistry as $group) {
+			$sql  = "SELECT id, account_id, credits, mc_gross FROM {$group->loginDatabase}.{$this->txnLogTable} ";
+			$sql .= "WHERE txn_id = ? AND payment_status = 'Completed' AND hold_until IS NULL AND credits > 0 LIMIT 1";
+			$sth  = $group->connection->getStatement($sql);
+			$sth->execute(array($parentID));
+			$row  = $sth->fetch();
+
+			if (!$row) {
+				continue;
+			}
+
+			if ($reversed + 0.005 < (float)$row->mc_gross) {
+				$this->logPayPal('Partial reversal of txn_id#%s, credits were not taken back. Review account #%s by hand.', $parentID, $row->account_id);
+				continue;
+			}
+
+			$group->loginServer->clawBackCredits($row->account_id, $row->credits);
+
+			$sql = "UPDATE {$group->loginDatabase}.{$this->txnLogTable} SET credits = 0 WHERE id = ?";
+			$sth = $group->connection->getStatement($sql);
+			$sth->execute(array($row->id));
+
+			$this->logPayPal('Took back %s credits from account #%s for reversed txn_id#%s.', $row->credits, $row->account_id, $parentID);
+		}
 	}
 
 	/**
