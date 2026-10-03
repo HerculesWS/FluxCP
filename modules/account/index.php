@@ -15,6 +15,7 @@ $useMD5         = $server->loginServer->config->get('UseMD5');
 $searchMD5      = Flux::config('AllowMD5PasswordSearch') && Flux::config('ReallyAllowMD5PasswordSearch') && $auth->allowedToSearchMD5Passwords;
 $searchPassword = (($useMD5 && $searchMD5) || !$useMD5) && $auth->allowedToSeeAccountPassword;
 $showPassword   = !$useMD5 && $auth->allowedToSeeAccountPassword;
+$canSeeDetails  = $auth->allowedToViewAccount; // Email, IP, balance and so on are restricted the same way as the account view page.
 $bind           = array();
 $creditsTable   = Flux::config('FluxTables.CreditsTable');
 $creditColumns  = 'credits.balance, credits.last_donation_date, credits.last_donation_amount';
@@ -70,13 +71,13 @@ else {
 		}
 	}
 	
-	if ($email) {
+	if ($canSeeDetails && $email) {
 		$sqlpartial .= "AND (login.email LIKE ? OR login.email = ?) ";
 		$bind[]      = "%$email%";
 		$bind[]      = $email;
 	}
 	
-	if ($lastIP) {
+	if ($canSeeDetails && $lastIP) {
 		$sqlpartial .= "AND (login.last_ip LIKE ? OR login.last_ip = ?) ";
 		$bind[]      = "%$lastIP%";
 		$bind[]      = $lastIP;
@@ -108,7 +109,7 @@ else {
 		$bind[]      = $accountGroupID;
 	}
 	
-	if (in_array($balanceOp, $opValues) && trim($balance) != '') {
+	if ($canSeeDetails && in_array($balanceOp, $opValues) && trim($balance) != '') {
 		$op  = $opMapping[$balanceOp];
 		if ($op == '=' && $balance === '0') {
 			$sqlpartial .= "AND (credits.balance IS NULL OR credits.balance = 0) ";
@@ -119,28 +120,28 @@ else {
 		}
 	}
 	
-	if (in_array($loginCountOp, $opValues) && trim($loginCount) != '') {
+	if ($canSeeDetails && in_array($loginCountOp, $opValues) && trim($loginCount) != '') {
 		$op          = $opMapping[$loginCountOp];
 		$sqlpartial .= "AND login.logincount $op ? ";
 		$bind[]      = $loginCount;
 	}
 	
-	if ($birthdateB && ($timestamp = strtotime($birthdateB))) {
+	if ($canSeeDetails && $birthdateB && ($timestamp = strtotime($birthdateB))) {
 		$sqlpartial .= 'AND login.birthdate <= ? ';
 		$bind[]      = date('Y-m-d', $timestamp);
 	}
 	
-	if ($birthdateA && ($timestamp = strtotime($birthdateA))) {
+	if ($canSeeDetails && $birthdateA && ($timestamp = strtotime($birthdateA))) {
 		$sqlpartial .= 'AND login.birthdate >= ? ';
 		$bind[]      = date('Y-m-d', $timestamp);
 	}
 
-	if ($lastLoginDateB && ($timestamp = strtotime($lastLoginDateB))) {
+	if ($canSeeDetails && $lastLoginDateB && ($timestamp = strtotime($lastLoginDateB))) {
 		$sqlpartial .= 'AND login.lastlogin <= ? ';
 		$bind[]      = date('Y-m-d', $timestamp);
 	}
 	
-	if ($lastLoginDateA && ($timestamp = strtotime($lastLoginDateA))) {
+	if ($canSeeDetails && $lastLoginDateA && ($timestamp = strtotime($lastLoginDateA))) {
 		$sqlpartial .= 'AND login.lastlogin >= ? ';
 		$bind[]      = date('Y-m-d', $timestamp);
 	}
@@ -151,12 +152,11 @@ $sth  = $server->connection->getStatement($sql);
 $sth->execute($bind);
 
 $paginator = $this->getPaginator($sth->fetch()->total);
-$paginator->setSortableColumns(array(
-	'login.account_id' => 'asc', 'login.userid', 'login.user_pass',
-	'login.sex', 'group_id', 'state', 'balance',
-	'login.email', 'logincount', 'lastlogin', 'last_ip',
-	'reg_date'
-));
+$sortable = array('login.account_id' => 'asc', 'login.userid', 'login.user_pass', 'login.sex', 'group_id', 'state', 'reg_date');
+if ($canSeeDetails) {
+	$sortable = array_merge($sortable, array('balance', 'login.email', 'logincount', 'lastlogin', 'last_ip'));
+}
+$paginator->setSortableColumns($sortable);
 
 $sql  = $paginator->getSQL("SELECT login.*, {$creditColumns}, {$accountColumns}, {$createColumns} FROM {$server->loginDatabase}.login $sqlpartial");
 $sth  = $server->connection->getStatement($sql);

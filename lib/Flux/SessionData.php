@@ -5,6 +5,8 @@ require_once 'Flux/LoginError.php';
 
 /**
  * Contains all of Flux's session data.
+ *
+ * @method void setInstallerAuthData(mixed $value) Handled by __call().
  */
 class Flux_SessionData {
 	/**
@@ -176,6 +178,7 @@ class Flux_SessionData {
 	{
 		$this->loginAthenaGroup = null;
 		$this->loginServer = null;
+		$this->setInstallerAuthData(false);
 		return $this->initialize(true);
 	}
 

@@ -407,7 +407,7 @@
 				<?php endif ?>
 				<?php if ($item->card0 == 254 || $item->card0 == 255): ?>
 					<?php if ($item->char_name): ?>
-						<?php if ($auth->actionAllowed('character', 'view') && ($isMine || (!$isMine && $auth->allowedToViewCharacter))): ?>
+						<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 							<?php echo $this->linkToCharacter($item->char_id, $item->char_name, $session->serverName) . "'s" ?>
 						<?php else: ?>
 							<?php echo htmlspecialchars($item->char_name . "'s") ?>
@@ -529,7 +529,7 @@
 				<?php endif ?>
 				<?php if ($cart_item->card0 == 254 || $cart_item->card0 == 255): ?>
 					<?php if ($cart_item->char_name): ?>
-						<?php if ($auth->actionAllowed('character', 'view') && ($isMine || (!$isMine && $auth->allowedToViewCharacter))): ?>
+						<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 							<?php echo $this->linkToCharacter($cart_item->char_id, $cart_item->char_name, $session->serverName) . "'s" ?>
 						<?php else: ?>
 							<?php echo htmlspecialchars($cart_item->char_name . "'s") ?>

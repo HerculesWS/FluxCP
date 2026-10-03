@@ -58,7 +58,8 @@ if (count($_POST)) {
 		$row = $sth->fetch();
 		if ($row) {
 			$groups = AccountLevel::getArray();
-			if (AccountLevel::getGroupLevel($row->group_id) >= Flux::config('NoResetPassGroupLevel')) {
+			// Groups missing from config/groups.php can't be told apart from privileged ones, so they are refused too.
+			if (!AccountLevel::groupExists($row->group_id) || AccountLevel::getGroupLevel($row->group_id) >= Flux::config('NoResetPassGroupLevel')) {
 				$errorMessage = Flux::message('ResetPassDisallowed');
 			}
 			else {

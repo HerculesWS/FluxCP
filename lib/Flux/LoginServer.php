@@ -643,9 +643,30 @@ class Flux_LoginServer extends Flux_BaseServer {
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
 
-		$ip = trim($ip);
-		if (!preg_match('/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/', $ip, $m)) {
+		$ip     = trim($ip);
+		$packed = @inet_pton($ip);
+
+		if ($packed === false) {
 			// Invalid IP.
+			return false;
+		}
+
+		if (strlen($packed) === 16) {
+			if (substr($packed, 0, 12) === str_repeat("\0", 10)."\xff\xff") {
+				// IPv4 address in IPv6 form (::ffff:a.b.c.d), check it as the IPv4 address.
+				$ip = inet_ntop(substr($packed, 12));
+			}
+			else {
+				// IPv6 can only be matched as a whole address.
+				$sql  = "SELECT list FROM {$this->loginDatabase}.ipbanlist WHERE rtime > NOW() AND list = ? LIMIT 1";
+				$sth  = $this->connection->getStatement($sql);
+				$sth->execute(array(inet_ntop($packed)));
+
+				return (bool)$sth->fetch();
+			}
+		}
+
+		if (!preg_match('/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/', $ip, $m)) {
 			return false;
 		}
 

@@ -14,12 +14,14 @@
 		<label for="password"><?php echo htmlspecialchars(Flux::message('PasswordLabel')) ?>:</label>
 		<input type="text" name="password" id="password" value="<?php echo htmlspecialchars((string)$params->get('password')) ?>" />
 		<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		...
 		<label for="email"><?php echo htmlspecialchars(Flux::message('EmailAddressLabel')) ?>:</label>
 		<input type="text" name="email" id="email" value="<?php echo htmlspecialchars((string)$params->get('email')) ?>" />
 		...
 		<label for="last_ip"><?php echo htmlspecialchars(Flux::message('LastUsedIpLabel')) ?>:</label>
 		<input type="text" name="last_ip" id="last_ip" value="<?php echo htmlspecialchars((string)$params->get('last_ip')) ?>" />
+<?php endif ?>
 		...
 		<label for="gender"><?php echo htmlspecialchars(Flux::message('GenderLabel')) ?>:</label>
 		<select name="gender" id="gender">
@@ -45,6 +47,7 @@
 			<option value="lt"<?php if ($account_group_id_op == 'lt') echo ' selected="selected"' ?>><?php echo htmlspecialchars(Flux::message('IsLessThanLabel')) ?></option>
 		</select>
 		<input type="text" name="account_group_id" id="account_group_id" value="<?php echo htmlspecialchars((string)$params->get('account_group_id')) ?>" />
+<?php if ($canSeeDetails): ?>
 		...
 		<label for="balance"><?php echo htmlspecialchars(Flux::message('CreditBalanceLabel')) ?>:</label>
 		<select name="balance_op">
@@ -53,7 +56,9 @@
 			<option value="lt"<?php if ($balance_op == 'lt') echo ' selected="selected"' ?>><?php echo htmlspecialchars(Flux::message('IsLessThanLabel')) ?></option>
 		</select>
 		<input type="text" name="balance" id="balance" value="<?php echo htmlspecialchars((string)$params->get('balance')) ?>" />
+<?php endif ?>
 	</p>
+<?php if ($canSeeDetails): ?>
 	<p>
 		<label for="logincount"><?php echo htmlspecialchars(Flux::message('LoginCountLabel')) ?>:</label>
 		<select name="logincount_op">
@@ -70,13 +75,16 @@
 		<input type="checkbox" name="use_birthdate_before" id="use_birthdate_before"<?php if ($params->get('use_birthdate_before')) echo ' checked="checked"' ?> />
 		<?php echo $this->dateField('birthdate_before') ?>
 	</p>
+<?php endif ?>
 	<p>
+<?php if ($canSeeDetails): ?>
 		<label for="use_last_login_after"><?php echo htmlspecialchars(Flux::message('LoginBetweenLabel')) ?>:</label>
 		<input type="checkbox" name="use_last_login_after" id="use_last_login_after"<?php if ($params->get('use_last_login_after')) echo ' checked="checked"' ?> />
 		<?php echo $this->dateField('last_login_after') ?>
 		<label for="use_last_login_before">&mdash;</label>
 		<input type="checkbox" name="use_last_login_before" id="use_last_login_before"<?php if ($params->get('use_last_login_before')) echo ' checked="checked"' ?> />
 		<?php echo $this->dateField('last_login_before') ?>		
+<?php endif ?>
 		
 		<input type="submit" value="<?php echo htmlspecialchars(Flux::message('SearchButton')) ?>" />
 		<input type="button" value="<?php echo htmlspecialchars(Flux::message('ResetButton')) ?>" onclick="reload()" />
@@ -92,12 +100,24 @@
 		<th><?php echo $paginator->sortableColumn('login.sex', Flux::message('GenderLabel')) ?></th>
 		<th><?php echo $paginator->sortableColumn('group_id', Flux::message('AccountGroupIDLabel')) ?></th>
 		<th><?php echo $paginator->sortableColumn('state', Flux::message('AccountStateLabel')) ?></th>
+<?php if ($canSeeDetails): ?>
 		<th><?php echo $paginator->sortableColumn('balance', Flux::message('CreditBalanceLabel')) ?></th>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<th><?php echo $paginator->sortableColumn('login.email', Flux::message('EmailAddressLabel')) ?></th>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<th><?php echo $paginator->sortableColumn('logincount', Flux::message('LoginCountLabel')) ?></th>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<th><?php echo $paginator->sortableColumn('birthdate', Flux::message('AccountBirthdateLabel')) ?></th>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<th><?php echo $paginator->sortableColumn('lastlogin', Flux::message('LastLoginDateLabel')) ?></th>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<th><?php echo $paginator->sortableColumn('last_ip', Flux::message('LastUsedIpLabel')) ?></th>
+<?php endif ?>
 		<!-- <th><?php echo $paginator->sortableColumn('reg_date', 'Register Date') ?></th> -->
 	</tr>
 	<?php foreach ($accounts as $account): ?>
@@ -134,7 +154,10 @@
 				<span class="account-state state-unknown"><?php echo htmlspecialchars(Flux::message('UnknownLabel')) ?></span>
 			<?php endif ?>
 		</td>
+<?php if ($canSeeDetails): ?>
 		<td><?php echo number_format((int)$account->balance) ?></td>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<td>
 			<?php if ($account->email): ?>
 				<?php echo $this->linkToAccountSearch(array('email' => $account->email), $account->email) ?>
@@ -142,8 +165,14 @@
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
 			<?php endif ?>
 		</td>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<td><?php echo number_format((int)$account->logincount) ?></td>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<td><?php echo $account->birthdate ?></td>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<td>
 			<?php if (!$account->lastlogin || $account->lastlogin == '0000-00-00 00:00:00'): ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NeverLabel')) ?></span>
@@ -151,6 +180,8 @@
 				<?php echo $this->formatDateTime($account->lastlogin) ?>
 			<?php endif ?>
 		</td>
+<?php endif ?>
+<?php if ($canSeeDetails): ?>
 		<td>
 			<?php if ($account->last_ip): ?>
 				<?php echo $this->linkToAccountSearch(array('last_ip' => $account->last_ip), $account->last_ip) ?>
@@ -158,6 +189,7 @@
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
 			<?php endif ?>
 		</td>
+<?php endif ?>
 		<!-- <td>
 			<?php if (!$account->reg_date || $account->reg_date == '0000-00-00 00:00:00'): ?>
 				<span class="not-applicable">Unknown</span>
