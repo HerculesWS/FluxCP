@@ -138,7 +138,11 @@ class Flux_PaymentNotifyRequest {
 	 */
 	public static function decodeCustom($custom)
 	{
-		$parts = explode('.', (string)$custom);
+		if (!is_string($custom)) {
+			return array();
+		}
+
+		$parts = explode('.', $custom);
 		if (count($parts) !== 2) {
 			return array();
 		}

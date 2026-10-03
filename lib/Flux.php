@@ -389,7 +389,7 @@ class Flux {
 				self::raise("Failed to write ".$cachefile." permission error or data/tmp not exist in Flux::parseConfigFile()");
 			}
 			fwrite($fp, '<?php exit("Forbidden."); ?>');
-			fwrite($fp, json_encode($cf->toArray()));
+			fwrite($fp, json_encode($cf->toArray(), JSON_PRESERVE_ZERO_FRACTION));
 			fclose($fp);
 		}
 		
