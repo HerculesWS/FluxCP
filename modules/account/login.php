@@ -22,15 +22,12 @@ elseif (count($_POST)) {
 		$session->login($server, $username, $password, $code);
 		$returnURL = $params->get('return_url');
 
-		if ($session->loginAthenaGroup->loginServer->config->getUseMD5()) {
-			$password = Flux::hashPassword($password);
-		}
-
+		// Passwords are not kept in the login log.
 		$sql  = "INSERT INTO {$session->loginAthenaGroup->loginDatabase}.$loginLogTable ";
 		$sql .= "(account_id, username, password, ip, error_code, login_date) ";
 		$sql .= "VALUES (?, ?, ?, ?, ?, NOW())";
 		$sth  = $session->loginAthenaGroup->connection->getStatement($sql);
-		$sth->execute(array($session->account->account_id, $username, $password, $_SERVER['REMOTE_ADDR'], null));
+		$sth->execute(array($session->account->account_id, $username, '', $_SERVER['REMOTE_ADDR'], null));
 
 		if ($returnURL) {
 			$this->redirect($returnURL);
@@ -59,15 +56,11 @@ elseif (count($_POST)) {
 			if ($row) {
 				$accountID = $row->account_id;
 
-				if ($loginAthenaGroup->loginServer->config->getUseMD5()) {
-					$password = Flux::hashPassword($password);
-				}
-
 				$sql  = "INSERT INTO {$loginAthenaGroup->loginDatabase}.$loginLogTable ";
 				$sql .= "(account_id, username, password, ip, error_code, login_date) ";
 				$sql .= "VALUES (?, ?, ?, ?, ?, NOW())";
 				$sth  = $loginAthenaGroup->connection->getStatement($sql);
-				$sth->execute(array($accountID, $username, $password, $_SERVER['REMOTE_ADDR'], $e->getCode()));
+				$sth->execute(array($accountID, $username, '', $_SERVER['REMOTE_ADDR'], $e->getCode()));
 			}
 		}
 

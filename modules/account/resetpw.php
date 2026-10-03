@@ -59,7 +59,7 @@ if ($loginAthenaGroup->loginServer->config->getUseMD5()) {
 	$newPassword = Flux::hashPassword($newPassword);
 }
 
-if (!$sth->execute(array($_SERVER['REMOTE_ADDR'], $newPassword, $reset->id)) || $sth->rowCount() < 1) {
+if (!$sth->execute(array($_SERVER['REMOTE_ADDR'], null, $reset->id)) || $sth->rowCount() < 1) {
 	$session->setMessageData(Flux::message('ResetPwFailed'));
 	$this->redirect();
 }
