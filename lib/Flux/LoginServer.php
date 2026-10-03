@@ -255,7 +255,8 @@ class Flux_LoginServer extends Flux_BaseServer {
 			$sql .= "VALUES (?, ?, ?, ?, ?, NOW(), ?, 1)";
 			$sth  = $this->connection->getStatement($sql);
 
-			$sth->execute(array($idres->account_id, $username, $password, $gender, $email, $_SERVER['REMOTE_ADDR']));
+			// The registration log is only an audit trail, the password is kept out of it.
+			$sth->execute(array($idres->account_id, $username, '', $gender, $email, $_SERVER['REMOTE_ADDR']));
 			return $idres->account_id;
 		}
 		else {
