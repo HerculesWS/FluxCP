@@ -29,7 +29,7 @@ elseif (count($_POST)) {
 		$sth  = $session->loginAthenaGroup->connection->getStatement($sql);
 		$sth->execute(array($session->account->account_id, $username, '', $_SERVER['REMOTE_ADDR'], null));
 
-		if ($returnURL) {
+		if ($returnURL && $this->isLocalPath($returnURL)) {
 			$this->redirect($returnURL);
 		}
 		else {
