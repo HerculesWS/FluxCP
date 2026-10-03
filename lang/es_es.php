@@ -333,7 +333,8 @@ return array(
 	// - account/resetpw
 	'ResetPwTitle'                 => 'Recuperar Contraseña',
 	'ResetPwFailed'                => 'No se pudo recuperar la contraseña. Inténtalo de nuevo más tarde.',
-	'ResetPwDone'                  => 'Se ha cambiado tu contraseña y se te ha enviado un correo electrónico con tu nueva contraseña.',
+	'ResetPwDone'                  => 'Se ha cambiado tu contraseña, ya puedes iniciar sesión con tu nueva contraseña.',
+	'ResetPwInfo'                  => 'Por favor, elige una nueva contraseña para tu cuenta.',
 	'ResetPwDone2'                 => 'Se ha cambiado tu contraseña, pero no hemos podido enviar el correo electrónico que contiene tu nueva contraseña. Por favor, repite el proceso de recuperar tu contraseña para resolver este problema.',
 	// - account/transfer
 	'TransferTitle'                => 'Transferir Créditos de Donación',

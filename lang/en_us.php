@@ -319,7 +319,8 @@ return array(
 	// - account/resetpw
 	'ResetPwTitle'                 => 'Reset Password',
 	'ResetPwFailed'                => 'Failed to re-set password, please try again later.',
-	'ResetPwDone'                  => 'Your password has been reset and an e-mail containing your new password has been sent to you.',
+	'ResetPwDone'                  => 'Your password has been reset, you can now log-in with your new password.',
+	'ResetPwInfo'                  => 'Please choose a new password for your account.',
 	'ResetPwDone2'                 => 'Your password has been reset, but we failed to deliver the e-mail containing your new password.  Please reset again to resolve this issue.',
 	// - account/transfer
 	'TransferTitle'                => 'Transfer Donation Credits',

@@ -315,7 +315,8 @@ return array(
 	// - account/resetpw
 	'ResetPwTitle'                 => 'Redefinir Senha',
 	'ResetPwFailed'                => 'Falha ao redefinir senha, tente novamente mais tarde.',
-	'ResetPwDone'                  => 'Sua senha foi redefinida e um e-mail contendo a sua nova senha foi enviada para você.',
+	'ResetPwDone'                  => 'Sua senha foi redefinida, agora você pode entrar com a sua nova senha.',
+	'ResetPwInfo'                  => 'Por favor, escolha uma nova senha para a sua conta.',
 	'ResetPwDone2'                 => 'A sua senha foi redefinida, mas houve uma falha ao lhe enviar um e-mail contendo sua nova senha. Por favor, tente redefiní-la novamente para resolver esse problema.',
 	// - account/transfer
 	'TransferTitle'                => 'Transferir Créditos de Doação',
