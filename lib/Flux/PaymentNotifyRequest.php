@@ -429,8 +429,21 @@ class Flux_PaymentNotifyRequest {
 			$this->logPayPal('Transaction invalid, aborting.');
 
 			if(Flux::config('PaypalHackNotify')){
+				// Anyone can post fake notifications, so only send a few alert e-mails an hour.
+				require_once 'Flux/RateLimit.php';
+				$sourceIp = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+
+				if (Flux_RateLimit::isLimited('ipn_alert_ip', $sourceIp, 1, 3600) ||
+					Flux_RateLimit::isLimited('ipn_alert_all', 'all', 5, 3600)) {
+					$this->logPayPal('Hack detected! Alert e-mail skipped, too many were sent recently.');
+					return false;
+				}
+
+				Flux_RateLimit::hit('ipn_alert_ip', $sourceIp, 3600);
+				Flux_RateLimit::hit('ipn_alert_all', 'all', 3600);
+
 				require_once 'Flux/Mailer.php';
-				
+
 				$customArray  = self::decodeCustom($this->ipnVariables->get('custom'));
 				$customData   = new Flux_Config($customArray);
 				$accountID    = $customData->get('account_id');
@@ -455,7 +468,7 @@ class Flux_PaymentNotifyRequest {
 				$tmpl .= "<p>======= End Account Info ========</p>";
 				$tmpl .= "<br><br><br>";
 				$tmpl .= "<p>======= Transaction Info ========</p>";
-				$tmpl .= nl2br(htmlspecialchars(var_export($this->ipnVariables->toArray(), true)));
+				$tmpl .= nl2br(htmlspecialchars(substr(var_export($this->ipnVariables->toArray(), true), 0, 10000)));
 				$tmpl .= "<p>======= End Transaction Info ========</p>";
 				
 				$accountEmails = Flux::config('PayPalReceiverEmails');
