@@ -17,7 +17,7 @@
 			</option>
 			<?php foreach (Flux::config('ItemTypes')->toArray() as $typeId => $typeName): ?>
 				<option value="<?php echo $typeId ?>"<?php if (($type=$params->get('type')) === strval($typeId)) echo ' selected="selected"' ?>>
-					<?php echo htmlspecialchars($typeName) ?>
+					<?php echo htmlspecialchars((string)$typeName) ?>
 				</option>
 				<?php $itemTypes2 = Flux::config('ItemTypes2')->toArray() ?>
 				<?php if (array_key_exists($typeId, $itemTypes2)): ?>
@@ -37,7 +37,7 @@
 			</option>
 			<?php foreach (Flux::config('EquipLocationCombinations')->toArray() as $locId => $locName): ?>
 				<option value="<?php echo $locId ?>"<?php if (($equip_loc=$params->get('equip_loc')) === strval($locId)) echo ' selected="selected"' ?>>
-					<?php echo htmlspecialchars($locName) ?>
+					<?php echo htmlspecialchars((string)$locName) ?>
 				</option>
 			<?php endforeach ?>
 		</select>
@@ -156,29 +156,29 @@
 	</tr>
 	<?php foreach ($items as $item): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('item', 'view')): ?>
 				<?php echo $this->linkToItem($item->item_id, $item->item_id) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($item->item_id) ?>
+				<?php echo htmlspecialchars((string)$item->item_id) ?>
 			<?php endif ?>
 		</td>
 		<?php if ($icon=$this->iconImage($item->item_id)): ?>
-			<td width="24"><img src="<?php echo htmlspecialchars($icon) ?>?nocache=<?php echo rand() ?>" alt="" /></td>
-			<td><?php echo htmlspecialchars($item->name) ?></td>
+			<td class="emblem-cell"><img src="<?php echo htmlspecialchars((string)$icon) ?>?nocache=<?php echo rand() ?>" alt="" /></td>
+			<td><?php echo htmlspecialchars((string)$item->name) ?></td>
 		<?php else: ?>
-			<td colspan="2"><?php echo htmlspecialchars($item->name) ?></td>
+			<td colspan="2"><?php echo htmlspecialchars((string)$item->name) ?></td>
 		<?php endif ?>
 		<td>
 			<?php if ($type=$this->itemTypeText($item->type, $item->view)): ?>
-				<?php echo htmlspecialchars($type) ?>
+				<?php echo htmlspecialchars((string)$type) ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown<?php echo " (".$item->type.")" ?></span>
 			<?php endif ?>
 		</td>
 		<td>
 			<?php if ($loc=$this->equipLocationCombinationText($item->equip_locations)): ?>
-				<?php echo htmlspecialchars($loc) ?>
+				<?php echo htmlspecialchars((string)$loc) ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown<?php echo " (".$item->equip_locations.")" ?></span>
 			<?php endif ?>

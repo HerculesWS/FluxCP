@@ -1,16 +1,16 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Change Character Slot</h2>
 <?php if (!empty($errorMessage)): ?>
-<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post" class="generic-form">
 	<input type="hidden" name="changeslot" value="1" />
 	<?php echo Flux_Security::csrfGenerate('SlotEdit', true) ?>
 
 	<table class="generic-form-table">
 		<tr>
 			<th><label>Character Name</label></th>
-			<td><div><?php echo htmlspecialchars($char->name) ?></div></td>
+			<td><div><?php echo htmlspecialchars((string)$char->name) ?></div></td>
 			<td></td>
 		</tr>
 		<tr>
@@ -22,7 +22,7 @@
 			<td><p>You may input a slot number between 1 and <?php echo (int)$server->maxCharSlots ?>.</p></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="right"><input type="submit" value="Change Slot" /></td>
+			<td colspan="2" class="align-right"><input type="submit" value="Change Slot" /></td>
 			<td></td>
 		</tr>
 	</table>

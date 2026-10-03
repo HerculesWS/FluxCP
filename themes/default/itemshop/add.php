@@ -6,9 +6,9 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 <h3>Add Item to the Shop</h3>
 <?php if ($item): ?>
 <?php if (!empty($errorMessage)): ?>
-<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post" enctype="multipart/form-data">
 <?php echo Flux_Security::csrfGenerate('ItemShopAdd', true) ?>
 <?php if (!$stackable): ?>
 <input type="hidden" name="qty" value="1" />
@@ -20,7 +20,7 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 	</tr>
 	<tr>
 		<th>Name</th>
-		<td><?php echo htmlspecialchars($item->item_name) ?></td>
+		<td><?php echo htmlspecialchars((string)$item->item_name) ?></td>
 	</tr>
 	<tr>
 		<th><label for="category">Category</label></th>
@@ -28,7 +28,7 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 			<select name="category" id="category">
 				<option value="none"<?php if (is_null($category) || strtolower($category) == 'none') echo ' selected="selected"' ?>><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></option>
 				<?php foreach ($categories as $categoryID => $cat): ?>
-					<option value="<?php echo (int)$categoryID ?>"<?php if ($category === (string)$categoryID) echo ' selected="selected"' ?>><?php echo htmlspecialchars($cat) ?></option>
+					<option value="<?php echo (int)$categoryID ?>"<?php if ($category === (string)$categoryID) echo ' selected="selected"' ?>><?php echo htmlspecialchars((string)$cat) ?></option>
 				<?php endforeach ?>
 			</select>
 		</td>
@@ -59,7 +59,7 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="right">
+		<td colspan="2" class="align-right">
 			<input type="submit" value="Add" />
 		</td>
 	</tr>

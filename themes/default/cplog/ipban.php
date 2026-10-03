@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>IP Bans</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="ip">IP Address:</label>
@@ -44,11 +44,11 @@
 	</tr>
 	<?php foreach ($ipbans as $ipban): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('account', 'index')): ?>
 				<?php echo $this->linkToAccountSearch(array('last_ip' => $ipban->ip_address), $ipban->ip_address) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($ipban->ip_address) ?>
+				<?php echo htmlspecialchars((string)$ipban->ip_address) ?>
 			<?php endif ?>
 		</td>
 		<td>
@@ -85,7 +85,7 @@
 			<?php if ($ipban->ban_reason == ''): ?>
 				<span class="not-applicable">None</span>
 			<?php else: ?>
-				<?php echo htmlspecialchars($ipban->ban_reason) ?>
+				<?php echo htmlspecialchars((string)$ipban->ban_reason) ?>
 			<?php endif ?>
 		</td>
 	</tr>

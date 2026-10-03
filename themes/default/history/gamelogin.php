@@ -16,11 +16,11 @@
 		<?php if ($auth->actionAllowed('account', 'index')): ?>
 			<?php echo $this->linkToAccountSearch(array('last_ip' => $login->ip), $login->ip) ?>
 		<?php else: ?>
-			<?php echo htmlspecialchars($login->ip) ?>
+			<?php echo htmlspecialchars((string)$login->ip) ?>
 		<?php endif ?>
 		</td>
 		<td><?php echo $login->rcode ?></td>
-		<td><?php echo htmlspecialchars($login->log) ?></td>
+		<td><?php echo htmlspecialchars((string)$login->log) ?></td>
 	</tr>
 	<?php endforeach ?>
 </table>

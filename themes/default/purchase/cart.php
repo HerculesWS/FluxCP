@@ -17,7 +17,7 @@
 				<h4>
 					<label>
 						<input type="checkbox" name="num[]" value="<?php echo $num ?>" />
-						<?php echo htmlspecialchars($item->shop_item_name) ?>
+						<?php echo htmlspecialchars((string)$item->shop_item_name) ?>
 					</label>
 				</h4>
 				<?php if ($item->shop_item_qty > 1): ?>
@@ -31,7 +31,7 @@
 					<a href="<?php echo htmlspecialchars($this->url('purchase', 'remove', array('num' => $num))) ?>">Remove from Cart</a> /
 					<a href="<?php echo htmlspecialchars($this->url('purchase', 'add', array('id' => $item->shop_item_id, 'cart' => true))) ?>">Add Another to Cart</a>
 				</p>
-				<p><?php echo nl2br(htmlspecialchars($item->shop_item_info)) ?></p>
+				<p><?php echo nl2br(htmlspecialchars((string)$item->shop_item_info)) ?></p>
 			</td>
 		</tr>
 		<?php endforeach ?>

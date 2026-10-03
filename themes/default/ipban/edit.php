@@ -2,9 +2,9 @@
 <h2><?php echo htmlspecialchars(Flux::message('IpbanEditHeading')) ?></h2>
 <?php if ($ipban): ?>
 	<?php if (!empty($errorMessage)): ?>
-		<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+		<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 	<?php endif ?>
-	<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
+	<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post" class="generic-form">
 		<input type="hidden" name="modipban" value="1" />
 	<?php echo Flux_Security::csrfGenerate('IPBanEdit', true) ?>
 

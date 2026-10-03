@@ -91,6 +91,7 @@ if (count($_POST)) {
 			case Flux_RegisterError::USERNAME_TOO_LONG:
 				$errorMessage = Flux::message('UsernameTooLong');
 				break;
+			case Flux_RegisterError::USERNAME_IN_PASSWORD:
 			case Flux_RegisterError::PASSWORD_HAS_USERNAME:
 				$errorMessage = Flux::message ('PasswordHasUsername');
 				break;

@@ -16,12 +16,12 @@
 		<?php if ($auth->actionAllowed('account', 'index')): ?>
 			<?php echo $this->linkToAccountSearch(array('last_ip' => $reset->request_ip), $reset->request_ip) ?>
 		<?php else: ?>
-			<?php echo htmlspecialchars($reset->request_ip) ?>
+			<?php echo htmlspecialchars((string)$reset->request_ip) ?>
 		<?php endif ?>
 		</td>
 		<td>
 			<?php if ($reset->reset_date): ?>
-				<?php echo htmlspecialchars($reset->reset_date) ?>
+				<?php echo htmlspecialchars((string)$reset->reset_date) ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NeverLabel')) ?></span>
 			<?php endif ?>
@@ -31,7 +31,7 @@
 				<?php if ($auth->actionAllowed('account', 'index')): ?>
 					<?php echo $this->linkToAccountSearch(array('last_ip' => $reset->reset_ip), $reset->reset_ip) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($reset->reset_ip) ?>
+					<?php echo htmlspecialchars((string)$reset->reset_ip) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>

@@ -24,21 +24,21 @@
 		<?php foreach ($banlist as $list): ?>
 		<tr>
 			<?php if ($auth->allowedToRemoveIpBan && $auth->actionAllowed('ipban', 'unban')): ?>
-			<td align="center">
-				<input type="checkbox" class="unban-cb" name="unban_list[]" value="<?php echo htmlspecialchars($list->list) ?>" />
+			<td class="align-center">
+				<input type="checkbox" class="unban-cb" name="unban_list[]" value="<?php echo htmlspecialchars((string)$list->list) ?>" />
 			</td>
 			<?php endif ?>
 			<td>
 			<?php if ($auth->actionAllowed('account', 'index')): ?>
 				<?php echo $this->linkToAccountSearch(array('last_ip' => $list->list), $list->list) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($list->list) ?>
+				<?php echo htmlspecialchars((string)$list->list) ?>
 			<?php endif ?>
 			</td>
 			<td><?php echo $this->formatDateTime($list->btime) ?></td>
 			<td>
 				<?php if ($list->reason): ?>
-					<?php echo htmlspecialchars($list->reason) ?>
+					<?php echo htmlspecialchars((string)$list->reason) ?>
 				<?php else: ?>
 					<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
 				<?php endif ?>

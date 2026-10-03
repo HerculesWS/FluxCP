@@ -2,9 +2,9 @@
 <h2><?php echo htmlspecialchars(Flux::message('AccountEditHeading')) ?></h2>
 <?php if ($account): ?>
 	<?php if (!empty($errorMessage)): ?>
-		<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+		<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 	<?php endif ?>
-	<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post">
+	<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post">
 		<?php echo Flux_Security::csrfGenerate('AccountEdit', true) ?>
 		<table class="vertical-table">
 			<tr>
@@ -15,7 +15,7 @@
 			</tr>
 			<tr>
 				<th><label for="email"><?php echo htmlspecialchars(Flux::message('EmailAddressLabel')) ?></label></th>
-				<td><input type="text" name="email" id="email" value="<?php echo htmlspecialchars($account->email) ?>" /></td>
+				<td><input type="text" name="email" id="email" value="<?php echo htmlspecialchars((string)$account->email) ?>" /></td>
 				<?php if ($auth->allowedToEditAccountGroupID && !$isMine): ?>
 					<th><label for="group_id"><?php echo htmlspecialchars(Flux::message('AccountGroupIDLabel')) ?></label></th>
 					<td><input type="text" name="group_id" id="group_id" value="<?php echo (int)$account->group_id ?>" /></td>
@@ -76,10 +76,10 @@
 			</tr>
 			<tr>
 				<th><label for="last_ip"><?php echo htmlspecialchars(Flux::message('LastUsedIpLabel')) ?></label></th>
-				<td colspan="3"><input type="text" name="last_ip" id="last_ip" value="<?php echo htmlspecialchars($account->last_ip) ?>" /></td>
+				<td colspan="3"><input type="text" name="last_ip" id="last_ip" value="<?php echo htmlspecialchars((string)$account->last_ip) ?>" /></td>
 			</tr>
 			<tr>
-				<td colspan="4" align="right">
+				<td colspan="4" class="align-right">
 					<input type="submit" value="<?php echo htmlspecialchars(Flux::message('AccountEditButton')) ?>" />
 				</td>
 			</tr>

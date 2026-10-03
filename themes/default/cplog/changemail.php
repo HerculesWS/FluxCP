@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>E-mail Changes</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="use_request_after">Request Date Between:</label>
@@ -58,7 +58,7 @@
 	</tr>
 	<?php foreach ($changes as $change): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('account', 'view')): ?>
 				<?php echo $this->linkToAccount($change->account_id, $change->account_id) ?>
 			<?php else: ?>
@@ -67,7 +67,7 @@
 		</td>
 		<td>
 			<?php if ($change->userid): ?>
-				<?php echo htmlspecialchars($change->userid) ?>
+				<?php echo htmlspecialchars((string)$change->userid) ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown</span>
 			<?php endif ?>
@@ -76,14 +76,14 @@
 		<?php if ($auth->actionAllowed('account', 'index')): ?>
 			<?php echo $this->linkToAccountSearch(array('email' => $change->old_email), $change->old_email) ?>
 		<?php else: ?>
-			<?php echo htmlspecialchars($change->old_email) ?>
+			<?php echo htmlspecialchars((string)$change->old_email) ?>
 		<?php endif ?>
 		</td>
 		<td>
 		<?php if ($auth->actionAllowed('account', 'index')): ?>
 			<?php echo $this->linkToAccountSearch(array('email' => $change->new_email), $change->new_email) ?>
 		<?php else: ?>
-			<?php echo htmlspecialchars($change->new_email) ?>
+			<?php echo htmlspecialchars((string)$change->new_email) ?>
 		<?php endif ?>
 		</td>
 		<td><?php echo $this->formatDateTime($change->request_date) ?></td>
@@ -91,7 +91,7 @@
 			<?php if ($auth->actionAllowed('account', 'index')): ?>
 				<?php echo $this->linkToAccountSearch(array('last_ip' => $change->request_ip), $change->request_ip) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($change->request_ip) ?>
+				<?php echo htmlspecialchars((string)$change->request_ip) ?>
 			<?php endif ?>
 		</td>
 		<td>
@@ -106,7 +106,7 @@
 				<?php if ($auth->actionAllowed('account', 'index')): ?>
 					<?php echo $this->linkToAccountSearch(array('last_ip' => $change->change_ip), $change->change_ip) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($change->change_ip) ?>
+					<?php echo htmlspecialchars((string)$change->change_ip) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable">None</span>

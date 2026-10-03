@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Account Bans</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="account">Account:</label>
@@ -44,7 +44,7 @@
 	</tr>
 	<?php foreach ($bans as $ban): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('account', 'view') && $auth->allowedToViewAccount): ?>
 				<?php echo $this->linkToAccount($ban->account_id, $ban->banned_userid) ?>
 			<?php else: ?>
@@ -87,7 +87,7 @@
 			<?php if ($ban->ban_reason == ''): ?>
 				<span class="not-applicable">None</span>
 			<?php else: ?>
-				<?php echo htmlspecialchars($ban->ban_reason) ?>
+				<?php echo htmlspecialchars((string)$ban->ban_reason) ?>
 			<?php endif ?>
 		</td>
 	</tr>

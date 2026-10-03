@@ -17,7 +17,7 @@
 	</tr>
 	<?php foreach ($messages as $message): ?>
 	<tr>
-		<td align="right"><?php echo $this->formatDateTime($message->time) ?></td>
+		<td class="align-right"><?php echo $this->formatDateTime($message->time) ?></td>
 		<td><?php echo $message->type ?></td>
 		<td>
 			<?php if ($message->type_id): ?>
@@ -75,12 +75,12 @@
 		</td>
 		<td>
 			<?php if ($message->dst_charname): ?>
-				<?php echo htmlspecialchars($message->dst_charname) ?>
+				<?php echo htmlspecialchars((string)$message->dst_charname) ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
 			<?php endif ?>
 		</td>
-		<td><?php echo htmlspecialchars($message->message) ?></td>
+		<td><?php echo htmlspecialchars((string)$message->message) ?></td>
 	</tr>
 	<?php endforeach ?>
 </table>

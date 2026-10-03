@@ -216,11 +216,23 @@ class Flux_Athena {
 					continue;
 				}
 				
+				// Optional fifth item: castle IDs that are contested during this window.
+				$castleIds = array();
+				if (isset($dayTime[4])) {
+					$castleList = $dayTime[4] instanceOf Flux_Config ? $dayTime[4]->toArray() : (array)$dayTime[4];
+					foreach ($castleList as $castleId) {
+						if (is_numeric($castleId)) {
+							$castleIds[] = (int)$castleId;
+						}
+					}
+				}
+				
 				$this->woeDayTimes[] = array(
 					'startingDay'  => $sDay,
 					'startingTime' => $sTime,
 					'endingDay'    => $eDay,
-					'endingTime'   => $eTime
+					'endingTime'   => $eTime,
+					'castles'      => $castleIds
 				);
 			}
 		}
@@ -832,6 +844,70 @@ class Flux_Athena {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Describe the WoE schedule relative to the current server time.
+	 *
+	 * Returns an array with:
+	 *  - configured: whether any WoE hours are set
+	 *  - active:     whether a WoE window is in progress right now
+	 *  - window:     the current window (when active) or the next one (otherwise),
+	 *                as array(start, end, castles) where start/end are DateTime objects
+	 *                in the server's timezone, or null when nothing is scheduled
+	 *
+	 * @return array
+	 */
+	public function getWoeStatus()
+	{
+		$status = array('configured' => !empty($this->woeDayTimes), 'active' => false, 'window' => null);
+		if (!$status['configured']) {
+			return $status;
+		}
+		
+		$timezone = $this->dateTimezone ? new DateTimeZone($this->dateTimezone) : null;
+		$now      = new DateTime('now', $timezone);
+		$today    = clone $now;
+		$today->setTime(0, 0, 0);
+		$todayDay = (int)$now->format('w');
+		$next     = null;
+		
+		foreach ($this->woeDayTimes as $woeDayTime) {
+			list ($sHour, $sMin) = array_map('intval', explode(':', $woeDayTime['startingTime']));
+			list ($eHour, $eMin) = array_map('intval', explode(':', $woeDayTime['endingTime']));
+			
+			// Check last week's, this week's and next week's occurrence of the window.
+			foreach (array(-7, 0, 7) as $weekOffset) {
+				$start = clone $today;
+				$start->modify(sprintf('%+d days', $woeDayTime['startingDay'] - $todayDay + $weekOffset));
+				$start->setTime($sHour, $sMin, 0);
+				
+				$end = clone $today;
+				$end->modify(sprintf('%+d days', $woeDayTime['endingDay'] - $todayDay + $weekOffset));
+				$end->setTime($eHour, $eMin, 0);
+				if ($end <= $start) {
+					$end->modify('+7 days');
+				}
+				
+				$window = array(
+					'start'   => $start,
+					'end'     => $end,
+					'castles' => isset($woeDayTime['castles']) ? $woeDayTime['castles'] : array()
+				);
+				
+				if ($start <= $now && $now < $end) {
+					$status['active'] = true;
+					$status['window'] = $window;
+					return $status;
+				}
+				elseif ($start > $now && ($next === null || $start < $next['start'])) {
+					$next = $window;
+				}
+			}
+		}
+		
+		$status['window'] = $next;
+		return $status;
 	}
 }
 ?>

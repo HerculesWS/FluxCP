@@ -2,7 +2,7 @@
 <h2>Viewing Monster</h2>
 <?php if ($monster): ?>
 <h3>
-	#<?php echo $monster->monster_id ?>: <?php echo htmlspecialchars($monster->iro_name) ?>
+	#<?php echo $monster->monster_id ?>: <?php echo htmlspecialchars((string)$monster->iro_name) ?>
 	<?php if ($monster->mvp_exp): ?>
 		<span class="mvp">(MVP)</span>
 	<?php endif ?>
@@ -17,11 +17,11 @@
 		</td>
 		<?php endif ?>
 		<th>Sprite</th>
-		<td><?php echo htmlspecialchars($monster->sprite) ?></td>
+		<td><?php echo htmlspecialchars((string)$monster->sprite) ?></td>
 	</tr>
 	<tr>
 		<th>kRO Name</th>
-		<td><?php echo htmlspecialchars($monster->kro_name) ?></td>
+		<td><?php echo htmlspecialchars((string)$monster->kro_name) ?></td>
 		<th>Custom</th>
 		<td>
 			<?php if (preg_match('/mob_db2$/', $monster->origin_table)): ?>
@@ -33,7 +33,7 @@
 	</tr>
 	<tr>
 		<th>iRO Name</th>
-		<td><?php echo htmlspecialchars($monster->iro_name) ?></td>
+		<td><?php echo htmlspecialchars((string)$monster->iro_name) ?></td>
 		<th>HP</th>
 		<td><?php echo number_format($monster->hp) ?></td>
 	</tr>
@@ -41,7 +41,7 @@
 		<th>Size</th>
 		<td>
 			<?php if ($size=Flux::monsterSizeName($monster->size)): ?>
-				<?php echo htmlspecialchars($size) ?>
+				<?php echo htmlspecialchars((string)$size) ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown</span>
 			<?php endif ?>
@@ -53,7 +53,7 @@
 		<th>Race</th>
 		<td>
 			<?php if ($race=Flux::monsterRaceName($monster->race)): ?>
-				<?php echo htmlspecialchars($race) ?>
+				<?php echo htmlspecialchars((string)$race) ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown</span>
 			<?php endif ?>	
@@ -108,7 +108,7 @@
 		<td colspan="<?php echo $image ? 4 : 3 ?>">
 			<ul class="monster-mode">
 			<?php foreach ($this->monsterMode($monster->mode) as $mode): ?>
-				<li><?php echo htmlspecialchars($mode) ?></li>
+				<li><?php echo htmlspecialchars((string)$mode) ?></li>
 			<?php endforeach ?>
 			</ul>
 		</td>
@@ -138,7 +138,7 @@
 	</tr>
 </table>
 
-<h3><?php echo htmlspecialchars($monster->iro_name) ?> Item Drops</h3>
+<h3><?php echo htmlspecialchars((string)$monster->iro_name) ?> Item Drops</h3>
 <?php if ($itemDrops): ?>
 <table class="vertical-table">
 	<tr>
@@ -149,12 +149,12 @@
 	<?php $mvpDrops = 0; ?>
 	<?php foreach ($itemDrops as $itemDrop): ?>
 	<tr class="item-drop-<?php echo $itemDrop['type'] ?>"
-		title="<strong><?php echo htmlspecialchars($itemDrop['name']) ?></strong> (<?php echo (float)$itemDrop['chance'] ?>%)">
-		<td align="right">
+		title="<strong><?php echo htmlspecialchars((string)$itemDrop['name']) ?></strong> (<?php echo (float)$itemDrop['chance'] ?>%)">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('item', 'view')): ?>
 				<?php echo $this->linkToItem($itemDrop['id'], $itemDrop['id']) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($itemDrop['id']) ?>
+				<?php echo htmlspecialchars((string)$itemDrop['id']) ?>
 			<?php endif ?>
 		</td>
 		<?php if ($image=$this->iconImage($itemDrop['id'])): ?>
@@ -164,7 +164,7 @@
 				<?php ++$mvpDrops; ?>
 					<span class="mvp">MVP!</span>
 				<?php endif ?>
-				<?php echo htmlspecialchars($itemDrop['name']) ?>
+				<?php echo htmlspecialchars((string)$itemDrop['name']) ?>
 			</td>
 		<?php else: ?>
 			<td colspan="2">
@@ -172,7 +172,7 @@
 				<?php ++$mvpDrops; ?>
 					<span class="mvp">MVP!</span>
 				<?php endif ?>
-				<?php echo htmlspecialchars($itemDrop['name']) ?>
+				<?php echo htmlspecialchars((string)$itemDrop['name']) ?>
 			</td>
 		<?php endif ?>
 		<td><?php echo (float)$itemDrop['chance'] ?>%</td>
@@ -180,17 +180,17 @@
 	<?php endforeach ?>
 	<?php if ($mvpDrops > 1): ?>
 	<tr>
-		<td colspan="4" align="center">
+		<td colspan="4" class="align-center">
 			<p><em>Note: Only <strong>one</strong> MVP drop will be rewarded.</em></p>
 		</td>
 	</tr>
 	<?php endif ?>
 </table>
 <?php else: ?>
-<p>No item drops found for <?php echo htmlspecialchars($monster->iro_name) ?>.</p>
+<p>No item drops found for <?php echo htmlspecialchars((string)$monster->iro_name) ?>.</p>
 <?php endif ?>
 
-<h3>Monster Skills for “<?php echo htmlspecialchars($monster->iro_name) ?>”</h3>
+<h3>Monster Skills for “<?php echo htmlspecialchars((string)$monster->iro_name) ?>”</h3>
 <?php if ($mobSkills): ?>
 <table class="vertical-table">
 	<tr>
@@ -207,18 +207,18 @@
 	</tr>	
 	<?php foreach ($mobSkills as $skill): ?>
 	<tr>
-		<td><?php echo htmlspecialchars($skill->INFO) ?></td>
-		<td><?php echo htmlspecialchars($skill->SKILL_LV) ?></td>
+		<td><?php echo htmlspecialchars((string)$skill->INFO) ?></td>
+		<td><?php echo htmlspecialchars((string)$skill->SKILL_LV) ?></td>
 		<td><?php echo htmlspecialchars(ucfirst($skill->STATE)) ?></td>
 		<td><?php echo $skill->RATE ?>%</td>
 		<td><?php echo $skill->CASTTIME ?>s</td>
 		<td><?php echo $skill->DELAY ?>s</td>
 		<td><?php echo htmlspecialchars(ucfirst($skill->CANCELABLE)) ?></td>
 		<td><?php echo htmlspecialchars(ucfirst($skill->TARGET)) ?></td>
-		<td><em><?php echo htmlspecialchars($skill->CONDITION) ?></em></td>
+		<td><em><?php echo htmlspecialchars((string)$skill->CONDITION) ?></em></td>
 		<td>
 			<?php if (!is_null($skill->CONDITION_VALUE) && trim($skill->CONDITION_VALUE) !== ''): ?>
-				<?php echo htmlspecialchars($skill->CONDITION_VALUE) ?>
+				<?php echo htmlspecialchars((string)$skill->CONDITION_VALUE) ?>
 			<?php else: ?>
 				<span class="not-applicable">None</span>
 			<?php endif ?>
@@ -227,7 +227,7 @@
 	<?php endforeach ?>
 </table>
 <?php else: ?>
-<p>No skills found for <?php echo htmlspecialchars($monster->iro_name) ?>.</p>
+<p>No skills found for <?php echo htmlspecialchars((string)$monster->iro_name) ?>.</p>
 <?php endif ?>
 <?php else: ?>
 <p>No such monster was found. <a href="javascript:history.go(-1)">Go back</a>.</p>

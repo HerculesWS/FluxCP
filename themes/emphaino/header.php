@@ -1,16 +1,17 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<?php if (isset($metaRefresh)): ?>
-		<meta http-equiv="refresh" content="<?php echo $metaRefresh['seconds'] ?>; URL=<?php echo $metaRefresh['location'] ?>" />
+		<meta http-equiv="refresh" content="<?php echo $metaRefresh['seconds'] ?>; URL=<?php echo htmlspecialchars((string)$metaRefresh['location']) ?>">
 		<?php endif ?>
 		<title><?php if (isset($title)) echo "$title &raquo; "; echo Flux::config('SiteTitle'); ?></title>
 		<!--[if lt IE 9]>
 		<script src="<?php echo $this->themePath('js/html5.js') ?>" type="text/javascript"></script>
 		<![endif]-->
-		<link rel='stylesheet' id='webfonts-css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic|Bree+Serif' type='text/css' media='all' />
+		<link rel='stylesheet' id='webfonts-css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic|Bree+Serif' type='text/css' media='all' />
 		<link rel='stylesheet' id='style-css' href='<?php echo $this->themePath('css/style.css') ?>' type='text/css' media='all' />
 		<link rel='stylesheet' id='fontello-css'  href='<?php echo $this->themePath('lib/fontello/css/fontello.css?ver=1.2.2') ?>' type='text/css' media='all' />
 		<?php if (Flux::config('EnableReCaptcha')): ?>
@@ -21,23 +22,22 @@
 		<![endif]-->
 		<script type='text/javascript' src='<?php echo $this->themePath('js/jquery.js?ver=1.10.2') ?>'></script>
 		<script type='text/javascript' src='<?php echo $this->themePath('js/flux.datefields.js') ?>'></script>
+		<script type='text/javascript' src='<?php echo $this->themePath('js/flux.tablecards.js') ?>'></script>
+		<script type='text/javascript' src='<?php echo $this->themePath('js/flux.searchform.js') ?>'></script>
+		<script type='text/javascript' src='<?php echo $this->themePath('js/flux.filterbar.js') ?>'></script>
+		<script type='text/javascript' src='<?php echo $this->themePath('js/flux.datepicker.js') ?>'></script>
+		<script type='text/javascript'>
+			// Titles carry markup for the default theme's tooltip; show plain text in native tooltips.
+			document.addEventListener('DOMContentLoaded', function () {
+				var nodes = document.querySelectorAll('[title*="<"]');
+				for (var i = 0; i < nodes.length; ++i) {
+					var doc = new DOMParser().parseFromString(nodes[i].getAttribute('title'), 'text/html');
+					nodes[i].setAttribute('title', doc.body.textContent);
+				}
+			});
+		</script>
 		<script type='text/javascript'>
 			$(document).ready(function(){
-				var inputs = 'input[type=text],input[type=password],input[type=file]';
-				$(inputs).focus(function(){
-					$(this).css({
-						'background-color': '#f9f5e7',
-						'border-color': '#dcd7c7',
-						'color': '#726c58'
-					});
-				});
-				$(inputs).blur(function(){
-					$(this).css({
-						'backgroundColor': '#ffffff',
-						'borderColor': '#dddddd',
-						'color': '#444444'
-					}, 500);
-				});
 				$('.money-input').keyup(function() {
 					var creditValue = parseInt($(this).val() / <?php echo Flux::config('CreditExchangeRate') ?>, 10);
 					if (isNaN(creditValue))
@@ -139,7 +139,7 @@
 								
 					<!-- Messages -->
 					<?php if ($message=$session->getMessage()): ?>
-					<p class="message"><?php echo htmlspecialchars($message) ?></p>
+					<p class="message"><?php echo htmlspecialchars((string)$message) ?></p>
 					<?php endif ?>
 								
 

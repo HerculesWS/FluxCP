@@ -5,14 +5,14 @@
 <table class="vertical-table">
 	<tr>
 		<th>Transaction ID</th>
-		<td><?php echo htmlspecialchars($txn->txn_id) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->txn_id) ?></td>
 		<th>Account</th>
 		<td>
 			<?php if ($txn->account_id): ?>
 				<?php if ($auth->actionAllowed('account', 'view') && $auth->allowedToViewAccount): ?>
 					<?php echo $this->linkToAccount($txn->account_id, $txn->userid) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($txn->userid) ?>
+					<?php echo htmlspecialchars((string)$txn->userid) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown</span>
@@ -41,31 +41,31 @@
 	</tr>
 	<tr>
 		<th>Status</th>
-		<td><?php echo htmlspecialchars($txn->payment_status) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->payment_status) ?></td>
 		<th>Item Name</th>
-		<td colspan="3"><?php echo htmlspecialchars($txn->item_name) ?></td>
+		<td colspan="3"><?php echo htmlspecialchars((string)$txn->item_name) ?></td>
 	</tr>
 	<tr>
 		<th>First Name</th>
-		<td><?php echo htmlspecialchars($txn->first_name) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->first_name) ?></td>
 		<th rowspan="2">Address</th>
 		<td colspan="3" rowspan="2">
-			<?php echo htmlspecialchars($txn->address_street) ?><br />
-			<?php echo htmlspecialchars($txn->address_city) ?>,
-			<?php echo htmlspecialchars($txn->address_state) ?>,
-			<?php echo htmlspecialchars($txn->address_country) ?>
-			<?php echo htmlspecialchars($txn->address_zip) ?>
+			<?php echo htmlspecialchars((string)$txn->address_street) ?><br />
+			<?php echo htmlspecialchars((string)$txn->address_city) ?>,
+			<?php echo htmlspecialchars((string)$txn->address_state) ?>,
+			<?php echo htmlspecialchars((string)$txn->address_country) ?>
+			<?php echo htmlspecialchars((string)$txn->address_zip) ?>
 		</td>
 	</tr>
 	<tr>
 		<th>Last Name</th>
-		<td><?php echo htmlspecialchars($txn->last_name) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->last_name) ?></td>
 	</tr>
 </table>
 <?php if ($auth->allowedToViewRawTxnLogData): ?>
 	<h3>Raw Transaction Log</h3>
 	<?php if ($txnFileLog): ?>
-	<pre class="raw-txn-log"><?php echo htmlspecialchars($txnFileLog) ?></pre>
+	<pre class="raw-txn-log"><?php echo htmlspecialchars((string)$txnFileLog) ?></pre>
 	<?php else: ?>
 	<p>The raw log for this transaction could not be found.</p>
 	<?php endif ?>	

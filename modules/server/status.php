@@ -48,4 +48,66 @@ else {
 		fclose($fp);
 	}
 }
+
+// Peak of the Players Online count, kept in a small file so it survives the status cache refreshing.
+$peakDir    = FLUX_DATA_DIR.'/logs/peak';
+$serverPeak = array();
+if (!is_dir($peakDir)) {
+	@mkdir($peakDir, 0700, true);
+}
+foreach ($serverStatus as $groupName => $gameServers) {
+	foreach ($gameServers as $serverName => $gameServer) {
+		$peakFile = $peakDir.'/'.preg_replace('/[^A-Za-z0-9_.-]/', '_', "$groupName-$serverName").'.json';
+		$peak     = array('peak' => 0, 'time' => 0);
+		if (is_file($peakFile)) {
+			$stored = json_decode((string)file_get_contents($peakFile), true);
+			if (is_array($stored)) {
+				$peak = array_merge($peak, $stored);
+			}
+		}
+		$playersOnline = (int)$gameServer['playersOnline'];
+		if (!is_file($peakFile) || $playersOnline > $peak['peak']) {
+			$peak = array('peak' => $playersOnline, 'time' => time());
+			@file_put_contents($peakFile, json_encode($peak));
+		}
+		$serverPeak[$groupName][$serverName] = $peak;
+	}
+}
+
+// Live WoE state (never cached): in progress now, or the next scheduled window.
+$castleNames = Flux::config('CastleNames')->toArray();
+$woeStatus   = array();
+foreach (Flux::$loginAthenaGroupRegistry as $groupName => $loginAthenaGroup) {
+	foreach ($loginAthenaGroup->athenaServers as $athenaServer) {
+		$state  = $athenaServer->getWoeStatus();
+		$window = $state['window'];
+		$info   = array('configured' => $state['configured'], 'active' => $state['active'], 'when' => '', 'until' => '', 'in' => '', 'start' => '', 'end' => '', 'castles' => array());
+		
+		if ($window) {
+			$start = $window['start'];
+			$end   = $window['end'];
+			$info['when'] = $start->format('l H:i').' - '.($start->format('Y-m-d') === $end->format('Y-m-d') ? '' : $end->format('l ')).$end->format('H:i');
+			
+			$info['until'] = $end->format('l H:i');
+			$info['start'] = $start->format('c');
+			$info['end']   = $end->format('c');
+			
+			if (!$state['active']) {
+				$secs  = max(0, $start->getTimestamp() - time());
+				$days  = (int)floor($secs / 86400);
+				$hours = (int)floor(($secs % 86400) / 3600);
+				$mins  = (int)floor(($secs % 3600) / 60);
+				$info['in'] = $days ? "{$days}d {$hours}h" : ($hours ? "{$hours}h {$mins}m" : "{$mins}m");
+			}
+			
+			foreach ($window['castles'] as $castleId) {
+				if (isset($castleNames[$castleId])) {
+					$info['castles'][] = $castleNames[$castleId];
+				}
+			}
+		}
+		
+		$woeStatus[$groupName][$athenaServer->serverName] = $info;
+	}
+}
 ?>

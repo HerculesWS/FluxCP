@@ -886,6 +886,30 @@ class Flux {
 	}
 	
 	/**
+	 * Reduce a bitmask to its low 32 bits as a native int.
+	 * Unsigned 64-bit database values (e.g. 18446744073709551615 for "all")
+	 * overflow PHP_INT_MAX and trigger implicit conversion deprecations,
+	 * and the equip bit lists only use the low 32 bits.
+	 * @param int|string $bitmask
+	 * @return int
+	 */
+	private static function bitmaskLow32($bitmask)
+	{
+		if (is_int($bitmask)) {
+			return $bitmask & 0xFFFFFFFF;
+		}
+		
+		$digits = preg_replace('/\D/', '', (string)$bitmask);
+		$low    = 0;
+		
+		for ($i = 0, $len = strlen($digits); $i < $len; ++$i) {
+			$low = ($low * 10 + (int)$digits[$i]) % 4294967296;
+		}
+		
+		return $low;
+	}
+	
+	/**
 	 * Perform a bitwise AND from each bit in getEquipUpperList() on $bitmask
 	 * to determine which bits have been set.
 	 * @param int $bitmask
@@ -893,6 +917,7 @@ class Flux {
 	 */
 	public static function equipUpperToArray($bitmask)
 	{
+		$bitmask = self::bitmaskLow32($bitmask);
 		$arr  = array();
 		$bits = self::getEquipUpperList();
 		
@@ -913,6 +938,7 @@ class Flux {
 	 */
 	public static function equipJobsToArray($bitmask)
 	{
+		$bitmask = self::bitmaskLow32($bitmask);
 		$arr  = array();
 		$bits = self::getEquipJobsList();
 		

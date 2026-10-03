@@ -36,6 +36,7 @@ return array(
 			'index'    => AccountLevel::LOWGM,
 			'view'     => AccountLevel::NORMAL,
 			'create'   => AccountLevel::UNAUTH,
+			'check'    => AccountLevel::UNAUTH,
 			'login'    => AccountLevel::UNAUTH,
 			'logout'   => AccountLevel::NORMAL,
 			'transfer' => AccountLevel::NORMAL,
@@ -102,6 +103,7 @@ return array(
 		'server'    => array(
 			'status'     => AccountLevel::ANYONE,
 			'status-xml' => AccountLevel::ANYONE,
+			'status-json' => AccountLevel::ANYONE,
 			'info'       => AccountLevel::ANYONE
 		),
 		'logdata'   => array(

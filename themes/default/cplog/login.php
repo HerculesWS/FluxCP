@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Logins</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="use_login_after">Login Date Between:</label>
@@ -31,7 +31,7 @@
 			<option value="all"<?php if (is_null($params->get('error_code')) || strtolower((string)$params->get('error_code')) == 'all') echo ' selected="selected"' ?>>All</option>
 			<option value="none"<?php if (strtolower((string)$params->get('error_code')) == 'none') echo ' selected="selected"' ?>>None</option>
 		<?php foreach ($loginErrors->toArray() as $errorCode => $errorType): ?>
-			<option value="<?php echo $errorCode ?>"<?php if (ctype_digit($params->get('error_code')) && $params->get('error_code') == $errorCode) echo ' selected="selected"' ?>><?php echo htmlspecialchars($errorType) ?></option>
+			<option value="<?php echo $errorCode ?>"<?php if (ctype_digit($params->get('error_code')) && $params->get('error_code') == $errorCode) echo ' selected="selected"' ?>><?php echo htmlspecialchars((string)$errorType) ?></option>
 		<?php endforeach ?>
 		</select>
 		
@@ -54,22 +54,22 @@
 	</tr>
 	<?php foreach ($logins as $login): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('account', 'view') && $auth->allowedToViewAccount): ?>
 				<?php echo $this->linkToAccount($login->account_id, $login->account_id) ?>
 			<?php else: ?>
 				<?php echo $login->account_id ?>
 			<?php endif ?>
 		</td>
-		<td><?php echo htmlspecialchars($login->username) ?></td>
+		<td><?php echo htmlspecialchars((string)$login->username) ?></td>
 		<?php if ($showPassword && $seePassword): ?>
-		<td><?php echo htmlspecialchars($login->password) ?></td>
+		<td><?php echo htmlspecialchars((string)$login->password) ?></td>
 		<?php endif ?>
 		<td>
 			<?php if ($auth->actionAllowed('account', 'index')): ?>
 				<?php echo $this->linkToAccountSearch(array('last_ip' => $login->ip), $login->ip) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($login->ip) ?>
+				<?php echo htmlspecialchars((string)$login->ip) ?>
 			<?php endif ?>
 		</td>
 		<td><?php echo $this->formatDateTime($login->login_date) ?></td>

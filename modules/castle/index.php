@@ -15,4 +15,13 @@ $sth->execute(array_keys($castleNames));
 
 $castles = $sth->fetchAll();
 
+// Castles that are being fought over right now (empty when no WoE window is running).
+$woeState         = $server->getWoeStatus();
+$woeActiveCastles = array();
+$woeEndsAt        = '';
+if ($woeState['active'] && $woeState['window']) {
+	$woeActiveCastles = array_map('intval', $woeState['window']['castles']);
+	$woeEndsAt        = $woeState['window']['end']->format('l H:i');
+}
+
 ?>

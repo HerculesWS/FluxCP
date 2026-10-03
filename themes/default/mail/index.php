@@ -1,47 +1,48 @@
 <?php
 if (!defined('FLUX_ROOT')) exit;
-$markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
+$markdownURL = 'https://daringfireball.net/projects/markdown/syntax';
 ?>
 <h2><?php echo htmlspecialchars(Flux::message('MailerHeading')) ?></h2>
 <?php if (!empty($errorMessage)): ?>
-<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 <?php else: ?>
 <p><?php echo htmlspecialchars(Flux::message('MailerInfo')) ?></p>
 <?php endif ?>
-<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" name="mailerform" class="generic-form">
+<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post" name="mailerform" class="generic-form form-stack">
 	<input type="hidden" name="_preview" value="0" />
 	<?php echo Flux_Security::csrfGenerate('Mailer', true) ?>
-	<table class="generic-form-table">
-		<tr>
-			<th><label><?php echo htmlspecialchars(Flux::message('MailerFromLabel')) ?></label></th>
-			<td><p>
-				<strong><?php echo htmlspecialchars(Flux::config('MailerFromName')) ?></strong>
-				(<?php echo htmlspecialchars(Flux::config('MailerFromAddress')) ?>)
-			</p></td>
-		</tr>
-		<tr>
-			<th><label for="to"><?php echo htmlspecialchars(Flux::message('MailerToLabel')) ?></label></th>
-			<td><input type="text" name="to" id="to" value="<?php echo htmlspecialchars((string)$params->get('to')) ?>" /></td>
-		</tr>
-		<tr>
-			<th><label for="subject"><?php echo htmlspecialchars(Flux::message('MailerSubjectLabel')) ?></label></th>
-			<td><input type="text" name="subject" id="subject" value="<?php echo htmlspecialchars((string)$params->get('subject')) ?>" /></td>
-		</tr>
-		<tr>
-			<th><label for="body"><?php echo htmlspecialchars(Flux::message('MailerBodyLabel')) ?></label></th>
-			<td>
-				<textarea name="body" id="body"><?php echo htmlspecialchars((string)$params->get('body')) ?></textarea>
-				<p style="font-style: italic"><?php echo htmlspecialchars(Flux::message('MailerBodyInfo')) ?></p>
-				<p style="font-style: italic"><a href="<?php echo $markdownURL ?>"><?php echo $markdownURL ?></a></p>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="right">
-				<input type="submit" value="Send E-mail" />
-				<input type="button" value="Preview" onclick="document.mailerform._preview.value = 1; document.mailerform.submit()" />
-			</td>
-		</tr>
-	</table>
+
+	<div class="form-row">
+		<span class="form-label"><?php echo htmlspecialchars(Flux::message('MailerFromLabel')) ?></span>
+		<div class="form-static">
+			<strong><?php echo htmlspecialchars((string)Flux::config('MailerFromName')) ?></strong>
+			<span class="form-muted">&lt;<?php echo htmlspecialchars((string)Flux::config('MailerFromAddress')) ?>&gt;</span>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<label for="to"><?php echo htmlspecialchars(Flux::message('MailerToLabel')) ?></label>
+		<input type="text" name="to" id="to" value="<?php echo htmlspecialchars((string)$params->get('to')) ?>" />
+	</div>
+
+	<div class="form-row">
+		<label for="subject"><?php echo htmlspecialchars(Flux::message('MailerSubjectLabel')) ?></label>
+		<input type="text" name="subject" id="subject" value="<?php echo htmlspecialchars((string)$params->get('subject')) ?>" />
+	</div>
+
+	<div class="form-row">
+		<label for="body"><?php echo htmlspecialchars(Flux::message('MailerBodyLabel')) ?></label>
+		<textarea name="body" id="body" rows="10"><?php echo htmlspecialchars((string)$params->get('body')) ?></textarea>
+		<small class="field-hint">
+			<?php echo htmlspecialchars(Flux::message('MailerBodyInfo')) ?>
+			<a href="<?php echo $markdownURL ?>" target="_blank" rel="noopener">Markdown syntax guide</a>
+		</small>
+	</div>
+
+	<div class="form-actions">
+		<input type="submit" value="Send E-mail" class="btn-primary" />
+		<input type="button" value="Preview" onclick="document.mailerform._preview.value = 1; document.mailerform.submit()" />
+	</div>
 </form>
 <?php if ($preview): ?>
 <h3>Preview</h3>

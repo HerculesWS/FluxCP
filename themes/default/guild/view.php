@@ -1,26 +1,26 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Viewing Guild</h2>
 <?php if ($guild): ?>
-<h3>Guild Information for “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Guild Information for “<?php echo htmlspecialchars((string)$guild->name) ?>”</h3>
 <table class="vertical-table">
 	<tr>
 		<th>Guild ID</th>
-		<td><?php echo htmlspecialchars($guild->guild_id) ?></td>
+		<td><?php echo htmlspecialchars((string)$guild->guild_id) ?></td>
 		<th>Guild Name</th>
-		<td><?php echo htmlspecialchars($guild->name) ?></td>
+		<td><?php echo htmlspecialchars((string)$guild->name) ?></td>
 		<th>Emblem ID</th>
 		<td><?php echo number_format($guild->emblem_id) ?></td>
 		<td><img src="<?php echo $this->emblem($guild->guild_id) ?>" alt="" /></td>
 	</tr>
 	<tr>
 		<th>Leader ID</th>
-		<td><?php echo htmlspecialchars($guild->char_id) ?></td>
+		<td><?php echo htmlspecialchars((string)$guild->char_id) ?></td>
 		<th>Leader Name</th>
 		<td>
 			<?php if ($auth->allowedToViewCharacter): ?>
 				<?php echo $this->linkToCharacter($guild->char_id, $guild->guild_master) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($guild->guild_master) ?>
+				<?php echo htmlspecialchars((string)$guild->guild_master) ?>
 			<?php endif ?>
 		</td>
 		<th>Guild Level</th>
@@ -50,7 +50,7 @@
 		<th>Guild Notice 1</th>
 		<td colspan="6">
 			<?php if (trim($guild->mes1)): ?>
-				<?php echo htmlspecialchars($guild->mes1) ?>
+				<?php echo htmlspecialchars((string)$guild->mes1) ?>
 			<?php else: ?>
 				<span class="not-applicable">None</span>
 			<?php endif ?>
@@ -60,16 +60,16 @@
 		<th>Guild Notice 2</th>
 		<td colspan="6">
 			<?php if (trim($guild->mes2)): ?>
-				<?php echo htmlspecialchars($guild->mes2) ?></td>
+				<?php echo htmlspecialchars((string)$guild->mes2) ?></td>
 			<?php else: ?>
 				<span class="not-applicable">None</span>
 			<?php endif ?>
 		</td>
 	</tr>
 </table>
-<h3>Alliances of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Alliances of “<?php echo htmlspecialchars((string)$guild->name) ?>”</h3>
 <?php if ($alliances): ?>
-	<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($alliances) ?> Alliance(s).</p>
+	<p><?php echo htmlspecialchars((string)$guild->name) ?> has <?php echo count($alliances) ?> Alliance(s).</p>
 	<table class="vertical-table">
 		<tr>
 			<th>Guild ID</th>
@@ -77,23 +77,23 @@
 		</tr>
 		<?php foreach ($alliances AS $alliance): ?>
 		<tr>
-			<td align="right">
+			<td class="align-right">
 				<?php if ($auth->allowedToViewGuild): ?>
 					<?php echo $this->linkToGuild($alliance->alliance_id, $alliance->alliance_id) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($alliance->alliance_id) ?>
+					<?php echo htmlspecialchars((string)$alliance->alliance_id) ?>
 				<?php endif ?>
 			</td>
-			<td><?php echo htmlspecialchars($alliance->name) ?></td>
+			<td><?php echo htmlspecialchars((string)$alliance->name) ?></td>
 		</tr>
 		<?php endforeach ?>
 	</table>
 <?php else: ?>
 	<p>There are no alliances for this guild.</p>
 <?php endif ?>
-<h3>Oppositions of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Oppositions of “<?php echo htmlspecialchars((string)$guild->name) ?>”</h3>
 <?php if ($oppositions): ?>
-	<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($oppositions) ?> Opposition(s).</p>
+	<p><?php echo htmlspecialchars((string)$guild->name) ?> has <?php echo count($oppositions) ?> Opposition(s).</p>
 	<table class="vertical-table">
 		<tr>
 			<th>Guild ID</th>
@@ -101,23 +101,23 @@
 		</tr>
 		<?php foreach ($oppositions AS $opposition): ?>
 		<tr>
-			<td align="right">
+			<td class="align-right">
 				<?php if ($auth->allowedToViewGuild): ?>
 					<?php echo $this->linkToGuild($opposition->alliance_id, $opposition->alliance_id) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($opposition->alliance_id) ?>
+					<?php echo htmlspecialchars((string)$opposition->alliance_id) ?>
 				<?php endif ?>
 			</td>
-			<td><?php echo htmlspecialchars($opposition->name) ?></td>
+			<td><?php echo htmlspecialchars((string)$opposition->name) ?></td>
 		</tr>
 		<?php endforeach ?>
 	</table>
 <?php else: ?>
 	<p>There are no oppositions for this guild.</p>
 <?php endif ?>
-<h3>Guild Members of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Guild Members of “<?php echo htmlspecialchars((string)$guild->name) ?>”</h3>
 <?php if ($members): ?>
-	<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($members) ?> guild member(s).</p>
+	<p><?php echo htmlspecialchars((string)$guild->name) ?> has <?php echo count($members) ?> guild member(s).</p>
 	<table class="vertical-table">
 		<tr>
 			<th>Name</th>
@@ -133,25 +133,25 @@
 		</tr>
 		<?php foreach ($members AS $member): ?>
 		<tr>
-			<td align="right">
+			<td class="align-right">
 				<?php if ($auth->allowedToViewCharacter): ?>
 					<?php echo $this->linkToCharacter($member->char_id, $member->name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($member->name) ?>
+					<?php echo htmlspecialchars((string)$member->name) ?>
 				<?php endif ?>
 			</td>
 			<td>
 				<?php if ($job=$this->jobClassText($member->class)): ?>
-					<?php echo htmlspecialchars($job) ?>
+					<?php echo htmlspecialchars((string)$job) ?>
 				<?php else: ?>
 					<span class="not-applicable">Unknown</span>
 				<?php endif ?>
 			</td>
-			<td><?php echo htmlspecialchars($member->base_level) ?></td>
-			<td><?php echo htmlspecialchars($member->job_level) ?></td>
+			<td><?php echo htmlspecialchars((string)$member->base_level) ?></td>
+			<td><?php echo htmlspecialchars((string)$member->job_level) ?></td>
 			<td><?php echo number_format($member->devotion) ?></td>
-			<td><?php echo htmlspecialchars($member->position) ?></td>
-			<td><?php echo htmlspecialchars($member->position_name) ?></td>
+			<td><?php echo htmlspecialchars((string)$member->position) ?></td>
+			<td><?php echo htmlspecialchars((string)$member->position_name) ?></td>
 			<td>
 				<?php if ($member->mode == 17): ?>
 					<?php echo htmlspecialchars("Invite/Expel") ?>
@@ -166,16 +166,16 @@
 				<?php endif ?>
 			</td>
 			<td><?php echo number_format($member->guild_tax) ?>%</td>
-			<td><?php echo htmlspecialchars($member->lastlogin) ?></td>
+			<td><?php echo htmlspecialchars((string)$member->lastlogin) ?></td>
 		</tr>
 		<?php endforeach ?>
 	</table>
 <?php else: ?>
 	<p>There are no members in this guild.</p>
 <?php endif ?>
-<h3>Member Expulsions of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+<h3>Member Expulsions of “<?php echo htmlspecialchars((string)$guild->name) ?>”</h3>
 <?php if ($expulsions): ?>
-	<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($expulsions) ?> member expulsion(s).</p>
+	<p><?php echo htmlspecialchars((string)$guild->name) ?> has <?php echo count($expulsions) ?> member expulsion(s).</p>
 	<table class="vertical-table">
 		<tr>
 			<th>Account ID</th>
@@ -184,17 +184,17 @@
 		</tr>
 		<?php foreach ($expulsions AS $expulsion): ?>
 		<tr>
-			<td align="right">
+			<td class="align-right">
 				<?php if ($auth->allowedToViewAccount): ?>
 					<?php echo $this->linkToAccount($expulsion->account_id, $expulsion->account_id) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($expulsion->account_id) ?>
+					<?php echo htmlspecialchars((string)$expulsion->account_id) ?>
 				<?php endif ?>
 			</td>
-			<td><?php echo htmlspecialchars($expulsion->name) ?></td>
+			<td><?php echo htmlspecialchars((string)$expulsion->name) ?></td>
 			<td>
 			<?php if($expulsion->mes): ?>
-				<?php echo htmlspecialchars($expulsion->mes) ?>
+				<?php echo htmlspecialchars((string)$expulsion->mes) ?>
 			<?php else: ?>
 				<span class="not-applicable">None</span>
 			<?php endif ?>
@@ -206,12 +206,12 @@
 	<p>There are no member expulsions for this guild.</p>
 <?php endif ?>
 <?php if (!Flux::config('GStorageLeaderOnly') || $amOwner || $auth->allowedToViewGuild): ?>
-	<h3>Guild Storage Items of “<?php echo htmlspecialchars($guild->name) ?>”</h3>
+	<h3>Guild Storage Items of “<?php echo htmlspecialchars((string)$guild->name) ?>”</h3>
 	<?php if (Flux::config('GStorageLeaderOnly')): ?>
 		<p>Note: Guild Storage Items are only visible to you, the guild leader.</p>
 	<?php endif ?>
 	<?php if ($items): ?>
-		<p><?php echo htmlspecialchars($guild->name) ?> has <?php echo count($items) ?> guild storage item(s).</p>
+		<p><?php echo htmlspecialchars((string)$guild->name) ?> has <?php echo count($items) ?> guild storage item(s).</p>
 		<table class="vertical-table">
 			<tr>
 				<th>Item ID</th>
@@ -228,13 +228,13 @@
 			<?php foreach ($items AS $item): ?>
 			<?php $icon = $this->iconImage($item->nameid) ?>
 			<tr>
-				<td align="right"><?php echo $this->linkToItem($item->nameid, $item->nameid) ?></td>
+				<td class="align-right"><?php echo $this->linkToItem($item->nameid, $item->nameid) ?></td>
 				<?php if ($icon): ?>
-				<td><img src="<?php echo htmlspecialchars($icon) ?>" alt="" /></td>
+				<td><img src="<?php echo htmlspecialchars((string)$icon) ?>" alt="" /></td>
 				<?php endif ?>
 				<td<?php if (!$icon) echo ' colspan="2"' ?><?php if ($item->cardsOver) echo ' class="overslotted' . $item->cardsOver . '"'; else echo ' class="normalslotted"' ?>>
 					<?php if ($item->refine > 0): ?>
-						+<?php echo htmlspecialchars($item->refine) ?>
+						+<?php echo htmlspecialchars((string)$item->refine) ?>
 					<?php endif ?>
 					<?php if ($item->card0 == 255 && intval($item->card1/1280) > 0): ?>
 						<?php for ($i = 0; $i < intval($item->card1/1280); $i++): ?>
@@ -254,10 +254,10 @@
 						<?php endif ?>
 					<?php endif ?>
 					<?php if ($item->card0 == 255 && array_key_exists($item->card1%1280, $itemAttributes)): ?>
-						<?php echo htmlspecialchars($itemAttributes[$item->card1%1280]) ?>
+						<?php echo htmlspecialchars((string)$itemAttributes[$item->card1%1280]) ?>
 					<?php endif ?>
 					<?php if ($item->name_japanese): ?>
-						<span class="item_name"><?php echo htmlspecialchars($item->name_japanese) ?></span>
+						<span class="item_name"><?php echo htmlspecialchars((string)$item->name_japanese) ?></span>
 					<?php else: ?>
 						<span class="not-applicable">Unknown Item</span>
 					<?php endif ?>

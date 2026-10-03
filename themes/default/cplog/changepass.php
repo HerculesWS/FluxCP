@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Password Changes</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="use_change_after">Change Date Between:</label>
@@ -54,7 +54,7 @@
 	</tr>
 	<?php foreach ($changes as $change): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('account', 'view')): ?>
 				<?php echo $this->linkToAccount($change->account_id, $change->account_id) ?>
 			<?php else: ?>
@@ -63,21 +63,21 @@
 		</td>
 		<td>
 			<?php if ($change->userid): ?>
-				<?php echo htmlspecialchars($change->userid) ?>
+				<?php echo htmlspecialchars((string)$change->userid) ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown</span>
 			<?php endif ?>
 		</td>
 		<?php if (Flux::config('CpChangeLogShowPassword') && $auth->allowedToSeeCpChangePass): ?>
-		<td><?php echo htmlspecialchars($change->old_password) ?></td>
-		<td><?php echo htmlspecialchars($change->new_password) ?></td>
+		<td><?php echo htmlspecialchars((string)$change->old_password) ?></td>
+		<td><?php echo htmlspecialchars((string)$change->new_password) ?></td>
 		<?php endif ?>
 		<td><?php echo $this->formatDateTime($change->change_date) ?></td>
 		<td>
 			<?php if ($auth->actionAllowed('account', 'index')): ?>
 				<?php echo $this->linkToAccountSearch(array('last_ip' => $change->change_ip), $change->change_ip) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($change->change_ip) ?>
+				<?php echo htmlspecialchars((string)$change->change_ip) ?>
 			<?php endif ?>
 		</td>
 	</tr>

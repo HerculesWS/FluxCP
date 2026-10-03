@@ -125,7 +125,7 @@ class Flux_Paginator {
 				'perPage'        => $perPage,
 				'pagesToShow'    => $pagesToShow,
 				'pageVariable'   => 'p',
-				'pageSeparator'  => '|'),
+				'pageSeparator'  => ''),
 			$options
 		);
 		
@@ -220,47 +220,67 @@ class Flux_Paginator {
 			return '';
 		}
 		
-		$pages = array();
-		$show  = $this->pagesToShow;
-		$start = (floor(($this->currentPage - 1) / $this->pagesToShow) * $this->pagesToShow) + 1;
-		$end   = $start + $this->pagesToShow + 1;
+		// Windowed page list with a fixed width: always the same number of slots, so the
+		// list does not jump around. Near either end the first/last seven pages are shown,
+		// in the middle the first page, the pages around the current one, and the last page.
+		$total    = max(1, (int)$this->numberOfPages);
+		$current  = min(max(1, (int)$this->currentPage), $total);
+		$surround = max(1, (int)floor(($this->pagesToShow - 1) / 4));
+		$margin   = 1;
+		$slots    = 2 * $margin + 2 * $surround + 3;
+		$block    = $slots - $margin - 1;
 		
-		if ($end > $this->numberOfPages) {
-			$end = $this->numberOfPages + 1;
+		$items = array(); // page numbers, or null for an ellipsis
+		
+		if ($total <= $slots) {
+			$items = range(1, $total);
+		}
+		elseif ($current <= $block - $surround) {
+			$items = array_merge(range(1, $block), array(null), range($total - $margin + 1, $total));
+		}
+		elseif ($current >= $total - $block + 1 + $surround) {
+			$items = array_merge(range(1, $margin), array(null), range($total - $block + 1, $total));
 		}
 		else {
-			$end = $end - 1;
+			$items = array_merge(
+				range(1, $margin),
+				array(null),
+				range($current - $surround, $current + $surround),
+				array(null),
+				range($total - $margin + 1, $total)
+			);
 		}
 		
-		$hasPrev = $start > 1;
-		$hasNext = $end < $this->numberOfPages;
+		$pages = array();
 		
-		for ($i = $start; $i < $end; ++$i) {
-			$request = $this->getPageURI($i);
-			
-			if ($i == $this->currentPage) {
-				$pages[] = sprintf(
-					'<a title="Page #%d" class="page-num current-page">%d</a>',
-					$i, $i
-				);
+		if ($current > 1) {
+			$pages[] = sprintf('<a href="%s" title="Previous page (p#%d)" class="page-prev">Previous</a>', htmlspecialchars($this->getPageURI($current - 1)), $current - 1);
+		}
+		else {
+			$pages[] = '<span class="page-prev disabled">Previous</span>';
+		}
+		
+		foreach ($items as $i) {
+			if ($i === null) {
+				$pages[] = '<span class="page-gap">&hellip;</span>';
+			}
+			elseif ($i == $current) {
+				$pages[] = sprintf('<a title="Page #%d" class="page-num current-page">%d</a>', $i, $i);
 			}
 			else {
-				$pages[] = sprintf(
-					'<a href="%s" title="Page #%d" class="page-num">%d</a>',
-					$request, $i, $i
-				);
+				$pages[] = sprintf('<a href="%s" title="Page #%d" class="page-num">%d</a>', htmlspecialchars($this->getPageURI($i)), $i, $i);
 			}
 		}
 		
-		if ($hasPrev) {
-			array_unshift($pages, sprintf('<a href="%s" title="Previous Pane (p#%d)" class="page-prev">Prev.</a> ', $this->getPageURI($start - 1), $start - 1));
+		if ($current < $total) {
+			$pages[] = sprintf('<a href="%s" title="Next page (p#%d)" class="page-next">Next</a>', htmlspecialchars($this->getPageURI($current + 1)), $current + 1);
+		}
+		else {
+			$pages[] = '<span class="page-next disabled">Next</span>';
 		}
 		
-		if ($hasNext) {
-			array_push($pages, sprintf(' <a href="%s" title="Next Pane (p#%d)" class="page-next">Next</a>', $this->getPageURI($end), $end));
-		}
-		
-		$links  = sprintf('<div class="pages">%s</div>', implode(" {$this->pageSeparator} ", $pages))."\n";
+		$links  = sprintf('<div class="pages">%s</div>', implode("
+", $pages))."\n";
 		
 		if (Flux::config('ShowPageJump') && $this->numberOfPages > Flux::config('PageJumpMinimumPages')) {
 			// This is some tricky shit.  Don't even attempt to understand it =(
@@ -268,8 +288,8 @@ class Flux_Paginator {
 			$pageVar = preg_quote($this->pageVariable);
 			$event   = "location.href='".$this->getPageURI(0)."'";
 			$event   = preg_replace("/$pageVar=0/", "{$this->pageVariable}='+this.value+'", $event);
-			$jump    = '<label>Page Jump: <input type="text" name="jump_to_page" id="jump_to_page" size="4" onkeypress="if (event.keyCode == 13) { %s }" /></label>';
-			$jump    = sprintf($jump, $event);
+			$jump    = '<label>Page Jump: <input type="text" name="jump_to_page" size="4" onkeypress="if (event.keyCode == 13) { %s }"></label>';
+			$jump    = sprintf($jump, htmlspecialchars($event));
 			$links  .= sprintf('<div class="jump-to-page">%s</div>', $jump);
 		}
 		
@@ -406,11 +426,11 @@ class Flux_Paginator {
 				else {
 					$request = "$request&$value";
 				}
-				return sprintf($format, $request, $name);
+				return sprintf($format, htmlspecialchars($request), $name);
 			}
 			else {
 				$request = rtrim(preg_replace("%(?:(\?)$param=(?:\w*)&?|&?$param=(?:\w*))%", '$1', $request), '?');
-				return sprintf($format, $request, $name);
+				return sprintf($format, htmlspecialchars($request), $name);
 			}
 		}
 	}

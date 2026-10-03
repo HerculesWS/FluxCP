@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>War of Emperium Hours</h2>
 <?php if ($woeTimes): ?>
-<p>Below are the WoE hours for <?php echo htmlspecialchars($session->loginAthenaGroup->serverName) ?>.</p>
+<p>Below are the WoE hours for <?php echo htmlspecialchars((string)$session->loginAthenaGroup->serverName) ?>.</p>
 <p>These hours are subject to change at anytime, but let's hope not.</p>
 <table class="woe-table">
 	<tr>
@@ -11,17 +11,17 @@
 	<?php foreach ($woeTimes as $serverName => $times): ?>
 	<tr>
 		<td class="server" rowspan="<?php echo count($times) ?>">
-			<?php echo htmlspecialchars($serverName)  ?>
+			<?php echo htmlspecialchars((string)$serverName)  ?>
 		</td>
 		<?php foreach ($times as $time): ?>
 		<td class="time">
-			<?php echo htmlspecialchars($time['startingDay']) ?>
-			@ <?php echo htmlspecialchars($time['startingHour']) ?>
+			<?php echo htmlspecialchars((string)$time['startingDay']) ?>
+			@ <?php echo htmlspecialchars((string)$time['startingHour']) ?>
 		</td>
 		<td>~</td>
 		<td class="time">
-			<?php echo htmlspecialchars($time['endingDay']) ?>
-			@ <?php echo htmlspecialchars($time['endingHour']) ?>
+			<?php echo htmlspecialchars((string)$time['endingDay']) ?>
+			@ <?php echo htmlspecialchars((string)$time['endingHour']) ?>
 		</td>
 	</tr>
 	<tr>
