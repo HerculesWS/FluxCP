@@ -17,7 +17,7 @@ if (!$itemID) {
 }
 
 $col  = "id, view_sprite as view, type, name_english, name_japanese, slots, price_buy, price_sell, weight/10 AS weight, ";
-$col .= "defence, `range`, weapon_level, equip_level_min, equip_level_max, refineable, equip_locations, equip_upper, ";
+$col .= "defence, `range`, weapon_level, equip_level_min, equip_level_max, refineable, bindonequip, equip_locations, equip_upper, ";
 $col .= "equip_jobs, equip_genders, script, equip_script, unequip_script, origin_table, atk, matk";
 
 $sql  = "SELECT $col FROM $tableName WHERE id = ? LIMIT 1";
@@ -45,6 +45,7 @@ if ($item) {
 		$range         = $params->get('range');
 		$weaponLevel   = $params->get('weapon_level');
 		$refineable    = $params->get('refineable');
+		$bindOnEquip   = $params->get('bindonequip');
 		$equipLocs     = $params->get('equip_locations');
 		$equipLevelMin = $params->get('equip_level_min');
 		$equipLevelMax = $params->get('equip_level_max');
@@ -69,6 +70,7 @@ if ($item) {
 		$range         = $item->range;
 		$weaponLevel   = $item->weapon_level;
 		$refineable    = $item->refineable;
+		$bindOnEquip   = $item->bindonequip;
 		$equipLocs     = $item->equip_locations;
 		$equipLevelMin = $item->equip_level_min;
 		$equipLevelMax = $item->equip_level_max;
@@ -112,7 +114,7 @@ if ($item) {
 	if (count($_POST) && $params->get('edititem')) {
 		// Sanitize to NULL
 		$nullables = array(
-			'viewID', 'slots', 'npcBuy', 'npcSell', 'weight', 'atk', 'matk', 'defense', 'range', 'refineable', 
+			'viewID', 'slots', 'npcBuy', 'npcSell', 'weight', 'atk', 'matk', 'defense', 'range', 'refineable', 'bindOnEquip',
 			'weaponLevel', 'equipLevelMin', 'equipLevelMax', 'script', 'equipScript', 'unequipScript'
 		);
 		
@@ -224,6 +226,11 @@ if ($item) {
 			$refineable = intval((bool)$refineable);
 		}
 
+		// Bind on equip should be 1 or 0 if it's not null.
+		if (!is_null($bindOnEquip)) {
+			$bindOnEquip = intval((bool)$bindOnEquip);
+		}
+
 		if (!$itemID) {
 			$errorMessage = 'You must specify an item ID.';
 		}
@@ -314,7 +321,8 @@ if ($item) {
 					'script'         => $script,
 					'equip_script'   => $equipScript,
 					'unequip_script' => $unequipScript,
-					'refineable'     => $refineable
+					'refineable'     => $refineable,
+					'bindonequip'    => $bindOnEquip
 				);
 				
 				foreach ($vals as $col => $val) {

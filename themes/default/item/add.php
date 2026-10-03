@@ -73,6 +73,13 @@
 			</td>
 		</tr>
 		<tr>
+			<th><label>Bind on Equip</label></th>
+			<td colspan="3">
+				<label style="display: inline"><input type="radio" name="bindonequip" value="1"<?php if ($bindOnEquip) echo ' checked="checked"' ?>/>Yes</label>
+				<label style="display: inline"><input type="radio" name="bindonequip" value="0"<?php if (!$bindOnEquip) echo ' checked="checked"' ?> />No</label>
+			</td>
+		</tr>
+		<tr>
 			<th><label for="equip_locations">Equip Locations</label></th>
 			<td colspan="3">
 				<select class="multi-select" name="equip_locations[]" id="equip_locations" size="5" multiple="multiple">
