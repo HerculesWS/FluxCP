@@ -27,16 +27,22 @@ if (!$acc) {
 	$this->deny();
 }
 
+$expireHours = (int)Flux::config('ResetPassExpireHours');
+if ($expireHours < 1) {
+	$expireHours = 24;
+}
+
 $sql  = "SELECT id FROM {$loginAthenaGroup->loginDatabase}.$resetPassTable WHERE ";
-$sql .= "account_id = ? AND code = ? AND reset_done = 0 LIMIT 1";
+$sql .= "account_id = ? AND code = ? AND reset_done = 0 AND request_date > DATE_SUB(NOW(), INTERVAL $expireHours HOUR) LIMIT 1";
 $sth  = $loginAthenaGroup->connection->getStatement($sql);
 
 if (!$sth->execute(array($account, $code)) || !($reset=$sth->fetch())) {
 	$this->deny();
 }
 
+// Use up the token before anything else, only one request can get it.
 $sql  = "UPDATE {$loginAthenaGroup->loginDatabase}.$resetPassTable SET ";
-$sql .= "reset_done = 1, reset_date = NOW(), reset_ip = ?, new_password = ? WHERE id = ?";
+$sql .= "reset_done = 1, reset_date = NOW(), reset_ip = ?, new_password = ? WHERE id = ? AND reset_done = 0";
 $sth  = $loginAthenaGroup->connection->getStatement($sql);
 
 $newPassword = '';
@@ -45,7 +51,7 @@ $characters  = str_split($characters, 1);
 $passLength  = intval(($len=Flux::config('RandomPasswordLength')) < 8 ? 8 : $len);
 
 for ($i = 0; $i < $passLength; ++$i) {
-	$newPassword .= $characters[array_rand($characters)];
+	$newPassword .= $characters[random_int(0, count($characters) - 1)];
 }
 
 $unhashedNewPassword = $newPassword;
@@ -53,10 +59,15 @@ if ($loginAthenaGroup->loginServer->config->getUseMD5()) {
 	$newPassword = Flux::hashPassword($newPassword);
 }
 
-if (!$sth->execute(array($_SERVER['REMOTE_ADDR'], $newPassword, $reset->id))) {
+if (!$sth->execute(array($_SERVER['REMOTE_ADDR'], $newPassword, $reset->id)) || $sth->rowCount() < 1) {
 	$session->setMessageData(Flux::message('ResetPwFailed'));
-	$this->redirect();	
+	$this->redirect();
 }
+
+// Any other reset links still open for this account are no longer valid.
+$sql = "DELETE FROM {$loginAthenaGroup->loginDatabase}.$resetPassTable WHERE account_id = ? AND reset_done = 0";
+$sth = $loginAthenaGroup->connection->getStatement($sql);
+$sth->execute(array($account));
 
 $sql = "UPDATE {$loginAthenaGroup->loginDatabase}.login SET user_pass = ? WHERE account_id = ?";
 $sth = $loginAthenaGroup->connection->getStatement($sql);

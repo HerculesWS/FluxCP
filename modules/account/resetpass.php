@@ -63,6 +63,12 @@ if (count($_POST)) {
 			}
 			else {
 				$code = bin2hex(random_bytes(16));
+
+				// A new request replaces any link that was sent before.
+				$sql  = "DELETE FROM {$loginAthenaGroup->loginDatabase}.$resetPassTable WHERE account_id = ? AND reset_done = 0";
+				$sth  = $loginAthenaGroup->connection->getStatement($sql);
+				$sth->execute(array($row->account_id));
+
 				$sql  = "INSERT INTO {$loginAthenaGroup->loginDatabase}.$resetPassTable ";
 				$sql .= "(code, account_id, old_password, request_date, request_ip, reset_done) ";
 				$sql .= "VALUES (?, ?, ?, NOW(), ?, 0)";

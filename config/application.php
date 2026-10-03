@@ -153,6 +153,7 @@ return array(
 
 	'LoginMaxAttempts'     => 10,                       // Failed login (and installer password) attempts allowed per IP address, and per username, within the lockout time. Set to 0 to disable.
 	'LoginLockoutMinutes'  => 15,                       // How long failed attempts are counted for, in minutes.
+	'ResetPassExpireHours' => 24,                       // How long a password reset link stays valid, in hours.
 	'ResetPassMaxRequests' => 5,                        // Password reset requests allowed per IP address, and per username, within the window below. Set to 0 to disable.
 	'ResetPassWindowMinutes' => 60,                     // Time window for the password reset request limit, in minutes.
 

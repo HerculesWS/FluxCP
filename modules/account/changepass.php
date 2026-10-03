@@ -83,6 +83,11 @@ if (count($_POST)) {
 				$sql .= "VALUES (?, ?, ?, ?, NOW())";
 				$sth  = $server->connection->getStatement($sql);
 				$sth->execute(array($session->account->account_id, $currentPassword, $newPassword, $_SERVER['REMOTE_ADDR']));
+
+				// Reset links sent earlier shouldn't work after the password has changed.
+				$sql = "DELETE FROM {$server->loginDatabase}.".Flux::config('FluxTables.ResetPasswordTable')." WHERE account_id = ? AND reset_done = 0";
+				$sth = $server->connection->getStatement($sql);
+				$sth->execute(array($session->account->account_id));
 				
 				$session->setMessageData(Flux::message('PasswordHasBeenChanged'));
 				$session->logout();
