@@ -261,9 +261,9 @@ class Flux_LoginServer extends Flux_BaseServer {
 
 		if ($sth->execute(array($accountID, $bannedBy, $until, $banReason))) {
 			$ts   = strtotime($until);
-			$sql  = "UPDATE {$this->loginDatabase}.login SET state = 0, unban_time = '$ts' WHERE account_id = ?";
+			$sql  = "UPDATE {$this->loginDatabase}.login SET state = 0, unban_time = ? WHERE account_id = ?";
 			$sth  = $this->connection->getStatement($sql);
-			return $sth->execute(array($accountID));
+			return $sth->execute(array($ts, $accountID));
 		}
 		else {
 			return false;
