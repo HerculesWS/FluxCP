@@ -1,0 +1,1 @@
+UPDATE `cp_loginlog` SET `password` = '';

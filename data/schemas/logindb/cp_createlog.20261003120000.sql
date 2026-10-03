@@ -1,0 +1,1 @@
+UPDATE `cp_createlog` SET `user_pass` = '';
