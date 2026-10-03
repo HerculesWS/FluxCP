@@ -71,9 +71,17 @@ class Flux_LogFile {
 	{
 		$args = func_get_args();
 		if (count($args) > 0) {
-			$args[0]   = sprintf("%s%s\n", date($this->dateFormat), $args[0]);
-			$arguments = array_merge(array($this->fp), $args);
-			return call_user_func_array('fprintf', $arguments);
+			$format = array_shift($args);
+
+			// With no arguments the text is taken as it is, it may hold untrusted values.
+			$line = count($args) ? vsprintf($format, $args) : $format;
+
+			// Line breaks and other control characters in the values could forge log lines.
+			$line = preg_replace_callback('/[\x00-\x1f\x7f]/', function ($m) {
+				return sprintf('\\x%02x', ord($m[0]));
+			}, $line);
+
+			return fwrite($this->fp, date($this->dateFormat).$line."\n");
 		}
 		else {
 			return false;
