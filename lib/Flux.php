@@ -369,29 +369,31 @@ class Flux {
 		$cachefile = FLUX_DATA_DIR."/tmp/$basename";
 		
 		if ($cache && file_exists($cachefile) && filemtime($cachefile) > filemtime($filename)) {
-			return unserialize(file_get_contents($cachefile, false, null, 28));
-		}
-		else {
-			ob_start();
-			// Uses require, thus assumes the file returns an array.
-			$config = require $filename;
-			ob_end_clean();
-			
-			// Cache config file.
-			$cf = self::parseConfig($config);
-
-			if ($cache) {
-				$fp = fopen($cachefile, 'w');
-				if ( !$fp ){
-					self::raise("Failed to write ".$cachefile." permission error or data/tmp not exist in Flux::parseConfigFile()");
-				}
-				fwrite($fp, '<?php exit("Forbidden."); ?>');
-				fwrite($fp, $s=serialize($cf), strlen($s));
-				fclose($fp);
+			$cached = json_decode((string)file_get_contents($cachefile, false, null, 28), true);
+			if (is_array($cached)) {
+				return self::parseConfig($cached);
 			}
-			
-			return $cf;
 		}
+
+		ob_start();
+		// Uses require, thus assumes the file returns an array.
+		$config = require $filename;
+		ob_end_clean();
+		
+		// Cache config file.
+		$cf = self::parseConfig($config);
+
+		if ($cache) {
+			$fp = fopen($cachefile, 'w');
+			if ( !$fp ){
+				self::raise("Failed to write ".$cachefile." permission error or data/tmp not exist in Flux::parseConfigFile()");
+			}
+			fwrite($fp, '<?php exit("Forbidden."); ?>');
+			fwrite($fp, json_encode($cf->toArray()));
+			fclose($fp);
+		}
+		
+		return $cf;
 	}
 	
 	/**

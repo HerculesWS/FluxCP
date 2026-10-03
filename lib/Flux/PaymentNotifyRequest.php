@@ -171,7 +171,7 @@ class Flux_PaymentNotifyRequest {
 				$this->logPayPal('Receiver e-mail (%s) is not recognized, unauthorized to continue.', $receiverEmail);
 			}
 			else {
-				$customArray  = @unserialize(base64_decode((string)$this->ipnVariables->get('custom')));
+				$customArray  = json_decode(base64_decode((string)$this->ipnVariables->get('custom')), true);
 				$customArray  = $customArray && is_array($customArray) ? $customArray : array();
 				$customData   = new Flux_Config($customArray);
 				$accountID    = $customData->get('account_id');
@@ -354,7 +354,7 @@ class Flux_PaymentNotifyRequest {
 			if(Flux::config('PaypalHackNotify')){
 				require_once 'Flux/Mailer.php';
 				
-				$customArray  = @unserialize(base64_decode((string)$this->ipnVariables->get('custom')));
+				$customArray  = json_decode(base64_decode((string)$this->ipnVariables->get('custom')), true);
 				$customArray  = $customArray && is_array($customArray) ? $customArray : array();
 				$customData   = new Flux_Config($customArray);
 				$accountID    = $customData->get('account_id');

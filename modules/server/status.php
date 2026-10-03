@@ -4,10 +4,12 @@ if (!defined('FLUX_ROOT')) exit;
 $title = Flux::message('ServerStatusTitle');
 $cache = FLUX_DATA_DIR.'/tmp/ServerStatus.cache';
 
+$serverStatus = null;
 if (file_exists($cache) && (time() - filemtime($cache)) < (Flux::config('ServerStatusCache') * 60)) {
-	$serverStatus = unserialize(file_get_contents($cache));
+	$serverStatus = json_decode((string)file_get_contents($cache), true);
 }
-else {
+
+if (!is_array($serverStatus)) {
 	$serverStatus = array();
 	foreach (Flux::$loginAthenaGroupRegistry as $groupName => $loginAthenaGroup) {
 		if (!array_key_exists($groupName, $serverStatus)) {
@@ -44,7 +46,7 @@ else {
 	
 	$fp = fopen($cache, 'w');
 	if (is_resource($fp)) {
-		fwrite($fp, serialize($serverStatus));
+		fwrite($fp, json_encode($serverStatus));
 		fclose($fp);
 	}
 }

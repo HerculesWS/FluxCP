@@ -7,7 +7,7 @@ if (empty($amount)) {
 
 $session            = Flux::$sessionData;
 $customDataArray    = array('server_name' => $session->loginAthenaGroup->serverName, 'account_id' => $session->account->account_id);
-$customDataEscaped  = htmlspecialchars(base64_encode(serialize($customDataArray)));
+$customDataEscaped  = htmlspecialchars(base64_encode(json_encode($customDataArray)));
 $businessEmail      = htmlspecialchars(Flux::config('PayPalBusinessEmail'));
 $donationCurrency   = htmlspecialchars(Flux::config('DonationCurrency'));
 $creditExchangeRate = Flux::config('CreditExchangeRate');
