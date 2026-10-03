@@ -98,13 +98,23 @@ if ($session->installerAuth) {
 }
 
 if (count($_POST) && !$session->installerAuth) {
-	$inputPassword  = $params->get('installer_password');
-	$actualPassword = Flux::config('InstallerPassword');
-	
-	if ($inputPassword == $actualPassword) {
+	require_once 'Flux/RateLimit.php';
+
+	$inputPassword  = (string)$params->get('installer_password');
+	$actualPassword = (string)Flux::config('InstallerPassword');
+	$ipKey          = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+	$maxAttempts    = (int)Flux::config('LoginMaxAttempts');
+	$window         = (int)Flux::config('LoginLockoutMinutes') * 60;
+
+	if (Flux_RateLimit::isLimited('installer', $ipKey, $maxAttempts, $window)) {
+		$errorMessage = 'Too many attempts, try again later.';
+	}
+	elseif (hash_equals($actualPassword, $inputPassword)) {
+		Flux_RateLimit::clear('installer', $ipKey);
 		$session->setInstallerAuthData(true);
 	}
 	else {
+		Flux_RateLimit::hit('installer', $ipKey, $window);
 		$errorMessage = 'Incorrect password.';
 	}
 }

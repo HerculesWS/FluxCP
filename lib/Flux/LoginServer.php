@@ -70,6 +70,18 @@ class Flux_LoginServer extends Flux_BaseServer {
 			return false;
 		}
 
+		// Slow down password guessing, per IP address and per username.
+		require_once 'Flux/RateLimit.php';
+		$maxAttempts = (int)Flux::config('LoginMaxAttempts');
+		$window      = (int)Flux::config('LoginLockoutMinutes') * 60;
+		$ipKey       = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+		$userKey     = $this->loginDatabase.'|'.strtolower($username);
+
+		if (Flux_RateLimit::isLimited('login_ip', $ipKey, $maxAttempts, $window) ||
+			Flux_RateLimit::isLimited('login_user', $userKey, $maxAttempts, $window)) {
+			return false;
+		}
+
 		if ($this->config->get('UseMD5')) {
 			$password = Flux::hashPassword($password);
 		}
@@ -87,9 +99,12 @@ class Flux_LoginServer extends Flux_BaseServer {
 
 		$res = $sth->fetch();
 		if ($res) {
+			Flux_RateLimit::clear('login_user', $userKey);
 			return true;
 		}
 		else {
+			Flux_RateLimit::hit('login_ip', $ipKey, $window);
+			Flux_RateLimit::hit('login_user', $userKey, $window);
 			return false;
 		}
 	}
