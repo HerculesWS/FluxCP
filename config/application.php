@@ -105,6 +105,11 @@ return array(
 		//'admin3@localhost'                              // -- because your Business Email is also checked.
 	),
 	'PaypalHackNotify'     => true,                     // Send email notification if hack attempt detected (Notification will be send for each address in list PayPalBusinessEmail and PayPalReceiverEmails)
+	'PayPalMode'             => 'classic',               // 'classic' (legacy IPN, default -- preserves existing behavior for upgraders) or 'rest' (modern PayPal REST API + Webhooks)
+	'PayPalRestEnvironment'  => 'sandbox',                // 'sandbox' or 'live' -- selects api-m.sandbox.paypal.com vs api-m.paypal.com
+	'PayPalRestClientID'     => '',                       // PayPal REST app Client ID (from developer.paypal.com)
+	'PayPalRestClientSecret' => '',                       // PayPal REST app Client Secret
+	'PayPalWebhookID'        => '',                       // Webhook ID from the PayPal app's Webhooks configuration, used to verify incoming webhook signatures
 	'GStorageLeaderOnly'   => false,                    // Only allow guild leader to view guild storage rather than all members?
 	'DivorceKeepChild'     => false,                    // Keep child after divorce?
 	'DivorceKeepRings'     => false,                    // Keep wedding rings after divorce?

@@ -100,9 +100,9 @@
 		<td><?php echo $txn->payment_status ?></td>
 		<td>
 			<?php if ($auth->actionAllowed('account', 'index')): ?>
-				<?php echo $this->linkToAccountSearch(array('email' => $txn->payer_email), $txn->payer_email) ?>
+				<?php echo $this->linkToAccountSearch(array('email' => $txn->payer_email), (string)$txn->payer_email) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($txn->payer_email) ?>
+				<?php echo htmlspecialchars((string)$txn->payer_email) ?>
 			<?php endif ?>
 		</td>
 		<td><?php echo $txn->mc_gross ?> <?php echo $txn->mc_currency ?></td>

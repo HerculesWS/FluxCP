@@ -337,10 +337,28 @@ parameters:
 			path: lib/Flux/PaymentNotifyRequest.php
 
 		-
-			message: '#^Variable \$servGroup might not be defined\.$#'
-			identifier: variable.undefined
-			count: 3
-			path: lib/Flux/PaymentNotifyRequest.php
+			message: '#^Path in require_once\(\) "Flux/LogFile\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PayPalRestClient.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/LogFile\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PaymentNotifyRequestRest.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/Config\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PaymentNotifyRequestRest.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/PayPalRestClient\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PaymentNotifyRequestRest.php
 
 		-
 			message: '#^Path in require_once\(\) "Flux/Error\.php" is not a file or it does not exist\.$#'
@@ -1657,12 +1675,6 @@ parameters:
 			path: modules/cplog/txnview.php
 
 		-
-			message: '#^Variable \$session might not be defined\.$#'
-			identifier: variable.undefined
-			count: 2
-			path: modules/donate/complete.php
-
-		-
 			message: '#^Variable \$this might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
@@ -1703,6 +1715,24 @@ parameters:
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: modules/donate/notify.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: modules/donate/createorder.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/PayPalRestClient\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/donate/createorder.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/PaymentNotifyRequestRest\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/donate/notifyrest.php
 
 		-
 			message: '#^Variable \$server might not be defined\.$#'
@@ -2625,19 +2655,19 @@ parameters:
 		-
 			message: '#^Variable \$params might not be defined\.$#'
 			identifier: variable.undefined
-			count: 16
+			count: 9
 			path: modules/main/preprocess.php
 
 		-
 			message: '#^Variable \$session might not be defined\.$#'
 			identifier: variable.undefined
-			count: 6
+			count: 5
 			path: modules/main/preprocess.php
 
 		-
 			message: '#^Variable \$this might not be defined\.$#'
 			identifier: variable.undefined
-			count: 9
+			count: 7
 			path: modules/main/preprocess.php
 
 		-

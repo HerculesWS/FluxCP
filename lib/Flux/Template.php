@@ -708,8 +708,10 @@ class Flux_Template {
 	 */
 	public function formatDateTime($dateTime = null)
 	{
-		$ts = $dateTime ? strtotime($dateTime) : time();
-		return date(Flux::config('DateTimeFormat'), $ts);
+		if (!$dateTime) {
+			return 'N/A';
+		}
+		return date(Flux::config('DateTimeFormat'), strtotime($dateTime));
 	}
 	
 	/**
@@ -1324,8 +1326,10 @@ class Flux_Template {
 	 */
 	public function donateButton($amount)
 	{
+		$buttonTemplate = (Flux::config('PayPalMode') === 'rest') ? 'button_rest.php' : 'button.php';
+
 		ob_start();
-		include FLUX_DATA_DIR.'/paypal/button.php';
+		include FLUX_DATA_DIR.'/paypal/'.$buttonTemplate;
 		$button = ob_get_clean();
 		return $button;
 	}
