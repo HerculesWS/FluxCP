@@ -339,8 +339,9 @@ class Flux_PaymentNotifyRequest {
 									$sth = $servGroup->connection->getStatement($sql);
 									$sth->execute(array($accountID));
 									$acc = $sth->fetch();
+									$currentBalance = $acc ? (int)$acc->balance : 0;
 
-									$this->logPayPal('Updating account credit balance from %s to %s', (int)$acc->balance, $acc->balance + $credits);
+									$this->logPayPal('Updating account credit balance from %s to %s', $currentBalance, $currentBalance + $credits);
 									$res = $servGroup->loginServer->depositCredits($accountID, $credits, $amount);
 
 									if ($res) {
@@ -616,33 +617,52 @@ class Flux_PaymentNotifyRequest {
 	private function saveDetailsToFile()
 	{
 		if ($this->txnIsValid) {
-			$logDir1 = FLUX_DATA_DIR.'/logs/transactions';
-			if (!is_dir($logDir1)) {
-				mkdir($logDir1, 0700, true);
-			}
-			$logDir1 = realpath($logDir1);
-			$logDir2 = $logDir1.'/'.$this->ipnVariables->get('txn_type');
-			$logDir3 = $logDir2.'/'.$this->ipnVariables->get('payment_status');
-			$logFile = $logDir3.'/'.$this->ipnVariables->get('txn_id').'.log.php';
+			$logFile = self::transactionLogFile(
+				$this->ipnVariables->get('txn_type'),
+				$this->ipnVariables->get('payment_status'),
+				$this->ipnVariables->get('txn_id')
+			);
+			$logDir = dirname($logFile);
 
-			if (!is_dir($logDir2)) {
-				mkdir($logDir2, 0700);
-			}
-			if (!is_dir($logDir3)) {
-				mkdir($logDir3, 0700);
+			// Directories need the execute bit to be entered, 0600 would lock them.
+			if (!is_dir($logDir) && !@mkdir($logDir, 0700, true) && !is_dir($logDir)) {
+				return false;
 			}
 
-			$fp = fopen($logFile, 'w');
+			$fp = @fopen($logFile, 'w');
 			if ($fp) {
 				fwrite($fp, "<?php exit('Forbidden'); ?>\n");
 				foreach ($this->ipnVariables->toArray() as $key => $value) {
-					fwrite($fp, "$key: $value\n");
+					if (!is_scalar($value)) {
+						$value = json_encode($value);
+					}
+					fwrite($fp, preg_replace('/[\r\n]+/', ' ', "$key: $value")."\n");
 				}
 				fclose($fp);
 				return $logFile;
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Path of the file holding the details of a transaction. Each part comes
+	 * from the notification, so it is cut down to harmless characters.
+	 *
+	 * @param string $txnType
+	 * @param string $paymentStatus
+	 * @param string $txnID
+	 * @return string
+	 * @access public
+	 */
+	public static function transactionLogFile($txnType, $paymentStatus, $txnID)
+	{
+		$clean = function ($value) {
+			$value = trim(preg_replace('/[^A-Za-z0-9_.-]/', '_', is_scalar($value) ? (string)$value : ''), '.');
+			return $value === '' ? '_' : $value;
+		};
+
+		return FLUX_DATA_DIR.'/logs/transactions/'.$clean($txnType).'/'.$clean($paymentStatus).'/'.$clean($txnID).'.log.php';
 	}
 
 	/**
