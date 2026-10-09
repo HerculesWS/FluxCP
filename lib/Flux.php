@@ -220,6 +220,84 @@ class Flux {
 	}
 	
 	/**
+	 * Castles from the CastleNames config as castle ID => array('name' => ..., 'region' => ...).
+	 * The config is region => array(castle ID => names), where names is a plain string or
+	 * array('iRO' => ..., 'kRO' => ...); the CastleNaming option picks the one used for 'name'.
+	 * A castle given directly at the top level (castle ID => name) has no region, so its region is null.
+	 *
+	 * @return array
+	 */
+	public static function castles()
+	{
+		$config = self::config('CastleNames');
+		$naming = (string)self::config('CastleNaming');
+		$castles = array();
+		if ($config) {
+			foreach ($config->toArray() as $key => $entry) {
+				if (is_array($entry)) {
+					foreach ($entry as $id => $names) {
+						$castles[$id] = array('name' => self::castleName($names, $naming), 'region' => (string)$key);
+					}
+				}
+				else {
+					$castles[$key] = array('name' => (string)$entry, 'region' => null);
+				}
+			}
+		}
+		return $castles;
+	}
+
+	/**
+	 * Picks the name for the configured naming, falling back to the first one listed.
+	 *
+	 * @param string|array $names
+	 * @param string $naming
+	 * @return string
+	 */
+	private static function castleName($names, $naming)
+	{
+		if (!is_array($names)) {
+			return (string)$names;
+		}
+		foreach ($names as $key => $name) {
+			if (strcasecmp((string)$key, $naming) === 0) {
+				return (string)$name;
+			}
+		}
+		return (string)reset($names);
+	}
+
+	/**
+	 * Castle ID => castle name.
+	 *
+	 * @return array
+	 */
+	public static function castleNames()
+	{
+		$names = array();
+		foreach (self::castles() as $id => $castle) {
+			$names[$id] = $castle['name'];
+		}
+		return $names;
+	}
+
+	/**
+	 * Region name => list of castle IDs, in the order they appear in the CastleNames config.
+	 *
+	 * @return array
+	 */
+	public static function castleRegions()
+	{
+		$regions = array();
+		foreach (self::castles() as $id => $castle) {
+			if ($castle['region'] !== null && $castle['region'] !== '') {
+				$regions[$castle['region']][] = $id;
+			}
+		}
+		return $regions;
+	}
+
+	/**
 	 * Wrapper method for setting and getting values from the messagesConfig.
 	 *
 	 * @param string $key

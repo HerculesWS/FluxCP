@@ -75,7 +75,7 @@ foreach ($serverStatus as $groupName => $gameServers) {
 }
 
 // Live WoE state (never cached): in progress now, or the next scheduled window.
-$castleNames = Flux::config('CastleNames')->toArray();
+$castleNames = Flux::castleNames();
 $woeStatus   = array();
 foreach (Flux::$loginAthenaGroupRegistry as $groupName => $loginAthenaGroup) {
 	foreach ($loginAthenaGroup->athenaServers as $athenaServer) {

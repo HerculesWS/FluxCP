@@ -4,8 +4,7 @@
 <?php if ($castles): ?>
 <?php
 // Group castles by the configured regions; anything unassigned goes under "Other".
-$regionConfig = Flux::config('CastleRegions');
-$regionList   = $regionConfig ? $regionConfig->toArray() : array();
+$regionList   = Flux::castleRegions();
 $castleById   = array();
 foreach ($castles as $castle) {
 	$castleById[$castle->castle_id] = $castle;

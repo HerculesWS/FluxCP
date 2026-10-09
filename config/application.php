@@ -407,11 +407,11 @@ return array(
 	// Item pick and zeny log types.
 	'PickTypes' => include('picktypes.php'),
 
-	// Castle names.
+	// Castle names and regions.
 	'CastleNames' => include('castlenames.php'),
 
-	// Castle regions (how the Castles page groups the castles).
-	'CastleRegions' => include('castleregions.php'),
+	// Which castle names to show: 'iRO' or 'kRO' (see castlenames.php).
+	'CastleNaming' => 'iRO',
 
 	// DON'T TOUCH. THIS IS FOR DEVELOPERS.
 	'FluxTables' => array(

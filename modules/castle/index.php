@@ -3,7 +3,7 @@ if (!defined('FLUX_ROOT')) exit;
 
 $title = 'Castles';
 
-$castleNames = Flux::config('CastleNames')->toArray();
+$castleNames = Flux::castleNames();
 $ids = implode(',', array_fill(0, count($castleNames), '?'));
 
 $sql  = "SELECT castles.castle_id, castles.guild_id, guild.name AS guild_name, guild.emblem_len FROM {$server->charMapDatabase}.guild_castle AS castles ";

@@ -4,7 +4,7 @@ if (!defined('FLUX_ROOT')) exit;
 $title     = Flux::message('WoeTitle');
 $dayNames  = array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
 $woeTimes  = array();
-$castleNames = Flux::config('CastleNames')->toArray();
+$castleNames = Flux::castleNames();
 
 foreach ($session->loginAthenaGroup->athenaServers as $athenaServer) {
 	$times = $athenaServer->woeDayTimes;
