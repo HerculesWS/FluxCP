@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Guilds</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module')) ?>
 	<p>
 		<label for="id">Guild ID:</label>
@@ -69,27 +69,27 @@
 	</tr>
 	<?php foreach ($guilds as $guild): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>
 				<?php echo $this->linkToGuild($guild->guild_id, $guild->guild_id) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($guild->guild_id) ?>
+				<?php echo htmlspecialchars((string)$guild->guild_id) ?>
 			<?php endif ?>
 		</td>
 		<?php if ($guild->emblem_len): ?>
-		<td width="24"><img src="<?php echo $this->emblem($guild->guild_id) ?>" alt="" /></td>
-		<td><?php echo htmlspecialchars($guild->guildName) ?></td>
+		<td class="emblem-cell"><img src="<?php echo $this->emblem($guild->guild_id) ?>" alt="" /></td>
+		<td><?php echo htmlspecialchars((string)$guild->guildName) ?></td>
 		<?php else: ?>
-		<td colspan="2"><?php echo htmlspecialchars($guild->guildName) ?></td>
+		<td colspan="2"><?php echo htmlspecialchars((string)$guild->guildName) ?></td>
 		<?php endif ?>
 		<td>
 			<?php if ($auth->allowedToViewCharacter): ?>
 				<?php echo $this->linkToCharacter($guild->charID, $guild->charID) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($guild->charID) ?>
+				<?php echo htmlspecialchars((string)$guild->charID) ?>
 			<?php endif ?>
 		</td>
-		<td><?php echo htmlspecialchars($guild->charName) ?></td>
+		<td><?php echo htmlspecialchars((string)$guild->charName) ?></td>
 		<td><?php echo number_format($guild->guildLevel) ?></td>
 		<td><?php echo number_format($guild->connectMem) ?></td>
 		<td><?php echo number_format($guild->maxMem) ?></td>

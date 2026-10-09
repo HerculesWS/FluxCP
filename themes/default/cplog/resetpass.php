@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Password Resets</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="use_request_after">Request Date Between:</label>
@@ -67,7 +67,7 @@
 	</tr>
 	<?php foreach ($resets as $reset): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('account', 'view')): ?>
 				<?php echo $this->linkToAccount($reset->account_id, $reset->account_id) ?>
 			<?php else: ?>
@@ -76,21 +76,21 @@
 		</td>
 		<td>
 			<?php if ($reset->userid): ?>
-				<?php echo htmlspecialchars($reset->userid) ?>
+				<?php echo htmlspecialchars((string)$reset->userid) ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown</span>
 			<?php endif ?>
 		</td>
 		<?php if (Flux::config('CpResetLogShowPassword') && $auth->allowedToSeeCpResetPass): ?>
-		<td><?php echo htmlspecialchars($reset->old_password) ?></td>
-		<td><?php echo htmlspecialchars($reset->new_password) ?></td>
+		<td><?php echo htmlspecialchars((string)$reset->old_password) ?></td>
+		<td><?php echo htmlspecialchars((string)$reset->new_password) ?></td>
 		<?php endif ?>
 		<td><?php echo $this->formatDateTime($reset->request_date) ?></td>
 		<td>
 			<?php if ($auth->actionAllowed('account', 'index')): ?>
 				<?php echo $this->linkToAccountSearch(array('last_ip' => $reset->request_ip), $reset->request_ip) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($reset->request_ip) ?>
+				<?php echo htmlspecialchars((string)$reset->request_ip) ?>
 			<?php endif ?>
 		</td>
 		<td>
@@ -105,7 +105,7 @@
 				<?php if ($auth->actionAllowed('account', 'index')): ?>
 					<?php echo $this->linkToAccountSearch(array('last_ip' => $reset->reset_ip), $reset->reset_ip) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($reset->reset_ip) ?>
+					<?php echo htmlspecialchars((string)$reset->reset_ip) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable">None</span>

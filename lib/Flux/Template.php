@@ -322,7 +322,7 @@ class Flux_Template {
 			}
 			else {
 				foreach (explode('&', trim($_SERVER['QUERY_STRING'], '&')) as $line) {
-					list ($key,$val) = explode('=', $line, 2);
+					list ($key,$val) = array_pad(explode('=', $line, 2), 2, '');
 					$key = urldecode($key);
 					$val = urldecode($val);
 					

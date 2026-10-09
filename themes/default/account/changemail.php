@@ -2,7 +2,7 @@
 <h2><?php echo htmlspecialchars(Flux::message('EmailChangeHeading')) ?></h2>
 
 <?php if (!empty($errorMessage)): ?>
-<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 <?php endif ?>
 
 <p><?php echo htmlspecialchars(Flux::message('EmailChangeInfo')) ?></p>
@@ -11,19 +11,16 @@
 <p><?php echo htmlspecialchars(Flux::message('EmailChangeInfo2')) ?></p>
 <?php endif ?>
 
-<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post" class="generic-form form-stack form-narrow">
 	<?php echo Flux_Security::csrfGenerate('EmailEdit', true) ?>
-	<table class="generic-form-table">
-		<tr>
-			<th><label for="email"><?php echo htmlspecialchars(Flux::message('EmailChangeLabel')) ?></label></th>
-			<td><input type="text" name="email" id="email" /></td>
-			<td><p><?php echo htmlspecialchars(Flux::message('EmailChangeInputNote')) ?></p></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="right">
-				<input type="submit" value="<?php echo htmlspecialchars(Flux::message('EmailChangeButton')) ?>" />
-			</td>
-			<td></td>
-		</tr>
-	</table>
+
+	<div class="form-row">
+		<label for="email"><?php echo htmlspecialchars(Flux::message('EmailChangeLabel')) ?></label>
+		<input type="text" name="email" id="email" />
+		<small class="field-hint"><?php echo htmlspecialchars(Flux::message('EmailChangeInputNote')) ?></small>
+	</div>
+
+	<div class="form-actions">
+		<input type="submit" value="<?php echo htmlspecialchars(Flux::message('EmailChangeButton')) ?>" class="btn-primary" />
+	</div>
 </form>

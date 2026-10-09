@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Accounts</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()"><?php echo htmlspecialchars(Flux::message('SearchLabel')) ?></a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module')) ?>
 	<p>
 		<label for="account_id"><?php echo htmlspecialchars(Flux::message('AccountIdLabel')) ?>:</label>
@@ -102,18 +102,18 @@
 	</tr>
 	<?php foreach ($accounts as $account): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('account', 'view') && $auth->allowedToViewAccount): ?>
 				<?php echo $this->linkToAccount($account->account_id, $account->account_id) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($account->account_id) ?>
+				<?php echo htmlspecialchars((string)$account->account_id) ?>
 			<?php endif ?>
 		</td>
-		<td><?php echo htmlspecialchars($account->userid) ?></td>
-		<?php if ($showPassword): ?><td><?php echo htmlspecialchars($account->user_pass) ?></td><?php endif ?>
+		<td><?php echo htmlspecialchars((string)$account->userid) ?></td>
+		<?php if ($showPassword): ?><td><?php echo htmlspecialchars((string)$account->user_pass) ?></td><?php endif ?>
 		<td>
 			<?php if ($gender = $this->genderText($account->sex)): ?>
-				<?php echo htmlspecialchars($gender) ?>
+				<?php echo htmlspecialchars((string)$gender) ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('UnknownLabel')) ?></span>
 			<?php endif ?>

@@ -20,20 +20,20 @@
 	</tr>
 	<?php foreach ($picks as $pick): ?>
 	<tr>
-		<td align="right"><?php echo $this->formatDateTime($pick->time) ?></td>
+		<td class="align-right"><?php echo $this->formatDateTime($pick->time) ?></td>
 		<td>
 			<?php if ($pick->char_name): ?>
 				<?php if ($pick->type == 'M' || $pick->type == 'L'): ?>
 					<?php if ($auth->actionAllowed('monster', 'view')): ?>
 						<em><?php echo $this->linkToMonster($pick->char_id, $pick->char_name) ?></em>
 					<?php else: ?>
-						<em><?php echo htmlspecialchars($pick->char_name) ?></em>
+						<em><?php echo htmlspecialchars((string)$pick->char_name) ?></em>
 					<?php endif ?>
 				<?php else: ?>
 					<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 						<strong><?php echo $this->linkToCharacter($pick->char_id, $pick->char_name) ?></strong>
 					<?php else: ?>
-						<strong><?php echo htmlspecialchars($pick->char_name) ?></strong>	
+						<strong><?php echo htmlspecialchars((string)$pick->char_name) ?></strong>	
 					<?php endif ?>
 				<?php endif ?>
 			<?php elseif ($pick->char_id): ?>
@@ -41,13 +41,13 @@
 					<?php if ($auth->actionAllowed('monster', 'view')): ?>
 						<em><?php echo $this->linkToMonster($pick->char_id, $pick->char_id) ?></em>
 					<?php else: ?>
-						<em><?php echo htmlspecialchars($pick->char_id) ?></em>
+						<em><?php echo htmlspecialchars((string)$pick->char_id) ?></em>
 					<?php endif ?>
 				<?php else: ?>
 					<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 						<strong><?php echo $this->linkToCharacter($pick->char_id, $pick->char_id) ?></strong>
 					<?php else: ?>
-						<strong><?php echo htmlspecialchars($pick->char_id) ?></strong>	
+						<strong><?php echo htmlspecialchars((string)$pick->char_id) ?></strong>	
 					<?php endif ?>
 				<?php endif ?>
 			<?php else: ?>
@@ -56,7 +56,7 @@
 		</td>
 		<td>
 			<?php if ($pick->pick_type): ?>
-				<?php echo htmlspecialchars($pick->pick_type) ?>
+				<?php echo htmlspecialchars((string)$pick->pick_type) ?>
 			<?php elseif ($pick->type): ?>
 				<?php echo $pick->type ?>
 			<?php else: ?>
@@ -68,13 +68,13 @@
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->nameid, $pick->item_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->item_name) ?>
+					<?php echo htmlspecialchars((string)$pick->item_name) ?>
 				<?php endif ?>
 			<?php elseif ($pick->nameid): ?>
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->nameid, $pick->nameid) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->nameid) ?>
+					<?php echo htmlspecialchars((string)$pick->nameid) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('UnknownLabel')) ?></span>
@@ -89,13 +89,13 @@
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->card0, $pick->card0_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->card0_name) ?>
+					<?php echo htmlspecialchars((string)$pick->card0_name) ?>
 				<?php endif ?>
 			<?php elseif ($pick->card0): ?>
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->card0, $pick->card0) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->card0) ?>
+					<?php echo htmlspecialchars((string)$pick->card0) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
@@ -107,13 +107,13 @@
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->card1, $pick->card1_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->card1_name) ?>
+					<?php echo htmlspecialchars((string)$pick->card1_name) ?>
 				<?php endif ?>
 			<?php elseif ($pick->card1): ?>
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->card1, $pick->card1) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->card1) ?>
+					<?php echo htmlspecialchars((string)$pick->card1) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
@@ -125,13 +125,13 @@
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->card2, $pick->card2_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->card2_name) ?>
+					<?php echo htmlspecialchars((string)$pick->card2_name) ?>
 				<?php endif ?>
 			<?php elseif ($pick->card2): ?>
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->card2, $pick->card2) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->card2) ?>
+					<?php echo htmlspecialchars((string)$pick->card2) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
@@ -143,13 +143,13 @@
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->card3, $pick->card3_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->card3_name) ?>
+					<?php echo htmlspecialchars((string)$pick->card3_name) ?>
 				<?php endif ?>
 			<?php elseif ($pick->card3): ?>
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($pick->card3, $pick->card3) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($pick->card3) ?>
+					<?php echo htmlspecialchars((string)$pick->card3) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
@@ -157,7 +157,7 @@
 		</td>
 		<td>
 			<?php if ($pick->options): ?>
-				<?php echo htmlspecialchars($pick->options) ?>
+				<?php echo htmlspecialchars((string)$pick->options) ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
 			<?php endif ?>

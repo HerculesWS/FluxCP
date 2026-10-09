@@ -6,9 +6,9 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 <h3>Modify Item in the Shop</h3>
 <?php if ($item): ?>
 <?php if (!empty($errorMessage)): ?>
-<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post" enctype="multipart/form-data">
 <?php echo Flux_Security::csrfGenerate('ItemShopEdit', true) ?>
 <?php if (!$stackable): ?>
 <input type="hidden" name="qty" value="1" />
@@ -16,7 +16,7 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 <table class="vertical-table">
 	<tr>
 		<th>Shop ID</th>
-		<td><?php echo htmlspecialchars($item->shop_item_id) ?></td>
+		<td><?php echo htmlspecialchars((string)$item->shop_item_id) ?></td>
 	</tr>
 	<tr>
 		<th>Item ID</th>
@@ -24,7 +24,7 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 	</tr>
 	<tr>
 		<th>Name</th>
-		<td><?php echo htmlspecialchars($item->shop_item_name) ?></td>
+		<td><?php echo htmlspecialchars((string)$item->shop_item_name) ?></td>
 	</tr>
 	<tr>
 		<th><label for="category">Category</label></th>
@@ -32,25 +32,25 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 			<select name="category" id="category">
 				<option value="none"<?php if (is_null($category) || strtolower($category) == 'none') echo ' selected="selected"' ?>><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></option>
 				<?php foreach ($categories as $categoryID => $cat): ?>
-					<option value="<?php echo (int)$categoryID ?>"<?php if ($category === (string)$categoryID) echo ' selected="selected"' ?>><?php echo htmlspecialchars($cat) ?></option>
+					<option value="<?php echo (int)$categoryID ?>"<?php if ($category === (string)$categoryID) echo ' selected="selected"' ?>><?php echo htmlspecialchars((string)$cat) ?></option>
 				<?php endforeach ?>
 			</select>
 		</td>
 	</tr>
 	<tr>
 		<th><label for="cost">Credits</label></th>
-		<td><input type="text" class="short" name="cost" id="cost" value="<?php echo htmlspecialchars($cost) ?>" /></td>
+		<td><input type="text" class="short" name="cost" id="cost" value="<?php echo htmlspecialchars((string)$cost) ?>" /></td>
 	</tr>
 	<?php if ($stackable): ?>
 	<tr>
 		<th><label for="qty">Quantity</label></th>
-		<td><input type="text" class="short" name="qty" id="qty" value="<?php echo htmlspecialchars($quantity) ?>" /></td>
+		<td><input type="text" class="short" name="qty" id="qty" value="<?php echo htmlspecialchars((string)$quantity) ?>" /></td>
 	</tr>
 	<?php endif ?>
 	<tr>
 		<th><label for="info">Info</label></th>
 		<td>
-			<textarea name="info" id="info"><?php echo htmlspecialchars($info) ?></textarea>
+			<textarea name="info" id="info"><?php echo htmlspecialchars((string)$info) ?></textarea>
 			<p style="font-style: italic">Info is in Markdown syntax.</p>
 			<p style="font-style: italic">See: <a href="<?php echo $markdownURL ?>"><?php echo $markdownURL ?></a></p>
 		</td>
@@ -67,12 +67,12 @@ $markdownURL = 'http://daringfireball.net/projects/markdown/syntax';
 					<a href="<?php echo htmlspecialchars($this->url('itemshop', 'imagedel', array('id' => $item->shop_item_id, 'Session' => Flux_Security::csrfGet('Session') ))) ?>">(Delete)</a>
 				<?php endif ?>
 			</p>
-			<p><img src="<?php echo $image ?>" alt="<?php echo htmlspecialchars($item->shop_item_name) ?>" /></p>
+			<p><img src="<?php echo $image ?>" alt="<?php echo htmlspecialchars((string)$item->shop_item_name) ?>" /></p>
 			<?php endif ?>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="right">
+		<td colspan="2" class="align-right">
 			<input type="submit" value="Modify" />
 		</td>
 	</tr>

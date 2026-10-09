@@ -1,9 +1,9 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <?php $menus = array() ?>
 <?php if (!empty($pageMenuItems)): ?>
-	<div id="pagemenu"><?php echo empty($title) ? 'Actions for this page' : htmlspecialchars($title) ?>:
+	<div id="pagemenu"><?php echo empty($title) ? 'Actions for this page' : htmlspecialchars((string)$title) ?>:
 	<?php foreach ($pageMenuItems as $menuItemName => $menuItemLink): ?>
-		<?php $menus[] = sprintf('<a href="%s" class="page-menu-item">%s</a>', htmlspecialchars($menuItemLink), htmlspecialchars(Flux::menuLabel($menuItemName))) ?>
+		<?php $menus[] = sprintf('<a href="%s" class="page-menu-item">%s</a>', htmlspecialchars((string)$menuItemLink), htmlspecialchars(Flux::menuLabel($menuItemName))) ?>
 	<?php endforeach ?>
 	<?php echo implode(', ', $menus) ?>
 	</div>

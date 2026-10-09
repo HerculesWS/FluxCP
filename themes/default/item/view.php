@@ -3,13 +3,13 @@
 <?php if ($item): ?>
 <?php $icon = $this->iconImage($item->item_id); ?>
 <h3>
-	<?php if ($icon): ?><img src="<?php echo $icon ?>" alt="<?php echo htmlspecialchars($item->name) ?>" /><?php endif ?>
-	#<?php echo htmlspecialchars($item->item_id) ?>: <?php echo htmlspecialchars($item->name) ?>
+	<?php if ($icon): ?><img src="<?php echo $icon ?>" alt="<?php echo htmlspecialchars((string)$item->name) ?>" /><?php endif ?>
+	#<?php echo htmlspecialchars((string)$item->item_id) ?>: <?php echo htmlspecialchars((string)$item->name) ?>
 </h3>
 <table class="vertical-table">
 	<tr>
 		<th>Item ID</th>
-		<td><?php echo htmlspecialchars($item->item_id) ?></td>
+		<td><?php echo htmlspecialchars((string)$item->item_id) ?></td>
 		<?php if ($image=$this->itemImage($item->item_id)): ?>
 		<td rowspan="9" style="width: 150px; text-align: center; vertical-alignment: middle">
 			<img src="<?php echo $image ?>" alt="" />
@@ -30,7 +30,7 @@
 	</tr>
 	<tr>
 		<th>Identifier</th>
-		<td><?php echo htmlspecialchars($item->identifier) ?></td>
+		<td><?php echo htmlspecialchars((string)$item->identifier) ?></td>
 		<th>Credit Price</th>
 		<td>
 			<?php if ($item->cost): ?>
@@ -42,7 +42,7 @@
 	</tr>
 	<tr>
 		<th>Name</th>
-		<td><?php echo htmlspecialchars($item->name) ?></td>
+		<td><?php echo htmlspecialchars((string)$item->name) ?></td>
 		<th>Type</th>
 		<td><?php echo $this->itemTypeText($item->type, $item->view) ?></td>
 	</tr>
@@ -204,19 +204,19 @@
 	<?php endif ?>
 </table>
 <?php if ($itemDrops): ?>
-<h3><?php echo htmlspecialchars($item->name) ?> Dropped By</h3>
+<h3><?php echo htmlspecialchars((string)$item->name) ?> Dropped By</h3>
 <table class="vertical-table">
 	<tr>
 		<th>Monster ID</th>
 		<th>Monster Name</th>
-		<th><?php echo htmlspecialchars($item->name) ?> Drop Chance</th>
+		<th><?php echo htmlspecialchars((string)$item->name) ?> Drop Chance</th>
 		<th>Monster Level</th>
 		<th>Monster Race</th>
 		<th>Monster Element</th>
 	</tr>
 	<?php foreach ($itemDrops as $itemDrop): ?>
 	<tr class="item-drop-<?php echo $itemDrop['type'] ?>">
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('monster', 'view')): ?>
 				<?php echo $this->linkToMonster($itemDrop['monster_id'], $itemDrop['monster_id']) ?>
 			<?php else: ?>
@@ -227,7 +227,7 @@
 			<?php if ($itemDrop['type'] == 'mvp'): ?>
 				<span class="mvp">MVP!</span>
 			<?php endif ?>
-			<?php echo htmlspecialchars($itemDrop['monster_name']) ?>
+			<?php echo htmlspecialchars((string)$itemDrop['monster_name']) ?>
 		</td>
 		<td><strong><?php echo $itemDrop['drop_chance'] ?>%</strong></td>
 		<td><?php echo number_format($itemDrop['monster_level']) ?></td>

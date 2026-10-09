@@ -17,14 +17,14 @@
 		<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 			<?php echo $this->linkToCharacter($vendor['char_id'], $vendor['char_name']) ?>
 		<?php else: ?>
-			<?php echo htmlspecialchars($vendor['char_name']) ?>
+			<?php echo htmlspecialchars((string)$vendor['char_name']) ?>
 		<?php endif ?>
 	<?php else: ?>
-		<?php echo htmlspecialchars($vendor['char_id']) ?>
+		<?php echo htmlspecialchars((string)$vendor['char_id']) ?>
 	<?php endif ?>
-	&mdash; <?php echo htmlspecialchars($vendor['title']) ?>
+	&mdash; <?php echo htmlspecialchars((string)$vendor['title']) ?>
 	<?php if ($vendor['map']): ?>
-		<span class="not-applicable">(<?php echo htmlspecialchars($vendor['map']) ?> <?php echo (int)$vendor['x'] ?>, <?php echo (int)$vendor['y'] ?>)</span>
+		<span class="not-applicable">(<?php echo htmlspecialchars((string)$vendor['map']) ?> <?php echo (int)$vendor['x'] ?>, <?php echo (int)$vendor['y'] ?>)</span>
 	<?php endif ?>
 </h3>
 <?php if ($vendor['items']): ?>
@@ -42,10 +42,10 @@
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($item->nameid, $item->item_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($item->item_name) ?>
+					<?php echo htmlspecialchars((string)$item->item_name) ?>
 				<?php endif ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($item->nameid) ?>
+				<?php echo htmlspecialchars((string)$item->nameid) ?>
 			<?php endif ?>
 		</td>
 		<td><?php echo $item->refine ? '+'.(int)$item->refine : '' ?></td>

@@ -3,7 +3,7 @@ if (!defined('FLUX_ROOT')) exit;
 
 $title = 'Guild Ranking';
 
-$castleNames = Flux::config('CastleNames')->toArray();
+$castleNames = Flux::castleNames();
 $ids  = implode(',', array_fill(0, count($castleNames), '?'));
 $bind = array_keys($castleNames);
 

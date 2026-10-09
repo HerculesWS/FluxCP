@@ -49,7 +49,7 @@ class Flux_ReCaptcha {
 		}
 
 		return '<script src="https://www.google.com/recaptcha/api.js"></script>
-		<div class="g-recaptcha" data-sitekey="'.htmlspecialchars($siteKey).'" data-theme="'.htmlspecialchars(Flux::config('ReCaptchaTheme')).'"></div>';
+		<div class="g-recaptcha" data-sitekey="'.htmlspecialchars($siteKey).'" data-theme="'.htmlspecialchars((string)Flux::config('ReCaptchaTheme')).'"></div>';
 	}
 
 	/**

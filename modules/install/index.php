@@ -6,6 +6,11 @@ require_once 'Flux/Installer/SchemaPermissionError.php';
 // Force debug mode off here.
 Flux::config('DebugMode', false);
 
+// The installer view only exists in the installer theme, which is only active while updates are pending.
+if (!Flux_Installer::getInstance()->updateNeeded()) {
+	$this->redirect();
+}
+
 if ($session->installerAuth) {
 	if ($params->get('logout')) {
 		$session->setInstallerAuthData(false);

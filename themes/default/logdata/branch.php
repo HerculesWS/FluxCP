@@ -11,13 +11,13 @@
 	</tr>
 	<?php foreach ($branches as $branch): ?>
 	<tr>
-		<td align="right"><?php echo $this->formatDateTime($branch->branch_date) ?></td>
+		<td class="align-right"><?php echo $this->formatDateTime($branch->branch_date) ?></td>
 		<td>
 			<?php if ($branch->account_id): ?>
 				<?php if ($auth->actionAllowed('account', 'view')): ?>
 					<?php echo $this->linkToAccount($branch->account_id, $branch->account_id) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($branch->account_id) ?>
+					<?php echo htmlspecialchars((string)$branch->account_id) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('UnknownLabel')) ?></span>
@@ -28,13 +28,13 @@
 				<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 					<strong><?php echo $this->linkToCharacter($branch->char_id, $branch->char_name) ?></strong>
 				<?php else: ?>
-					<strong><?php echo htmlspecialchars($branch->char_name) ?></strong>
+					<strong><?php echo htmlspecialchars((string)$branch->char_name) ?></strong>
 				<?php endif ?>
 			<?php elseif ($branch->char_id): ?>
 				<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 					<strong><?php echo $this->linkToCharacter($branch->char_id, $branch->char_id) ?></strong>
 				<?php else: ?>
-					<strong><?php echo htmlspecialchars($branch->char_id) ?></strong>
+					<strong><?php echo htmlspecialchars((string)$branch->char_id) ?></strong>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('UnknownLabel')) ?></span>

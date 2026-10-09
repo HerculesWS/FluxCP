@@ -29,12 +29,12 @@
 			<span>Theme:
 			<select name="preferred_theme" onchange="updatePreferredTheme(this)">
 				<?php foreach (Flux::$appConfig->get('ThemeName', false) as $themeName): ?>
-				<option value="<?php echo htmlspecialchars($themeName) ?>"<?php if ($session->theme == $themeName) echo ' selected="selected"' ?>><?php echo htmlspecialchars($themeName) ?></option>
+				<option value="<?php echo htmlspecialchars((string)$themeName) ?>"<?php if ($session->theme == $themeName) echo ' selected="selected"' ?>><?php echo htmlspecialchars((string)$themeName) ?></option>
 				<?php endforeach ?>
 			</select>
 			</span>
 			<?php endif ?>
-			<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" name="preferred_theme_form" style="display: none">
+			<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post" name="preferred_theme_form" style="display: none">
 				<input type="hidden" name="preferred_theme" value="" />
 			</form>
 			</div>

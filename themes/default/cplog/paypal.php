@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>PayPal Transactions</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="txn_id">Transaction ID:</label>
@@ -73,7 +73,7 @@
 	</tr>
 	<?php foreach ($transactions as $txn): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<strong>
 				<?php if ($auth->actionAllowed('logdata', 'txnview')): ?>
 					<a href="<?php echo htmlspecialchars($this->url($params->get('module'), 'txnview', array('id' => $txn->id))) ?>">
@@ -107,13 +107,13 @@
 		</td>
 		<td><?php echo $txn->mc_gross ?> <?php echo $txn->mc_currency ?></td>
 		<td><?php echo number_format((int)$txn->credits) ?></td>
-		<!--<td><?php echo htmlspecialchars($txn->server_name) ?></td>-->
+		<!--<td><?php echo htmlspecialchars((string)$txn->server_name) ?></td>-->
 		<td>
 			<?php if ($txn->account_id): ?>
 				<?php if ($auth->actionAllowed('account', 'view') && $auth->allowedToViewAccount): ?>
 					<?php echo $this->linkToAccount($txn->account_id, $txn->userid) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($txn->userid) ?>
+					<?php echo htmlspecialchars((string)$txn->userid) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown</span>

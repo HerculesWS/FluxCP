@@ -9,12 +9,12 @@
 	</tr>
 	<?php foreach ($changes as $change): ?>
 	<tr>
-		<td><?php echo htmlspecialchars($change->change_date) ?></td>
+		<td><?php echo htmlspecialchars((string)$change->change_date) ?></td>
 		<td>
 		<?php if ($auth->actionAllowed('account', 'index')): ?>
 			<?php echo $this->linkToAccountSearch(array('last_ip' => $change->change_ip), $change->change_ip) ?>
 		<?php else: ?>
-			<?php echo htmlspecialchars($change->change_ip) ?>
+			<?php echo htmlspecialchars((string)$change->change_ip) ?>
 		<?php endif ?>
 		</td>
 	</tr>

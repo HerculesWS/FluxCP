@@ -13,19 +13,19 @@
 	</tr>
 	<?php foreach ($mvpKills as $mvpKill): ?>
 	<tr>
-		<td align="right"><?php echo $this->formatDateTime($mvpKill->mvp_date) ?></td>
+		<td class="align-right"><?php echo $this->formatDateTime($mvpKill->mvp_date) ?></td>
 		<td>
 			<?php if ($mvpKill->char_name): ?>
 				<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 					<strong><?php echo $this->linkToCharacter($mvpKill->kill_char_id, $mvpKill->char_name) ?></strong>
 				<?php else: ?>
-					<strong><?php echo htmlspecialchars($mvpKill->char_name) ?></strong>
+					<strong><?php echo htmlspecialchars((string)$mvpKill->char_name) ?></strong>
 				<?php endif ?>
 			<?php elseif ($mvpKill->kill_char_id): ?>
 				<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 					<strong><?php echo $this->linkToCharacter($mvpKill->kill_char_id, $mvpKill->kill_char_id) ?></strong>
 				<?php else: ?>
-					<strong><?php echo htmlspecialchars($mvpKill->kill_char_id) ?></strong>
+					<strong><?php echo htmlspecialchars((string)$mvpKill->kill_char_id) ?></strong>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('UnknownLabel')) ?></span>
@@ -36,13 +36,13 @@
 				<?php if ($auth->actionAllowed('monster', 'view')): ?>
 					<em><?php echo $this->linkToMonster($mvpKill->monster_id, $mvpKill->monster_name) ?></em>
 				<?php else: ?>
-					<em><?php echo htmlspecialchars($mvpKill->monster_name) ?></em>
+					<em><?php echo htmlspecialchars((string)$mvpKill->monster_name) ?></em>
 				<?php endif ?>
 			<?php elseif ($mvpKill->monster_id): ?>
 				<?php if ($auth->actionAllowed('monster', 'view')): ?>
 					<em><?php echo $this->linkToMonster($mvpKill->monster_id, $mvpKill->monster_id) ?></em>
 				<?php else: ?>
-					<em><?php echo htmlspecialchars($mvpKill->monster_id) ?></em>
+					<em><?php echo htmlspecialchars((string)$mvpKill->monster_id) ?></em>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('UnknownLabel')) ?></span>

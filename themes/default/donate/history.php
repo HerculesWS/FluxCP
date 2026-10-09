@@ -14,11 +14,11 @@
 	</tr>
 	<?php foreach ($completedTxn as $txn): ?>
 	<tr>
-		<td><?php echo htmlspecialchars($txn->txn_id) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->txn_id) ?></td>
 		<td><?php echo $this->formatDateTime($txn->payment_date) ?></td>
 		<td><?php echo htmlspecialchars((string)$txn->payer_email) ?></td>
-		<td><?php echo htmlspecialchars($txn->mc_gross) ?></td>
-		<td><?php echo htmlspecialchars($txn->mc_currency) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->mc_gross) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->mc_currency) ?></td>
 		<td><?php echo number_format($txn->credits) ?></td>
 	</tr>
 	<?php endforeach ?>
@@ -41,11 +41,11 @@
 	</tr>
 	<?php foreach ($heldTxn as $txn): ?>
 	<tr>
-		<td><?php echo htmlspecialchars($txn->txn_id) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->txn_id) ?></td>
 		<td><?php echo $this->formatDateTime($txn->payment_date) ?></td>
 		<td><?php echo htmlspecialchars((string)$txn->payer_email) ?></td>
-		<td><?php echo htmlspecialchars($txn->mc_gross) ?></td>
-		<td><?php echo htmlspecialchars($txn->mc_currency) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->mc_gross) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->mc_currency) ?></td>
 		<td><?php echo number_format($txn->credits) ?></td>
 	</tr>
 	<tr>
@@ -74,11 +74,11 @@
 	</tr>
 	<?php foreach ($failedTxn as $txn): ?>
 	<tr>
-		<td><?php echo htmlspecialchars($txn->txn_id) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->txn_id) ?></td>
 		<td><?php echo $this->formatDateTime($txn->payment_date) ?></td>
 		<td><?php echo htmlspecialchars((string)$txn->payer_email) ?></td>
-		<td><?php echo htmlspecialchars($txn->mc_gross) ?></td>
-		<td><?php echo htmlspecialchars($txn->mc_currency) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->mc_gross) ?></td>
+		<td><?php echo htmlspecialchars((string)$txn->mc_currency) ?></td>
 		<td><?php echo number_format($txn->credits) ?></td>
 	</tr>
 	<?php endforeach ?>

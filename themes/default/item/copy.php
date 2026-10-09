@@ -2,11 +2,11 @@
 <h2>Duplicate Item</h2>
 <?php if ($item): ?>
 <?php if (!empty($errorMessage)): ?>
-<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 <?php else: ?>
 <p>Here you can copy an item into <em>item_db2</em> with a new item ID.</p>
 <?php endif ?>
-<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post" class="generic-form">
 	<input type="hidden" name="copyitem" value="1" />
 	<?php echo Flux_Security::csrfGenerate('ItemCopy', true) ?>
 
@@ -15,11 +15,11 @@
 			<th><label>Item Name (Item ID)</label></th>
 			<td>
 				<p>
-					<strong><?php echo htmlspecialchars($item->name_japanese) ?></strong>
+					<strong><?php echo htmlspecialchars((string)$item->name_japanese) ?></strong>
 					<?php if ($auth->actionAllowed('item', 'view')): ?>
-						(<a href="<?php echo htmlspecialchars($this->url('item', 'view', array('id' => $itemID))) ?>"><?php echo htmlspecialchars($itemID) ?></a>)
+						(<a href="<?php echo htmlspecialchars($this->url('item', 'view', array('id' => $itemID))) ?>"><?php echo htmlspecialchars((string)$itemID) ?></a>)
 					<?php else: ?>
-						(<?php echo htmlspecialchars($itemID) ?>)
+						(<?php echo htmlspecialchars((string)$itemID) ?>)
 					<?php endif ?>
 				</p>
 				
@@ -32,7 +32,7 @@
 			<td><p>Specify the new item ID you would like for the duplicate item.</p></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="right"><input type="submit" value="Duplicate Item" /></td>
+			<td colspan="2" class="align-right"><input type="submit" value="Duplicate Item" /></td>
 			<td></td>
 		</tr>
 	</table>

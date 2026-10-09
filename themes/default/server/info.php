@@ -4,7 +4,7 @@
 
 <h3><?php echo htmlspecialchars(sprintf(Flux::message('ServerInfoSubHeading'), $server->serverName)) ?></h3>
 <div class="generic-form-div">
-	<table class="generic-form-table">
+	<table class="generic-form-table server-stats">
 		<tr>
 			<th><label><?php echo htmlspecialchars(Flux::message('ServerInfoAccountLabel')) ?></label></th>
 			<td><p><?php echo number_format($info['accounts']) ?></p></td>
@@ -30,22 +30,12 @@
 
 <h3><?php echo htmlspecialchars(sprintf(Flux::message('ServerInfoSubHeading2'), $server->serverName)) ?></h3>
 <div class="generic-form-div">
-	<table class="generic-form-table job-classes">
-		<tr>
-		<?php $i = 1; $x = 5 ?>
+	<div class="job-classes">
 		<?php foreach ($info['classes'] as $class => $total): ?>
-			<th><label><?php echo htmlspecialchars($class) ?></label></th>
-			<td><p class="important"><?php echo number_format($total) ?></p></td>
-		<?php if ($i++ % $x === 0): ?>
-		</tr>
-		<tr>
-		<?php endif ?>
+		<div class="job-class">
+			<label><?php echo htmlspecialchars((string)$class) ?></label>
+			<p class="important"><?php echo number_format($total) ?></p>
+		</div>
 		<?php endforeach ?>
-		<?php --$i ?>
-		<?php while (($i++) % $x): ?>
-			<th>&nbsp;</th>
-			<td>&nbsp;</td>
-		<?php endwhile ?>
-		</tr>
-	</table>
+	</div>
 </div>

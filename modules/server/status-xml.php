@@ -40,6 +40,32 @@ foreach ($serverStatus as $privServerName => $gameServers) {
 		$serv->appendChild($online);
 		$serv->appendChild($atmerc);
 		$serv->appendChild($population);
+		
+		// Highest Players Online value recorded, with the time it was reached (ISO 8601).
+		if (isset($serverPeak[$privServerName][$serverName])) {
+			$peak = $serverPeak[$privServerName][$serverName];
+			$serv->setAttribute('peakPlayersOnline', (int)$peak['peak']);
+			$serv->setAttribute('peakReachedAt', $peak['time'] ? date('c', (int)$peak['time']) : '');
+		}
+		
+		// War of Emperium state: in progress now, or the next scheduled window.
+		if (isset($woeStatus[$privServerName][$serverName]) && $woeStatus[$privServerName][$serverName]['configured']) {
+			$woe     = $woeStatus[$privServerName][$serverName];
+			$woeElem = $dom->createElement('WoE');
+			$woeElem->setAttribute('active', (int)$woe['active']);
+			$woeElem->setAttribute('start', $woe['start']);
+			$woeElem->setAttribute('end', $woe['end']);
+			if (!$woe['active'] && $woe['in']) {
+				$woeElem->setAttribute('startsIn', $woe['in']);
+			}
+			foreach ($woe['castles'] as $castleName) {
+				$castleElem = $dom->createElement('Castle');
+				$castleElem->setAttribute('name', $castleName);
+				$woeElem->appendChild($castleElem);
+			}
+			$serv->appendChild($woeElem);
+		}
+		
 		$group->appendChild($serv);
 	}
 	

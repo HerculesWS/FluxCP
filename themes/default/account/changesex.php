@@ -14,32 +14,26 @@
 
 <?php if ($hasNecessaryFunds): ?>
 <?php if (empty($errorMessage)): ?>
-<p><strong><?php echo htmlspecialchars(Flux::message('NoteLabel')) ?>:</strong> <?php printf(Flux::message('GenderChangeCharInfo'), '<em>'.implode(', ', array_values($badJobs)).'</em>') ?>.</p>
+<div class="form-callout form-callout-warn">
+	<p><strong><?php echo htmlspecialchars(Flux::message('NoteLabel')) ?>:</strong> <?php printf(Flux::message('GenderChangeCharInfo'), '<em>'.implode(', ', array_values($badJobs)).'</em>') ?>.</p>
+</div>
 <h3><?php echo htmlspecialchars(Flux::message('GenderChangeSubHeading')) ?></h3>
 <?php else: ?>
-<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 <?php endif ?>
-<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post" class="generic-form">
+<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post" class="generic-form form-stack form-narrow">
 	<input type="hidden" name="changegender" value="1" />
 	<?php echo Flux_Security::csrfGenerate('GenderEdit', true) ?>
-	<table class="generic-form-table">
-		<tr>
-			<td>
-				<p>
-					<?php printf(Flux::message('GenderChangeFormText'), '<strong>'.strtolower($this->genderText($session->account->sex == 'M' ? 'F' : 'M')).'</strong>') ?>
-				</p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<p>
-					<button type="submit"
-						onclick="return confirm('<?php echo str_replace("\'", "\\'", Flux::message('GenderChangeConfirm')) ?>')">
-							<strong><?php echo htmlspecialchars(Flux::message('GenderChangeButton')) ?></strong>
-					</button>
-				</p>
-			</td>
-		</tr>
-	</table>
+
+	<p class="form-lead">
+		<?php printf(Flux::message('GenderChangeFormText'), '<strong>'.strtolower($this->genderText($session->account->sex == 'M' ? 'F' : 'M')).'</strong>') ?>
+	</p>
+
+	<div class="form-actions">
+		<button type="submit" class="btn-primary"
+			onclick="return confirm('<?php echo str_replace("'", "\'", Flux::message('GenderChangeConfirm')) ?>')">
+			<?php echo htmlspecialchars(Flux::message('GenderChangeButton')) ?>
+		</button>
+	</div>
 </form>
 <?php endif ?>

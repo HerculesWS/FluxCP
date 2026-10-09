@@ -220,6 +220,84 @@ class Flux {
 	}
 	
 	/**
+	 * Castles from the CastleNames config as castle ID => array('name' => ..., 'region' => ...).
+	 * The config is region => array(castle ID => names), where names is a plain string or
+	 * array('iRO' => ..., 'kRO' => ...); the CastleNaming option picks the one used for 'name'.
+	 * A castle given directly at the top level (castle ID => name) has no region, so its region is null.
+	 *
+	 * @return array
+	 */
+	public static function castles()
+	{
+		$config = self::config('CastleNames');
+		$naming = (string)self::config('CastleNaming');
+		$castles = array();
+		if ($config) {
+			foreach ($config->toArray() as $key => $entry) {
+				if (is_array($entry)) {
+					foreach ($entry as $id => $names) {
+						$castles[$id] = array('name' => self::castleName($names, $naming), 'region' => (string)$key);
+					}
+				}
+				else {
+					$castles[$key] = array('name' => (string)$entry, 'region' => null);
+				}
+			}
+		}
+		return $castles;
+	}
+
+	/**
+	 * Picks the name for the configured naming, falling back to the first one listed.
+	 *
+	 * @param string|array $names
+	 * @param string $naming
+	 * @return string
+	 */
+	private static function castleName($names, $naming)
+	{
+		if (!is_array($names)) {
+			return (string)$names;
+		}
+		foreach ($names as $key => $name) {
+			if (strcasecmp((string)$key, $naming) === 0) {
+				return (string)$name;
+			}
+		}
+		return (string)reset($names);
+	}
+
+	/**
+	 * Castle ID => castle name.
+	 *
+	 * @return array
+	 */
+	public static function castleNames()
+	{
+		$names = array();
+		foreach (self::castles() as $id => $castle) {
+			$names[$id] = $castle['name'];
+		}
+		return $names;
+	}
+
+	/**
+	 * Region name => list of castle IDs, in the order they appear in the CastleNames config.
+	 *
+	 * @return array
+	 */
+	public static function castleRegions()
+	{
+		$regions = array();
+		foreach (self::castles() as $id => $castle) {
+			if ($castle['region'] !== null && $castle['region'] !== '') {
+				$regions[$castle['region']][] = $id;
+			}
+		}
+		return $regions;
+	}
+
+	/**
 	 * Wrapper method for setting and getting values from the messagesConfig.
 	 *
 	 * @param string $key
@@ -886,6 +964,30 @@ class Flux {
 	}
 	
 	/**
+	 * Reduce a bitmask to its low 32 bits as a native int.
+	 * Unsigned 64-bit database values (e.g. 18446744073709551615 for "all")
+	 * overflow PHP_INT_MAX and trigger implicit conversion deprecations,
+	 * and the equip bit lists only use the low 32 bits.
+	 * @param int|string $bitmask
+	 * @return int
+	 */
+	private static function bitmaskLow32($bitmask)
+	{
+		if (is_int($bitmask)) {
+			return $bitmask & 0xFFFFFFFF;
+		}
+		
+		$digits = preg_replace('/\D/', '', (string)$bitmask);
+		$low    = 0;
+		
+		for ($i = 0, $len = strlen($digits); $i < $len; ++$i) {
+			$low = ($low * 10 + (int)$digits[$i]) % 4294967296;
+		}
+		
+		return $low;
+	}
+	
+	/**
 	 * Perform a bitwise AND from each bit in getEquipUpperList() on $bitmask
 	 * to determine which bits have been set.
 	 * @param int $bitmask
@@ -893,6 +995,7 @@ class Flux {
 	 */
 	public static function equipUpperToArray($bitmask)
 	{
+		$bitmask = self::bitmaskLow32($bitmask);
 		$arr  = array();
 		$bits = self::getEquipUpperList();
 		
@@ -913,6 +1016,7 @@ class Flux {
 	 */
 	public static function equipJobsToArray($bitmask)
 	{
+		$bitmask = self::bitmaskLow32($bitmask);
 		$arr  = array();
 		$bits = self::getEquipJobsList();
 		

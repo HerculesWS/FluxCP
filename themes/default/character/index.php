@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Characters</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module')) ?>
 	<p>
 		<label for="char_id">Character ID:</label>
@@ -98,24 +98,24 @@
 	</tr>
 	<?php foreach ($characters as $char): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 				<?php echo $this->linkToCharacter($char->char_id, $char->char_id) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($char->char_id) ?>
+				<?php echo htmlspecialchars((string)$char->char_id) ?>
 			<?php endif ?>
 		</td>
 		<td>
 			<?php if ($auth->actionAllowed('account', 'view') && $auth->allowedToViewAccount): ?>
 				<?php echo $this->linkToAccount($char->account_id, $char->userid) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($char->userid) ?>
+				<?php echo htmlspecialchars((string)$char->userid) ?>
 			<?php endif ?>
 		</td>
-		<td><?php echo htmlspecialchars($char->char_name) ?></td>
+		<td><?php echo htmlspecialchars((string)$char->char_name) ?></td>
 		<td>
 			<?php if ($job=$this->jobClassText($char->class)): ?>
-				<?php echo htmlspecialchars($job) ?>
+				<?php echo htmlspecialchars((string)$job) ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown</span>
 			<?php endif ?>
@@ -125,24 +125,24 @@
 		<td><?php echo number_format((int)$char->zeny) ?></td>
 		<?php if ($char->guild_name): ?>
 			<?php if ($char->guild_emblem_len): ?>
-			<td width="24"><img src="<?php echo $this->emblem($char->guild_id) ?>" alt="" /></td>
+			<td class="emblem-cell"><img src="<?php echo $this->emblem($char->guild_id) ?>" alt="" /></td>
 			<?php endif ?>
 			<td<?php if (!$char->guild_emblem_len) echo ' colspan="2"' ?>>
 				<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>
 					<?php echo $this->linkToGuild($char->guild_id, $char->guild_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($char->guild_name) ?>
+					<?php echo htmlspecialchars((string)$char->guild_name) ?>
 				<?php endif ?>
 			</td>
 		<?php else: ?>
-			<td colspan="2" align="center"><span class="not-applicable">None</span></td>
+			<td colspan="2" class="align-center"><span class="not-applicable">None</span></td>
 		<?php endif ?>
 		<td>
 			<?php if ($char->partner_name): ?>
 				<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 					<?php echo $this->linkToCharacter($char->partner_id, $char->partner_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($char->partner_name) ?>
+					<?php echo htmlspecialchars((string)$char->partner_name) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable">None</span>
@@ -153,7 +153,7 @@
 				<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 					<?php echo $this->linkToCharacter($char->mother_id, $char->mother_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($char->mother_name) ?>
+					<?php echo htmlspecialchars((string)$char->mother_name) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable">None</span>
@@ -164,7 +164,7 @@
 				<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 					<?php echo $this->linkToCharacter($char->father_id, $char->father_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($char->father_name) ?>
+					<?php echo htmlspecialchars((string)$char->father_name) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable">None</span>
@@ -175,7 +175,7 @@
 				<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 					<?php echo $this->linkToCharacter($char->child_id, $char->child_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($char->child_name) ?>
+					<?php echo htmlspecialchars((string)$char->child_name) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable">None</span>

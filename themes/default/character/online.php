@@ -1,9 +1,9 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Who's Online?</h2>
-<h3>Showing players on-line <?php echo htmlspecialchars($server->serverName) ?>.</h3>
+<h3>Showing players on-line <?php echo htmlspecialchars((string)$server->serverName) ?>.</h3>
 <?php if ($auth->allowedToSearchWhosOnline): ?>
 	<p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-	<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+	<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 		<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 		<p>
 			<label for="char_name">Character Name:</label>
@@ -42,11 +42,11 @@
 	</tr>
 	<?php foreach ($chars as $char): ?>
 	<tr>
-		<td align="right">
+		<td>
 			<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 				<?php echo $this->linkToCharacter($char->char_id, $char->char_name) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($char->char_name) ?>
+				<?php echo htmlspecialchars((string)$char->char_name) ?>
 			<?php endif ?>
 		</td>
 		<td><?php echo $this->jobClassText($char->char_class) ?></td>
@@ -54,17 +54,20 @@
 		<td><?php echo number_format($char->job_level) ?></td>
 		<?php if ($char->guild_name): ?>
 			<?php if ($char->guild_emblem_len): ?>
-			<td width="20"><img src="<?php echo $this->emblem($char->guild_id) ?>" alt="" /></td>
+			<td class="emblem-cell"><img src="<?php echo $this->emblem($char->guild_id) ?>" alt="" /></td>
+			<?php else: ?>
+			<td class="emblem-cell"></td>
 			<?php endif ?>
-			<td<?php if (!$char->guild_emblem_len) echo ' colspan="2"' ?>>
+			<td>
 				<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>
 					<?php echo $this->linkToGuild($char->guild_id, $char->guild_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($char->guild_name) ?>
+					<?php echo htmlspecialchars((string)$char->guild_name) ?>
 				<?php endif ?>
 			</td>
 		<?php else: ?>
-			<td colspan="2"><span class="not-applicable">None</span></td>
+			<td class="emblem-cell"></td>
+			<td><span class="not-applicable">None</span></td>
 		<?php endif ?>
 		
 		<td>
@@ -79,5 +82,5 @@
 </table>
 <?php echo $paginator->getHTML() ?>
 <?php else: ?>
-<p>No characters found on <?php echo htmlspecialchars($server->serverName) ?>. <a href="javascript:history.go(-1)">Go back</a>.</p>
+<p>No characters found on <?php echo htmlspecialchars((string)$server->serverName) ?>. <a href="javascript:history.go(-1)">Go back</a>.</p>
 <?php endif ?>

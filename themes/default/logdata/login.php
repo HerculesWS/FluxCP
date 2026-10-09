@@ -1,7 +1,7 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2>Logins</h2>
 <p class="toggler"><a href="javascript:toggleSearchForm()">Search...</a></p>
-<form action="<?php echo htmlspecialchars($this->url) ?>" method="get" class="search-form">
+<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="get" class="search-form">
 	<?php echo $this->moduleActionFormInputs($params->get('module'), $params->get('action')) ?>
 	<p>
 		<label for="use_log_after">Date Between:</label>
@@ -40,23 +40,23 @@
 	</tr>
 	<?php foreach ($logins as $login): ?>
 	<tr>
-		<td align="right"><?php echo htmlspecialchars($this->formatDateTime($login->time)) ?></td>
+		<td class="align-right"><?php echo htmlspecialchars($this->formatDateTime($login->time)) ?></td>
 		<td>
 			<?php if ($auth->actionAllowed('account', 'index')): ?>
 				<?php echo $this->linkToAccountSearch(array('last_ip' => $login->ip), $login->ip) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($login->ip) ?>
+				<?php echo htmlspecialchars((string)$login->ip) ?>
 			<?php endif ?>
 		</td>
 		<td>
 			<?php if ($login->account_id && $auth->actionAllowed('account', 'view') && $auth->allowedToViewAccount): ?>
 				<?php echo $this->linkToAccount($login->account_id, $login->user) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($login->user) ?>
+				<?php echo htmlspecialchars((string)$login->user) ?>
 			<?php endif ?>
 		</td>
-		<td><?php echo htmlspecialchars($login->log) ?></td>
-		<td><?php echo htmlspecialchars($login->rcode) ?></td>
+		<td><?php echo htmlspecialchars((string)$login->log) ?></td>
+		<td><?php echo htmlspecialchars((string)$login->rcode) ?></td>
 	</tr>
 	<?php endforeach ?>
 </table>

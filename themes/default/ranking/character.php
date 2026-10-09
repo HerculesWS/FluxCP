@@ -5,19 +5,19 @@
 	<?php if (!is_null($jobClass)): ?>
 	(<?php echo htmlspecialchars($className=$this->jobClassText($jobClass)) ?>)
 	<?php endif ?>
-	on <?php echo htmlspecialchars($server->serverName) ?>
+	on <?php echo htmlspecialchars((string)$server->serverName) ?>
 </h3>
 <?php if ($chars): ?>
-<form action="" method="get" class="search-form2">
+<form method="get" class="search-form2">
 	<?php echo $this->moduleActionFormInputs('ranking', 'character') ?>
 	<p>
 		<label for="jobclass">Filter by job class:</label>
 		<select name="jobclass" id="jobclass">
-			<option value=""<?php if (is_null($jobClass)) echo 'selected="selected"' ?>>All</option>
+			<option value=""<?php if (is_null($jobClass)) echo ' selected="selected"' ?>>All</option>
 		<?php foreach ($classes as $jobClassIndex => $jobClassName): ?>
 			<option value="<?php echo $jobClassIndex ?>"
 				<?php if (!is_null($jobClass) && $jobClass == $jobClassIndex) echo ' selected="selected"' ?>>
-				<?php echo htmlspecialchars($jobClassName) ?>
+				<?php echo htmlspecialchars((string)$jobClassName) ?>
 			</option>
 		<?php endforeach ?>
 		</select>
@@ -38,31 +38,34 @@
 		<th>Job Experience</th>
 	</tr>
 	<?php $topRankType = !is_null($jobClass) ? $className : 'character' ?>
-	<?php for ($i = 0; $i < $limit; ++$i): ?>
-	<tr<?php if (!isset($chars[$i])) echo ' class="empty-row"'; if ($i === 0) echo ' class="top-ranked" title="<strong>'.htmlspecialchars($chars[$i]->char_name).'</strong> is the top ranked '.$topRankType.'!"' ?>>
-		<td align="right"><?php echo number_format($i + 1) ?></td>
+	<?php for ($i = 0, $shown = min((int)$limit, count($chars)); $i < $shown; ++$i): ?>
+	<tr<?php if (!isset($chars[$i])) echo ' class="empty-row"'; if ($i === 0) echo ' class="top-ranked" title="<strong>'.htmlspecialchars((string)$chars[$i]->char_name).'</strong> is the top ranked '.$topRankType.'!"' ?>>
+		<td class="align-right"><?php echo number_format($i + 1) ?></td>
 		<?php if (isset($chars[$i])): ?>
 		<td><strong>
 			<?php if ($auth->actionAllowed('character', 'view') && $auth->allowedToViewCharacter): ?>
 				<?php echo $this->linkToCharacter($chars[$i]->char_id, $chars[$i]->char_name) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($chars[$i]->char_name) ?>
+				<?php echo htmlspecialchars((string)$chars[$i]->char_name) ?>
 			<?php endif ?>
 		</strong></td>
 		<td><?php echo $this->jobClassText($chars[$i]->char_class) ?></td>
 		<?php if ($chars[$i]->guild_name): ?>
 		<?php if ($chars[$i]->guild_emblem_len): ?>
-		<td width="24"><img src="<?php echo $this->emblem($chars[$i]->guild_id) ?>" alt="" /></td>
+		<td class="emblem-cell"><img src="<?php echo $this->emblem($chars[$i]->guild_id) ?>" alt="" /></td>
+		<?php else: ?>
+		<td class="emblem-cell"></td>
 		<?php endif ?>
-		<td<?php if (!$chars[$i]->guild_emblem_len) echo ' colspan="2"' ?>>
+		<td>
 			<?php if ($auth->actionAllowed('guild', 'view') && $auth->allowedToViewGuild): ?>
 				<?php echo $this->linkToGuild($chars[$i]->guild_id, $chars[$i]->guild_name) ?>
 			<?php else: ?>
-				<?php echo htmlspecialchars($chars[$i]->guild_name) ?>
+				<?php echo htmlspecialchars((string)$chars[$i]->guild_name) ?>
 			<?php endif ?>
 		</td>
 		<?php else: ?>
-		<td colspan="2"><span class="not-applicable">None</span></td>
+		<td class="emblem-cell"></td>
+		<td><span class="not-applicable">None</span></td>
 		<?php endif ?>
 		<td><?php echo number_format($chars[$i]->base_level) ?></td>
 		<td><?php echo number_format($chars[$i]->job_level) ?></td>

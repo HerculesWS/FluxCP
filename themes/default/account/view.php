@@ -1,13 +1,13 @@
 <?php if (!defined('FLUX_ROOT')) exit; ?>
 <h2><?php echo htmlspecialchars(Flux::message('AccountViewHeading')) ?></h2>
 <?php if (!empty($errorMessage)): ?>
-<p class="red"><?php echo htmlspecialchars($errorMessage) ?></p>
+<p class="red"><?php echo htmlspecialchars((string)$errorMessage) ?></p>
 <?php endif ?>
 <?php if ($account): ?>
 <table class="vertical-table">
 	<tr>
 		<th><?php echo htmlspecialchars(Flux::message('UsernameLabel')) ?></th>
-		<td><?php echo htmlspecialchars($account->userid) ?></td>
+		<td><?php echo htmlspecialchars((string)$account->userid) ?></td>
 		<th><?php echo htmlspecialchars(Flux::message('AccountIdLabel')) ?></th>
 		<td>
 			<?php if ($auth->allowedToSeeAccountID): ?>
@@ -24,7 +24,7 @@
 				<?php if ($auth->actionAllowed('account', 'index')): ?>
 					<?php echo $this->linkToAccountSearch(array('email' => $account->email), $account->email) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($account->email) ?>
+					<?php echo htmlspecialchars((string)$account->email) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
@@ -91,7 +91,7 @@
 				<?php if ($auth->actionAllowed('account', 'index')): ?>
 					<?php echo $this->linkToAccountSearch(array('last_ip' => $account->last_ip), $account->last_ip) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($account->last_ip) ?>
+					<?php echo htmlspecialchars((string)$account->last_ip) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
@@ -103,7 +103,7 @@
 	<tr>
 		<th><?php echo htmlspecialchars(Flux::message('AccountViewTempBanLabel')) ?></th>
 		<td colspan="3">
-			<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post">
+			<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post">
 				<input type="hidden" name="tempban" value="1" />
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanReasonLabel')) ?><br /><textarea name="reason" class="block reason"></textarea></label>
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanUntilLabel')) ?></label>
@@ -118,7 +118,7 @@
 	<tr>
 		<th><?php echo htmlspecialchars(Flux::message('AccountViewPermBanLabel')) ?></th>
 		<td colspan="3">
-			<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post">
+			<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post">
 				<input type="hidden" name="permban" value="1" />
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanReasonLabel')) ?><br /><textarea name="reason" class="block reason"></textarea></label>
 				<input type="submit" value="<?php echo htmlspecialchars(Flux::message('AccountPermBanButton')) ?>"
@@ -131,7 +131,7 @@
 	<tr>
 		<th><?php echo htmlspecialchars(Flux::message('AccountViewUnbanLabel')) ?></th>
 		<td colspan="3">
-			<form action="<?php echo htmlspecialchars($this->urlWithQs) ?>" method="post">
+			<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post">
 				<input type="hidden" name="unban" value="1" />
 			<?php if ($tempBanned && $auth->allowedToTempUnbanAccount): ?>
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanReasonLabel')) ?><br /><textarea name="reason" class="block reason"></textarea></label>
@@ -157,15 +157,15 @@
 	</tr>
 	<?php foreach ($banInfo as $ban): ?>
 	<tr>
-		<td align="right"><?php echo htmlspecialchars($this->banTypeText($ban->ban_type)) ?></td>
+		<td class="align-right"><?php echo htmlspecialchars($this->banTypeText($ban->ban_type)) ?></td>
 		<td><?php echo htmlspecialchars($this->formatDateTime($ban->ban_date)) ?></td>
-		<td><?php echo nl2br(htmlspecialchars($ban->ban_reason)) ?></td>
+		<td><?php echo nl2br(htmlspecialchars((string)$ban->ban_reason)) ?></td>
 		<td>
 			<?php if ($ban->userid): ?>
 				<?php if ($auth->allowedToViewAccount): ?>
 					<?php echo $this->linkToAccount($ban->banned_by, $ban->userid) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($ban->userid) ?>
+					<?php echo htmlspecialchars((string)$ban->userid) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<strong><?php echo htmlspecialchars(Flux::message('BanLogBannedByCP')) ?></strong>
@@ -195,12 +195,12 @@
 		</tr>
 		<?php foreach ($chars as $char): $zeny += $char->zeny; ?>
 		<tr>
-			<td align="right"><?php echo $char->char_num+1 ?></td>
+			<td class="align-right"><?php echo $char->char_num+1 ?></td>
 			<td>
 				<?php if ($auth->actionAllowed('character', 'view') && ($isMine || (!$isMine && $auth->allowedToViewCharacter))): ?>
 					<?php echo $this->linkToCharacter($char->char_id, $char->name, $serverName) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($char->name) ?>
+					<?php echo htmlspecialchars((string)$char->name) ?>
 				<?php endif ?>
 			</td>
 			<td><?php echo htmlspecialchars($this->jobClassText($char->class)) ?></td>
@@ -215,11 +215,11 @@
 					<?php if ($auth->actionAllowed('guild', 'view')): ?>
 						<?php echo $this->linkToGuild($char->guild_id, $char->guild_name) ?>
 					<?php else: ?>
-						<?php echo htmlspecialchars($char->guild_name) ?>
+						<?php echo htmlspecialchars((string)$char->guild_name) ?>
 					<?php endif ?>
 				</td>
 			<?php else: ?>	
-				<td colspan="2" align="center"><span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span></td>
+				<td colspan="2" class="align-center"><span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span></td>
 			<?php endif ?>
 			<td>
 				<?php if ($char->online): ?>
@@ -264,19 +264,19 @@
 		<?php foreach ($items AS $item): ?>
 		<?php $icon = $this->iconImage($item->nameid) ?>
 		<tr>
-			<td align="right">
+			<td class="align-right">
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($item->nameid, $item->nameid) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($item->nameid) ?>
+					<?php echo htmlspecialchars((string)$item->nameid) ?>
 				<?php endif ?>
 			</td>
 			<?php if ($icon): ?>
-			<td><img src="<?php echo htmlspecialchars($icon) ?>" alt="" /></td>
+			<td><img src="<?php echo htmlspecialchars((string)$icon) ?>" alt="" /></td>
 			<?php endif ?>
 			<td<?php if (!$icon) echo ' colspan="2"' ?><?php if ($item->cardsOver) echo ' class="overslotted' . $item->cardsOver . '"'; else echo ' class="normalslotted"' ?>>
 				<?php if ($item->refine > 0): ?>
-					+<?php echo htmlspecialchars($item->refine) ?>
+					+<?php echo htmlspecialchars((string)$item->refine) ?>
 				<?php endif ?>
 				<?php if ($item->card0 == 255 && intval($item->card1/1280) > 0): ?>
 					<?php for ($i = 0; $i < intval($item->card1/1280); $i++): ?>
@@ -296,10 +296,10 @@
 					<?php endif ?>
 				<?php endif ?>
 				<?php if ($item->card0 == 255 && array_key_exists($item->card1%1280, $itemAttributes)): ?>
-					<?php echo htmlspecialchars($itemAttributes[$item->card1%1280]) ?>
+					<?php echo htmlspecialchars((string)$itemAttributes[$item->card1%1280]) ?>
 				<?php endif ?>
 				<?php if ($item->name_japanese): ?>
-					<span class="item_name"><?php echo htmlspecialchars($item->name_japanese) ?></span>
+					<span class="item_name"><?php echo htmlspecialchars((string)$item->name_japanese) ?></span>
 				<?php else: ?>
 					<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('UnknownLabel')) ?></span>
 				<?php endif ?>
@@ -328,13 +328,13 @@
 						<?php if ($auth->actionAllowed('item', 'view')): ?>
 							<?php echo $this->linkToItem($item->card0, $cards[$item->card0]) ?>
 						<?php else: ?>
-							<?php echo htmlspecialchars($cards[$item->card0]) ?>
+							<?php echo htmlspecialchars((string)$cards[$item->card0]) ?>
 						<?php endif ?>
 					<?php else: ?>
 						<?php if ($auth->actionAllowed('item', 'view')): ?>
 							<?php echo $this->linkToItem($item->card0, $item->card0) ?>
 						<?php else: ?>
-							<?php echo htmlspecialchars($item->card0) ?>
+							<?php echo htmlspecialchars((string)$item->card0) ?>
 						<?php endif ?>
 					<?php endif ?>
 				<?php else: ?>
@@ -347,13 +347,13 @@
 						<?php if ($auth->actionAllowed('item', 'view')): ?>
 							<?php echo $this->linkToItem($item->card1, $cards[$item->card1]) ?>
 						<?php else: ?>
-							<?php echo htmlspecialchars($cards[$item->card1]) ?>
+							<?php echo htmlspecialchars((string)$cards[$item->card1]) ?>
 						<?php endif ?>
 					<?php else: ?>
 						<?php if ($auth->actionAllowed('item', 'view')): ?>
 							<?php echo $this->linkToItem($item->card1, $item->card1) ?>
 						<?php else: ?>
-							<?php echo htmlspecialchars($item->card1) ?>
+							<?php echo htmlspecialchars((string)$item->card1) ?>
 						<?php endif ?>
 					<?php endif ?>
 				<?php else: ?>
@@ -366,13 +366,13 @@
 						<?php if ($auth->actionAllowed('item', 'view')): ?>
 							<?php echo $this->linkToItem($item->card2, $cards[$item->card2]) ?>
 						<?php else: ?>
-							<?php echo htmlspecialchars($cards[$item->card2]) ?>
+							<?php echo htmlspecialchars((string)$cards[$item->card2]) ?>
 						<?php endif ?>
 					<?php else: ?>
 						<?php if ($auth->actionAllowed('item', 'view')): ?>
 							<?php echo $this->linkToItem($item->card2, $item->card2) ?>
 						<?php else: ?>
-							<?php echo htmlspecialchars($item->card2) ?>
+							<?php echo htmlspecialchars((string)$item->card2) ?>
 						<?php endif ?>
 					<?php endif ?>
 				<?php else: ?>
@@ -385,13 +385,13 @@
 						<?php if ($auth->actionAllowed('item', 'view')): ?>
 							<?php echo $this->linkToItem($item->card3, $cards[$item->card3]) ?>
 						<?php else: ?>
-							<?php echo htmlspecialchars($cards[$item->card3]) ?>
+							<?php echo htmlspecialchars((string)$cards[$item->card3]) ?>
 						<?php endif ?>
 					<?php else: ?>
 						<?php if ($auth->actionAllowed('item', 'view')): ?>
 							<?php echo $this->linkToItem($item->card3, $item->card3) ?>
 						<?php else: ?>
-							<?php echo htmlspecialchars($item->card3) ?>
+							<?php echo htmlspecialchars((string)$item->card3) ?>
 						<?php endif ?>
 					<?php endif ?>
 				<?php else: ?>

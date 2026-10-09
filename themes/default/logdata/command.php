@@ -13,7 +13,7 @@
 	</tr>
 	<?php foreach ($commands as $command): ?>
 	<tr>
-		<td align="right"><?php echo $this->formatDateTime($command->atcommand_date) ?></td>
+		<td class="align-right"><?php echo $this->formatDateTime($command->atcommand_date) ?></td>
 		<td>
 			<?php if ($command->account_id): ?>
 				<?php if ($auth->actionAllowed('account', 'view') && $auth->allowedToViewAccount): ?>
@@ -36,8 +36,8 @@
 				<span class="not-applicable"><?php echo htmlspecialchars(Flux::message('NoneLabel')) ?></span>
 			<?php endif ?>
 		</td>
-		<td><?php echo htmlspecialchars($command->char_name) ?></td>
-		<td><?php echo htmlspecialchars($command->command) ?></td>
+		<td><?php echo htmlspecialchars((string)$command->char_name) ?></td>
+		<td><?php echo htmlspecialchars((string)$command->command) ?></td>
 		<td>
 			<?php if (strlen(basename($command->map, '.gat')) > 0): ?>
 				<?php echo htmlspecialchars(basename($command->map, '.gat')) ?>

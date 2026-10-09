@@ -13,12 +13,12 @@
 	</tr>
 	<?php foreach ($items as $item): ?>
 	<tr>
-		<td align="right">
+		<td class="align-right">
 			<?php if ($item->item_name): ?>
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 					<?php echo $this->linkToItem($item->nameid, $item->item_name) ?>
 				<?php else: ?>
-					<?php echo htmlspecialchars($item->nameid) ?>
+					<?php echo htmlspecialchars((string)$item->nameid) ?>
 				<?php endif ?>
 			<?php else: ?>
 				<span class="not-applicable">Unknown</span>

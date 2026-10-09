@@ -14,4 +14,4 @@
 <br />
 <br />
 <p class="important" style="text-align: center; font-weight: bold">“Thank you for your generous donation!”</p>
-<p class="important" style="text-align: center">&mdash; <?php echo htmlspecialchars($session->loginAthenaGroup->serverName) ?></p>
+<p class="important" style="text-align: center">&mdash; <?php echo htmlspecialchars((string)$session->loginAthenaGroup->serverName) ?></p>
