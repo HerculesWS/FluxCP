@@ -1,5 +1,6 @@
 <?php if (!$session->installerAuth): ?>
 	<form action="<?php echo htmlspecialchars((string)$this->url) ?>" method="post" class="card form-stack">
+		<?php echo Flux_Security::csrfGenerate('InstallerLogin', true) ?>
 		<p class="lead">
 			Please enter your <em>installer password</em> to continue with the update.
 		</p>
@@ -62,13 +63,14 @@
 	<?php else: ?>
 		<div class="toolbar">
 			<div class="toolbar-actions">
-				<a class="btn btn-primary" href="<?php echo htmlspecialchars($this->url($params->get('module'), null, array('update_all' => 1))) ?>" onclick="return confirm('By performing this action, changes to your database will be made.\n\nAre you sure you want to continue installing Flux and its associated updates?')">Install or Update Everything</a>
+				<a class="btn btn-primary" href="<?php echo htmlspecialchars($this->url($params->get('module'), null, array('update_all' => 1, 'Session' => Flux_Security::csrfGet('Session')))) ?>" onclick="return confirm('By performing this action, changes to your database will be made.\n\nAre you sure you want to continue installing Flux and its associated updates?')">Install or Update Everything</a>
 			</div>
 			<a class="btn" href="<?php echo htmlspecialchars($this->url($params->get('module'), null, array('logout' => 1))) ?>" onclick="return confirm('Are you sure you want to log out?')">Logout</a>
 		</div>
 		<p class="hint">"Install or Update Everything" will use the pre-configured MySQL username and password for each server.</p>
 		<p class="hint">Shown below is a list of currently installed / need-to-be-installed schemas.</p>
 		<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post">
+		<?php echo Flux_Security::csrfGenerate('InstallerUpdate', true) ?>
 			<?php foreach ($installer->servers as $mainServerName => $mainServer): ?>
 			<?php $servName = base64_encode($mainServerName) ?>
 			<section class="card">

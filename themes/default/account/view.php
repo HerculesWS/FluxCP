@@ -99,11 +99,13 @@
 		</td>
 	</tr>
 	<?php $banconfirm=htmlspecialchars(str_replace("'", "\\'", Flux::message('AccountBanConfirm'))) ?>
+	<?php $banCsrf = Flux_Security::csrfGenerate('AccountBan', true) ?>
 	<?php if ($showTempBan): ?>
 	<tr>
 		<th><?php echo htmlspecialchars(Flux::message('AccountViewTempBanLabel')) ?></th>
 		<td colspan="3">
 			<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post">
+				<?php echo $banCsrf ?>
 				<input type="hidden" name="tempban" value="1" />
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanReasonLabel')) ?><br /><textarea name="reason" class="block reason"></textarea></label>
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanUntilLabel')) ?></label>
@@ -119,6 +121,7 @@
 		<th><?php echo htmlspecialchars(Flux::message('AccountViewPermBanLabel')) ?></th>
 		<td colspan="3">
 			<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post">
+				<?php echo $banCsrf ?>
 				<input type="hidden" name="permban" value="1" />
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanReasonLabel')) ?><br /><textarea name="reason" class="block reason"></textarea></label>
 				<input type="submit" value="<?php echo htmlspecialchars(Flux::message('AccountPermBanButton')) ?>"
@@ -132,6 +135,7 @@
 		<th><?php echo htmlspecialchars(Flux::message('AccountViewUnbanLabel')) ?></th>
 		<td colspan="3">
 			<form action="<?php echo htmlspecialchars((string)$this->urlWithQs) ?>" method="post">
+				<?php echo $banCsrf ?>
 				<input type="hidden" name="unban" value="1" />
 			<?php if ($tempBanned && $auth->allowedToTempUnbanAccount): ?>
 				<label><?php echo htmlspecialchars(Flux::message('AccountBanReasonLabel')) ?><br /><textarea name="reason" class="block reason"></textarea></label>

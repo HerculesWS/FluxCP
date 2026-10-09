@@ -862,7 +862,32 @@ class Flux_Template {
 		header("Location: $location");
 		exit;
 	}
-	
+
+	/**
+	 * Whether a URL taken from the request is a path on this site, such as
+	 * "/index.php?module=account", and so safe to redirect to. Full URLs,
+	 * "//host" and "\\host" forms are refused.
+	 *
+	 * @param string $url
+	 * @return bool
+	 */
+	public function isLocalPath($url)
+	{
+		$url = (string)$url;
+
+		if ($url === '' || $url[0] !== '/') {
+			return false;
+		}
+		if (isset($url[1]) && ($url[1] === '/' || $url[1] === '\\')) {
+			return false;
+		}
+		if (preg_match('/[\x00-\x1f\x7f\\\\]/', $url)) {
+			return false;
+		}
+
+		return true;
+	}
+
 	/**
 	 * Guess the HTTP server's current full URL.
 	 *

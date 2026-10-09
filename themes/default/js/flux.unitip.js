@@ -55,6 +55,35 @@ unitipize = function (element) {
 	}
 }
 
+// Tooltip text may contain a few basic formatting tags, anything else is dropped.
+var tipAllowedTags = {STRONG: 1, B: 1, EM: 1, I: 1, U: 1, BR: 1};
+
+copyTipNodes = function (source, target) {
+	for (var i = 0; i < source.childNodes.length; i++) {
+		var node = source.childNodes[i];
+		
+		if (node.nodeType == 3) {
+			target.appendChild(document.createTextNode(node.nodeValue));
+		}
+		else if (node.nodeType == 1) {
+			if (tipAllowedTags[node.nodeName]) {
+				var el = document.createElement(node.nodeName);
+				copyTipNodes(node, el);
+				target.appendChild(el);
+			}
+			else {
+				copyTipNodes(node, target);
+			}
+		}
+	}
+}
+
+setTipContent = function (target, html) {
+	var doc = new DOMParser().parseFromString(html, "text/html");
+	while (target.firstChild) target.removeChild(target.firstChild);
+	copyTipNodes(doc.body, target);
+}
+
 // now, we build the tooltip
 build = function (a, sTitle) {
 	
@@ -82,7 +111,7 @@ build = function (a, sTitle) {
 	tipmid = document.getElementById("unitipmid");
 	tipcap = document.getElementById("unitipcap");
 	
-	document.getElementById("unitipmid").innerHTML = sTitle;
+	setTipContent(tipmid, sTitle);
 	tipid.style.display = "block";
 	
 	elewidth = document.getElementById("unitipmid").offsetWidth;

@@ -7,18 +7,12 @@ $loginLogTable = Flux::config('FluxTables.LoginLogTable');
 $sqlpartial    = "WHERE 1=1 ";
 $bind          = array();
 
-$password    = $params->get('password');
 $accountID   = (int)$params->get('account_id');
 $username    = trim((string)$params->get('username'));
 $ipAddress   = trim((string)$params->get('ip'));
 $loginAfter  = $params->get('login_after_date');
 $loginBefore = $params->get('login_before_date');
 $errorCode   = $params->get('error_code');
-
-if ($password && $auth->allowedToSearchCpLoginLogPw) {
-	$sqlpartial .= 'AND password = ? ';
-	$bind[]      = $session->loginAthenaGroup->loginServer->config->getUseMD5() ? md5($password) : $password;
-}
 
 if ($accountID) {
 	$sqlpartial .= 'AND account_id = ? ';

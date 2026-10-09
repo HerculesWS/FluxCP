@@ -24,15 +24,22 @@ if (count($_POST) && $params->get('process')) {
 	}
 
 	$redeemTable = Flux::config('FluxTables.RedemptionTable');
-	$creditTable = Flux::config('FluxTables.CreditsTable');
-	$deduct      = 0;
+	$accountID   = $session->account->account_id;
+	
+	// Take the credits first and only if they are there, items are issued after that.
+	if (!$session->loginServer->spendCredits($accountID, $server->cart->getTotal())) {
+		$session->setMessageData('You do not have sufficient funds to make this purchase!');
+		$this->redirect($this->url('purchase'));
+	}
 	
 	$sql  = "INSERT INTO {$server->charMapDatabase}.$redeemTable ";
 	$sql .= "(nameid, quantity, cost, account_id, char_id, redeemed, redemption_date, purchase_date, credits_before, credits_after) ";
 	$sql .= "VALUES (?, ?, ?, ?, NULL, 0, NULL, NOW(), ?, ?)";
 	$sth  = $server->connection->getStatement($sql);
 	
-	$balance = $session->account->balance;
+	$balance   = $session->account->balance;
+	$purchased = 0;
+	$refund    = 0;
 	
 	foreach ($items as $item) {
 		$creditsAfter = $balance - $item->shop_item_cost;
@@ -41,39 +48,35 @@ if (count($_POST) && $params->get('process')) {
 			$item->shop_item_nameid,
 			$item->shop_item_qty,
 			$item->shop_item_cost,
-			$session->account->account_id,
+			$accountID,
 			$balance,
 			$creditsAfter
 		));
 		
 		if ($res) {
-			$deduct  += $item->shop_item_cost;
+			$purchased++;
 			$balance -= $item->shop_item_cost;
 		}
+		else {
+			$refund += $item->shop_item_cost;
+		}
 	}
 	
-	//$sql = "UPDATE {$server->loginDatabase}.$creditTable SET balance = balance - ? WHERE account_id = ?";
-	//$sth = $server->connection->getStatement($sql);
-	//$sth->execute(array($deduct, $session->account->account_id));
+	// Give back the credits for anything that could not be issued.
+	if ($refund) {
+		$session->loginServer->depositCredits($accountID, $refund);
+	}
 	
-	$session->loginServer->depositCredits($session->account->account_id, -$deduct);
+	$server->cart->clear();
 	
-	if ($res) {
-		if (!$deduct) {
-			$server->cart->clear();
-			$session->setMessageData('Failed to purchase all of the items in your cart!');
-		}
-		elseif ($deduct != $server->cart->getTotal()) {
-			$server->cart->clear();
-			$session->setMessageData('Items have been purchased, however, some failed (your credits are still there.)');
-		}
-		else {
-			$server->cart->clear();
-			$session->setMessageData('Items have been purchased.  You may redeem them from the Redemption NPC.');
-		}
+	if (!$purchased) {
+		$session->setMessageData('Failed to purchase all of the items in your cart!');
+	}
+	elseif ($refund) {
+		$session->setMessageData('Items have been purchased, however, some failed (your credits are still there.)');
 	}
 	else {
-		$session->setMessageData('Purchase went bad, contact an admin!');
+		$session->setMessageData('Items have been purchased.  You may redeem them from the Redemption NPC.');
 	}
 	
 	$this->redirect();

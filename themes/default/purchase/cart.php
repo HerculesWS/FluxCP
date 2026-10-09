@@ -29,7 +29,7 @@
 						<?php echo $this->linkToItem($item->shop_item_nameid, 'View Item') ?> /
 					<?php endif ?>
 					<a href="<?php echo htmlspecialchars($this->url('purchase', 'remove', array('num' => $num))) ?>">Remove from Cart</a> /
-					<a href="<?php echo htmlspecialchars($this->url('purchase', 'add', array('id' => $item->shop_item_id, 'cart' => true))) ?>">Add Another to Cart</a>
+					<a href="<?php echo htmlspecialchars($this->url('purchase', 'add', array('id' => $item->shop_item_id, 'cart' => true, 'Session' => Flux_Security::csrfGet('Session')))) ?>">Add Another to Cart</a>
 				</p>
 				<p><?php echo nl2br(htmlspecialchars((string)$item->shop_item_info)) ?></p>
 			</td>

@@ -105,6 +105,7 @@ return array(
 		//'admin2@localhost',                             // -- This array may be empty if you only use one e-mail
 		//'admin3@localhost'                              // -- because your Business Email is also checked.
 	),
+	'PayPalCustomSecret'   => '',                       // Secret used to sign the account info sent to PayPal with each donation. Leave empty to have one generated in data/paypal.secret.php.
 	'PaypalHackNotify'     => true,                     // Send email notification if hack attempt detected (Notification will be send for each address in list PayPalBusinessEmail and PayPalReceiverEmails)
 	'PayPalMode'             => 'classic',               // 'classic' (legacy IPN, default -- preserves existing behavior for upgraders) or 'rest' (modern PayPal REST API + Webhooks)
 	'PayPalRestEnvironment'  => 'sandbox',                // 'sandbox' or 'live' -- selects api-m.sandbox.paypal.com vs api-m.paypal.com
@@ -149,6 +150,12 @@ return array(
 		                                                // the module is 'account' and the action is 'prune'.
 	                                                    // With clean URLs: http://<server>/<baseURI>/account/prune?password=<InstallerPassword>
 	                                                    // Without clean URLs: http://<server>/<baseURI>?module=account&action=prune&password=<InstallerPassword>
+
+	'LoginMaxAttempts'     => 10,                       // Failed login (and installer password) attempts allowed per IP address, and per username, within the lockout time. Set to 0 to disable.
+	'LoginLockoutMinutes'  => 15,                       // How long failed attempts are counted for, in minutes.
+	'ResetPassExpireHours' => 24,                       // How long a password reset link stays valid, in hours.
+	'ResetPassMaxRequests' => 5,                        // Password reset requests allowed per IP address, and per username, within the window below. Set to 0 to disable.
+	'ResetPassWindowMinutes' => 60,                     // Time window for the password reset request limit, in minutes.
 
 	'ShopImageExtensions'  => array(                    // These are the image extensions allowed for uploading in the item shop.
 		'png', 'jpg', 'gif', 'bmp', 'jpeg'

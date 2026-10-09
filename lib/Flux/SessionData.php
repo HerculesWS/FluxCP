@@ -5,6 +5,8 @@ require_once 'Flux/LoginError.php';
 
 /**
  * Contains all of Flux's session data.
+ *
+ * @method void setInstallerAuthData(mixed $value) Handled by __call().
  */
 class Flux_SessionData {
 	/**
@@ -58,7 +60,7 @@ class Flux_SessionData {
 	{
 		$this->sessionData = &$sessionData;
 		if ($logout) {
-			$this->logout();
+			$this->logout(true);
 		}
 		else {
 			$this->initialize();
@@ -167,15 +169,21 @@ class Flux_SessionData {
 	}
 
 	/**
-	 * Log current user out.
+	 * Log current user out. The installer authorization is cleared as well,
+	 * unless asked to keep it (the installer needs it to survive the forced
+	 * log-out that happens on every request while updates are pending).
 	 *
+	 * @param bool $keepInstallerAuth
 	 * @return bool
 	 * @access public
 	 */
-	public function logout()
+	public function logout($keepInstallerAuth = false)
 	{
 		$this->loginAthenaGroup = null;
 		$this->loginServer = null;
+		if (!$keepInstallerAuth) {
+			$this->setInstallerAuthData(false);
+		}
 		return $this->initialize(true);
 	}
 

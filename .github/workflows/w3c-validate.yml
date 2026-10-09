@@ -30,10 +30,13 @@ jobs:
     steps:
       - name: Checkout FluxCP
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Checkout Hercules SQL schema
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           repository: HerculesWS/Hercules
           sparse-checkout: sql-files
           sparse-checkout-cone-mode: false
@@ -98,11 +101,26 @@ jobs:
           set -euo pipefail
           jar=/tmp/cookies.txt
 
-          # Step 1: submit the installer password (config/application.php's
+          # Pull a hidden CSRF token (by name) out of a page. The installer
+          # forms carry one each, tied to the session cookie in $jar.
+          form_token() {
+            echo "$1" | grep -oE "name=\"$2\" value=\"[^\"]+\"" | head -1 | sed -E 's/.*value="([^"]+)"/\1/'
+          }
+
+          # Step 1: open the installer to get a session and its login token,
+          # then submit the installer password (config/application.php's
           # default 'InstallerPassword'). Not sensitive -- it's a stock
           # default value for a throwaway CI database, never a real deploy.
+          login_page=$(curl -fsSL -c "$jar" -b "$jar" "http://127.0.0.1:8081/?module=install")
+          login_token=$(form_token "$login_page" InstallerLogin)
+          if [ -z "$login_token" ]; then
+            echo "Could not find the installer login token; page follows:"
+            echo "$login_page"
+            exit 1
+          fi
           install_page=$(curl -fsSL -c "$jar" -b "$jar" -X POST \
             --data-urlencode "installer_password=secretpassword" \
+            --data-urlencode "InstallerLogin=$login_token" \
             "http://127.0.0.1:8081/?module=install")
           mkdir -p rendered-html
           echo "$install_page" > rendered-html/installer-index.html
@@ -118,11 +136,19 @@ jobs:
             exit 1
           fi
 
+          update_token=$(form_token "$install_page" InstallerUpdate)
+          if [ -z "$update_token" ]; then
+            echo "Could not find the installer update token; install page follows:"
+            echo "$install_page"
+            exit 1
+          fi
+
           # Step 3: submit the DB credentials to actually create/update
           # FluxCP's own cp_* tables (the Hercules schema alone doesn't
           # include them).
           curl -fsSL -c "$jar" -b "$jar" -X POST \
             --data-urlencode "installer_password=secretpassword" \
+            --data-urlencode "InstallerUpdate=$update_token" \
             --data-urlencode "username[$suffix]=ragnarok" \
             --data-urlencode "password[$suffix]=ragnarok" \
             --data-urlencode "update[$suffix]=Install/Update Now" \

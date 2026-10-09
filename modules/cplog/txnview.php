@@ -20,7 +20,8 @@ $txn = $sth->fetch();
 if ($txn) {
 	$title = "Viewing PayPal Transaction ({$txn->txn_id}, status: {$txn->payment_status})";
 	
-	$txnLogFile = FLUX_DATA_DIR."/logs/transactions/{$txn->txn_type}/{$txn->payment_status}/{$txn->txn_id}.log.php";
+	require_once 'Flux/PaymentNotifyRequest.php';
+	$txnLogFile = Flux_PaymentNotifyRequest::transactionLogFile($txn->txn_type, $txn->payment_status, $txn->txn_id);
 	if (file_exists($txnLogFile)) {
 		$txnFileLog = file($txnLogFile);
 		

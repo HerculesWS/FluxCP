@@ -9,7 +9,10 @@ if (Flux::config('UseLoginCaptcha') && Flux::config('EnableReCaptcha')) {
 $title = Flux::message('LoginTitle');
 $loginLogTable = Flux::config('FluxTables.LoginLogTable');
 
-if (count($_POST)) {
+if (count($_POST) && !Flux_Security::csrfValidate('Login', $_POST, $csrfError)) {
+	$errorMessage = $csrfError;
+}
+elseif (count($_POST)) {
 	$server   = $params->get('server');
 	$username = $params->get('username');
 	$password = $params->get('password');
@@ -19,17 +22,14 @@ if (count($_POST)) {
 		$session->login($server, $username, $password, $code);
 		$returnURL = $params->get('return_url');
 
-		if ($session->loginAthenaGroup->loginServer->config->getUseMD5()) {
-			$password = Flux::hashPassword($password);
-		}
-
+		// Passwords are not kept in the login log.
 		$sql  = "INSERT INTO {$session->loginAthenaGroup->loginDatabase}.$loginLogTable ";
 		$sql .= "(account_id, username, password, ip, error_code, login_date) ";
 		$sql .= "VALUES (?, ?, ?, ?, ?, NOW())";
 		$sth  = $session->loginAthenaGroup->connection->getStatement($sql);
-		$sth->execute(array($session->account->account_id, $username, $password, $_SERVER['REMOTE_ADDR'], null));
+		$sth->execute(array($session->account->account_id, $username, '', $_SERVER['REMOTE_ADDR'], null));
 
-		if ($returnURL) {
+		if ($returnURL && $this->isLocalPath($returnURL)) {
 			$this->redirect($returnURL);
 		}
 		else {
@@ -56,15 +56,11 @@ if (count($_POST)) {
 			if ($row) {
 				$accountID = $row->account_id;
 
-				if ($loginAthenaGroup->loginServer->config->getUseMD5()) {
-					$password = Flux::hashPassword($password);
-				}
-
 				$sql  = "INSERT INTO {$loginAthenaGroup->loginDatabase}.$loginLogTable ";
 				$sql .= "(account_id, username, password, ip, error_code, login_date) ";
 				$sql .= "VALUES (?, ?, ?, ?, ?, NOW())";
 				$sth  = $loginAthenaGroup->connection->getStatement($sql);
-				$sth->execute(array($accountID, $username, $password, $_SERVER['REMOTE_ADDR'], $e->getCode()));
+				$sth->execute(array($accountID, $username, '', $_SERVER['REMOTE_ADDR'], $e->getCode()));
 			}
 		}
 
