@@ -65,8 +65,8 @@ class Flux_Mailer {
 				$content = Markdown($content);
 
 				// Put admin-written mail in the same layout as the system mails.
-				require_once FLUX_DATA_DIR.'/templates/_layout.php';
-				$content = fluxEmailLayout(array('title' => $subject, 'bodyHtml' => $content));
+				require_once 'Flux/MailLayout.php';
+				$content = Flux_MailLayout::render(array('title' => $subject, 'bodyHtml' => $content));
 			}
 		}
 		else {

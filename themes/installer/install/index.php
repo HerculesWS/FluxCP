@@ -73,7 +73,7 @@
 			<?php $servName = base64_encode($mainServerName) ?>
 			<section class="card">
 				<div class="server-head">
-					<h3><?php echo htmlspecialchars((string)$mainServerName) ?></h3>
+					<h2 class="server-title"><?php echo htmlspecialchars((string)$mainServerName) ?></h2>
 					<button type="submit" class="btn-primary" name="update[<?php echo $servName ?>]">
 						Update <?php echo htmlspecialchars((string)$mainServerName) ?>
 					</button>
@@ -127,7 +127,7 @@
 				</div>
 
 				<?php foreach ($mainServer->charMapServers as $charMapServerName => $charMapServer): ?>
-				<h4 class="sub-head"><?php echo htmlspecialchars((string)$charMapServerName) ?></h4>
+				<h3 class="sub-head"><?php echo htmlspecialchars((string)$charMapServerName) ?></h3>
 				<div class="table-wrap">
 				<table class="schema-info">
 					<thead>

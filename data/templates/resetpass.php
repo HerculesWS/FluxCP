@@ -1,10 +1,10 @@
 <?php
 if (!defined('FLUX_ROOT')) exit;
-require_once dirname(__FILE__) . '/_layout.php';
+require_once 'Flux/MailLayout.php';
 
 $siteTitle = Flux::config('SiteTitle');
 
-echo fluxEmailLayout(array(
+echo Flux_MailLayout::render(array(
 	'title'     => sprintf('%s: Reset Password', $siteTitle),
 	'preheader' => 'Use the link inside to choose a new password.',
 	'intro'     => 'You have received this e-mail because you or someone else has filled in our "reset password" form, requesting to reset the password of your account on our server.',

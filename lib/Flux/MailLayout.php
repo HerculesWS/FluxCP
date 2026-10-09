@@ -1,14 +1,14 @@
 <?php
 if (!defined('FLUX_ROOT')) exit;
 
-if (!function_exists('fluxEmailLayout')) {
+class Flux_MailLayout {
 	/**
 	 * Shared e-mail layout. Uses a table and inline styles on purpose, because mail clients ignore most modern CSS.
 	 *
 	 * Options: title, preheader, intro (HTML), details (label => HTML value), button (array(label, link)),
 	 * bodyHtml (HTML), note (HTML). Values may contain {Placeholders}; Flux_Mailer fills them in afterwards.
 	 */
-	function fluxEmailLayout(array $o)
+	public static function render(array $o)
 	{
 		$siteTitle = (string)Flux::config('SiteTitle');
 		$title     = isset($o['title']) ? (string)$o['title'] : $siteTitle;

@@ -86,7 +86,7 @@ if (!defined('FLUX_ROOT')) exit;
 				line-height: 1.3;
 			}
 
-			h3 {
+			h2.server-title {
 				font-size: 18px;
 			}
 
@@ -255,6 +255,7 @@ if (!defined('FLUX_ROOT')) exit;
 
 			.sub-head {
 				margin: 18px 0 8px;
+				font-size: 15px;
 				color: var(--muted);
 			}
 
