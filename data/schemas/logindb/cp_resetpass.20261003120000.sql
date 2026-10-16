@@ -1,0 +1,1 @@
+UPDATE `cp_resetpass` SET `old_password` = '', `new_password` = NULL;

@@ -305,7 +305,7 @@ return array(
 	'ResetPassEnterEmail'          => 'Please enter your e-mail address.',
 	'ResetPassDisallowed'          => 'Password recovery cannot be used for this account.',
 	'ResetPassFailed'              => 'Failed to send reset password e-mail.',
-	'ResetPassEmailSent'           => 'An e-mail has been sent with details on how to reset your password.',
+	'ResetPassEmailSent'           => 'If an account matches the details you entered, an e-mail has been sent with details on how to reset its password.',
 	'ResetPassTitle'               => 'Reset Password',
 	'ResetPassInfo'                => 'If you lost your password, you can re-set it by entering the e-mail address you used to register your account.',
 	'ResetPassInfo2'               => 'An e-mail will then be sent to the specified address with a link allowing you to reset your password, therefore a valid e-mail address is required.',
@@ -319,7 +319,8 @@ return array(
 	// - account/resetpw
 	'ResetPwTitle'                 => 'Reset Password',
 	'ResetPwFailed'                => 'Failed to re-set password, please try again later.',
-	'ResetPwDone'                  => 'Your password has been reset and an e-mail containing your new password has been sent to you.',
+	'ResetPwDone'                  => 'Your password has been reset, you can now log-in with your new password.',
+	'ResetPwInfo'                  => 'Please choose a new password for your account.',
 	'ResetPwDone2'                 => 'Your password has been reset, but we failed to deliver the e-mail containing your new password.  Please reset again to resolve this issue.',
 	// - account/transfer
 	'TransferTitle'                => 'Transfer Donation Credits',

@@ -49,7 +49,7 @@ define( 'MARKDOWNEXTRA_VERSION',  "1.2.5" ); # Sun 8 Jan 2012
 
 @define( 'MARKDOWN_PARSER_CLASS',  'MarkdownExtra_Parser' );
 
-function Markdown($text) {
+function Markdown($text, $no_markup = false) {
 #
 # Initialize the parser and return the result of its transform method.
 #
@@ -59,6 +59,9 @@ function Markdown($text) {
 		$parser_class = MARKDOWN_PARSER_CLASS;
 		$parser = new $parser_class;
 	}
+
+	# Raw HTML in the source is escaped instead of passed through.
+	$parser->no_markup = $no_markup;
 
 	# Transform text using parser.
 	return $parser->transform($text);
@@ -763,7 +766,7 @@ class Markdown_Parser {
 
 		if (isset($this->urls[$link_id])) {
 			$url = $this->urls[$link_id];
-			$url = $this->encodeAttribute($url);
+			$url = $this->encodeAttribute($this->sanitizeUrl($url));
 			
 			$result = "<a href=\"$url\"";
 			if ( isset( $this->titles[$link_id] ) ) {
@@ -787,7 +790,7 @@ class Markdown_Parser {
 		$url			=  $matches[3] == '' ? $matches[4] : $matches[3];
 		$title			=& $matches[7];
 
-		$url = $this->encodeAttribute($url);
+		$url = $this->encodeAttribute($this->sanitizeUrl($url));
 
 		$result = "<a href=\"$url\"";
 		if (isset($title)) {
@@ -868,7 +871,7 @@ class Markdown_Parser {
 
 		$alt_text = $this->encodeAttribute($alt_text);
 		if (isset($this->urls[$link_id])) {
-			$url = $this->encodeAttribute($this->urls[$link_id]);
+			$url = $this->encodeAttribute($this->sanitizeUrl($this->urls[$link_id], array('http', 'https')));
 			$result = "<img src=\"$url\" alt=\"$alt_text\"";
 			if (isset($this->titles[$link_id])) {
 				$title = $this->titles[$link_id];
@@ -892,7 +895,7 @@ class Markdown_Parser {
 		$title			=& $matches[7];
 
 		$alt_text = $this->encodeAttribute($alt_text);
-		$url = $this->encodeAttribute($url);
+		$url = $this->encodeAttribute($this->sanitizeUrl($url, array('http', 'https')));
 		$result = "<img src=\"$url\" alt=\"$alt_text\"";
 		if (isset($title)) {
 			$title = $this->encodeAttribute($title);
@@ -1416,6 +1419,32 @@ class Markdown_Parser {
 	}
 
 
+	function sanitizeUrl($url, $schemes = array('http', 'https', 'mailto', 'ftp')) {
+	#
+	# Only let through relative URLs and the allowed schemes, so link and
+	# image destinations can't be javascript:, data: and the like.
+	#
+		# Browsers decode character references in attribute values (numeric ones even
+		# without the closing ";" and HTML5 names such as &Tab; and &colon;), and ignore
+		# tabs and line breaks inside a scheme, so look at the URL the way they will.
+		$check = preg_replace_callback('/&#x([0-9a-f]+);?|&#([0-9]+);?/i', array($this, '_sanitizeUrl_charref'), $url);
+		$check = html_entity_decode($check, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+		$check = preg_replace('/[\x00-\x20\x7f]+/', '', $check);
+		if (preg_match('/^([a-z][a-z0-9+.\-]*):/i', $check, $m)) {
+			if (!in_array(strtolower($m[1]), $schemes)) {
+				return '#';
+			}
+		}
+		return $url;
+	}
+
+
+	function _sanitizeUrl_charref($matches) {
+		$code = (isset($matches[2]) && $matches[2] !== '') ? (int)$matches[2] : hexdec($matches[1]);
+		return ($code > 0 && $code < 128) ? chr($code) : '';
+	}
+
+
 	function encodeAttribute($text) {
 	#
 	# Encode text for a double-quoted HTML attribute. This function
@@ -1811,6 +1840,9 @@ class MarkdownExtra_Parser extends Markdown_Parser {
 	#  _HashHTMLBlocks_InMarkdown to handle the Markdown syntax within the tag.
 	# These two functions are calling each other. It's recursive!
 	#
+		# Raw HTML is not allowed, so there is nothing to keep as a block.
+		if ($this->no_markup)  return $text;
+
 		#
 		# Call the HTML-in-Markdown hasher.
 		#

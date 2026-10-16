@@ -80,6 +80,17 @@ final class AccountLevel {
     }
 	
 	/**
+	 * Whether the group ID is one that is defined here.
+	 *
+	 * @param int $group_id
+	 * @return bool
+	 * @access public
+	 */
+	public static function groupExists($group_id) {
+		return isset(self::$groups[$group_id]);
+	}
+
+	/**
 	 * Get the level associated with the group ID.
 	 *
 	 * @param int $group_id

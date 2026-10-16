@@ -9,7 +9,7 @@
 		<table class="vertical-table">
 			<tr>
 				<th><?php echo htmlspecialchars(Flux::message('UsernameLabel')) ?></th>
-				<td><?php echo $account->userid ?></td>
+				<td><?php echo htmlspecialchars($account->userid) ?></td>
 				<th><?php echo htmlspecialchars(Flux::message('AccountIdLabel')) ?></th>
 				<td><?php echo $account->account_id ?></td>
 			</tr>

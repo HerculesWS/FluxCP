@@ -70,6 +70,18 @@ class Flux_LoginServer extends Flux_BaseServer {
 			return false;
 		}
 
+		// Slow down password guessing, per IP address and per username.
+		require_once 'Flux/RateLimit.php';
+		$maxAttempts = (int)Flux::config('LoginMaxAttempts');
+		$window      = (int)Flux::config('LoginLockoutMinutes') * 60;
+		$ipKey       = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+		$userKey     = $this->loginDatabase.'|'.strtolower($username);
+
+		if (Flux_RateLimit::isLimited('login_ip', $ipKey, $maxAttempts, $window) ||
+			Flux_RateLimit::isLimited('login_user', $userKey, $maxAttempts, $window)) {
+			return false;
+		}
+
 		if ($this->config->get('UseMD5')) {
 			$password = Flux::hashPassword($password);
 		}
@@ -87,9 +99,12 @@ class Flux_LoginServer extends Flux_BaseServer {
 
 		$res = $sth->fetch();
 		if ($res) {
+			Flux_RateLimit::clear('login_user', $userKey);
 			return true;
 		}
 		else {
+			Flux_RateLimit::hit('login_ip', $ipKey, $window);
+			Flux_RateLimit::hit('login_user', $userKey, $window);
 			return false;
 		}
 	}
@@ -240,7 +255,8 @@ class Flux_LoginServer extends Flux_BaseServer {
 			$sql .= "VALUES (?, ?, ?, ?, ?, NOW(), ?, 1)";
 			$sth  = $this->connection->getStatement($sql);
 
-			$sth->execute(array($idres->account_id, $username, $password, $gender, $email, $_SERVER['REMOTE_ADDR']));
+			// The registration log is only an audit trail, the password is kept out of it.
+			$sth->execute(array($idres->account_id, $username, '', $gender, $email, $_SERVER['REMOTE_ADDR']));
 			return $idres->account_id;
 		}
 		else {
@@ -261,9 +277,9 @@ class Flux_LoginServer extends Flux_BaseServer {
 
 		if ($sth->execute(array($accountID, $bannedBy, $until, $banReason))) {
 			$ts   = strtotime($until);
-			$sql  = "UPDATE {$this->loginDatabase}.login SET state = 0, unban_time = '$ts' WHERE account_id = ?";
+			$sql  = "UPDATE {$this->loginDatabase}.login SET state = 0, unban_time = ? WHERE account_id = ?";
 			$sth  = $this->connection->getStatement($sql);
-			return $sth->execute(array($accountID));
+			return $sth->execute(array($ts, $accountID));
 		}
 		else {
 			return false;
@@ -458,6 +474,39 @@ class Flux_LoginServer extends Flux_BaseServer {
 	}
 
 	/**
+	 * Take credits from an account, only if it has enough of them.
+	 *
+	 * @return bool False if the account doesn't have enough credits.
+	 */
+	public function spendCredits($accountID, $credits)
+	{
+		$credits = (int)$credits;
+		if ($credits <= 0) {
+			return true;
+		}
+
+		$creditsTable = Flux::config('FluxTables.CreditsTable');
+
+		$sql = "UPDATE {$this->loginDatabase}.$creditsTable SET balance = balance - ? WHERE account_id = ? AND balance >= ?";
+		$sth = $this->connection->getStatement($sql);
+
+		return $sth->execute(array($credits, $accountID, $credits)) && $sth->rowCount() > 0;
+	}
+
+	/**
+	 * Take back up to the given number of credits, stopping at zero.
+	 */
+	public function clawBackCredits($accountID, $credits)
+	{
+		$creditsTable = Flux::config('FluxTables.CreditsTable');
+
+		$sql = "UPDATE {$this->loginDatabase}.$creditsTable SET balance = IF(balance > ?, balance - ?, 0) WHERE account_id = ?";
+		$sth = $this->connection->getStatement($sql);
+
+		return $sth->execute(array((int)$credits, (int)$credits, $accountID));
+	}
+
+	/**
 	 *
 	 */
 	public function getPrefs($accountID, array $prefs = array())
@@ -595,9 +644,30 @@ class Flux_LoginServer extends Flux_BaseServer {
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
 
-		$ip = trim($ip);
-		if (!preg_match('/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/', $ip, $m)) {
+		$ip     = trim($ip);
+		$packed = @inet_pton($ip);
+
+		if ($packed === false) {
 			// Invalid IP.
+			return false;
+		}
+
+		if (strlen($packed) === 16) {
+			if (substr($packed, 0, 12) === str_repeat("\0", 10)."\xff\xff") {
+				// IPv4 address in IPv6 form (::ffff:a.b.c.d), check it as the IPv4 address.
+				$ip = inet_ntop(substr($packed, 12));
+			}
+			else {
+				// IPv6 can only be matched as a whole address.
+				$sql  = "SELECT list FROM {$this->loginDatabase}.ipbanlist WHERE rtime > NOW() AND list = ? LIMIT 1";
+				$sth  = $this->connection->getStatement($sql);
+				$sth->execute(array(inet_ntop($packed)));
+
+				return (bool)$sth->fetch();
+			}
+		}
+
+		if (!preg_match('/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/', $ip, $m)) {
 			return false;
 		}
 

@@ -10,6 +10,7 @@
 
 <?php endif ?>
 <form action="<?php echo htmlspecialchars($this->url('account', 'login', array('return_url' => $params->get('return_url')))) ?>" method="post" class="generic-form form-stack register-form login-form">
+	<?php echo Flux_Security::csrfGenerate('Login', true) ?>
 	<?php if (count($serverNames) === 1): ?>
 	<input type="hidden" name="server" value="<?php echo htmlspecialchars((string)$session->loginAthenaGroup->serverName) ?>">
 	<?php endif ?>

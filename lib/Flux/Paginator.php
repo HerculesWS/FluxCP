@@ -135,7 +135,7 @@ class Flux_Paginator {
 		$this->pagesToShow    = $options['pagesToShow'];
 		$this->pageVariable   = $options['pageVariable'];
 		$this->pageSeparator  = $options['pageSeparator'];
-		$this->currentPage    = isset($_GET[$this->pageVariable]) && $_GET[$this->pageVariable] > 0 ? $_GET[$this->pageVariable] : 1;
+		$this->currentPage    = isset($_GET[$this->pageVariable]) && (int)$_GET[$this->pageVariable] > 0 ? (int)$_GET[$this->pageVariable] : 1;
 		
 		$this->calculatePages();
 	}
@@ -286,10 +286,14 @@ class Flux_Paginator {
 			// This is some tricky shit.  Don't even attempt to understand it =(
 			// Page jumping is entirely JavaScript dependent.
 			$pageVar = preg_quote($this->pageVariable);
-			$event   = "location.href='".$this->getPageURI(0)."'";
-			$event   = preg_replace("/$pageVar=0/", "{$this->pageVariable}='+this.value+'", $event);
+			$jsFlags = JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP;
+			$parts   = preg_split("/(?<=[?&])$pageVar=0(?=&|$)/", $this->getPageURI(0), 2);
+			$event   = 'location.href='.json_encode($parts[0].$this->pageVariable.'=', $jsFlags).'+encodeURIComponent(this.value)';
+			if (isset($parts[1]) && $parts[1] !== '') {
+				$event .= '+'.json_encode($parts[1], $jsFlags);
+			}
 			$jump    = '<label>Page Jump: <input type="text" name="jump_to_page" size="4" onkeypress="if (event.keyCode == 13) { %s }"></label>';
-			$jump    = sprintf($jump, htmlspecialchars($event));
+			$jump    = sprintf($jump, htmlspecialchars($event, ENT_QUOTES));
 			$links  .= sprintf('<div class="jump-to-page">%s</div>', $jump);
 		}
 		
@@ -311,6 +315,7 @@ class Flux_Paginator {
 	protected function getPageURI($pageNumber)
 	{
 		$request = preg_replace('/(\?.*)$/', '', $this->requestURI);
+		$request = preg_replace_callback('/[^A-Za-z0-9\-._~%\/]/', function ($m) { return rawurlencode($m[0]); }, $request);
 		$qString = $_SERVER['QUERY_STRING'];
 		$pageVar = preg_quote($this->pageVariable);
 		$pageNum = (int)$pageNumber;
@@ -321,7 +326,7 @@ class Flux_Paginator {
 		foreach ($qStringLines as $qStringVar) {
 			if (strpos($qStringVar, '=') !== false) {
 				list($qStringKey, $qStringVal) = explode('=', $qStringVar, 2);
-				$qStringVars[$qStringKey] = $qStringVal;
+				$qStringVars[rawurlencode(urldecode($qStringKey))] = rawurlencode(urldecode($qStringVal));
 			}
 		}
 		

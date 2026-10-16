@@ -4,6 +4,11 @@ if (!defined('FLUX_ROOT')) exit;
 $title = 'Re-Install Database Schemas';
 
 if (count($_POST) && $params->get('reinstall')) {
+	if (!Flux_Security::csrfValidate('Reinstall', $_POST, $error)) {
+		$session->setMessageData($error);
+		$this->redirect();
+	}
+
 	$loginDbFiles   = glob(FLUX_DATA_DIR.'/logs/schemas/logindb/*/*.txt');
 	$charMapDbFiles = glob(FLUX_DATA_DIR.'/logs/schemas/charmapdb/*/*.txt');
 	

@@ -1,0 +1,1 @@
+UPDATE `cp_pwchange` SET `old_password` = '', `new_password` = NULL;

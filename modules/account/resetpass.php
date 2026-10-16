@@ -10,6 +10,12 @@ if (count($_POST)) {
 	$userid    = $params->get('userid');
 	$email     = $params->get('email');
 	$groupName = $params->get('login');
+
+	require_once 'Flux/RateLimit.php';
+	$ipKey       = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+	$userKey     = strtolower((string)$userid);
+	$maxRequests = (int)Flux::config('ResetPassMaxRequests');
+	$window      = (int)Flux::config('ResetPassWindowMinutes') * 60;
 	
 	if (!$userid) {
 		$errorMessage = Flux::message('ResetPassEnterAccount');
@@ -26,7 +32,14 @@ if (count($_POST)) {
 	elseif (!preg_match('/^(.+?)@(.+?)$/', $email)) {
 		$errorMessage = Flux::message('InvalidEmailAddress');
 	}
+	elseif (Flux_RateLimit::isLimited('resetpass_ip', $ipKey, $maxRequests, $window) ||
+			Flux_RateLimit::isLimited('resetpass_user', $userKey, $maxRequests, $window)) {
+		$errorMessage = Flux::message('ResetPassFailed');
+	}
 	else {
+		Flux_RateLimit::hit('resetpass_ip', $ipKey, $window);
+		Flux_RateLimit::hit('resetpass_user', $userKey, $window);
+
 		if (!$groupName || !($loginAthenaGroup=Flux::getServerGroupByName($groupName))) {
 			$loginAthenaGroup = $session->loginAthenaGroup;
 		}
@@ -45,16 +58,21 @@ if (count($_POST)) {
 		$row = $sth->fetch();
 		if ($row) {
 			$groups = AccountLevel::getArray();
-			if (AccountLevel::getGroupLevel($row->group_id) >= Flux::config('NoResetPassGroupLevel')) {
-				$errorMessage = Flux::message('ResetPassDisallowed');
-			}
-			else {
-				$code = md5(rand() + $row->account_id);
+			// Groups missing from config/groups.php can't be told apart from privileged ones, so they are refused too.
+			// No e-mail is sent for them, but the answer given is the same as for any other request.
+			if (AccountLevel::groupExists($row->group_id) && AccountLevel::getGroupLevel($row->group_id) < Flux::config('NoResetPassGroupLevel')) {
+				$code = bin2hex(random_bytes(16));
+
+				// A new request replaces any link that was sent before.
+				$sql  = "DELETE FROM {$loginAthenaGroup->loginDatabase}.$resetPassTable WHERE account_id = ? AND reset_done = 0";
+				$sth  = $loginAthenaGroup->connection->getStatement($sql);
+				$sth->execute(array($row->account_id));
+
 				$sql  = "INSERT INTO {$loginAthenaGroup->loginDatabase}.$resetPassTable ";
 				$sql .= "(code, account_id, old_password, request_date, request_ip, reset_done) ";
 				$sql .= "VALUES (?, ?, ?, NOW(), ?, 0)";
 				$sth  = $loginAthenaGroup->connection->getStatement($sql);
-				$res  = $sth->execute(array($code, $row->account_id, $row->user_pass, $_SERVER['REMOTE_ADDR']));
+				$res  = $sth->execute(array($code, $row->account_id, '', $_SERVER['REMOTE_ADDR']));
 				
 				if ($res) {
 					require_once 'Flux/Mailer.php';
@@ -66,14 +84,11 @@ if (count($_POST)) {
 			}
 		}
 
+		// The same answer is given whether or not an account matched, so this form can't be
+		// used to find out which accounts exist or which ones are protected.
 		if (empty($errorMessage)) {
-			if (empty($sent)) {
-				$errorMessage = Flux::message('ResetPassFailed');
-			}
-			else {
-				$session->setMessageData(Flux::message('ResetPassEmailSent'));
-				$this->redirect();
-			}
+			$session->setMessageData(Flux::message('ResetPassEmailSent'));
+			$this->redirect();
 		}
 	}
 }

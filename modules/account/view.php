@@ -49,7 +49,16 @@ else {
 	$title = Flux::message('AccountViewTitle3');
 }
 
-$level       = AccountLevel::getGroupLevel($account->group_id);
+// A group that isn't in config/groups.php is treated as the highest level.
+if (!$account) {
+	$level = AccountLevel::NORMAL;
+}
+elseif (AccountLevel::groupExists($account->group_id)) {
+	$level = AccountLevel::getGroupLevel($account->group_id);
+}
+else {
+	$level = AccountLevel::ADMIN;
+}
 
 $banSuperior = $account && (($level > $session->account->group_level && $auth->allowedToBanHigherPower) || $level <= $session->account->group_level);
 $canTempBan  = !$isMine && $banSuperior && $auth->allowedToTempBanAccount;
@@ -58,12 +67,17 @@ $tempBanned  = $account && $account->unban_time > 0;
 $permBanned  = $account && $account->state == 5;
 $showTempBan = !$isMine && !$tempBanned && !$permBanned && $auth->allowedToTempBanAccount;
 $showPermBan = !$isMine && !$permBanned && $auth->allowedToPermBanAccount;
-$showUnban   = !$isMine && ($tempBanned && $auth->allowedToTempUnbanAccount) || ($permBanned && $auth->allowedToPermUnbanAccount);
+$canUnban    = !$isMine && $banSuperior;
+$showUnban   = $canUnban && (($tempBanned && $auth->allowedToTempUnbanAccount) || ($permBanned && $auth->allowedToPermUnbanAccount));
 
 if (count($_POST) && $account) {
 	$reason = (string)$params->get('reason');
-	
-	if ($params->get('tempban') && ($tempBanDate=$params->get('tempban_date'))) {
+
+	if (!Flux_Security::csrfValidate('AccountBan', $_POST, $csrfError)) {
+		$session->setMessageData($csrfError);
+		$this->redirect($this->url('account', 'view', array('id' => $account->account_id)));
+	}
+	elseif ($params->get('tempban') && ($tempBanDate=$params->get('tempban_date'))) {
 		if ($canTempBan) {
 			if ($server->loginServer->temporarilyBan($session->account->account_id, $reason, $account->account_id, $tempBanDate)) {
 				$formattedDate = $this->formatDateTime($tempBanDate);
@@ -103,7 +117,7 @@ if (count($_POST) && $account) {
 		$sql = "UPDATE {$server->loginDatabase}.$tbl SET confirmed = 1, confirm_expire = NULL WHERE account_id = ?";
 		$sth = $server->connection->getStatement($sql);
 		
-		if ($tempBanned && $auth->allowedToTempUnbanAccount &&
+		if ($canUnban && $tempBanned && $auth->allowedToTempUnbanAccount &&
 				$server->loginServer->unban($session->account->account_id, $reason, $account->account_id)) {
 					
 			if ($confirm) {
@@ -113,7 +127,7 @@ if (count($_POST) && $account) {
 			$session->setMessageData(Flux::message('AccountLiftTempBan'));
 			$this->redirect($this->url('account', 'view', array('id' => $account->account_id)));
 		}
-		elseif ($permBanned && $auth->allowedToPermUnbanAccount &&
+		elseif ($canUnban && $permBanned && $auth->allowedToPermUnbanAccount &&
 				$server->loginServer->unban($session->account->account_id, $reason, $account->account_id)) {
 					
 			if ($confirm) {

@@ -38,7 +38,7 @@
 				<?php endif ?>
 				<?php echo $this->linkToItem($item->shop_item_nameid, $item->shop_item_name) ?>
 			</h4>
-			<p class="shop-item-info"><?php echo Markdown($item->shop_item_info) ?></p>
+			<p class="shop-item-info"><?php echo Markdown($item->shop_item_info, true) ?></p>
 			<p class="shop-item-action">
 				<?php if ($auth->actionAllowed('item', 'view')): ?>
 				<?php echo $this->linkToItem($item->shop_item_nameid, 'View Item') ?>
@@ -56,7 +56,7 @@
 			<p><span class="cost"><?php echo number_format($item->shop_item_cost) ?></span> credits.</p>
 			<p class="shop-item-action">
 				<?php if ($auth->actionAllowed('purchase', 'add')): ?>
-				<a href="<?php echo htmlspecialchars($this->url('purchase', 'add', array('id' => $item->shop_item_id))) ?>"><strong>Add to Cart</strong></a>
+				<a href="<?php echo htmlspecialchars($this->url('purchase', 'add', array('id' => $item->shop_item_id, 'Session' => Flux_Security::csrfGet('Session')))) ?>"><strong>Add to Cart</strong></a>
 				<?php endif ?>
 			</p>
 		</td>

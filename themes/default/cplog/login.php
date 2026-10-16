@@ -10,11 +10,6 @@
 		<label for="use_login_before">&mdash;</label>
 		<input type="checkbox" name="use_login_before" id="use_login_before"<?php if ($params->get('use_login_before')) echo ' checked="checked"' ?> />
 		<?php echo $this->dateField('login_before') ?>
-		<?php if ($auth->allowedToSearchCpLoginLogPw): ?>
-		...
-		<label for="password">Password:</label>
-		<input type="text" name="password" id="password" value="<?php echo htmlspecialchars((string)$params->get('password')) ?>" />
-		<?php endif ?>
 	</p>
 	<p>
 		<label for="account_id">Account ID:</label>

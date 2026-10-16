@@ -369,29 +369,31 @@ class Flux {
 		$cachefile = FLUX_DATA_DIR."/tmp/$basename";
 		
 		if ($cache && file_exists($cachefile) && filemtime($cachefile) > filemtime($filename)) {
-			return unserialize(file_get_contents($cachefile, false, null, 28));
-		}
-		else {
-			ob_start();
-			// Uses require, thus assumes the file returns an array.
-			$config = require $filename;
-			ob_end_clean();
-			
-			// Cache config file.
-			$cf = self::parseConfig($config);
-
-			if ($cache) {
-				$fp = fopen($cachefile, 'w');
-				if ( !$fp ){
-					self::raise("Failed to write ".$cachefile." permission error or data/tmp not exist in Flux::parseConfigFile()");
-				}
-				fwrite($fp, '<?php exit("Forbidden."); ?>');
-				fwrite($fp, $s=serialize($cf), strlen($s));
-				fclose($fp);
+			$cached = json_decode((string)file_get_contents($cachefile, false, null, 28), true);
+			if (is_array($cached)) {
+				return self::parseConfig($cached);
 			}
-			
-			return $cf;
 		}
+
+		ob_start();
+		// Uses require, thus assumes the file returns an array.
+		$config = require $filename;
+		ob_end_clean();
+		
+		// Cache config file.
+		$cf = self::parseConfig($config);
+
+		if ($cache) {
+			$fp = fopen($cachefile, 'w');
+			if ( !$fp ){
+				self::raise("Failed to write ".$cachefile." permission error or data/tmp not exist in Flux::parseConfigFile()");
+			}
+			fwrite($fp, '<?php exit("Forbidden."); ?>');
+			fwrite($fp, json_encode($cf->toArray(), JSON_PRESERVE_ZERO_FRACTION));
+			fclose($fp);
+		}
+		
+		return $cf;
 	}
 	
 	/**
@@ -820,9 +822,11 @@ class Flux {
 		$creditsTable           = self::config('FluxTables.CreditsTable');
 		$trustTable             = self::config('FluxTables.DonationTrustTable');
 		$loginAthenaGroups      = self::$loginAthenaGroupRegistry;
-		list ($cancel, $accept) = array(array(), array());
 		
 		foreach ($loginAthenaGroups as $loginAthenaGroup) {
+			// Each group has its own transactions, don't carry them over.
+			list ($cancel, $accept) = array(array(), array());
+			
 			$sql  = "SELECT account_id, payer_email, credits, mc_gross, txn_id, hold_until ";
 			$sql .= "FROM {$loginAthenaGroup->loginDatabase}.$txnLogTable ";
 			$sql .= "WHERE account_id > 0 AND hold_until IS NOT NULL AND payment_status = 'Completed'";
@@ -859,9 +863,16 @@ class Flux {
 			$sql3  .= "delete_date IS NULL AND account_id = ? AND email = ? LIMIT 1";
 			$sth3   = $loginAthenaGroup->connection->getStatement($sql3);
 			
-			$idvals = array();
+			$sql4   = "UPDATE {$loginAthenaGroup->loginDatabase}.$txnLogTable SET hold_until = NULL ";
+			$sql4  .= "WHERE txn_id = ? AND payment_status = 'Completed' AND hold_until IS NOT NULL";
+			$sth4   = $loginAthenaGroup->connection->getStatement($sql4);
 			
 			foreach ($accept as $txn) {
+				// Claim the transaction first, so overlapping runs can't credit it twice.
+				if (!$sth4->execute(array($txn->txn_id)) || $sth4->rowCount() < 1) {
+					continue;
+				}
+				
 				$loginAthenaGroup->loginServer->depositCredits($txn->account_id, $txn->credits, $txn->mc_gross);
 				$sth3->execute(array($txn->account_id, $txn->payer_email));
 				$row = $sth3->fetch();
@@ -869,17 +880,6 @@ class Flux {
 				if (!$row) {
 					$sth2->execute(array($txn->account_id, $txn->payer_email));
 				}
-				
-				$idvals[] = $txn->txn_id;
-			}
-			
-			if (!empty($idvals)) {
-				$ids  = implode(', ', array_fill(0, count($idvals), '?'));
-				$sql  = "UPDATE {$loginAthenaGroup->loginDatabase}.$txnLogTable ";
-				$sql .= "SET hold_until = NULL WHERE txn_id IN ($ids)";
-				$sth  = $loginAthenaGroup->connection->getStatement($sql);
-
-				$sth->execute($idvals);
 			}
 		}
 	}

@@ -277,6 +277,12 @@ parameters:
 			path: lib/Flux/LoginServer.php
 
 		-
+			message: '#^Path in require_once\(\) "Flux/RateLimit\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/LoginServer.php
+
+		-
 			message: '#^Path in require_once\(\) "Flux/ReCaptcha\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
@@ -344,6 +350,12 @@ parameters:
 
 		-
 			message: '#^Path in require_once\(\) "Flux/Mailer\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: lib/Flux/PaymentNotifyRequest.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/RateLimit\.php" is not a file or it does not exist\.$#'
 			identifier: requireOnce.fileNotFound
 			count: 1
 			path: lib/Flux/PaymentNotifyRequest.php
@@ -765,13 +777,13 @@ parameters:
 		-
 			message: '#^Variable \$server might not be defined\.$#'
 			identifier: variable.undefined
-			count: 6
+			count: 8
 			path: modules/account/changepass.php
 
 		-
 			message: '#^Variable \$session might not be defined\.$#'
 			identifier: variable.undefined
-			count: 8
+			count: 9
 			path: modules/account/changepass.php
 
 		-
@@ -939,13 +951,13 @@ parameters:
 		-
 			message: '#^Variable \$auth might not be defined\.$#'
 			identifier: variable.undefined
-			count: 5
+			count: 4
 			path: modules/account/index.php
 
 		-
 			message: '#^Variable \$params might not be defined\.$#'
 			identifier: variable.undefined
-			count: 17
+			count: 16
 			path: modules/account/index.php
 
 		-
@@ -975,13 +987,13 @@ parameters:
 		-
 			message: '#^Variable \$session might not be defined\.$#'
 			identifier: variable.undefined
-			count: 5
+			count: 4
 			path: modules/account/login.php
 
 		-
 			message: '#^Variable \$this might not be defined\.$#'
 			identifier: variable.undefined
-			count: 3
+			count: 4
 			path: modules/account/login.php
 
 		-
@@ -1063,6 +1075,12 @@ parameters:
 			path: modules/account/resetpass.php
 
 		-
+			message: '#^Path in require_once\(\) "Flux/RateLimit\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/account/resetpass.php
+
+		-
 			message: '#^Variable \$params might not be defined\.$#'
 			identifier: variable.undefined
 			count: 3
@@ -1081,15 +1099,9 @@ parameters:
 			path: modules/account/resetpass.php
 
 		-
-			message: '#^Path in require_once\(\) "Flux/Mailer\.php" is not a file or it does not exist\.$#'
-			identifier: requireOnce.fileNotFound
-			count: 1
-			path: modules/account/resetpw.php
-
-		-
 			message: '#^Variable \$params might not be defined\.$#'
 			identifier: variable.undefined
-			count: 3
+			count: 5
 			path: modules/account/resetpw.php
 
 		-
@@ -1107,7 +1119,7 @@ parameters:
 		-
 			message: '#^Variable \$this might not be defined\.$#'
 			identifier: variable.undefined
-			count: 7
+			count: 8
 			path: modules/account/resetpw.php
 
 		-
@@ -1161,13 +1173,13 @@ parameters:
 		-
 			message: '#^Variable \$session might not be defined\.$#'
 			identifier: variable.undefined
-			count: 15
+			count: 16
 			path: modules/account/view.php
 
 		-
 			message: '#^Variable \$this might not be defined\.$#'
 			identifier: variable.undefined
-			count: 11
+			count: 13
 			path: modules/account/view.php
 
 		-
@@ -1591,27 +1603,15 @@ parameters:
 			path: modules/cplog/ipban.php
 
 		-
-			message: '#^Variable \$auth might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: modules/cplog/login.php
-
-		-
 			message: '#^Variable \$params might not be defined\.$#'
 			identifier: variable.undefined
-			count: 7
+			count: 6
 			path: modules/cplog/login.php
 
 		-
 			message: '#^Variable \$server might not be defined\.$#'
 			identifier: variable.undefined
 			count: 4
-			path: modules/cplog/login.php
-
-		-
-			message: '#^Variable \$session might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
 			path: modules/cplog/login.php
 
 		-
@@ -1673,6 +1673,12 @@ parameters:
 			identifier: variable.undefined
 			count: 1
 			path: modules/cplog/resetpass.php
+
+		-
+			message: '#^Path in require_once\(\) "Flux/PaymentNotifyRequest\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/cplog/txnview.php
 
 		-
 			message: '#^Variable \$params might not be defined\.$#'
@@ -2005,6 +2011,12 @@ parameters:
 			path: modules/install/index.php
 
 		-
+			message: '#^Path in require_once\(\) "Flux/RateLimit\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: modules/install/index.php
+
+		-
 			message: '#^Variable \$installer might not be defined\.$#'
 			identifier: variable.undefined
 			count: 4
@@ -2019,13 +2031,13 @@ parameters:
 		-
 			message: '#^Variable \$session might not be defined\.$#'
 			identifier: variable.undefined
-			count: 7
+			count: 9
 			path: modules/install/index.php
 
 		-
 			message: '#^Variable \$this might not be defined\.$#'
 			identifier: variable.undefined
-			count: 3
+			count: 5
 			path: modules/install/index.php
 
 		-
@@ -2035,9 +2047,15 @@ parameters:
 			path: modules/install/reinstall.php
 
 		-
-			message: '#^Variable \$this might not be defined\.$#'
+			message: '#^Variable \$session might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
+			path: modules/install/reinstall.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
 			path: modules/install/reinstall.php
 
 		-
@@ -2769,13 +2787,13 @@ parameters:
 		-
 			message: '#^Variable \$session might not be defined\.$#'
 			identifier: variable.undefined
-			count: 2
+			count: 3
 			path: modules/purchase/add.php
 
 		-
 			message: '#^Variable \$this might not be defined\.$#'
 			identifier: variable.undefined
-			count: 3
+			count: 5
 			path: modules/purchase/add.php
 
 		-
@@ -2809,15 +2827,9 @@ parameters:
 			path: modules/purchase/checkout.php
 
 		-
-			message: '#^Variable \$res might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: modules/purchase/checkout.php
-
-		-
 			message: '#^Variable \$server might not be defined\.$#'
 			identifier: variable.undefined
-			count: 9
+			count: 7
 			path: modules/purchase/checkout.php
 
 		-
@@ -2829,7 +2841,7 @@ parameters:
 		-
 			message: '#^Variable \$this might not be defined\.$#'
 			identifier: variable.undefined
-			count: 8
+			count: 10
 			path: modules/purchase/checkout.php
 
 		-
@@ -3199,6 +3211,12 @@ parameters:
 			path: themes/default/account/index.php
 
 		-
+			message: '#^Variable \$canSeeDetails might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/index.php
+
+		-
 			message: '#^Variable \$paginator might not be defined\.$#'
 			identifier: variable.undefined
 			count: 15
@@ -3207,13 +3225,7 @@ parameters:
 		-
 			message: '#^Variable \$params might not be defined\.$#'
 			identifier: variable.undefined
-			count: 18
-			path: themes/default/account/index.php
-
-		-
-			message: '#^Variable \$searchPassword might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
+			count: 17
 			path: themes/default/account/index.php
 
 		-
@@ -3305,6 +3317,12 @@ parameters:
 			identifier: variable.undefined
 			count: 1
 			path: themes/default/account/resetpass.php
+
+		-
+			message: '#^Variable \$this might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: themes/default/account/resetpw.php
 
 		-
 			message: '#^Variable \$params might not be defined\.$#'
@@ -3819,7 +3837,7 @@ parameters:
 		-
 			message: '#^Variable \$auth might not be defined\.$#'
 			identifier: variable.undefined
-			count: 5
+			count: 4
 			path: themes/default/cplog/login.php
 
 		-
@@ -3843,7 +3861,7 @@ parameters:
 		-
 			message: '#^Variable \$params might not be defined\.$#'
 			identifier: variable.undefined
-			count: 13
+			count: 12
 			path: themes/default/cplog/login.php
 
 		-
