@@ -22,7 +22,8 @@ $weaponLevel   = $params->get('weapon_level');
 $equipLevelMin = $params->get('equip_level_min');
 $equipLevelMax = $params->get('equip_level_max');
 $refineable    = $params->get('refineable');
-$equipLocs     = $params->get('equip_locations');
+$bindOnEquip   = $params->get('bindonequip');
+$equipLocs    = $params->get('equip_locations');
 $equipUpper    = $params->get('equip_upper');
 $equipJobs     = $params->get('equip_jobs');
 $equipMale     = $params->get('equip_male');
@@ -161,6 +162,11 @@ if (count($_POST) && $params->get('additem')) {
 		$refineable = intval((bool)$refineable);
 	}
 
+	// Bind on equip should be 1 or 0 if it's not null.
+	if (!is_null($bindOnEquip)) {
+		$bindOnEquip = intval((bool)$bindOnEquip);
+	}
+
 	if (!$itemID) {
 		$errorMessage = 'You must specify an item ID.';
 	}
@@ -276,7 +282,8 @@ if (count($_POST) && $params->get('additem')) {
 					'script'         => $script,
 					'equip_script'   => $equipScript,
 					'unequip_script' => $unequipScript,
-					'refineable'     => $refineable
+					'refineable'     => $refineable,
+					'bindonequip'    => $bindOnEquip
 				);
 				
 				foreach ($vals as $col => $val) {
