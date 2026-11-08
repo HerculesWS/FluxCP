@@ -190,7 +190,7 @@ class Flux_PaymentNotifyRequestRest {
 
 		$this->logPayPal('Transaction identified as %s.', $transactionID);
 
-		$customArray = @unserialize(base64_decode((string)$customID));
+		$customArray = @unserialize(base64_decode((string)$customID), array('allowed_classes' => false));
 		$customArray = $customArray && is_array($customArray) ? $customArray : array();
 		$customData  = new Flux_Config($customArray);
 		$accountID   = $customData->get('account_id');
